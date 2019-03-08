@@ -1,0 +1,81 @@
+Bases de Datos I
+Presentación de la materia
+
+Hernán Czemerinski
+hernan.czemerinski@gmail.com
+
+Hernán Rondelli
+lucifer.unix.cabj@gmail.com
+
+* Régimen de aprobación
+
+* La materia es promocionable
+
+# empty title
+#* 
+
+#.image img/tano.gif _ 800
+#.caption La materia es *promocionable*
+
+* Régimen de aprobación
+
+- 75% de asistencia mínima obligatoria 😿
+- 1 parcial
+- 1 trabajo práctico
+- La nota final es la nota del parcial
+
+#* Moodle
+
+#.link https://sso.ungs.edu.ar
+
+#- Presentaciones
+#- Prácticas
+#- Calendario
+#- Bibliografía
+
+* Programa de la materia
+
+- E/R Model. Modelo Relacional.
+- Dependencias Funcionales. Normalización.
+- Álgebra Relacional. SQL.
+- Stored Procedures. Triggers. Transacciones.
+- JSON. NoSQL.
+
+*Parcial*(6*de*mayo):*
+E/R Model. Modelo Relacional. Dependencias Funcionales. Normalización.
+Álgebra Relacional. SQL.
+
+*Recuperatorio*(16*de*mayo)*
+
+*Segundo*parcial*(24*de*junio):*
+Todos los temas de la materia.
+
+* Bases de Datos
+
+* Bases de Datos
+
+_Conjunto_de_datos_relacionados._
+
+- DBMS (DataBase Management System)
+- RDBMS (Relational DataBase Management System)
+- PostgreSQL, Oracle, SQLite, MySQL, MariaDB
+- DBA (DataBase Administrator)
+
+* PostgreSQL
+
+- *Unix:* Linux, FreeBSD, OpenBSD, macOS
+- Clients: psql, pgweb, …
+- Text editors: vi, vscode, …
+- Código: Go, C, Python, Java, PHP, …
+
+* Prohibido el uso de Windows en esta materia!
+
+#* Server
+
+#Decir algo del modelo server-client
+#Poner dibujito de PostgreSQL, psql, browser, etc.
+
+# empty title
+* 
+
+.image img/questions.png
