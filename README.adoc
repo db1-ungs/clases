@@ -1,5 +1,13 @@
 = Bases de Datos I
 
+== Prácticas
+
+link:./prac/p1.adoc[Práctica 1]
+
+link:./prac/p2.adoc[Práctica 2]
+
+link:./prac/p3.adoc[Práctica 3]
+
 == Presentaciones
 
 http://bit.do/ungs-db1-intro[Presentación de la materia]
