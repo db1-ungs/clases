@@ -1,0 +1,17 @@
+= Bases de Datos I
+
+== Presentaciones
+
+http://bit.do/ungs-db1-intro[Presentación de la materia]
+
+http://bit.do/ungs-db1-db[Dependencias Funcionales]
+
+http://bit.do/ungs-db1-norm[Normalización]
+
+http://bit.do/ungs-db1-ar[Álgebra Relacional]
+
+http://bit.do/ungs-db1-sp[Stored Procedures & Triggers]
+
+http://bit.do/ungs-db1-trans[Transacciones]
+
+http://bit.do/go-and-db[Go and Databases]
