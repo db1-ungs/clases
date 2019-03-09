@@ -5,10 +5,10 @@ Daniel Rondelli
 Universidad Nacional de General Sarmiento
 lucifer.unix.cabj@gmail.com
 
-#* This presentation
+* This presentation
 
-#.image img/bitdo.png
-#.caption bit.do/go-and-db
+.image img/go-and-db.png
+.caption bit.do/go-and-db
 
 * What is Go?
 
