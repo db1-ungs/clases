@@ -62,7 +62,7 @@ d. { _A_ → _B_, _BD_ → _C_ }
 
 e. { _AB_ → _C_, _C_ → _D_, _BD_ → _E_ }
 
-5. Demostrar las reglas de unión y de pseudotransitividad usando las
+5. Demostrar las reglas de unión y de pseudo transitividad usando las
 reglas de Armstrong.
 
 6. Hallar la clausura de atributos para cada uno de los siguientes
@@ -119,7 +119,7 @@ b. Decir en qué forma normal se encuentra _R_. Justificar.
 3. Dada la siguiente relación con su conjunto de dependencias
 funcionales:
 +
-f1(piloto, escuderia, circuito, cant_vueltas, long_circuito, año,
+f1(piloto, escudería, circuito, cant_vueltas, long_circuito, año,
 posición, tiempo)
 +
 piloto circuito año → posición tiempo
@@ -128,7 +128,7 @@ circuito → long_circuito
 +
 circuito año → cant_vueltas
 +
-piloto año → escuderia
+piloto año → escudería
 +
 Indicar en qué forma normal se encuentra la relación f1.
 
