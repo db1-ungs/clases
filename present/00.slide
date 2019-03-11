@@ -17,7 +17,7 @@ lucifer.unix.cabj@gmail.com
 * La materia es promocionable
 
 # empty title
-#* 
+#*
 
 #.image img/tano.gif _ 800
 #.caption La materia es *promocionable*
@@ -52,7 +52,7 @@ E/R Model. Modelo Relacional. Dependencias Funcionales. Normalización.
 
 *Recuperatorio*(16*de*mayo)*
 
-*Segundo*parcial*(24*de*junio):*
+*Entrega*trabajo*práctico*(24*de*junio):*
 Todos los temas de la materia.
 
 * Bases de Datos
@@ -81,6 +81,6 @@ _Conjunto_de_datos_relacionados._
 #Poner dibujito de PostgreSQL, psql, browser, etc.
 
 # empty title
-* 
+*
 
 .image img/questions.png
