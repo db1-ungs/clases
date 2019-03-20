@@ -7,10 +7,9 @@ hczemerinski@campus.ungs.edu.ar
 Hernán Rondelli
 lucifer.unix.cabj@gmail.com
 
-* This presentation
+* bit.do/ungs-db1-intro
 
 .image img/ungs-db1-intro.png
-.caption bit.do/ungs-db1-intro
 
 * Régimen de aprobación
 
@@ -27,7 +26,7 @@ lucifer.unix.cabj@gmail.com
 - 75% de asistencia mínima obligatoria 😿
 - 1 parcial
 - 1 trabajo práctico
-- La nota final es la nota del parcial
+- Promoción → (nota parcial + trabajo práctico) / 2 >= 7
 
 #* Moodle
 
@@ -37,6 +36,14 @@ lucifer.unix.cabj@gmail.com
 #- Prácticas
 #- Calendario
 #- Bibliografía
+
+* Bibliografía sugerida
+
+- Silberschatz and Korth, _Database_System_Concepts_
+- Ramakrishnan and Gehrke, _Database_Management_Systems_
+- Elmasri and Navathe, _Fundamentals_of_database_systems_
+- Helman, _The_science_of_database_management_
+- Ullman, _Principles_of_Database_and_Knowledge_Base_Systems_
 
 * Programa de la materia
 
@@ -81,6 +88,6 @@ _Conjunto_de_datos_relacionados._
 #Poner dibujito de PostgreSQL, psql, browser, etc.
 
 # empty title
-*
+* 
 
 .image img/questions.png
