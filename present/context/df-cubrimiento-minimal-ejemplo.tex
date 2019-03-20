@@ -1,0 +1,20 @@
+\documentclass[preview]{standalone}
+
+\begin{document}
+$R=(A,B,C,D)$\\
+$F=\big\{(A\rightarrow BD), (B\rightarrow C), (C\rightarrow D), (BC\rightarrow D)\big\}$\\
+
+\textbf{(1) Aplico descomposici\'on}\\
+$\big\{(A\rightarrow B), (A\rightarrow D), (B\rightarrow C), (C\rightarrow D), (BC\rightarrow D)\big\}$\\
+
+\textbf{(2) $B$ es redundante en $(BC\rightarrow D)$}\\
+$\big\{(A\rightarrow B), (A\rightarrow D), (B\rightarrow C), (C\rightarrow D), (C\rightarrow D)\big\}$\\
+
+\textbf{(3) Aparece dos veces $(C\rightarrow D)$}\\
+$\big\{(A\rightarrow B), (A\rightarrow D), (B\rightarrow C), (C\rightarrow D)\big\}$\\
+
+\textbf{(4) $(A\rightarrow D)$ es redundante}\\
+$\big\{(A\rightarrow B), (B\rightarrow C), (C\rightarrow D)\big\}$\\
+
+$F_m=\big\{(A\rightarrow B), (B\rightarrow C), (C\rightarrow D)\big\}$
+\end{document}

@@ -1,0 +1,22 @@
+\documentclass[preview]{standalone}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+
+\begin{document}
+\begin{algorithmic}
+\Function{clausura}{$X,F$}
+\State $X_0\gets X$
+\State $i \gets 0$
+\Repeat  
+	\State $X_{i+1}\gets X_i \text{ } \cup \text{ } \big\{A\text{ } \big{|} \text{ } (Y\rightarrow Z) \in F\text{ } \wedge \text{ } Y \subseteq X_i \text{ } \wedge \text{ } A\in Z \big\}$
+	\State $i \gets i+1$
+\Until{$X_{i+1}$=$X_i$}
+\State \Return $X_i$
+\EndFunction
+\end{algorithmic}
+
+\vspace{.5cm}
+
+Como $X = X_0  \subseteq \dots \subseteq X_i  \subseteq \dots \subseteq R$ y $R$ es finito, el algoritmo termina.
+\end{document}
+
