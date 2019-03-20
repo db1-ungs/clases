@@ -1,25 +1,130 @@
-Dependencias Funcionales
+Dependencias funcionales
+Base de datos 1
 
-Hernán Czemerinski
-hernan.czemerinski@gmail.com
+Universidad Nacional de General Sarmiento
 
-Hernán Rondelli
-lucifer.unix.cabj@gmail.com
-
-* This presentation
+* Esta presentación
 
 .image img/ungs-db1-dp.png
 .caption bit.do/ungs-db1-dp
 
-* Slide 1
+* Notación
+.image context/df-notacion.png 380 _
 
-TODO
+* Definición
+.image context/df-definicion.png 28 _
+Decimos que _X_ determina funcionalmente a _Y_.
+Si una instancia _r_ satisface todas las DF, entonces _r_ es legal.
 
-* Slide 2
+* Ejemplo
+¿Qué implicancias tienen las siguientes relaciones?
+.image context/df-definicion-ejemplo.png 300 _
 
-TODO
+* Ejemplo
+¿Qué implicancias tienen las siguientes relaciones?
+.image context/df-definicion-ejemplo.png 300 _
+- Un estudiante se puede inscribir en una materia una sola vez.
+- Un estudiante puede rendir el examen en más de una fecha.
 
-# empty title
-* 
+* Inferencias de F
+.image context/df-inferencia.png 30 _
 
-.image img/questions.png
+* Ejemplo
+.image context/df-inferencia-ejemplo.png 245 _
+A partir de este conjunto de DF, ¿se puede inferir alguna otra?
+.image context/df-inferencia-ejemplo-2.png 30 _
+
+* Ejemplo
+.image context/df-inferencia-ejemplo.png 245 _
+A partir de este conjunto de DF, ¿se puede inferir alguna otra?
+.image context/df-inferencia-ejemplo-3.png 30 _
+
+* Axiomas de Armstrong
+Reglas de inferencia
+.image context/df-axiomas-armstrong.png 200 _
+De (1) se desprenden las inferencias triviales:
+.image context/df-regla-trivial.png 20 _
+Las dependencias funcionales, ¿son simétricas?
+.image context/df-regla-invalida.png 25 _
+
+* Clausura de DF
+.image context/df-clausura-df.png 50 _
+La clausura de un conjunto de DF _F_ es el conjunto todas las dependencias funcionales inferidas por _F_.
+
+* Ejemplo
+.image context/df-clausura-df-ejemplo.png 200 _
+
+* Ejemplo
+.image context/df-clausura-df-ejemplo-2.png 310 _
+
+* Reglas de inferencia adicionales
+.image context/df-reglas-adicionales.png 190 _
+Estas reglas se demuestran aplicando los axiomas de Armstrong.
+
+* Demostración de la unión
+.image context/df-union.png 28 _
+.image context/df-demostracion-union.png 290 _
+
+* Reglas que no son reglas
+.image context/df-regla-falsa.png 28 _
+
+* Reglas que no son reglas
+.image context/df-regla-falsa.png 28 _
+La falsedad de una regla se demuestra dando un contraejemplo.
+.image context/df-regla-falsa-contraejemplo.png 390 _
+
+* Reglas que no son reglas
+.image context/df-regla-falsa.png 28 _
+Alcanza con un contraejemplo sin semántica reconocible.
+.image context/df-regla-falsa-contraejemplo-2.png 390 _
+
+* Clausura de atributos
+.image context/df-clausura-atributos.png 50 _
+La clausura de un conjunto de atributos _X_ respecto de un conjunto de dependencias _F_ es el conjunto todos los atributos _A_ tal que _X_ → _A_ es inferido por _F_.
+
+**
+**
+*Propiedad*
+.image context/df-clausura-atributos-propiedad.png 30 _
+
+* Ejemplo
+¿Cuáles son las clausuras en el siguiente ejemplo?
+.image context/df-clausura-atributos-ejemplo.png 350 _
+
+* Ejemplo
+¿Cuáles son las clausuras en el siguiente ejemplo?
+.image context/df-clausura-atributos-ejemplo-2.png 370 _
+
+* Algoritmo
+Algoritmo de clausura de _X_ respecto de _F_ :
+.image context/df-clausura-atributos-algoritmo.png 350 _
+
+* Superclaves y claves
+.image context/df-superclaves-claves.png 195 _
+
+* Ejemplo
+.image context/df-superclaves-claves-ejemplo.png 525 _
+
+* Ejemplo
+.image context/df-superclaves-claves-ejemplo-2.png 545 _
+
+* Equivalencia de conjuntos de DF
+.image context/df-equivalencia-df.png 150 _
+
+**
+*Ejemplo*
+.image context/df-equivalencia-df-ejemplo.png 130 _
+
+* Cubrimiento minimal
+.image context/df-cubrimiento-minimal.png 240 _
+En general, la redundancia está dada por transitividad.
+
+* Ejemplo
+.image context/df-cubrimiento-minimal-ejemplo.png 475 _
+
+* Dudas, preguntas, consultas
+**
+**
+**
+**
+.image context/df-pregunta.png 200 _
