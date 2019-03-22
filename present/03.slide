@@ -22,8 +22,8 @@ Si una instancia _r_ satisface todas las DF, entonces _r_ es legal.
 * Ejemplo
 ¿Qué implicancias tienen las siguientes relaciones?
 .image tex/df-definicion-ejemplo.png 300 _
-- Un estudiante se puede inscribir en una materia una sola vez.
-- Un estudiante puede rendir el examen en más de una fecha.
+- Un estudiante se puede *inscribir* en una materia *una*sola*vez*
+- Un estudiante puede *rendir* el examen *más*de*una*vez* (en más de una fecha)
 
 * Inferencias de F
 .image tex/df-inferencia.png 30 _
@@ -77,7 +77,7 @@ La falsedad de una regla se demuestra dando un contraejemplo.
 Alcanza con un contraejemplo sin semántica reconocible.
 .image tex/df-regla-falsa-contraejemplo-2.png 390 _
 
-* Clausura de atributos
+* Clausura de conjuntos de atributos
 .image tex/df-clausura-atributos.png 50 _
 La clausura de un conjunto de atributos _X_ respecto de un conjunto de dependencias _F_ es el conjunto todos los atributos _A_ tal que _X_ → _A_ es inferido por _F_.
 
