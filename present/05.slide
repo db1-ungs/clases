@@ -43,56 +43,56 @@ Observaciones
 
 * 1. Projection
 
-.image context/projection.png
+.image tex/ar-projection.png
 
 Extrae columnas.
 
 * 2. Selection
 
-.image context/selection.png
+.image tex/ar-selection.png
 
 Extrae filas.
 
 * 3. Cartesian Product
 
-.image context/cartesian-product.png
+.image tex/ar-cartesian-product.png
 
 Combina todas las filas de una tabla con todas las filas de la otra.
 
 * 4. Join
 
-.image context/join.png
+.image tex/ar-join.png
 
 Combina las filas de ambas tablas, matcheando según la condición.
 
-.image context/natural-join.png
+.image tex/ar-natural-join.png
 
 Si no hay condición, se llama *natural*join* y matchea atributos con el mismo nombre.
 
 * 5. Union
 
-.image context/union.png
+.image tex/ar-union.png
 
 Une dos tablas.
 Las tablas deben ser schema compatibles—i.e. misma cantidad y tipos de atributos.
 
 * 6. Intersection
 
-.image context/intersection.png
+.image tex/ar-intersection.png
 
 Lo que está tanto en una tabla como en la otra.
 Las tablas deben ser schema compatibles—i.e. misma cantidad y tipos de atributos.
 
 * 7. Difference
 
-.image context/difference.png
+.image tex/ar-difference.png
 
 Las tuplas que están la primer tabla pero que no están en la segunda.
 Las tablas deben ser schema compatibles—i.e. misma cantidad y tipos de atributos.
 
 * 8. Division
 
-.image context/division.png
+.image tex/ar-division.png
 
 Devuelve una nueva tabla con las columnas que están sólo en R y que están asociadas con todas las filas de S.
 
@@ -102,7 +102,7 @@ Devuelve una nueva tabla con las columnas que están sólo en R y que están aso
 
 * Rename
 
-.image context/rename.png
+.image tex/ar-rename.png
 
 R se renombra a S, junto con los atributos correspondientes.
 
