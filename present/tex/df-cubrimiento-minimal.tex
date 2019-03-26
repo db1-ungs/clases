@@ -2,11 +2,11 @@
 \usepackage{amsmath}
 
 \begin{document}
-$F_m$ es un cubrimiento minimal de $F$ si y solo si:
+$F_m$ es un cubrimiento minimal de $F$ si $F_m\equiv F$ y adem\'as:
 
 \begin{align*}
-(1)\quad & F_m \equiv F & \\
-(2)\quad  & (X\rightarrow Y) \in F_m \Longrightarrow |Y| = 1& \text{(todo lado derecho tiene un solo atributo)}\\
+(1)\quad  & (X\rightarrow Y) \in F_m \Longrightarrow |Y| = 1& \text{(todo lado derecho tiene un solo atributo)}\\
+(2)\quad  & (X\rightarrow A) \in F_m \Longrightarrow \not \exists \ B \subset \ X \ \big| \  A\in \  \big\{ X \setminus \{B\} \big\}^+ & \text{(todo lado izquierdo es reducido)}\\
 (3)\quad  & (X\rightarrow Y) \in F_m \Longrightarrow \Big(F_m\setminus\big\{(X\rightarrow Y)\big\}\Big)\not\equiv F & \text{(no tiene dependencias redundantes)}\\
 \end{align*}
 \end{document}
