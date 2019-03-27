@@ -1,25 +1,131 @@
-Normalización
+Formas normales
+Bases de Datos I
 
-Hernán Czemerinski
-hernan.czemerinski@gmail.com
+Universidad Nacional de General Sarmiento
 
-Hernán Rondelli
-lucifer.unix.cabj@gmail.com
 
-* This presentation
+* bit.do/ungs-db1-norm
 
 .image img/ungs-db1-norm.png
-.caption bit.do/ungs-db1-norm
 
-* Slide 1
+* Modelo relacional
 
-TODO
+¿Hay algún problema?
+.image tex/fn-pfn-erronea.png 250 _
 
-* Slide 2
+* Modelo relacional
 
-TODO
+¿Hay algún problema?
+.image tex/fn-pfn-erronea.png 250 _
 
-# empty title
-* 
+Por definición, el modelo relacional no admite atributos multivaluados.
 
-.image img/questions.png
+* Definición
+
+Una relación _R_ está en *Primera*forma*normal* (1NF) si y solo si no tiene atributos multivaluados.
+
+* Primera forma normal
+
+.image tex/fn-pfn-propuesta-1.png 495 _
+
+La relación está en PFN, pero...
+
+* Primera forma normal
+
+.image tex/fn-pfn-propuesta-1-a.png 495 _
+
+La relación está en PFN, pero *se* *pierde* *información*.
+
+* Primera forma normal
+
+.image tex/fn-pfn-propuesta-1-b.png 495 _
+
+La relación está en PFN, pero *hay*redundancia*.
+
+* Primera forma normal
+
+.image tex/fn-pfn-propuesta-1-c.png 495 _
+
+La relación está en PFN, pero *la*calve*de*la*relación*se*vuelve*artificiosa*.
+
+* Primera forma normal
+
+¿Cuál es el problema de esta relación?
+
+.image tex/fn-pfn-problemas.png 400 _
+
+* Primera forma normal
+
+¿Cuál es el problema de esta relación?
+
+.image tex/fn-pfn-problemas-2.png 400 _
+
+Hay atributos que dependen de *solo*una*parte*de*la*clave*.
+
+* Atributos primos y dependencias parciales
+
+.image tex/fn-sfn-atributos-primos.png 200 _
+
+* Definición
+
+Una relación _R_ está en *Segunda*forma*normal* (2NF) si y solo si todo atributo no primo _A_ no es parcialmente dependiente de _alguna_ clave de _R_.
+
+O, en forma equivalente, si todo atributo no primo _A_ es totalmente dependiente de _todas_ las claves de _R_.
+
+I.e., no pueden existir atributos no primos que dependan solo de una parte de alguna clave.
+
+* Segunda forma normal
+
+.image tex/fn-sfn-ejemplo.png 550 _
+
+* Segunda forma normal
+
+.image tex/fn-sfn-problemas.png 350 _
+
+La relación está en segunda forma normal, pero ...
+
+* Segunda forma normal
+
+.image tex/fn-sfn-problemas-2.png 350 _
+
+La relación está en segunda forma normal, pero *hay*redundancia*.
+
+* Segunda forma normal
+
+¿Cuál es el problema de esta relación?
+
+.image tex/fn-sfn-problemas-3.png 430 _
+
+* Segunda forma normal
+
+¿Cuál es el problema de esta relación?
+
+.image tex/fn-sfn-problemas-4.png 430 _
+
+Hay un atributo no primo que depende de otro no primo.
+
+* Definición
+
+Una relación _R_ está en *Tercera*forma*normal* (3NF) si y solo si:
+
+- _R_ está en 2NF
+- Todos los atributos no primos de _R_ no son transitivamente dependientes de ninguna clave de _R_
+
+*Formulación*equivalente*
+Toda dependencia funcional no trivial X → A cumple al menos una de las siguientes condiciones:
+
+- _X_ es superclave de _R_
+- _A_ es primo
+
+* Tercera forma normal
+.image tex/fn-tfn-ejemplo.png 570 _
+
+* Definición
+Una relación _R_ está en *Forma*normal*de*Boyce*-*Codd* (BCNF) si y solo si en toda dependencia funcional no trivial _X_→_A_, _X_ es superclave de _R_.
+
+* Dudas, preguntas, consultas
+**
+**
+**
+**
+.image img/pregunta.png 200 _

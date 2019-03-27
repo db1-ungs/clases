@@ -1,0 +1,25 @@
+\pdfoutput=1
+\documentclass[preview]{standalone}
+\usepackage{xcolor}
+\begin{document}
+
+\textbf{Esquema:}\\
+campeon\_grand\_slam(\underline{torneo}, \underline{a\~no}, tenista, nacionalidad)\\
+
+\textbf{Dependencias funcionales:}\\
+torneo, a\~no $\rightarrow$ tenista\\
+{\color{red}{tenista $\rightarrow$ nacionalidad}}\\
+
+\textbf{Instancia:}
+\begin{center}
+\begin{tabular}{| l | c | l | l |}\hline			
+	torneo & a\~no & tenista & nacionalidad  \\\hline			
+	Abierto de Australia & 2019 & Djokovic & Serbia \\
+	US Open & 2018 & Djokovic & Serbia \\
+	Wimbledon & 2018 & Djokovic & Serbia \\
+	Roland Garros & 2018 & Nadal & Espa\~nola \\
+	Abierto de Australia & 2018 & Federer & Suiza \\
+	US Open & 2017 & Nadal & Espa\~nola \\\hline
+\end{tabular}
+\end{center}
+\end{document}
