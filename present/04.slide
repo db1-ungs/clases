@@ -22,31 +22,31 @@ Por definición, el modelo relacional no admite atributos multivaluados.
 
 * Definición
 
-Una relación _R_ está en *Primera*forma*normal* (1NF) si y solo si no tiene atributos multivaluados.
+Una relación _R_ está en *Primera*forma*normal* (1NF) si y solo si no tiene filas repetidas.
 
 * Primera forma normal
 
 .image tex/fn-pfn-propuesta-1.png 495 _
 
-La relación está en PFN, pero...
+La relación está en 1NF, pero...
 
 * Primera forma normal
 
 .image tex/fn-pfn-propuesta-1-a.png 495 _
 
-La relación está en PFN, pero *se* *pierde* *información*.
+La relación está en 1NF, pero *se* *pierde* *información*.
 
 * Primera forma normal
 
 .image tex/fn-pfn-propuesta-1-b.png 495 _
 
-La relación está en PFN, pero *hay*redundancia*.
+La relación está en 1NF, pero *hay*redundancia*.
 
 * Primera forma normal
 
 .image tex/fn-pfn-propuesta-1-c.png 495 _
 
-La relación está en PFN, pero *la*calve*de*la*relación*se*vuelve*artificiosa*.
+La relación está en 1NF, pero *la*calve*de*la*relación*se*vuelve*artificiosa*.
 
 * Primera forma normal
 
