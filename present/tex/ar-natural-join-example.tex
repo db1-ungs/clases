@@ -1,0 +1,35 @@
+\pdfoutput=1
+\documentclass[preview]{standalone}
+
+\begin{document}
+
+materia(\underline{\textbf{cod\_mat}}, nom\_mat)\\
+cursada(\underline{nro\_legajo}, nom\_est, \underline{\textbf{cod\_mat}})\\
+
+\begin{center}
+\begin{tabular}{| l | l | }\hline			
+	\textbf{cod\_mat} & nom\_mat \\\hline			
+	001 & Programacion I \\
+	002 & Base de datos I \\\hline
+\end{tabular}
+\quad
+\begin{tabular}{| l | l | l | }\hline			
+	nro\_legajo & nom\_est & \textbf{cod\_mat} \\\hline			
+	1 & Juan P\'erez & 001\\
+	1 & Juan P\'erez & 002\\
+	2 & Mariana Na\'on & 002 \\\hline
+\end{tabular}
+\vspace{.35cm}
+
+$\Big\Downarrow$ materia ${\Large\bowtie}$ \ estudiante 
+\vspace{.35cm}
+
+\begin{tabular}{| l | c | l | l | l | l }\hline			
+	\textbf{cod\_mat} & nom\_mat & nro\_legajo & nom\_est \\\hline			
+	001 & Programacion I & 1 & Juan P\'erez  \\
+	002 & Base de datos I & 1 & Juan P\'erez \\
+	002 & Base de datos I & 2 & Mariana Na\'on \\\hline
+\end{tabular}
+\end{center}
+
+\end{document}

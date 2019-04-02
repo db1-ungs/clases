@@ -1,0 +1,39 @@
+\pdfoutput=1
+\documentclass[preview]{standalone}
+
+\begin{document}
+
+materia\_aprobada(\underline{estudiante}, \underline{materia})\\
+materia(\underline{nombre})
+
+\begin{center}
+\begin{tabular}{ | l | l |}\hline
+	estudiante & materia \\\hline			
+	Guido de Caso & BD I  \\
+	Guido de Caso & Redes  \\
+	Sergio Mera & Prog I  \\
+	Luz Ortiz & BD I  \\
+	Luz Ortiz & Prog I  \\
+	Luz Ortiz & Redes  \\
+	Romina Kohn & Prog I  \\
+	Romina Kohn & BD I  \\\hline
+\end{tabular}
+\quad
+\begin{tabular}{| l |}\hline
+	nombre \\\hline			
+	BD I \\
+	Prog I \\
+	Redes \\\hline
+\end{tabular}
+\vspace{.35cm}
+
+$\Big\Downarrow$ materia\_aprobada ${\Large \div}$ materia
+\vspace{.35cm}
+
+\begin{tabular}{| l |}\hline
+	estudiante \\\hline			
+	Luz Ortiz \\\hline
+\end{tabular}
+\end{center}
+
+\end{document}

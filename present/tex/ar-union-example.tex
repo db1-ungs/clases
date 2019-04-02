@@ -1,0 +1,37 @@
+\pdfoutput=1
+\documentclass[preview]{standalone}
+
+\begin{document}
+
+investigador\_docente\_ici(\underline{legajo}, nombre)\\
+investigador\_docente\_idei(\underline{legajo}, nombre)
+
+\begin{center}
+\begin{tabular}{| l | l | }\hline			
+	legajo & nombre \\\hline			
+	101 & V\'ictor Braberman \\
+	312 & Esteban Pavese \\\hline
+\end{tabular}
+\quad
+\begin{tabular}{| l | l | }\hline			
+	legajo & nombre \\\hline			
+	165 & Juan P\'erez \\
+	123 & Carlos Kaminker \\
+	572 & Mariana Na\'on \\\hline
+\end{tabular}
+\vspace{.35cm}
+
+$\Big\Downarrow$ investigador\_docente\_ici ${\Large\cup}$ investigador\_docente\_idei 
+\vspace{.35cm}
+
+\begin{tabular}{| l | l | }\hline			
+	legajo & nombre \\\hline			
+	101 & V\'ictor Braberman \\
+	312 & Esteban Pavese \\
+	165 & Juan P\'erez \\
+	123 & Carlos Kaminker \\
+	572 & Mariana Na\'on \\\hline
+\end{tabular}
+\end{center}
+
+\end{document}
