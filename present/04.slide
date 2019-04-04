@@ -3,10 +3,11 @@ Bases de Datos I
 
 Universidad Nacional de General Sarmiento
 
-
 * bit.do/ungs-db1-norm
 
 .image img/ungs-db1-norm.png
+
+* Modelo relacional
 
 * Modelo relacional
 
@@ -19,6 +20,8 @@ Universidad Nacional de General Sarmiento
 .image tex/fn-pfn-erronea.png 250 _
 
 Por definición, el modelo relacional no admite atributos multivaluados.
+
+* Primera forma normal
 
 * Definición
 
@@ -62,6 +65,8 @@ La relación está en 1NF, pero *la*calve*de*la*relación*se*vuelve*artificiosa*
 
 Hay atributos que dependen de *solo*una*parte*de*la*clave*.
 
+* Segunda forma normal
+
 * Atributos primos y dependencias parciales
 
 .image tex/fn-sfn-atributos-primos.png 200 _
@@ -104,6 +109,8 @@ La relación está en segunda forma normal, pero *hay*redundancia*.
 
 Hay un atributo no primo que depende de otro no primo.
 
+* Tercera forma normal
+
 * Definición
 
 Una relación _R_ está en *Tercera*forma*normal* (3NF) si y solo si:
@@ -120,8 +127,20 @@ Toda dependencia funcional no trivial X → A cumple al menos una de las siguien
 * Tercera forma normal
 .image tex/fn-tfn-ejemplo.png 570 _
 
+* Forma normal de Boyce–Codd
+
 * Definición
-Una relación _R_ está en *Forma*normal*de*Boyce*-*Codd* (BCNF) si y solo si en toda dependencia funcional no trivial _X_→_A_, _X_ es superclave de _R_.
+Una relación _R_ está en *Forma*normal*de*Boyce–Codd* (BCNF) si y solo si en toda dependencia funcional no trivial _X_→_A_, _X_ es superclave de _R_.
+
+* Pseudo–algoritmo para descomponer en BCNF
+
+(1) Calcular [super]claves y DF's de _R(A,_B,_X)_.
+
+(2) Tomar alguna _A_→_B_ que viola BCNF.
+
+(3) Descomponer _R_ en _R1(A,_B)_ y _R2(A,_X)_.
+
+(4) Si quedan dependencias que violan BCNF, go to (1)
 
 * Dudas, preguntas, consultas
 **
