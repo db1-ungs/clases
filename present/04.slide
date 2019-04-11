@@ -138,9 +138,9 @@ Una relación _R_ está en *Forma*normal*de*Boyce–Codd* (BCNF) si y solo si en
 
 (2) Tomar alguna _A_→_B_ que viola BCNF.
 
-(3) Descomponer _R_ en _R1(A,_B)_ y _R2(A,_X)_.
+(3) Descomponer _R_ en _R₁(A,_B)_ y _R₂(A,_X)_.
 
-(4) Si quedan dependencias que violan BCNF, go to (1)
+(4) Si quedan dependencias en _R₂_ que violan BCNF, _R₂_ pasa a ser el nuevo _R_ y go to (1)
 
 * Dudas, preguntas, consultas
 **
