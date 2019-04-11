@@ -5,13 +5,13 @@
 
 1. Dadas las siguientes relaciones, resolver usando álgebra relacional.
 +
-bote(bid, nombre, color)
+bote([underline]#bid#, nombre, color)
 +
-marine(mid, nombre, puntaje, f_inscripcion)
+marine([underline]#mid#, nombre, puntaje, f_inscripcion)
 +
-alquiler(bid, mid, fecha)
+alquiler([underline]#bid#, [underline]#mid#, fecha)
 +
-reserva(bid, mid, fecha)
+reserva([underline]#bid#, [underline]#mid#, fecha)
 
 a. Obtener los nombres de los botes rojos.
 
@@ -83,4 +83,17 @@ gustan.
 
 == SQL
 
-*Resolver mediante SQL los ítems de los ejercicios anteriores.*
+1. Resolver mediante SQL, desde el ítem (1a) hasta el (1g), y el (1n) de
+la primera parte.
+
+2. (group by) Resolver mediante SQL, los ítems (1j) y (1k) de la primera
+parte.
+
+3. (subqueries) Resolver mediante SQL, los ítems (1h) y (1i) de la
+primera parte.
+
+4. (división) Resolver mediante SQL, los ítems (1l), (1m) y (1o) de la
+primera parte.
+
+5. Resolver mediante SQL todos los ítems del Ejercicio 2 de la primera
+parte.
