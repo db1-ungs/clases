@@ -1,0 +1,159 @@
+SQL Part II
+Structured Query Language
+
+Czemerinski
+hczemerinski@campus.ungs.edu.ar
+
+Rondelli
+lucifer.unix.cabj@gmail.com
+
+Universidad Nacional de General Sarmiento
+
+* bit.do/ungs-db1-sql-2
+
+.image img/ungs-db1-sql-2.png
+
+* SQL
+
+* SQL
+
+- Sequel /ˈsiːkw(ə)l/
+- Standard
+- Declarative language
+
+* Para qué se usa?
+
+- crear/borrar tablas… ← *Data*Definition*Language*
+- input/output de datos ← *Data*Manipulation*Language*
+- administrar usuaries ← *Data*Control*Language*
+
+* select
+
+* Nada que ver con σ!
+
+* select
+
+	select * from alumne;
+ 
+	select nombre from alumne;
+ 
+	select nombre, apellido from alumne;
+ 
+	select legajo, nombre, apellido from alumne;
+
+* select
+
+  select c1, c2, …, cN from tabla;
+
+- c1, c2, …, cN == "operador Π del álgebra relacional"
+
+* where
+
+	select * from alumne where legajo = 626;
+ 
+	select nombre, apellido from alumne where localidad = 'Grand Bourg';
+ 
+	select distinct nombre, apellido from alumne where localidad = 'Grand Bourg';
+ 
+	select legajo from alumne where apellido = 'Olave';
+ 
+	select legajo from alumne where f_inscripción >= '2011-06-26';
+ 
+	select * from alumne where '2011-06-26' <= f_inscripción and f_inscripción <= current_date;
+
+* where
+
+  select * from tabla where condición;
+
+- where == "operador σ del álgebra relacional"
+
+* from
+
+	select * from alumne;
+  
+producto cartesiano:
+
+	select * from alumne, cursa;
+
+producto cartesiano con join condition:
+
+	select * from alumne, cursa where alumne.legajo = cursa.legajo;
+	select * from alumne a, cursa c where a.legajo = c.legajo;
+	select * from alumne a, cursa c, materia m where a.legajo = c.legajo and c.código = m.código;
+
+* Tablas
+
+* Tablas
+
+- create table
+
+	create table alumne (legajo int, nombre text, apellido text);
+	create table materia (código int, nombre text);
+	create table cursa (legajo int, código int);
+
+- primary key's
+
+	alter table alumne add constraint alumne_pk primary key (legajo);
+	alter table materia add constraint materia_pk primary key (código);
+	alter table cursa add constraint cursa_pk primary key (legajo, código);
+
+- foreign key's
+
+	alter table cursa add constraint cursa_legajo_fk foreign key (legajo) references alumne (legajo);
+	alter table cursa add constraint cursa_código_fk foreign key (código) references materia (código);
+
+* insert
+
+	insert into alumne values (624, 'Cristina', 'Kirchner');
+
+* update
+
+	insert into alumne values (625, 'Hernán', 'Cemenisky'); -- Cómo era el apellido? 🤔
+   
+	update alumne set apellido = 'Czemerinski' where legajo = 625;
+   
+	update alumne set apellido = 'Czemerinski'; -- No!!! 🙀
+
+* delete
+
+	delete from materia where código = 629;
+  
+	delete from materia; -- No!!! 🙀
+
+* Base de datos
+
+* Base de datos
+
+Crear:
+
+	create database bedelía;
+
+Borrar:
+
+	drop database bedelía;
+	drop database bedelía; -- error!
+  
+	drop database bedelía;
+	drop database if exists bedelía; -- okay
+
+* PostgreSQL
+
+$ psql -U postgres
+
+  psql (11.2)
+  Type "help" for help.
+
+  postgres=# help
+  You are using psql, the command-line interface to PostgreSQL.
+  Type:  \copyright for distribution terms
+         \h for help with SQL commands
+         \? for help with psql commands
+         \g or terminate with semicolon to execute query
+         \q to quit
+
+* Demo
+
+# empty title
+* 
+
+.image img/questions.png
