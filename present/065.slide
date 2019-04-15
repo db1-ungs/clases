@@ -1,11 +1,5 @@
-SQL Part II
-Structured Query Language
-
-Czemerinski
-hczemerinski@campus.ungs.edu.ar
-
-Rondelli
-lucifer.unix.cabj@gmail.com
+SQL (cont.)
+Base de datos I
 
 Universidad Nacional de General Sarmiento
 
@@ -13,147 +7,187 @@ Universidad Nacional de General Sarmiento
 
 .image img/ungs-db1-sql-2.png
 
-* SQL
+* Ordenamiento
 
-* SQL
+* order by
 
-- Sequel /ˈsiːkw(ə)l/
-- Standard
-- Declarative language
-
-* Para qué se usa?
-
-- crear/borrar tablas… ← *Data*Definition*Language*
-- input/output de datos ← *Data*Manipulation*Language*
-- administrar usuaries ← *Data*Control*Language*
-
-* select
-
-* Nada que ver con σ!
-
-* select
-
-	select * from alumne;
+	select *
+	from   empleade
+	order  by salario;
  
-	select nombre from alumne;
+	select *
+	from   empleade
+	order  by salario desc;
+
+* Subqueries
+
+* subquery
+
+	select nombre, salario
+	from   empleade
+	where  salario >= (select salario
+	                   from   empleade
+	                   where  legajo = 1234);
+* exists
+	select e1.nombre, e1.apellido
+	from   empleade e1
+	where  not exists (select * 
+	                   from   employed e2 
+	                   where  departamento = 'sistemas' and e2.salario >= e1.salario);
+
+* all
+	select nombre, apellido
+	from   empleade
+	where  salario > all (select salario 
+	                      from   salario 
+	                      where  departamento = 'sistemas');
+
+* in
+	select nombre, apellido, departamento
+	from   empleade
+	where  departamento in (select departamento 
+	                        from   proyecto 
+	                        where  fecha_inicio >= '2019-01-01');
+
+* Funciones de agregación
+
+* count
+
+	select count(*) 
+	from   empleade;
  
-	select nombre, apellido from alumne;
+	select count(nombre) 
+	from   empleade;
  
-	select legajo, nombre, apellido from alumne;
-
-* select
-
-  select c1, c2, …, cN from tabla;
-
-- c1, c2, …, cN == "operador Π del álgebra relacional"
-
-* where
-
-	select * from alumne where legajo = 626;
+	select count(distinct (nombre)) 
+	from   empleade;
  
-	select nombre, apellido from alumne where localidad = 'Grand Bourg';
+
+
+* sum
+
+	select sum(salario) 
+	from   empleade;
  
-	select distinct nombre, apellido from alumne where localidad = 'Grand Bourg';
+* max
+
+	select max(salario) 
+	from   empleade;
  
-	select legajo from alumne where apellido = 'Olave';
+* min
+
+	select min(salario) 
+	from   empleade;
+
+* avg
+
+	select avg(salario) 
+	from   empleade;
  
-	select legajo from alumne where f_inscripción >= '2011-06-26';
+* max + min + avg
+
+	select max(salario), min(salario), avg(salario) 
+	from   empleade;
  
-	select * from alumne where '2011-06-26' <= f_inscripción and f_inscripción <= current_date;
+* Agrupamiento
 
-* where
+* group by
 
-  select * from tabla where condición;
+	select   departamento, count(*), avg(salario)
+	from     empleade
+	group by departamento;
+ 
+	select   departamento, count(*), salario
+	from     empleade
+	group by departamento, salario;
+ 
+	select   departamento, count(*), avg(salario)
+	from     empleade
+	where    departamento = 'sistemas' or departamento = 'finanzas'
+	group by departamento;
 
-- where == "operador σ del álgebra relacional"
 
-* from
+* having
 
-	select * from alumne;
-  
-producto cartesiano:
+	select   departamento, avg(salario) 
+	from     empleade 
+	group by departamento 
+	having   count(*) > 10;
 
-	select * from alumne, cursa;
 
-producto cartesiano con join condition:
 
-	select * from alumne, cursa where alumne.legajo = cursa.legajo;
-	select * from alumne a, cursa c where a.legajo = c.legajo;
-	select * from alumne a, cursa c, materia m where a.legajo = c.legajo and c.código = m.código;
+La cláusula *having* solo puede hacer referencias a funciones de agregación o a campos que estén en el *group*by*.
 
-* Tablas
+* having != where
 
-* Tablas
+	select   departamento, count(*) 
+	from     empleade 
+	where    salario >= 40000
+	group by departamento 
+	having   count(*) > 10;
+ 
+	select   departamento, count(*) 
+	from     empleade 
+	where    salario >= 40000 and departamento in (select   departamento
+	                                               from     empleade
+	                                               group by departamento
+	                                               having   count(*) > 10)
+	group by departamento;  
 
-- create table
+* Operaciones de conjuntos
 
-	create table alumne (legajo int, nombre text, apellido text);
-	create table materia (código int, nombre text);
-	create table cursa (legajo int, código int);
+* union
 
-- primary key's
+	(select a from r)
+	union
+	(select a from s);
+ 
+	(select a from r)
+	union all
+	(select a from s);
 
-	alter table alumne add constraint alumne_pk primary key (legajo);
-	alter table materia add constraint materia_pk primary key (código);
-	alter table cursa add constraint cursa_pk primary key (legajo, código);
+* intersect
 
-- foreign key's
+	(select a from r)
+	intersect
+	(select a from s);
+ 
+	(select a from r)
+	intersect all
+	(select a from s);
 
-	alter table cursa add constraint cursa_legajo_fk foreign key (legajo) references alumne (legajo);
-	alter table cursa add constraint cursa_código_fk foreign key (código) references materia (código);
+* except
 
-* insert
+	(select a from r)
+	ecxept
+	(select a from s);
+ 
+	(select a from r)
+	ecxept all
+	(select a from s);
 
-	insert into alumne values (624, 'Cristina', 'Kirchner');
+* división
+	-- empleados que trabajan en todos los proyectos
 
-* update
+	select distinct legajo 
+	from   empleade_proyecto ep1
+	where  not exists 
+	          (select 1 
+	           from   proyecto p
+	           where  not exists 
+	                     (select 1
+	                      from empleade_proyecto ep2
+	                      where ep2.legajo = ep1.legajo and ep2.proyecto_id = p.proyecto_id));
 
-	insert into alumne values (625, 'Hernán', 'Cemenisky'); -- Cómo era el apellido? 🤔
-   
-	update alumne set apellido = 'Czemerinski' where legajo = 625;
-   
-	update alumne set apellido = 'Czemerinski'; -- No!!! 🙀
 
-* delete
 
-	delete from materia where código = 629;
-  
-	delete from materia; -- No!!! 🙀
 
-* Base de datos
 
-* Base de datos
+* Dudas, preguntas, consultas
+**
+**
+**
+**
+.image img/pregunta.png 200 _
 
-Crear:
 
-	create database bedelía;
-
-Borrar:
-
-	drop database bedelía;
-	drop database bedelía; -- error!
-  
-	drop database bedelía;
-	drop database if exists bedelía; -- okay
-
-* PostgreSQL
-
-$ psql -U postgres
-
-  psql (11.2)
-  Type "help" for help.
-
-  postgres=# help
-  You are using psql, the command-line interface to PostgreSQL.
-  Type:  \copyright for distribution terms
-         \h for help with SQL commands
-         \? for help with psql commands
-         \g or terminate with semicolon to execute query
-         \q to quit
-
-* Demo
-
-# empty title
-* 
-
-.image img/questions.png
