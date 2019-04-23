@@ -32,14 +32,14 @@ Universidad Nacional de General Sarmiento
 	select e1.nombre, e1.apellido
 	from   empleade e1
 	where  not exists (select * 
-	                   from   employed e2 
+	                   from   empleade e2 
 	                   where  departamento = 'sistemas' and e2.salario >= e1.salario);
 
 * all
 	select nombre, apellido
 	from   empleade
 	where  salario > all (select salario 
-	                      from   salario 
+	                      from   empleade 
 	                      where  departamento = 'sistemas');
 
 * in
@@ -116,7 +116,7 @@ Universidad Nacional de General Sarmiento
 
 
 
-La cláusula *having* solo puede hacer referencias a funciones de agregación o a campos que estén en el *group*by*.
+La cláusula *having* solo puede hacer referencia a funciones de agregación o a campos que estén en el *group*by*.
 
 * having != where
 
