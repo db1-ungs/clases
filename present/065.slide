@@ -116,7 +116,7 @@ Universidad Nacional de General Sarmiento
 
 
 
-La cláusula *having* solo puede hacer referencias a funciones de agregación o a campos que estén en el *group*by*.
+La cláusula *having* solo puede hacer referencia a funciones de agregación o a campos que estén en el *group*by*.
 
 * having != where
 
