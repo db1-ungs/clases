@@ -1,25 +1,3 @@
-= Bases de Datos I
+= Material de Bases de Datos I
 
-== Prácticas
-
-link:./prac/p1.adoc[Práctica 1]
-
-link:./prac/p2.adoc[Práctica 2]
-
-link:./prac/p3.adoc[Práctica 3]
-
-== Presentaciones
-
-http://bit.do/ungs-db1-intro[Presentación de la materia]
-
-http://bit.do/ungs-db1-dp[Dependencias Funcionales]
-
-http://bit.do/ungs-db1-norm[Normalización]
-
-http://bit.do/ungs-db1-ar[Álgebra Relacional]
-
-http://bit.do/ungs-db1-sp[Stored Procedures & Triggers]
-
-http://bit.do/ungs-db1-trans[Transacciones]
-
-http://bit.do/go-and-db[Go and Databases]
+© 2019 Rondelli, Czemerinski
