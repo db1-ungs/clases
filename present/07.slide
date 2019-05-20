@@ -141,13 +141,13 @@ extras
      nombre_completo text;
      resultado record;
  begin
-     select * into resultado from alumne where legajo = 626;
+     select * into resultado from alumne where legajo = legajo_buscado;
 
      if not found then
-         raise 'el legajo % es inválido', resultado.legajo;
+         raise 'el legajo % es inválido', legajo_buscado;
      end if;
 
-     nombre_completo := resultado.nombre || resultado.apellido;
+     nombre_completo := resultado.nombre || ' ' || resultado.apellido;
  …
 
 * Triggers
