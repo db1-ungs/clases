@@ -1,0 +1,36 @@
+= Bases de Datos I: Práctica 4
+{docdate}
+
+== Stored Procedures
+
+1. Escribir una función que reciba un número de legajo y que devuelva el
+nombre y apellido del alumne.
+
+2. Escribir una función que reciba un mid, un bid y una fecha, y que
+realice una reserva. Si ese bote no estuviera libre, debe buscar otro
+bote libre del mismo color y reservarlo. Suponer que existe algún bote
+libre.
+
+3. Escribir una función que reciba une marine y que diga si alquiló
+todos los botes.
+
+4. Escribir una función que reciba dos bebedores y que muestre todos los
+bares que sirven todas las cervezas que le gustan a eses dos bebedores.
+
+== Triggers
+
+1. Cada vez que se inserte une nueve bebedore en la tabla frecuenta, se
+debe insertar a ese bebedore en la tabla gusta, asociade a la cerveza
+Quilmes.
+
+2. Si une marine tiene puntaje mayor ó igual a 100, se deben ingresar
+todos sus datos en una nueva tabla marine_top con el mismo schema que la
+tabla marine. El trigger debe dispararse tanto para insert, como para
+update.
+
+3. Cada vez que une marine alquile un barco, debe borrarse el registro
+de la tabla reserva. Se supone que todes les marines primero reservan el
+barco, y después lo alquilan.
+
+4. Cada vez que une marine alquile todos los botes, insertar su datos en
+la tabla cliente_vip (si todavía no está insertado en esa tabla).

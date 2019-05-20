@@ -1,13 +1,16 @@
 Stored Procedures & Triggers
 
-Daniel Rondelli
-Universidad Nacional de General Sarmiento
+Hernán Czemerinski
+hczemerinski@campus.ungs.edu.ar
+
+Hernán Rondelli
 lucifer.unix.cabj@gmail.com
 
-* This presentation
+Universidad Nacional de General Sarmiento
+
+* bit.do/ungs-db1-sp
 
 .image img/ungs-db1-sp.png
-.caption bit.do/ungs-db1-sp
 
 * Stored Procedures
 
@@ -42,7 +45,7 @@ Estructura de una función
  end;
  $$ language plpgsql;
 
-* PL/pgSQL
+* PL/pgSQL…
 
 hello, world!
 
@@ -89,7 +92,7 @@ declaration
  legajo     int;
  nombre     text;
  fecha      date;
- estudiante alumno%rowtype;
+ estudiante alumne%rowtype;
  código     materia.cod%type;
  fila       record;
 
@@ -111,7 +114,7 @@ while
 
  while condición loop
      /* statements */
- end loop
+ end loop;
 
 for (integer)
 
@@ -138,24 +141,14 @@ extras
      nombre_completo text;
      resultado record;
  begin
-     select * into resultado from alumno where legajo = 626;
+     select * into resultado from alumne where legajo = 626;
 
      if not found then
-         raise 'legajo inválido';
+         raise 'el legajo % es inválido', resultado.legajo;
      end if;
 
      nombre_completo := resultado.nombre || resultado.apellido;
  …
-
-* Ejercicios de Stored Procedures
-
-1. Escribir una función que reciba un número de legajo y que devuelva el nombre del alumno.
-
-2. Escribir una función que reciba un mid, un bid y una fecha, y que realice una reserva. Si ese bote no estuviera libre, debe buscar otro bote libre del mismo color y reservarlo.
-
-3. Escribir una función que reciba un marino y que diga si alquiló todos los botes.
-
-4. Escribir una función que reciba dos bebedores y que muestre todos los bares que sirven todas las cervezas que le gustan a esos dos bebedores.
 
 * Triggers
 
@@ -213,7 +206,7 @@ Implementaciones
 
 Función sin parámetros que devuelve trigger
 
- create function función_trigger() returns trigger as $$
+ create function función_del_trigger() returns trigger as $$
  declare
      variable1 tipo1;
      …
@@ -228,11 +221,26 @@ Creación del trigger
  create trigger nombre_del_trigger
  after insert on tabla
  for each row
- execute procedure función_trigger();
+ execute procedure función_del_trigger();
 
 #Eliminar
 
 # drop trigger nombre_del_trigger on tabla;
+
+* PostgreSQL Triggers
+
+Extras
+
+ create table alumne(legajo int, nombre text, apellido text);
+ insert into alumne values (629, 'David', 'Banner');
+ update alumne set nombre = 'Bruce' where legajo = 629;
+
+dentro de la función del trigger
+
+- `new`, y `old`
+- `new.legajo` y `old.legajo`,
+- `new.nombre` y `old.nombre`,
+- `new.apellido` y `old.apellido`
 
 * Ejemplo
 
@@ -249,7 +257,7 @@ Trigger Function
 
 Trigger
 
- create trigger cambio_de_nombre_trigger
+ create trigger cambio_de_nombre_trg
  before update on usuario
  for each row
  execute procedure cambio_de_nombre();
@@ -257,16 +265,6 @@ Trigger
 Update
 
  update usuario set name = 'Juan Domingo Perón' where id = 626;
-
-* Ejercicios de Triggers
-
-1. Cada vez que se inserte un nuevo bebedor en la tabla frecuenta, se debe insertar a ese bebedor en la tabla gusta asociado a la cerveza Quilmes.
-
-2. Si un marino tiene puntaje mayor ó igual a 100, se deben ingresar sus datos en una nueva tabla top_marino con el mismo schema que la tabla marino. El trigger debe dispararse tanto para insert, como update.
-
-3. Cada vez que un marino alquile un barco, debe borrarse el registro de la tabla reserva. Se supone que todos los marinos primero reservan el barco, y después lo alquilan.
-
-4. Cada vez que un marino alquile todos los botes, insertar su datos en la tabla cliente_vip (si todavía no está insertado en esa tabla).
 
 # empty title
 * 
