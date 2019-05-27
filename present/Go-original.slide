@@ -292,6 +292,190 @@ Query
 
 .code src/sql.go /E INSERT INTO TABLE OMIT/,
 
+* JSON
+
+# empty title
+* 
+
+.image img/jason1.jpg _ 850
+.caption *JSON*
+
+# empty title
+* 
+
+.image img/jason2.jpg _ 500
+.caption *JSON*
+
+# empty title
+* 
+
+.image img/jason3.jpg _ 768
+.caption *JSON*
+
+# empty title
+* 
+
+.image img/jason4.jpg _ 800
+.caption *JSON*
+
+* JSON
+
+- JSON (JavaScript Object Notation)
+- Structured information
+- Standard, universal support
+- Simple
+- Strings, numbers, booleans, arrays, and objects
+
+* JSON data types to Go data types
+
+- JSON numbers → Go int's and float's
+
+	626
+	-273.15
+
+- JSON booleans → Go booleans
+
+	false
+	true
+
+- JSON strings → Go strings
+
+	"Viva Perón"
+
+- JSON arrays → Go arrays, and slices
+
+	["Viva", "Perón"]
+
+* JSON data types to Go data types
+
+- JSON objects → Go structs
+
+ {
+     "Title": "Casablanca",
+     "released": 1942,
+     "Actors": [
+         "Humphrey Bogart",
+         "Ingrid Bergman"
+     ]
+ }
+
+* JSON Document
+
+`movies.json`
+
+ [
+     {
+         "Title": "Casablanca",
+         "released": 1942,
+         "Actors": [
+             "Humphrey Bogart",
+             "Ingrid Bergman"
+         ]
+     },
+     {
+         "Title": "Lilo & Stitch",
+         "released": 2002,
+         "color": true,
+         "Actors": [
+             "Chris Sanders"
+         ]
+     }
+ ]
+
+* Encoding and Decoding JSON
+
+- Marshaling (encoding)
+Go → JSON
+
+- Unmarshaling (decoding)
+JSON → Go
+
+* JSON example
+
+.code src/json.go /package /,/Cristina OMIT
+
+*…*
+
+* JSON example
+
+.play src/json.go /Cristina OMIT/,/END OMIT
+
+* NoSQL Databases in Go
+
+* NoSQL Databases in Go (BoltDB)
+
+- key/value store
+- Embedded (no service)
+- Database: *filename.db*
+#- Bucket ≈ `map[key]value`
+- Bucket: *key*→*value*
+
+Install BoltDB library
+
+	$ go get github.com/coreos/bbolt/...
+
+* Buckets: key→value
+
+- alumne:
+
+	1 → {"legajo": 1, "nombre": "Cristina", "apellido": "Kirchner"}
+	2 → {"legajo": 2, "nombre": "Diego Armando", "apellido": "Maradona"}
+	3 → {"legajo": 3, "nombre": "Juan Carlos", "apellido": "Olave"}
+
+* BoltDB
+
+Características
+
+- Permite una única transacción de read/write (rw)
+- Permite muchas transacciones read only (ro)
+
+* BoltDB
+
+- Import declarations
+
+	package main
+
+	import (
+		"fmt"
+		"log"
+
+		bolt "github.com/coreos/bbolt"
+	)
+
+	func main() {
+		db, err := bolt.Open("guaraní.db", 0600, nil)
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer db.Close()
+
+		//...
+	}
+
+* Write to buckets
+
+.code src/bolt.go /CREATE OMIT/,/READUNIQUE OMIT/
+
+* Read from buckets
+
+.code src/bolt.go /READUNIQUE OMIT/,
+
+* Full code
+
+.code src/bolt.go ,/FUNC OMIT/
+
+* Full code (cont)
+
+.code src/bolt.go /CREATE OMIT/,/READUNIQUE OMIT/
+
+* Full code (cont)
+
+.code src/bolt.go /READUNIQUE OMIT/,
+
+* Full code (cont)
+
+.code src/bolt.go /FUNC OMIT/,/CREATE OMIT/
+
 # empty title
 * 
 
