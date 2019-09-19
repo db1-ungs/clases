@@ -159,11 +159,11 @@ La cláusula *having* solo puede hacer referencia a funciones de agregación o a
 * except
 
 	(select a from r)
-	ecxept
+	except
 	(select a from s);
  
 	(select a from r)
-	ecxept all
+	except all
 	(select a from s);
 
 * división
