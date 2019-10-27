@@ -258,13 +258,13 @@ Trigger Function
 Trigger
 
  create trigger cambio_de_nombre_trg
- before update on usuario
+ before update on usuarie
  for each row
  execute procedure cambio_de_nombre();
 
 Update
 
- update usuario set name = 'Juan Domingo Perón' where id = 626;
+ update usuarie set name = 'Juan Domingo Perón' where id = 626;
 
 # empty title
 * 
