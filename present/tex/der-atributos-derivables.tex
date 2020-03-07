@@ -1,0 +1,49 @@
+\pdfoutput=1
+\documentclass[preview]{standalone}
+
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+\usepackage{verbatim}
+\usepackage{graphicx}
+	\DeclareGraphicsRule{*}{mps}{*}{}
+\usepackage{xcolor}
+
+\usepackage{tikz}
+	\usetikzlibrary{calc}
+	\usetikzlibrary{arrows}
+	\usetikzlibrary{backgrounds}
+	\usetikzlibrary{decorations.pathmorphing}
+	\usetikzlibrary{shapes.geometric}
+	\tikzset{>=latex'}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{nicefrac}
+\usepackage{mathrsfs}
+\usepackage[Euler]{upgreek}
+\usepackage[nointegrals]{wasysym}
+\usepackage{booktabs}
+\usepackage{float}
+
+\begin{document}
+
+\begin{tikzpicture}[font=\sffamily]
+	\coordinate (alumne) at (-1.15,0);
+	\node[draw,rounded corners=2.5mm,minimum height=6.25mm,minimum width=18mm] (legajo) at (0,-1.0) {\;$\underline{\text{legajo}}$\;};
+	\node[draw,rounded corners=2.5mm,minimum height=6.25mm,minimum width=18mm] (nombre) at (0,-1.8) {nombre};
+	\node[draw,rounded corners=2.5mm,minimum height=6.25mm,minimum width=18mm] (apellido) at (0,-2.6) {apellido};
+	\node[draw,rounded corners=2.5mm,minimum height=6.25mm,minimum width=18mm] (fecha) at (0,-3.4) {fecha\_nac};
+	\node[draw,dashed,rounded corners=2.5mm,minimum height=6.25mm,minimum width=18mm] (edad) at (0,-4.2) {edad};
+	\draw (alumne)|-(legajo);
+	\draw (alumne)|-(nombre);
+	\draw (alumne)|-(apellido);
+	\draw (alumne)|-(fecha);
+	\draw (alumne)|-(edad);
+	\draw (alumne)|-(legajo);
+	\node[draw,fill=white,inner xsep=6mm,inner ysep=2.5mm] (alumne) at (-0.25,0) {alumne};
+\end{tikzpicture}
+
+\end{document}

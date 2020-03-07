@@ -1,0 +1,45 @@
+\pdfoutput=1
+\documentclass[preview]{standalone}
+
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+\usepackage{verbatim}
+\usepackage{graphicx}
+	\DeclareGraphicsRule{*}{mps}{*}{}
+\usepackage{xcolor}
+
+\usepackage{tikz}
+	\usetikzlibrary{calc}
+	\usetikzlibrary{arrows}
+	\usetikzlibrary{backgrounds}
+	\usetikzlibrary{decorations.pathmorphing}
+	\usetikzlibrary{shapes.geometric}
+	\tikzset{>=latex'}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{nicefrac}
+\usepackage{mathrsfs}
+\usepackage[Euler]{upgreek}
+\usepackage[nointegrals]{wasysym}
+\usepackage{booktabs}
+\usepackage{float}
+
+\begin{document}
+
+\begin{tikzpicture}[font=\sffamily]
+	\node[draw,inner sep=5mm] (alumne) at (0,0) {alumne};
+	\node[draw,rounded corners=2.5mm,minimum height=6.25mm] (legajo) at (-2.25,-1.5) {\;$\underline{\text{legajo}}$\;};
+	\node[draw,rounded corners=2.5mm,minimum height=6.25mm] (nombre) at (-0.75,-1.5) {nombre};
+	\node[draw,rounded corners=2.5mm,minimum height=6.25mm] (apellido) at (0.75,-1.5) {apellido};
+	\node[draw,double,double distance=1.2pt,rounded corners=2.5mm,minimum height=6.25mm] (hobbies) at (2.25,-1.5) {hobbies};
+	\draw (alumne)--(legajo);
+	\draw (alumne)--(nombre);
+	\draw (alumne)--(apellido);
+	\draw (alumne)--(hobbies);
+\end{tikzpicture}
+
+\end{document}

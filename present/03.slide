@@ -115,7 +115,7 @@ Algoritmo de clausura de _X_ respecto de _F_ :
 .image tex/df-equivalencia-df-ejemplo.png 130 _
 
 * Cubrimiento minimal
-.image tex/df-cubrimiento-minimal.png 240 _
+.image tex/df-cubrimiento-minimal.png 230 _
 En general, la redundancia está dada por transitividad.
 
 * Ejemplo

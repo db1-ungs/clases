@@ -1,0 +1,41 @@
+\pdfoutput=1
+\documentclass[preview]{standalone}
+
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+\usepackage{verbatim}
+\usepackage{graphicx}
+	\DeclareGraphicsRule{*}{mps}{*}{}
+\usepackage{xcolor}
+
+\usepackage{tikz}
+	\usetikzlibrary{calc}
+	\usetikzlibrary{arrows}
+	\usetikzlibrary{backgrounds}
+	\usetikzlibrary{decorations.pathmorphing}
+	\usetikzlibrary{shapes.geometric}
+	\tikzset{>=latex'}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{nicefrac}
+\usepackage{mathrsfs}
+\usepackage[Euler]{upgreek}
+\usepackage[nointegrals]{wasysym}
+\usepackage{booktabs}
+\usepackage{float}
+
+\begin{document}
+
+\begin{tikzpicture}[font=\sffamily]
+	\node[draw,minimum width=2.25cm,inner sep=5mm] (empleade) at (0,0) {};
+	\node[draw,regular polygon,regular polygon sides=3,inner sep=0.2mm] (herencia) at (0,-1.5) {d};
+	\node[draw,minimum width=2.25cm,inner sep=5mm] (directive) at (-1.5,-3.0) {};
+	\node[draw,minimum width=2.25cm,inner sep=5mm] (docente) at (1.5,-3.0) {};
+	\draw (empleade)--(herencia)--(directive) (herencia)--(docente);
+\end{tikzpicture}
+
+\end{document}

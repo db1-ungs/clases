@@ -1,0 +1,61 @@
+\pdfoutput=1
+\documentclass[preview]{standalone}
+
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+\usepackage{verbatim}
+\usepackage{graphicx}
+	\DeclareGraphicsRule{*}{mps}{*}{}
+\usepackage{xcolor}
+
+\usepackage{tikz}
+	\usetikzlibrary{calc}
+	\usetikzlibrary{arrows}
+	\usetikzlibrary{backgrounds}
+	\usetikzlibrary{decorations.pathmorphing}
+	\usetikzlibrary{shapes.geometric}
+	\tikzset{>=latex'}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{nicefrac}
+\usepackage{mathrsfs}
+\usepackage[Euler]{upgreek}
+\usepackage[nointegrals]{wasysym}
+\usepackage{booktabs}
+\usepackage{float}
+
+\begin{document}
+
+\centering
+
+\begin{tikzpicture}[font=\sffamily]
+	\node[draw,minimum width=2.25cm,inner sep=5mm] (manager) at (0,0) {manager};
+	\node[draw,minimum width=2.25cm,inner sep=5mm] (proyecto) at (5,0) {proyecto};
+	\node[draw,shape aspect=2,diamond,inner sep=0.2mm] (dirige) at (2.5,0) {\footnotesize dirige};
+	\draw (manager) -- node[above]{1} node{\scriptsize 0} (dirige) -- node[above]{1} node{\scriptsize 0} (proyecto);
+	\node[draw,rounded corners=2.5mm,minimum width=1.3cm,minimum height=6.25mm] (legajo) at (-1.5,-1.7) {$\underline{\text{legajo}}$};
+	\node[draw,rounded corners=2.5mm,minimum width=1.3cm,minimum height=6.25mm] (nombre) at (0,-1.7) {nombre};
+	\node[draw,rounded corners=2.5mm,minimum width=1.3cm,minimum height=6.25mm] (apellido) at (1.5,-1.7) {apellido};
+	\draw (manager)--(legajo);
+	\draw (manager)--(nombre);
+	\draw (manager)--(apellido);
+	\node[draw,rounded corners=2.5mm,minimum width=1.3cm,minimum height=6.25mm] (id) at (4,-1.7) {$\underline{\text{id}}$};
+	\node[draw,rounded corners=2.5mm,minimum width=1.3cm,minimum height=6.25mm] (nombre mat) at (6,-1.7) {nombre};
+	\draw (proyecto)--(id);
+	\draw (proyecto)--(nombre mat);
+\end{tikzpicture}
+
+\vskip 12pt
+
+\sffamily
+manager(\underline{legajo}, nombre, apellido)\\
+
+\vskip 12pt
+
+proyecto(\underline{id}, nombre, \underline{\underline{legajo}})
+
+\end{document}

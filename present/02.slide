@@ -1,0 +1,160 @@
+Modelo Relacional
+
+Czemerinski
+hczemerinski@campus.ungs.edu.ar
+
+Rondelli
+lucifer.unix.cabj@gmail.com
+
+* bit.do/ungs-db1-rel
+
+.image img/ungs-db1-rel.png
+
+* DER vs Modelo Relacional
+
+- Entity Relationship Model ← *Relationship*
+- Relational Model ← *Relation*
+- *Relación*(DER)*≠*Relación*(Rel)*
+
+* Cuál es la forma más natural de presentar datos?
+
+# empty title
+* 
+
+**
+**
+
+.image tex/rel-tabla.png 450 _
+
+* Modelo Relacional
+
+- Tablas: relaciones
+- Columnas: fields ó atributos
+- Filas: records ó tuplas
+- *Valores*atómicos*
+
+Observaciones
+
+- Todas celdas en una columna son del mismo tipo
+- Las celdas en una fila pueden ser de distinto tipo
+- Los valores en algunas columnas se pueden repetir (en otras son únicos ← PK)
+- Pueden existir celdas sin valores ← `null`
+
+* Schema
+
+**
+**
+
+.image tex/rel-schema.png 425 _
+
+* Listo! Nos vamos a casa! 😸
+
+* Pasaje del DER al Modelo Relacional
+
+* Entidades
+
+* Entidad → Relación
+
+**
+**
+
+.image tex/rel-entidad.png
+
+* Generalización y especialización
+
+disyuntiva → se agrega una columna tipo
+
+.image tex/rel-jerarquia-d.png 400 _
+
+# empty title
+* 
+
+.image tex/rel-jerarquia-ejemplo-1.png 490 _
+
+* Generalización y especialización
+
+no excluyente → no se agrega la columna tipo
+
+.image tex/rel-jerarquia-o.png 400 _
+
+# empty title
+* 
+
+.image tex/rel-jerarquia-ejemplo-2.png 490 _
+
+* Relaciones
+
+* Relación → "Depende"
+
+* Muchos a muchos
+
+Relación (DER) → Relación (Relacional)
+
+**
+**
+**
+**
+
+.image tex/der-cardinalidad-mxm.png
+
+# empty title
+* 
+
+.image tex/rel-mxm-ejemplo.png 515 _
+
+* Primary Keys & Foreign Keys
+
+*PK*(Primary*Key)*
+
+- Atributo[s] identificador[es]
+- No se pueden repetir
+- No pueden ser `null`
+
+*FK*(Foreign*Key)*
+
+- Atributo[s] de la PK de alguna relación
+- Atributo[s] tiene[n] que existir en alguna relación
+- Se pueden repetir
+- Pueden ser `null`
+
+* Uno a muchos
+
+"El uno va en el muchos"
+
+**
+**
+**
+**
+
+.image tex/der-cardinalidad-1xm.png
+
+# empty title
+* 
+
+.image tex/rel-1xm-ejemplo.png 500 _
+
+* Uno a uno
+
+"Cualquiera va en cualquiera"
+
+**
+**
+**
+**
+
+.image tex/der-cardinalidad-1x1.png
+
+# empty title
+* 
+
+.image tex/rel-1x1-ejemplo-1.png 500 _
+
+# empty title
+* 
+
+.image tex/rel-1x1-ejemplo-2.png 500 _
+
+# empty title
+* 
+
+.image img/questions.png
