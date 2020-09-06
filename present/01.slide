@@ -151,6 +151,8 @@ Descriptores de entidades y relaciones
 
 ⚠︎ No usar atributos multivaluados!
 
+* No usar atributos multivaluados en el parcial!
+
 * Atributos derivables
 
 .image tex/der-atributos-derivables.png _ 225

@@ -11,6 +11,14 @@ lucifer.unix.cabj@gmail.com
 
 .image img/ungs-db1-intro.png
 
+* Medios de comunicación
+
+- Anuncios importantes por medio de la mailing list.
+
+- Para cuestiones administrativas, enviar email a ambos docentes.
+
+- Las *consultas* de ejercicios y demás, en el *grupo*de*Telegram* [[http://bit.do/ungs-db1]]
+
 * Régimen de aprobación
 
 * La materia es promocionable!
@@ -53,13 +61,13 @@ Condiciones de promoción:
 - Stored Procedures. Triggers. Transacciones.
 - NoSQL. JSON.
 
-*Parcial*–*07*de*mayo*
+*Parcial*–*26*de*octubre*
 DER. Modelo Relacional. Dependencias Funcionales. Normalización.
 Álgebra Relacional. SQL.
 
-*Recuperatorio*–*18*de*mayo* (inmediatamente después del parcial)
+*Recuperatorio*–*4*de*noviembre* (inmediatamente después del parcial)
 
-*Entrega*trabajo*práctico*–*18*de*junio*
+*Entrega*trabajo*práctico*–*7*de*diciembre*
 Todos los temas de la materia.
 
 * Bases de Datos
@@ -77,7 +85,7 @@ _Conjunto_de_datos_relacionados._
 
 - *Unix:* Linux, FreeBSD, OpenBSD, macOS, …
 - Clients: psql, pgweb, …
-- Text editors: vi, vscode, …
+- Text editors: vi, VS Code, …
 - Código: Go, C, Python, Java, PHP, …
 
 * Prohibido el uso de Windows en esta materia!
