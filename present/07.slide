@@ -249,7 +249,7 @@ Trigger Function
  create or replace function cambio_de_nombre() returns trigger as $$
  begin
      if new.nombre != old.nombre then
-         insert into alerta values (old.id, old.name);
+         insert into alerta values (old.id, old.nombre);
      end if;
      return new;
  end;
@@ -264,7 +264,7 @@ Trigger
 
 Update
 
- update usuarie set name = 'Juan Domingo Perón' where id = 626;
+ update usuarie set nombre = 'Juan Domingo Perón' where id = 626;
 
 # empty title
 * 
