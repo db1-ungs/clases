@@ -36,10 +36,10 @@ Objeto de interés
 #- objeto de interés
 #- en general son substantivos
 
-**
-**
-**
-**
+__
+__
+__
+__
 
 .image tex/der-entidad-materia.png
 
@@ -49,10 +49,10 @@ Objeto de interés
 
 Una _entidad_ es un elemento de un _conjunto_de_entidades_
 
-**
-**
-**
-**
+__
+__
+__
+__
 
 .image tex/der-entidad-alumne.png
 
@@ -64,29 +64,29 @@ Asociación entre _entidades_
 #- Asociación entre dos ó más _entidades_
 #- suele ser un verbo
 
-**
-**
-**
-**
+__
+__
+__
+__
 
 .image tex/der-relacion-cursa-en.png
 
-**
-**
-**
-**
+__
+__
+__
+__
 
 ⚠︎ Una _relación_ es un elemento de un _conjunto_de_relaciones_
 
 # empty title
 * 
 
-**
-**
-**
-**
-**
-**
+__
+__
+__
+__
+__
+__
 
 .image tex/der-relacion-alumne-cursa-materia.png
 
@@ -96,58 +96,57 @@ Asociación entre _entidades_
 
 Descriptores de entidades y relaciones
 
-**
-**
-**
-**
+__
+__
+__
+__
+__
 
 .image tex/der-atributo-nombre.png
 
 # empty title
 * 
 
-**
-**
-**
-**
+__
+__
+__
+__
 
 .image tex/der-atributo-alumne-nombre-apellido.png
 
 * PK (Primary Key)
 
-**
-**
-**
+__
+__
 
 .image tex/der-atributo-pk.png
 
-**
-**
-**
+__
+__
+__
 
 ⚠︎ En realidad se denomina _identificador[s]_único[s]_
 
 # empty title
 * 
 
-**
-**
-**
-**
+__
+__
+__
+__
 
 .image tex/der-atributo-pk-rel.png 300 _
 
 * Atributos multivaluados
 
-**
-**
-**
+__
+__
 
 .image tex/der-atributos-multivaluados.png
 
-**
-**
-**
+__
+__
+__
 
 ⚠︎ No usar atributos multivaluados!
 
@@ -159,10 +158,10 @@ Descriptores de entidades y relaciones
 
 * Entidades débiles
 
-**
-**
-**
-**
+__
+__
+__
+__
 
 .image tex/der-entidades-debiles.png
 
@@ -170,37 +169,37 @@ Descriptores de entidades y relaciones
 
 * Binaria
 
-**
-**
-**
-**
-**
+__
+__
+__
+__
+__
 
 .image tex/der-grado-binaria.png
 
 * Ternaria
 
-**
-**
-**
+__
+__
+__
 
 .image tex/der-grado-ternaria.png
 
 * Unaria
 
-**
-**
-**
-**
+__
+__
+__
+__
 
 .image tex/der-grado-unaria.png
 
 * ?
 
-**
-**
-**
-**
+__
+__
+__
+__
 
 .image tex/der-grado-trucosa.png
 
@@ -208,77 +207,77 @@ Descriptores de entidades y relaciones
 
 * Muchos a muchos
 
-**
-**
-**
-**
-**
+__
+__
+__
+__
+__
 
 .image tex/der-cardinalidad-mxm.png
 
 # empty title
 * 
 
-**
-**
-**
-**
-**
-**
+__
+__
+__
+__
+__
+__
 
 .image tex/der-cardinalidad-m0xm0.png
 
 * Uno a muchos
 
-**
-**
-**
-**
-**
+__
+__
+__
+__
+__
 
 .image tex/der-cardinalidad-1xm.png
 
 # empty title
 * 
 
-**
-**
-**
-**
-**
-**
+__
+__
+__
+__
+__
+__
 
 .image tex/der-cardinalidad-10xm.png
 
 * Uno a uno
 
-**
-**
-**
-**
-**
+__
+__
+__
+__
+__
 
 .image tex/der-cardinalidad-1x1.png
 
 # empty title
 * 
 
-**
-**
-**
-**
-**
-**
+__
+__
+__
+__
+__
+__
 
 .image tex/der-cardinalidad-10x1.png
 
 # empty title
 * 
 
-**
-**
-**
-**
+__
+__
+__
+__
 
 .image tex/der-alumne-cursa-materia.png 300 _
 
@@ -295,8 +294,8 @@ Descriptores de entidades y relaciones
 
 * Generalización y especialización
 
-**
-**
+__
+__
 
 .image tex/der-jerarquias.png _ 550
 
