@@ -41,14 +41,15 @@ Observaciones
 .image tex/ar-projection.png 50 _
 
 Extrae columnas.
-.image tex/ar-projection-example.png 400 _
 
+.image tex/ar-projection-example.png 400 _
 
 * 2. Selección
 
 .image tex/ar-selection.png
 
 Extrae filas.
+
 .image tex/ar-selection-example.png 400 _
 
 * 3. Producto cartesiano
@@ -56,6 +57,7 @@ Extrae filas.
 .image tex/ar-cartesian-product.png 35 _
 
 Combina todas las filas de una tabla con todas las filas de la otra.
+
 .image tex/ar-cartesian-product-example.png 430 _
 
 * 4. Join
@@ -63,6 +65,7 @@ Combina todas las filas de una tabla con todas las filas de la otra.
 .image tex/ar-join.png
 
 Combina las filas de ambas tablas, matcheando según la condición.
+
 .image tex/ar-join-example.png 400 _
 
 * 4. Join (cont.)
@@ -70,6 +73,7 @@ Combina las filas de ambas tablas, matcheando según la condición.
 .image tex/ar-natural-join.png
 
 Si no hay condición, se llama *natural*join* y matchea atributos con el mismo nombre.
+
 .image tex/ar-natural-join-example.png 400 _
 
 * 5. Unión
@@ -78,6 +82,7 @@ Si no hay condición, se llama *natural*join* y matchea atributos con el mismo n
 
 Une dos tablas.
 Las tablas deben ser schema compatibles—i.e. misma cantidad y tipos de atributos.
+
 .image tex/ar-union-example.png 390 _
 
 * 6. Intersección
@@ -86,6 +91,7 @@ Las tablas deben ser schema compatibles—i.e. misma cantidad y tipos de atribut
 
 Lo que está tanto en una tabla como en la otra.
 Las tablas deben ser schema compatibles—i.e. misma cantidad y tipos de atributos.
+
 .image tex/ar-intersection-example.png 390 _
 
 * 7. Diferencia
@@ -94,6 +100,7 @@ Las tablas deben ser schema compatibles—i.e. misma cantidad y tipos de atribut
 
 Las tuplas que están la primer tabla pero que no están en la segunda.
 Las tablas deben ser schema compatibles—i.e. misma cantidad y tipos de atributos.
+
 .image tex/ar-difference-example.png 390 _
 
 * 8. División
@@ -115,8 +122,10 @@ Devuelve una nueva tabla con las columnas que están sólo en R y que están aso
 R se renombra a S, junto con los atributos correspondientes.
 
 * Dudas, preguntas, consultas
-**
-**
-**
-**
+
+__
+__
+__
+__
+
 .image img/pregunta.png 200 _
