@@ -21,8 +21,8 @@ lucifer.unix.cabj@gmail.com
 # empty title
 * 
 
-**
-**
+__
+__
 
 .image tex/rel-tabla.png 450 _
 
@@ -42,8 +42,8 @@ Observaciones
 
 * Schema
 
-**
-**
+__
+__
 
 .image tex/rel-schema.png 425 _
 
@@ -55,8 +55,8 @@ Observaciones
 
 * Entidad → Relación
 
-**
-**
+__
+__
 
 .image tex/rel-entidad.png
 
@@ -90,10 +90,10 @@ no excluyente → no se agrega la columna tipo
 
 Relación (DER) → Relación (Relacional)
 
-**
-**
-**
-**
+__
+__
+__
+__
 
 .image tex/der-cardinalidad-mxm.png
 
@@ -121,10 +121,10 @@ Relación (DER) → Relación (Relacional)
 
 "El uno va en el muchos"
 
-**
-**
-**
-**
+__
+__
+__
+__
 
 .image tex/der-cardinalidad-1xm.png
 
@@ -137,10 +137,10 @@ Relación (DER) → Relación (Relacional)
 
 "Cualquiera va en cualquiera"
 
-**
-**
-**
-**
+__
+__
+__
+__
 
 .image tex/der-cardinalidad-1x1.png
 
@@ -153,6 +153,15 @@ Relación (DER) → Relación (Relacional)
 * 
 
 .image tex/rel-1x1-ejemplo-2.png 500 _
+
+* Ternarias y agregación
+
+Se aplican las mismas reglas
+
+- Muchos a muchos a muchos → Relación
+- Uno a muchos a muchos → Relación
+- Uno a uno a muchos → "Los uno van en el muchos"
+- Uno a uno a uno → "Dos cualquiera va en el tercer cualquiera"
 
 # empty title
 * 
