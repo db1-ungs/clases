@@ -12,11 +12,13 @@ Universidad Nacional de General Sarmiento
 * Modelo relacional
 
 ¿Hay algún problema?
+
 .image tex/fn-pfn-erronea.png 250 _
 
 * Modelo relacional
 
 ¿Hay algún problema?
+
 .image tex/fn-pfn-erronea.png 250 _
 
 Por definición, el modelo relacional no admite atributos multivaluados.
@@ -119,17 +121,20 @@ Una relación _R_ está en *Tercera*forma*normal* (3NF) si y solo si:
 - Todos los atributos no primos de _R_ no son transitivamente dependientes de ninguna clave de _R_
 
 *Formulación*equivalente*
+
 Toda dependencia funcional no trivial X → A cumple al menos una de las siguientes condiciones:
 
 - _X_ es superclave de _R_
 - _A_ es primo
 
 * Tercera forma normal
+
 .image tex/fn-tfn-ejemplo.png 570 _
 
 * Forma normal de Boyce–Codd
 
 * Definición
+
 Una relación _R_ está en *Forma*normal*de*Boyce–Codd* (BCNF) si y solo si en toda dependencia funcional no trivial _X_→_A_, _X_ es superclave de _R_.
 
 * Pseudo–algoritmo para descomponer en BCNF
@@ -143,8 +148,10 @@ Una relación _R_ está en *Forma*normal*de*Boyce–Codd* (BCNF) si y solo si en
 (4) Si quedan dependencias en _R₂_ que violan BCNF, _R₂_ pasa a ser el nuevo _R_ y go to (1)
 
 * Dudas, preguntas, consultas
-**
-**
-**
-**
+
+__
+__
+__
+__
+
 .image img/pregunta.png 200 _
