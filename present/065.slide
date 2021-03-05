@@ -18,6 +18,10 @@ Universidad Nacional de General Sarmiento
 	select *
 	from   empleade
 	order  by salario desc;
+ 
+	select *
+	from   empleade
+	order  by apellido, nombre;
 
 * Subqueries
 
