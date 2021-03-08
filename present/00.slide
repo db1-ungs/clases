@@ -24,9 +24,9 @@ Materias *fuertemente* recomendadas:
 - Programación III
 - Sistemas Operativos y Redes I
 
-* Itinerario de cursada
+#* Itinerario de cursada
 
-.image img/itinerario.png 525 _
+#.image img/itinerario.png 525 _
 
 * Medios de comunicación
 
@@ -113,6 +113,6 @@ _Conjunto_de_datos_relacionados._
 #Poner dibujito de PostgreSQL, psql, browser, etc.
 
 # empty title
-* 
+*
 
 .image img/questions.png
