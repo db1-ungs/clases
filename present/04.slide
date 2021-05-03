@@ -77,8 +77,6 @@ Hay atributos que dependen de *solo*una*parte*de*la*clave*.
 
 Una relación _R_ está en *Segunda*forma*normal* (2NF) si y solo si todo atributo no primo _A_ no es parcialmente dependiente de _alguna_ clave de _R_.
 
-O, en forma equivalente, si todo atributo no primo _A_ es totalmente dependiente de _todas_ las claves de _R_.
-
 I.e., no pueden existir atributos no primos que dependan solo de una parte de alguna clave.
 
 * Segunda forma normal
