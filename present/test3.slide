@@ -1,0 +1,68 @@
+# Ordenamiento – Part II
+Programación I
+
+Hernán Rondelli
+lucifer.unix.cabj@gmail.com
+
+## Ordenamiento de arrays
+
+_La clase pasada:_
+
+- Tres algoritmos de ordenamiento, **selection sort, insertion sort, bubble sort**
+
+- Los tres con complejidad **O(n²)**, y de hecho con la misma cantidad de iteraciones
+
+_Hoy:_
+
+//- Vamos a ver dos formas un poco mejores. Ambas usan una técnica algorítmica conocida como <span style="color:red">**Divide and Conquer**</span>
+
+## Divide and Conquer
+
+## Divide and Conquer
+
+Dada una instancia _P_ de un problema, el concepto **divide and conquer** se basa en el siguiente esquema:
+
+- Si _P_ es suficientemente simple: resolver y devolver la solución _S_.
+
+- Si no lo es:
+
+  1. **Dividir** _P_ en dos instancias más pequeñas _P₁_ y _P₂_ (instancias del mismo problema)
+
+  1. Aplicar el mismo procedimiento de resolución a _P₁_ y a _P₂_ por separado, para obtener dos soluciones _S₁_ y _S₂_
+
+  1. **Combinar** adecuadamente las soluciones _S₁_ y _S₂_, obteniendo así una solución _S_ para _P_
+
+## Quicksort
+
+- Si el array tiene un sólo elemento ó ninguno:
+
+  - ya está ordenado, no hacer nada, y terminar
+
+- Si tiene más de un elemento:
+
+  - Elegir un valor cualquiera _p_, no es necesario que _p_ sea un elemento del array
+
+  - Poner todos los elementos menores ó iguales a _p_ al principio del array, y el resto al final, no importa si entre ellos quedan desordenados
+
+  - Partir el array en dos, cortándolo justo por el lugar en que los elementos comienzan a ser mayores a _p_
+
+  - Aplicar **quicksort** a cada uno de los subarrays para ordenarlos
+
+## Merge sort
+
+- Si el array tiene un sólo elemento ó ninguno:
+
+  - no hacer nada y terminar (¡obvio, ya está ordenado!).
+
+- Si tiene más de un elemento:
+
+  - Dividir el arreglo en dos subarreglos de igual tamaño (o casi igual si el tamaño es impar).
+
+  - Aplicar mergesort a cada uno de los subarreglos para ordenarlos.
+
+  - Mezclar ambos subarreglos, ya ordenados, de manera que el arreglo final quede también ordenado.
+
+// empty title
+##
+
+.image img/questions.png
