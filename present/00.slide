@@ -30,13 +30,23 @@ Materias *fuertemente* recomendadas:
 
 * Medios de comunicación
 
-- Anuncios importantes por medio de la mailing list.
+- Anuncios importantes, por medio de la mailing list
 
-- Para cuestiones administrativas, enviar email a ambos docentes.
+- Cuestiones administrativas, enviar email a ambos docentes
 
-- Las *consultas* de ejercicios y demás, en el *grupo*de*Telegram* [[http://bit.do/ungs-db1]]
+- *Consultas* de ejercicios y demás, en el *grupo*de*Telegram* [[http://bit.do/ungs-db1]]
 
 * Régimen de aprobación
+
+* Régimen de aprobación
+
+- 1 parcial
+- 1 trabajo práctico
+
+*Condiciones*de*aprobación*
+
+- 75% de asistencia mínima obligatoria, ≈ 24 clases, se toma asistencia
+- Parcial y trabajo práctico aprobados
 
 * La materia es promocionable!
 
@@ -46,21 +56,13 @@ Materias *fuertemente* recomendadas:
 #.image img/tano.gif _ 800
 #.caption La materia es *promocionable*
 
-* Régimen de aprobación
-
-- 1 parcial
-- 1 trabajo práctico
-
-*Condiciones*de*aprobación*
-
-- 75% de asistencia mínima obligatoria (se toma asistencia) 😿
-- Parcial y trabajo práctico aprobados
-
-*Condiciones*de*promoción* 👻
+* Condiciones de promoción 👻
 
 - nota parcial ≥ 7
 - nota trabajo práctico ≥ 7
-- *quienes*rindan*recuperatorio*no*podrán*promocionar*
+#- *quienes*rindan*recuperatorio*no*podrán*promocionar*
+- *no*llegar*a*instancia*de*recuperatorio*de*parcial*
+- *no*llegar*a*instancia*de*recuperatorio*de*trabajo*práctico*
 - nota de promoción = (nota parcial + nota trabajo práctico) / 2
 
 * Bibliografía sugerida
@@ -74,18 +76,18 @@ Materias *fuertemente* recomendadas:
 * Programa de la materia
 
 - DER. Modelo Relacional.
-- Dependencias Funcionales. Normalización.
+- Dependencias Funcionales. Formas Normales.
 - Álgebra Relacional. SQL.
 - Stored Procedures. Triggers. Transacciones.
 - NoSQL. JSON.
 
-*Parcial*–*29*de*abril*
-DER. Modelo Relacional. Dependencias Funcionales. Normalización.
+*Parcial*–*XX*de*septubre*
+DER. Modelo Relacional. Dependencias Funcionales. Formas Normales.
 Álgebra Relacional. SQL.
 
-*Recuperatorio*–*10*de*mayo* (inmediatamente después del parcial)
+*Recuperatorio*–*XX*de*octubre* (atención: inmediatamente después del parcial)
 
-*Entrega*trabajo*práctico*–*13*de*junio*
+*Entrega*trabajo*práctico*–*XX*de*noviembre*
 Todos los temas de la materia.
 
 * Bases de Datos
