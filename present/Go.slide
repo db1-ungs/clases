@@ -73,7 +73,7 @@ Declarations
 	var i int
 	var x float64
 	var z complex128
-	var ok boolean
+	var ok bool
 	var s string
 	var c rune
 
@@ -103,12 +103,12 @@ Declarations with type inference
 Array
 
 	var a [5]int
-	a := [5]int{0, 2, 4, 6, 8}
+	b := [5]int{0, 2, 4, 6, 8}
 
 Slice
 
-	var s []int
-	s := []int{1, 2, 3}
+	var s0 []int
+	s1 := []int{1, 2, 3}
 
 Map
 
@@ -116,21 +116,25 @@ Map
 
 …
 
-* Composite types
+* Composite types: structs
 
-Struct
-
-- privado
+*privado*
 
 	type punto struct {
 		x, y int
 	}
 
-- Público
+*Público*
 
 	type Persona struct {
-		Nombre string
-		Edad   int
+		Nombre   string
+		Apellido string
+		Edad     int
+	}
+
+	type Cuenta struct {
+		númeroDeCuenta int
+		monto          float64
 	}
 
 * Pointers
@@ -293,6 +297,30 @@ Query
 .code src/sql.go /E INSERT INTO TABLE OMIT/,
 
 * JSON
+
+# empty title
+* 
+
+.image img/jason1.jpg _ 850
+.caption *JSON*
+
+# empty title
+* 
+
+.image img/jason2.jpg _ 500
+.caption *JSON*
+
+# empty title
+* 
+
+.image img/jason3.jpg _ 768
+.caption *JSON*
+
+# empty title
+* 
+
+.image img/jason4.jpg _ 800
+.caption *JSON*
 
 * JSON
 
