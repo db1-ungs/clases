@@ -225,11 +225,12 @@ Magic date: `2006-01-02T15:04:05`
 
 * Relational Databases in Go
 
-* Relational Databases in Go
+* Relational Databases in Go …
 
-Install PostgreSQL driver
-
-	$ go get github.com/lib/pq
+# Is go get deprecated?
+# Install PostgreSQL driver
+#
+# 	$ go get github.com/lib/pq
 
 Import declarations
 
@@ -243,20 +244,16 @@ Import declarations
 	)
 
 	func main() {
-		//...
+		// acá va el código de mi "aplicacion-de-bases-de-datos"
 	}
 
-#* Databases in Go
-
-* Database Connection
+* … Relational Databases in Go …
 
 Open database connection
 
 .code src/sql.go /B OPEN OMIT/,/E OPEN OMIT/
 
-…
-
-* Database Connection
+* … Relational Databases in Go …
 
 Create table
 
@@ -266,9 +263,7 @@ Insert into
 
 .code src/sql.go /B INSERT INTO TABLE OMIT/,/E INSERT INTO TABLE OMIT/
 
-…
-
-* Database Connection
+* … Relational Databases in Go
 
 .code src/sql.go /B ALUMNO OMIT/,/E ALUMNO OMIT/
 
@@ -276,29 +271,82 @@ Query
 
 .code src/sql.go /B SELECT OMIT/,/E SELECT OMIT/
 
-* Complete example
+* Complete example …
 
 .code src/sql.go ,/B CREATEDATABASE OMIT
 
 …
 
-* Complete example
+* … Complete example …
 
 .code src/sql.go /B CREATEDATABASE OMIT/,/E CREATEDATABASE OMIT/
 
 …
 
-* Complete example
+* … Complete example …
 
 .code src/sql.go /func main/,/E INSERT INTO TABLE OMIT/
 
 …
 
-* Complete example
+* … Complete example
 
 .code src/sql.go /E INSERT INTO TABLE OMIT/,
 
+* Relational Databases in Go
+
+Creating module
+
+	$ mkdir aplicacion-de-bases-de-datos
+	$ cd aplicacion-de-bases-de-datos
+	$ go mod init aplicacion-de-bases-de-datos
+	go: creating new go.mod: module aplicacion-de-bases-de-datos
+
+Writing code
+
+	$ vi main.go
+
+Adding dependencies
+
+	$ go mod tidy
+	go: finding module for package github.com/lib/pq
+	go: found github.com/lib/pq in github.com/lib/pq v1.10.2
+
+Running code
+
+	$ go run .
+
 * JSON
+
+# empty title
+* 
+
+.image img/jason1.jpg _ 850
+.caption *JSON*
+
+# empty title
+* 
+
+.image img/jason2.jpg _ 500
+.caption *JSON*
+
+# empty title
+* 
+
+.image img/jason3.jpg _ 768
+.caption *JSON*
+
+# empty title
+* 
+
+.image img/jason4.jpg _ 800
+.caption *JSON*
+
+# empty title
+* 
+
+.image img/jason5.jpg _ 700
+.caption *JSON*
 
 * JSON
 
@@ -372,13 +420,13 @@ Go → JSON
 - Unmarshaling (decoding)
 JSON → Go
 
-* JSON example
+* JSON example …
 
 .code src/json.go /package /,/Cristina OMIT
 
 *…*
 
-* JSON example
+* … JSON example
 
 .play src/json.go /Cristina OMIT/,/END OMIT
 
@@ -394,8 +442,8 @@ JSON → Go
 
 Install BoltDB library
 
-	$ go get github.com/coreos/bbolt/...
-#	$ go get go.etcd.io/bbolt/...
+#	$ go get github.com/coreos/bbolt/...
+	$ go get go.etcd.io/bbolt/...
 
 * Buckets: key→value
 
@@ -414,7 +462,7 @@ Características
 
 * BoltDB
 
-- Import declarations
+Import declarations
 
 	package main
 
@@ -443,21 +491,44 @@ Características
 
 .code src/bolt.go /READUNIQUE OMIT/,
 
-* Full code
+* Full code …
 
 .code src/bolt.go ,/FUNC OMIT/
 
-* Full code (cont)
+* … Full code …
 
 .code src/bolt.go /CREATE OMIT/,/READUNIQUE OMIT/
 
-* Full code (cont)
+* … Full code …
 
 .code src/bolt.go /READUNIQUE OMIT/,
 
-* Full code (cont)
+* … Full code
 
 .code src/bolt.go /FUNC OMIT/,/CREATE OMIT/
+
+* NoSQL Databases in Go (BoltDB)
+
+Creating module
+
+	$ mkdir sui-guarani
+	$ cd sui-guarani
+	$ go mod init sui-guarani
+	go: creating new go.mod: module sui-guarani
+
+Writing code
+
+	$ vi main.go
+
+Adding dependencies
+
+	$ go mod tidy
+	go: finding module for package github.com/lib/pq
+	go: found github.com/lib/pq in github.com/lib/pq v1.10.2
+
+Running code
+
+	$ go run .
 
 # empty title
 * 
