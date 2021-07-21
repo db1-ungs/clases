@@ -223,6 +223,17 @@ Magic date: `2006-01-02T15:04:05`
 
 .play src/clock.go /START OMIT/,
 
+* More info
+
+# - Get started with Go → [[https://golang.org/doc/tutorial/getting-started]]
+# - Documentation → [[https://golang.org/doc]]
+
+- Get started with Go
+.link https://golang.org/doc/tutorial/getting-started
+
+- Documentation
+.link https://golang.org/doc
+
 * Relational Databases in Go
 
 * Relational Databases in Go …
@@ -529,6 +540,16 @@ Adding dependencies
 Running code
 
 	$ go run .
+
+* One more thing…
+
+* More info
+
+- PostgreSQL documentation
+.link https://www.postgresql.org/docs/current
+
+- BoltDB documentation
+.link https://pkg.go.dev/go.etcd.io/bbolt
 
 # empty title
 * 
