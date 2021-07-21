@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	bolt "github.com/coreos/bbolt"
+	bolt "go.etcd.io/bbolt"
 	"log"
 	"strconv"
 )

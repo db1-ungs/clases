@@ -451,14 +451,16 @@ JSON → Go
 #- Bucket ≈ `map[key]value`
 - Bucket: *key*→*value*
 
-Install BoltDB library
+# Install BoltDB library
 
 #	$ go get github.com/coreos/bbolt/...
-	$ go get go.etcd.io/bbolt/...
+#	$ go get go.etcd.io/bbolt/...
 
-* Buckets: key→value
+* Buckets
 
-- alumne:
+key → value
+
+*alumne:*
 
 	1 → {"legajo": 1, "nombre": "Cristina", "apellido": "Kirchner"}
 	2 → {"legajo": 2, "nombre": "Diego Armando", "apellido": "Maradona"}
@@ -480,8 +482,7 @@ Import declarations
 	import (
 		"fmt"
 		"log"
-
-		bolt "github.com/coreos/bbolt"
+		bolt "go.etcd.io/bbolt"
 	)
 
 	func main() {
@@ -529,13 +530,13 @@ Creating module
 
 Writing code
 
-	$ vi main.go
+	$ vi app-boltdb.go
 
 Adding dependencies
 
 	$ go mod tidy
-	go: finding module for package github.com/lib/pq
-	go: found github.com/lib/pq in github.com/lib/pq v1.10.2
+	go: finding module for package go.etcd.io/bbolt
+	go: found go.etcd.io/bbolt in go.etcd.io/bbolt v1.3.6
 
 Running code
 
