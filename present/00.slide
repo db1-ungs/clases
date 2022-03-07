@@ -46,7 +46,7 @@ Materias *fuertemente* recomendadas:
 *Condiciones*de*aprobación*
 
 - Se tomará asistencia
-- 75% de asistencia mínima obligatoria (se pueden faltar sólo 5 clases)
+- 75% de asistencia mínima obligatoria (se puede faltar sólo 4 clases, sin contar a las de consulta para las instancias de evaluación)
 - Parcial y trabajo práctico aprobados
 
 * La materia es promocionable!
@@ -117,6 +117,6 @@ _Conjunto_de_datos_relacionados._
 #Poner dibujito de PostgreSQL, psql, browser, etc.
 
 # empty title
-* 
+*
 
 .image img/questions.png
