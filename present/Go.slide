@@ -234,6 +234,294 @@ Magic date: `2006-01-02T15:04:05`
 - Documentation
 .link https://golang.org/doc
 
+* Relational Databases in Go
+
+* Relational Databases in Go …
+
+# Is go get deprecated?
+# Install PostgreSQL driver
+#
+# 	$ go get github.com/lib/pq
+
+Import declarations
+
+	package main
+
+	import (
+		"database/sql"
+		"fmt"
+		_ "github.com/lib/pq"
+		"log"
+	)
+
+	func main() {
+		// acá va el código de mi "aplicacion-de-bases-de-datos"
+	}
+
+* … Relational Databases in Go …
+
+Open database connection
+
+.code src/sql.go /B OPEN OMIT/,/E OPEN OMIT/
+
+* … Relational Databases in Go …
+
+Create table
+
+.code src/sql.go /B CREATE TABLE OMIT/,/E CREATE TABLE OMIT/
+
+Insert into
+
+.code src/sql.go /B INSERT INTO TABLE OMIT/,/E INSERT INTO TABLE OMIT/
+
+* … Relational Databases in Go
+
+.code src/sql.go /B ALUMNO OMIT/,/E ALUMNO OMIT/
+
+Query
+
+.code src/sql.go /B SELECT OMIT/,/E SELECT OMIT/
+
+* Complete example …
+
+.code src/sql.go ,/B CREATEDATABASE OMIT
+
+…
+
+* … Complete example …
+
+.code src/sql.go /B CREATEDATABASE OMIT/,/E CREATEDATABASE OMIT/
+
+…
+
+* … Complete example …
+
+.code src/sql.go /func main/,/E INSERT INTO TABLE OMIT/
+
+…
+
+* … Complete example
+
+.code src/sql.go /E INSERT INTO TABLE OMIT/,
+
+* Relational Databases in Go
+
+Creating module
+
+	$ mkdir aplicacion-de-bases-de-datos
+	$ cd aplicacion-de-bases-de-datos
+	$ go mod init aplicacion-de-bases-de-datos
+	go: creating new go.mod: module aplicacion-de-bases-de-datos
+
+Writing code
+
+	$ vi main.go
+
+Adding dependencies
+
+	$ go mod tidy
+	go: finding module for package github.com/lib/pq
+	go: found github.com/lib/pq in github.com/lib/pq v1.10.2
+
+Running code
+
+	$ go run .
+
+* JSON
+
+* JSON
+
+- JSON (JavaScript Object Notation)
+- Structured information
+- Standard, universal support
+- Simple
+- Strings, numbers, booleans, arrays, and objects
+
+* JSON data types to Go data types
+
+- JSON numbers → Go int's and float's
+
+	626
+	-273.15
+
+- JSON booleans → Go booleans
+
+	false
+	true
+
+- JSON strings → Go strings
+
+	"Viva Perón"
+
+- JSON arrays → Go arrays, and slices
+
+	["Viva", "Perón"]
+
+* JSON data types to Go data types
+
+- JSON objects → Go structs
+
+ {
+     "Title": "Casablanca",
+     "released": 1942,
+     "Actors": [
+         "Humphrey Bogart",
+         "Ingrid Bergman"
+     ]
+ }
+
+* JSON Document
+
+`movies.json`
+
+ [
+     {
+         "Title": "Casablanca",
+         "released": 1942,
+         "Actors": [
+             "Humphrey Bogart",
+             "Ingrid Bergman"
+         ]
+     },
+     {
+         "Title": "Lilo & Stitch",
+         "released": 2002,
+         "color": true,
+         "Actors": [
+             "Chris Sanders"
+         ]
+     }
+ ]
+
+* Encoding and Decoding JSON
+
+- Marshaling (encoding)
+Go → JSON
+
+- Unmarshaling (decoding)
+JSON → Go
+
+* JSON example …
+
+.code src/json.go /package /,/Cristina OMIT
+
+*…*
+
+* … JSON example
+
+.play src/json.go /Cristina OMIT/,/END OMIT
+
+* NoSQL Databases in Go
+
+* NoSQL Databases in Go (BoltDB)
+
+- key/value store
+- Embedded (no service)
+- Database: *filename.db*
+#- Bucket ≈ `map[key]value`
+- Bucket: *key*→*value*
+
+# Install BoltDB library
+
+#	$ go get github.com/coreos/bbolt/...
+#	$ go get go.etcd.io/bbolt/...
+
+* Buckets
+
+key → value
+
+*alumne:*
+
+	1 → {"legajo": 1, "nombre": "Cristina", "apellido": "Kirchner"}
+	2 → {"legajo": 2, "nombre": "Diego Armando", "apellido": "Maradona"}
+	3 → {"legajo": 3, "nombre": "Juan Carlos", "apellido": "Olave"}
+
+* BoltDB
+
+Características
+
+- Permite una única transacción de read/write (rw)
+- Permite muchas transacciones read only (ro)
+
+* BoltDB
+
+Import declarations
+
+	package main
+
+	import (
+		"fmt"
+		"log"
+		bolt "go.etcd.io/bbolt"
+	)
+
+	func main() {
+		db, err := bolt.Open("guaraní.db", 0600, nil)
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer db.Close()
+
+		//...
+	}
+
+* Write to buckets
+
+.code src/bolt.go /CREATE OMIT/,/READUNIQUE OMIT/
+
+* Read from buckets
+
+.code src/bolt.go /READUNIQUE OMIT/,
+
+* Full code …
+
+.code src/bolt.go ,/FUNC OMIT/
+
+* … Full code …
+
+.code src/bolt.go /CREATE OMIT/,/READUNIQUE OMIT/
+
+* … Full code …
+
+.code src/bolt.go /READUNIQUE OMIT/,
+
+* … Full code
+
+.code src/bolt.go /FUNC OMIT/,/CREATE OMIT/
+
+* NoSQL Databases in Go (BoltDB)
+
+Creating module
+
+	$ mkdir sui-guarani
+	$ cd sui-guarani
+	$ go mod init sui-guarani
+	go: creating new go.mod: module sui-guarani
+
+Writing code
+
+	$ vi app-boltdb.go
+
+Adding dependencies
+
+	$ go mod tidy
+	go: finding module for package go.etcd.io/bbolt
+	go: found go.etcd.io/bbolt in go.etcd.io/bbolt v1.3.6
+
+Running code
+
+	$ go run .
+
+* One more thing…
+
+* More info
+
+- PostgreSQL documentation
+.link https://www.postgresql.org/docs/current
+
+- BoltDB documentation
+.link https://pkg.go.dev/go.etcd.io/bbolt
+
 # empty title
 * 
 
