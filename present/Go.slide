@@ -395,10 +395,10 @@ Running code
 
 * Encoding and Decoding JSON
 
-- Marshaling (encoding)
+- Marshalling (encoding)
 Go → JSON
 
-- Unmarshaling (decoding)
+- Unmarshalling (decoding)
 JSON → Go
 
 * JSON example …

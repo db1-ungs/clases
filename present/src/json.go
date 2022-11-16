@@ -26,14 +26,14 @@ func main() {
 
 	data, err := json.MarshalIndent(movies, "", "    ") //data, err := json.Marshal(movies)
 	if err != nil {
-		log.Fatalf("JSON marshaling failed: %s", err)
+		log.Fatalf("JSON marshalling failed: %s", err)
 	}
 	fmt.Printf("%s\n", data)
 
 	var películas []Movie
 	err = json.Unmarshal(data, &películas)
 	if err != nil {
-		log.Fatalf("JSON unmarshaling failed: %s", err)
+		log.Fatalf("JSON unmarshalling failed: %s", err)
 	}
 	fmt.Printf("%v\n", películas)
 }
