@@ -1,5 +1,5 @@
 = Material de Bases de Datos I
 
-© 2018 Rondelli
-© 2019-2022 Rondelli, Czemerinski
+© 2018 Rondelli +
+© 2019-2022 Rondelli, Czemerinski +
 © 2023 Rondelli, Bertaccini
