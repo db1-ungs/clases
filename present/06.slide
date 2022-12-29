@@ -1,10 +1,13 @@
 SQL
 Structured Query Language
 
-Czemerinski
-hczemerinski@campus.ungs.edu.ar
+Daniel Bertaccini
+dbertacc@campus.ungs.edu.ar
 
-Rondelli
+#Czemerinski
+#hczemerinski@campus.ungs.edu.ar
+
+Hernán Rondelli
 lucifer.unix.cabj@gmail.com
 
 Universidad Nacional de General Sarmiento
@@ -120,9 +123,9 @@ producto cartesiano con join condition:
   
 	delete from materia; -- No!!! 🙀
 
-* Base de datos
+* Bases de datos
 
-* Base de datos
+* Bases de datos
 
 Crear:
 
