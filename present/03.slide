@@ -57,7 +57,7 @@ A partir de este conjunto de DF, ¿se puede inferir alguna otra?
 
 Reglas de inferencia
 
-.image tex/df-axiomas-armstrong.png 140 _
+.image tex/df-axiomas-armstrong.png 141 _
 
 De (1) se desprenden las inferencias triviales:
 
