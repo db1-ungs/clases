@@ -34,14 +34,6 @@ Una relación _R_ está en *Primera*forma*normal* (1NF) si y solo si no tiene fi
 
 Una relación _R_ está en *1NF* si y solo si tiene al menos una clave.
 
-* Definición
-
-Una relación _R_ está en *Primera*forma*normal* (1NF) si y solo si no tiene filas repetidas.
-
-
-*Definición* *alternativa:*
-
-Una relación _R_ está en *1NF* si y solo si tiene al menos una clave.
 
 _Aclaración:_
 
