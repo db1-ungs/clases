@@ -44,7 +44,7 @@ __
 Una relación _R_ está en *1NF* si y solo si tiene al menos una clave.
 
 __
-_*Aclaración:*_
+*Aclaración:*
 
 Si pensamos a toda relación como un *conjunto* de tuplas, entonces *siempre* existe una clave. En ese caso, _toda_ _relación_ _está_ _en_ _1FN_.
 
