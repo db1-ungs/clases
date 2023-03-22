@@ -29,12 +29,12 @@ Por definición, el modelo relacional no admite atributos multivaluados.
 
 Una relación _R_ está en *Primera*forma*normal* (1NF) si y solo si no tiene filas repetidas.
 
-
+__
 *Definición* *alternativa:*
 
 Una relación _R_ está en *1NF* si y solo si tiene al menos una clave.
 
-
+__
 _Aclaración:_
 
 Si pensamos a toda relación como un *conjunto* de tuplas, entonces *siempre* existe una clave. En ese caso, toda relación está en 1FN.
