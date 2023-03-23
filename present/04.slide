@@ -46,7 +46,7 @@ Una relación _R_ está en *1NF* si y solo si tiene al menos una clave.
 __
 *Aclaración:*
 
-Si pensamos a toda relación como un *conjunto* de tuplas, entonces *siempre* existe una clave. En ese caso, _toda_relación_está_en_1FN._
+Si pensamos a toda relación como un *conjunto* de tuplas, entonces *siempre* existe una clave. En ese caso, _toda_relación_está_en_1NF._
 
 Cuando pensamos en tablas _(nivel_físico)_, es posible que no exista una PK, y entonces _sí_pueden_existir_filas_duplicadas._
 
@@ -60,7 +60,7 @@ La relación está en 1NF, pero...
 
 .image tex/fn-pfn-propuesta-1-a.png 495 _
 
-La relación está en 1NF, pero *se* *pierde* *información*.
+La relación está en 1NF, pero *se*pierde*información*.
 
 * Primera forma normal
 
