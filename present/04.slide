@@ -72,7 +72,7 @@ La relación está en 1NF, pero *hay*redundancia*.
 
 .image tex/fn-pfn-propuesta-1-c.png 495 _
 
-La relación está en 1NF, pero *la*calve*de*la*relación*se*vuelve*artificiosa*.
+La relación está en 1NF, pero *la*clave*de*la*relación*se*vuelve*artificiosa*.
 
 * Primera forma normal
 
