@@ -156,6 +156,18 @@ Toda dependencia funcional no trivial X → A cumple al menos una de las siguien
 
 Una relación _R_ está en *Forma*normal*de*Boyce–Codd* (BCNF) si y solo si en toda dependencia funcional no trivial _X_→_A_, _X_ es superclave de _R_.
 
+* Forma normal de Boyce–Codd
+
+.image tex/fn-bcfn-ejemplo-1.png 430 _
+
+La dependencia _cargo_→_sector_ viola la BCNF, porque cargo no es superclave y sector es un atributo primo.
+
+* Forma normal de Boyce–Codd
+
+.image tex/fn-bcfn-ejemplo-2.png 550 _
+
+El esquema cumple la BCNF, pero en la normalización se perdió la dependencia _sector_nro\_emp_→_cargo_.
+
 * Pseudo–algoritmo para descomponer en BCNF
 
 (1) Calcular [super]claves y DF's de _R(A,_B,_X)_.
