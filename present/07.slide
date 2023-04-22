@@ -38,13 +38,14 @@ Universidad Nacional de General Sarmiento
 
 Estructura de una función
 
- create function nombre(par1 tipo1, par2 tipo2,…, parN tipoN) returns tipoR as $$
+ create function nombre(par1 tipo1, par2 tipo2,…, par_n tipo_n) returns tipo_r as $$
  declare
-     variable1 tipo1;
+     variable1 tipo_1;
      …
-     variableM tipoM;
+     variableM tipo_m;
  begin
      /* statements */
+	 return resultado_tipo_r
  end;
  $$ language plpgsql;
 
@@ -211,11 +212,12 @@ Función sin parámetros que devuelve trigger
 
  create function función_del_trigger() returns trigger as $$
  declare
-     variable1 tipo1;
+     variable1 tipo_1;
      …
-     variableM tipoM;
+     variableM tipo_m;
  begin
      /* statements */
+	 return new;
  end;
  $$ language plpgsql;
 
