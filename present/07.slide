@@ -45,7 +45,7 @@ Estructura de una función
      variable_m tipo_m;
  begin
      /* statements */
-	 return resultado_tipo_r
+     return resultado_tipo_r;
  end;
  $$ language plpgsql;
 
