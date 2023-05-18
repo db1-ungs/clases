@@ -51,7 +51,7 @@ Estructura de una función
 
 * PL/pgSQL…
 
-hello, world!
+hello()
 
  create function hello() returns void as $$
  begin
@@ -72,7 +72,7 @@ suma(a, b)
 
 * PL/pgSQL
 
-hello, world!
+hello()
 
  postgres=# select hello();
  NOTICE:  hello, world!
