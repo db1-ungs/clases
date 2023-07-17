@@ -177,6 +177,18 @@ __
 
 .image tex/der-grado-binaria.png
 
+# empty title
+* 
+
+__
+__
+__
+__
+__
+__
+
+.image tex/der-relacion-alumne-cursa-materia.png
+
 * Ternaria
 
 __
@@ -184,6 +196,16 @@ __
 __
 
 .image tex/der-grado-ternaria.png
+
+# empty title
+* 
+
+__
+__
+__
+__
+
+.image tex/der-grado-ternaria-ejemplo.png
 
 * Unaria
 
