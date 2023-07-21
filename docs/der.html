@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://localhost:3999/01.slide#1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>DER</title>
+    
+    <script>
+      var notesEnabled =  false ;
+    </script>
+    <script src="./der_files/slides.js"></script>
+
+    
+
+    <script>
+      
+      if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+        var _gaq = _gaq || [];
+        _gaq.push(["_setAccount", "UA-11222381-6"]);
+        _gaq.push(["b._setAccount", "UA-49880327-6"]);
+        window.trackPageview = function() {
+          _gaq.push(["_trackPageview", location.pathname+location.hash]);
+          _gaq.push(["b._trackPageview", location.pathname+location.hash]);
+        };
+        window.trackPageview();
+        window.trackEvent = function(category, action, opt_label, opt_value, opt_noninteraction) {
+          _gaq.push(["_trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+          _gaq.push(["b._trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+        };
+      }
+    </script>
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1"><meta name="apple-mobile-web-app-capable" content="yes"></head>
+
+  <body style="display: none" class="loaded">
+
+    <section class="slides layout-widescreen" style="transform: scale(0.726667);">
+
+      <article class="current">
+        <h1>DER</h1>
+        <h3>Diagrama Entidad Relación</h3>
+        
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Hernán Rondelli
+  </p>
+  
+
+          </div>
+        
+      </article>
+
+  
+  
+      <article class="next">
+      
+        <h3>rondelli.github.io/db1/der.html</h3>
+        
+<div class="image">
+  <img src="./der_files/rondelli.github.io-db1-der.html.png" height="500">
+</div>
+
+      
+      <span class="pagenumber">2</span>
+      </article>
+  
+  
+  
+      <article class="far-next">
+      
+        <h3>Modelos de datos</h3>
+        
+  
+  <p>
+    ⒈ Conceptuales
+<br>
+
+    ⒉ Lógicos
+<br>
+
+    ⒊ Físicos
+  </p>
+  
+
+      
+      <span class="pagenumber">3</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>DER (Diagrama Entidad Relación)</h3>
+        
+  <ul>
+  
+    <li>Modelo conceptual</li>
+  
+    <li>Entidades y relaciones</li>
+  
+    <li>Existen muchas notaciones distintas</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">4</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Entidades</h2>
+      
+      <span class="pagenumber">5</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Entidad</h3>
+        
+  
+  <p>
+    Objeto de interés
+  </p>
+  
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-entidad-materia.png">
+</div>
+
+      
+      <span class="pagenumber">6</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>⚠︎ Una aclaración con las entidades</h2>
+      
+      <span class="pagenumber">7</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Conjunto de entidades</h3>
+        
+  
+  <p>
+    Una <i>entidad</i> es un elemento de un <i>conjunto de entidades</i>
+  </p>
+  
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-entidad-alumne.png">
+</div>
+
+      
+      <span class="pagenumber">8</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Relaciones</h2>
+      
+      <span class="pagenumber">9</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Relación</h3>
+        
+  
+  <p>
+    Asociación entre <i>entidades</i>
+  </p>
+  
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-relacion-cursa-en.png">
+</div>
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+  
+  <p>
+    ⚠︎ Una <i>relación</i> es un elemento de un <i>conjunto de relaciones</i>
+  </p>
+  
+
+      
+      <span class="pagenumber">10</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-relacion-alumne-cursa-materia.png">
+</div>
+
+      
+      <span class="pagenumber">11</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Listo! Nos vamos a casa! 😸</h2>
+      
+      <span class="pagenumber">12</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Atributos</h3>
+        
+  
+  <p>
+    Descriptores de entidades y relaciones
+  </p>
+  
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-atributo-nombre.png">
+</div>
+
+      
+      <span class="pagenumber">13</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-atributo-alumne-nombre-apellido.png">
+</div>
+
+      
+      <span class="pagenumber">14</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>PK (Primary Key)</h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-atributo-pk.png">
+</div>
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+  
+  <p>
+    ⚠︎ En realidad se denomina <i>identificador[s] único[s]</i>
+  </p>
+  
+
+      
+      <span class="pagenumber">15</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-atributo-pk-rel.png" height="300">
+</div>
+
+      
+      <span class="pagenumber">16</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Atributos multivaluados</h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-atributos-multivaluados.png">
+</div>
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+  
+  <p>
+    ⚠︎ No usar atributos multivaluados!
+  </p>
+  
+
+      
+      <span class="pagenumber">17</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>No usar atributos multivaluados en el parcial!</h2>
+      
+      <span class="pagenumber">18</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Atributos derivables</h3>
+        
+<div class="image">
+  <img src="./der_files/der-atributos-derivables.png" width="225">
+</div>
+
+      
+      <span class="pagenumber">19</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Entidades débiles</h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-entidades-debiles.png">
+</div>
+
+      
+      <span class="pagenumber">20</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Grado de una relación</h2>
+      
+      <span class="pagenumber">21</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Binaria</h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-grado-binaria.png">
+</div>
+
+      
+      <span class="pagenumber">22</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-relacion-alumne-cursa-materia.png">
+</div>
+
+      
+      <span class="pagenumber">23</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Ternaria</h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-grado-ternaria.png">
+</div>
+
+      
+      <span class="pagenumber">24</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-grado-ternaria-ejemplo.png">
+</div>
+
+      
+      <span class="pagenumber">25</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Unaria</h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-grado-unaria.png">
+</div>
+
+      
+      <span class="pagenumber">26</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>?</h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-grado-trucosa.png">
+</div>
+
+      
+      <span class="pagenumber">27</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Cardinalidad</h2>
+      
+      <span class="pagenumber">28</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Muchos a muchos</h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-cardinalidad-mxm.png">
+</div>
+
+      
+      <span class="pagenumber">29</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-cardinalidad-m0xm0.png">
+</div>
+
+      
+      <span class="pagenumber">30</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Uno a muchos</h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-cardinalidad-1xm.png">
+</div>
+
+      
+      <span class="pagenumber">31</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-cardinalidad-10xm.png">
+</div>
+
+      
+      <span class="pagenumber">32</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Uno a uno</h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-cardinalidad-1x1.png">
+</div>
+
+      
+      <span class="pagenumber">33</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-cardinalidad-10x1.png">
+</div>
+
+      
+      <span class="pagenumber">34</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-alumne-cursa-materia.png" height="300">
+</div>
+
+      
+      <span class="pagenumber">35</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Extras</h2>
+      
+      <span class="pagenumber">36</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Agregación</h3>
+        
+<div class="image">
+  <img src="./der_files/der-agregacion.png" width="700">
+</div>
+
+      
+      <span class="pagenumber">37</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        
+<div class="image">
+  <img src="./der_files/der-agregacion-ejemplo.png" width="725">
+</div>
+
+      
+      <span class="pagenumber">38</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Generalización y especialización</h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./der_files/der-jerarquias.png" width="550">
+</div>
+
+      
+      <span class="pagenumber">39</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        
+<div class="image">
+  <img src="./der_files/der-jerarquias-ejemplo-1.png" height="550">
+</div>
+
+      
+      <span class="pagenumber">40</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        
+<div class="image">
+  <img src="./der_files/der-jerarquias-ejemplo-2.png" height="550">
+</div>
+
+      
+      <span class="pagenumber">41</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        
+<div class="image">
+  <img src="./der_files/questions.png">
+</div>
+
+      
+      <span class="pagenumber">42</span>
+      </article>
+  
+  
+
+      <article>
+        <h3>Thank you</h3>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Hernán Rondelli
+  </p>
+  
+<p class="link"><a href="mailto:lucifer.unix.cabj@gmail.com" target="_blank">lucifer.unix.cabj@gmail.com</a></p>
+          </div>
+        
+      </article>
+
+    <div class="slide-area" id="prev-slide-area"></div><div class="slide-area" id="next-slide-area"></div></section>
+
+    <div id="help" style="display: none;">
+      Use the left and right arrow keys or click the left and right
+      edges of the page to navigate between slides.<br>
+      (Press 'H' or navigate to hide this message.)
+    </div>
+
+    
+    <script src="./der_files/play.js"></script>
+    
+
+    <script>
+      (function() {
+        
+        if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+          var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+          ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+          var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+        }
+      })();
+    </script>
+  
+
+<link rel="stylesheet" type="text/css" href="./der_files/css"><link rel="stylesheet" type="text/css" href="./der_files/styles.css"></body></html>
