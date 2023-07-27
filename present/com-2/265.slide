@@ -1,0 +1,199 @@
+SQL (cont.)
+Bases de datos I
+
+Universidad Nacional de General Sarmiento
+
+* bit.ly/ungs-db1-sql-2
+
+.image img/ungs-db1-sql-2.png
+
+* Ordenamiento
+
+* order by
+
+	select *
+	from   empleade
+	order  by salario;
+ 
+	select *
+	from   empleade
+	order  by salario desc;
+ 
+	select *
+	from   empleade
+	order  by apellido, nombre;
+
+* Subqueries
+
+* subquery
+
+	select nombre, salario
+	from   empleade
+	where  salario >= (select salario
+	                   from   empleade
+	                   where  legajo = 1234);
+* exists
+	select e1.nombre, e1.apellido
+	from   empleade e1
+	where  not exists (select * 
+	                   from   empleade e2 
+	                   where  departamento = 'sistemas' and e2.salario >= e1.salario);
+
+* all
+	select nombre, apellido
+	from   empleade
+	where  salario > all (select salario 
+	                      from   empleade 
+	                      where  departamento = 'sistemas');
+
+* in
+	select nombre, apellido, departamento
+	from   empleade
+	where  departamento in (select departamento 
+	                        from   proyecto 
+	                        where  fecha_inicio >= '2019-01-01');
+
+* Funciones de agregación
+
+* count
+
+	select count(*) 
+	from   empleade;
+ 
+	select count(nombre) 
+	from   empleade;
+ 
+	select count(distinct (nombre)) 
+	from   empleade;
+ 
+
+
+* sum
+
+	select sum(salario) 
+	from   empleade;
+ 
+* max
+
+	select max(salario) 
+	from   empleade;
+ 
+* min
+
+	select min(salario) 
+	from   empleade;
+
+* avg
+
+	select avg(salario) 
+	from   empleade;
+ 
+* max + min + avg
+
+	select max(salario), min(salario), avg(salario) 
+	from   empleade;
+ 
+* Agrupamiento
+
+* group by
+
+	select   departamento, count(*), avg(salario)
+	from     empleade
+	group by departamento;
+ 
+	select   departamento, count(*), salario
+	from     empleade
+	group by departamento, salario;
+ 
+	select   departamento, count(*), avg(salario)
+	from     empleade
+	where    departamento = 'sistemas' or departamento = 'finanzas'
+	group by departamento;
+
+
+* having
+
+	select   departamento, avg(salario) 
+	from     empleade 
+	group by departamento 
+	having   count(*) > 10;
+
+
+
+La cláusula *having* solo puede hacer referencia a funciones de agregación o a campos que estén en el *group*by*.
+
+* having != where
+
+	select   departamento, count(*) 
+	from     empleade 
+	where    salario >= 40000
+	group by departamento 
+	having   count(*) > 10;
+ 
+	select   departamento, count(*) 
+	from     empleade 
+	where    salario >= 40000 and departamento in (select   departamento
+	                                               from     empleade
+	                                               group by departamento
+	                                               having   count(*) > 10)
+	group by departamento;  
+
+* Operaciones de conjuntos
+
+* union
+
+	(select a from r)
+	union
+	(select a from s);
+ 
+	(select a from r)
+	union all
+	(select a from s);
+
+* intersect
+
+	(select a from r)
+	intersect
+	(select a from s);
+ 
+	(select a from r)
+	intersect all
+	(select a from s);
+
+* except
+
+	(select a from r)
+	except
+	(select a from s);
+ 
+	(select a from r)
+	except all
+	(select a from s);
+
+* división
+	-- empleados que trabajan en todos los proyectos
+
+	select distinct legajo 
+	from   empleade_proyecto ep1
+	where  not exists 
+	          (select 1 
+	           from   proyecto p
+	           where  not exists 
+	                     (select 1
+	                      from empleade_proyecto ep2
+	                      where ep2.legajo = ep1.legajo and ep2.proyecto_id = p.proyecto_id));
+
+
+
+
+
+* Dudas, preguntas, consultas
+
+__
+__
+__
+__
+
+.image img/pregunta.png 200 _
+
+

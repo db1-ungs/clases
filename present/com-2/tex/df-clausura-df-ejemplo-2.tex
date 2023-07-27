@@ -1,0 +1,16 @@
+\pdfoutput=1
+\documentclass[preview]{standalone}
+
+\usepackage{amsmath}
+
+\begin{document}
+estudiante(legajo, nombre)\\
+$F$=\{legajo $\rightarrow$ nombre\}\\
+
+\textbf{?`Qu\'e conjunto es $F^+$?}\\
+\begin{align*}
+	F^+ = \big\{ & \text{legajo} \rightarrow \text{nombre},\ \text{legajo} \rightarrow \text{legajo},\ \text{legajo} \rightarrow \text{nombre legajo},\\
+ & \text{nombre} \rightarrow \text{nombre}, \ \text{legajo nombre} \rightarrow \text{legajo},\\  
+ & \text{legajo nombre} \rightarrow \text{nombre}, \ \text{legajo nombre} \rightarrow \text{legajo nombre} \big\}   
+\end{align*}
+\end{document}

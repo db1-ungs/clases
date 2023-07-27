@@ -1,0 +1,188 @@
+Formas normales
+Bases de Datos I
+
+Universidad Nacional de General Sarmiento
+
+* bit.ly/ungs-db1-norm
+
+.image img/ungs-db1-norm.png
+
+* Modelo relacional
+
+* Modelo relacional
+
+¿Hay algún problema?
+
+.image tex/fn-pfn-erronea.png 250 _
+
+* Modelo relacional
+
+¿Hay algún problema?
+
+.image tex/fn-pfn-erronea.png 250 _
+
+Por definición, el modelo relacional no admite atributos multivaluados.
+
+* Primera forma normal
+
+* Definición
+
+Una relación _R_ está en *Primera*forma*normal* (1NF) si y solo si no tiene filas repetidas.
+
+__
+*Definición*alternativa:*
+
+Una relación _R_ está en *1NF* si y solo si tiene al menos una clave.
+
+* Definición
+
+Una relación _R_ está en *Primera*forma*normal* (1NF) si y solo si no tiene filas repetidas.
+
+__
+*Definición*alternativa:*
+
+Una relación _R_ está en *1NF* si y solo si tiene al menos una clave.
+
+__
+*Aclaración:*
+
+Si pensamos a toda relación como un *conjunto* de tuplas, entonces *siempre* existe una clave. En ese caso, _toda_relación_está_en_1NF._
+
+Cuando pensamos en tablas _(nivel_físico)_, es posible que no exista una PK, y entonces _sí_pueden_existir_filas_duplicadas._
+
+* Primera forma normal
+
+.image tex/fn-pfn-propuesta-1.png 495 _
+
+La relación está en 1NF, pero...
+
+* Primera forma normal
+
+.image tex/fn-pfn-propuesta-1-a.png 495 _
+
+La relación está en 1NF, pero *se*pierde*información*.
+
+* Primera forma normal
+
+.image tex/fn-pfn-propuesta-1-b.png 495 _
+
+La relación está en 1NF, pero *hay*redundancia*.
+
+* Primera forma normal
+
+.image tex/fn-pfn-propuesta-1-c.png 495 _
+
+La relación está en 1NF, pero *la*clave*de*la*relación*se*vuelve*artificiosa*.
+
+* Primera forma normal
+
+¿Cuál es el problema de esta relación?
+
+.image tex/fn-pfn-problemas.png 400 _
+
+* Primera forma normal
+
+¿Cuál es el problema de esta relación?
+
+.image tex/fn-pfn-problemas-2.png 400 _
+
+Hay atributos que dependen de *solo*una*parte*de*la*clave*.
+
+* Segunda forma normal
+
+* Atributos primos y dependencias parciales
+
+.image tex/fn-sfn-atributos-primos.png 200 _
+
+* Definición
+
+Una relación _R_ está en *Segunda*forma*normal* (2NF) si y solo si todo atributo no primo _A_ no es parcialmente dependiente de _alguna_ clave de _R_.
+
+I.e., no pueden existir atributos no primos que dependan solo de una parte de alguna clave.
+
+* Segunda forma normal
+
+.image tex/fn-sfn-ejemplo.png 550 _
+
+* Segunda forma normal
+
+.image tex/fn-sfn-problemas.png 350 _
+
+La relación está en segunda forma normal, pero ...
+
+* Segunda forma normal
+
+.image tex/fn-sfn-problemas-2.png 350 _
+
+La relación está en segunda forma normal, pero *hay*redundancia*.
+
+* Segunda forma normal
+
+¿Cuál es el problema de esta relación?
+
+.image tex/fn-sfn-problemas-3.png 430 _
+
+* Segunda forma normal
+
+¿Cuál es el problema de esta relación?
+
+.image tex/fn-sfn-problemas-4.png 430 _
+
+Hay un atributo no primo que depende de otro no primo.
+
+* Tercera forma normal
+
+* Definición
+
+Una relación _R_ está en *Tercera*forma*normal* (3NF) si y solo si:
+
+- _R_ está en 2NF
+- Todos los atributos no primos de _R_ no son transitivamente dependientes de ninguna clave de _R_
+
+*Formulación*equivalente*
+
+Toda dependencia funcional no trivial X → A cumple al menos una de las siguientes condiciones:
+
+- _X_ es superclave de _R_
+- _A_ es primo
+
+* Tercera forma normal
+
+.image tex/fn-tfn-ejemplo.png 570 _
+
+* Forma normal de Boyce–Codd
+
+* Definición
+
+Una relación _R_ está en *Forma*normal*de*Boyce–Codd* (BCNF) si y solo si en toda dependencia funcional no trivial _X_→_A_, _X_ es superclave de _R_.
+
+* Forma normal de Boyce–Codd
+
+.image tex/fn-bcfn-ejemplo-1.png 430 _
+
+La dependencia _cargo_→_sector_ viola la BCNF, porque _cargo_ no es superclave (aunque sí está en 3NF porque _sector_ es un atributo primo).
+
+* Forma normal de Boyce–Codd
+
+.image tex/fn-bcfn-ejemplo-2.png 550 _
+
+El esquema cumple la BCNF, pero en la normalización se perdió la dependencia _sector_nro\_emp_→_cargo_.
+
+* Pseudo–algoritmo para descomponer en BCNF
+
+(1) Calcular [super]claves y DF's de _R(A,_B,_X)_.
+
+(2) Tomar alguna _A_→_B_ que viola BCNF.
+
+(3) Descomponer _R_ en _R₁(A,_B)_ y _R₂(A,_X)_.
+
+(4) Si quedan dependencias en _R₂_ que violan BCNF, _R₂_ pasa a ser el nuevo _R_ y go to (1)
+
+* Dudas, preguntas, consultas
+
+__
+__
+__
+__
+
+.image img/pregunta.png 200 _

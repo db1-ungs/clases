@@ -1,0 +1,277 @@
+Stored Procedures & Triggers
+
+Daniel Bertaccini
+dbertacc@campus.ungs.edu.ar
+
+#Hernán Czemerinski
+#hczemerinski@campus.ungs.edu.ar
+
+Hernán Rondelli
+lucifer.unix.cabj@gmail.com
+
+Universidad Nacional de General Sarmiento
+
+* bit.ly/ungs-db1-sp
+
+.image img/ungs-db1-sp.png
+
+* Stored Procedures
+
+* Stored Procedures
+
+/stɔːd prəˈsiːdʒəz/
+
+- Lógica en la base de datos
+- *Funciones* que se ejecutan en el server
+- Procedural Language: variables, `if`, `while`, `for`, …
+- PostgreSQL: PL/pgSQL, PL/TCL, PL/Perl, PL/Python, …
+
+* PL/pgSQL
+
+* PL/pgSQL
+
+- PL (Procedural Language) by default
+- *Oracle*PL/SQL* Clone
+- Basado en Ada
+
+* PL/pgSQL
+
+Estructura de una función
+
+ create function nombre(par_1 tipo_1, par_2 tipo_2,…, par_n tipo_n) returns tipo_r as $$
+ declare
+     variable_1 tipo_1;
+     …
+     variable_m tipo_m;
+ begin
+     /* statements */
+     return resultado_tipo_r;
+ end;
+ $$ language plpgsql;
+
+* PL/pgSQL…
+
+hello()
+
+ create function hello() returns void as $$
+ begin
+     raise notice 'hello, world!';
+ end;
+ $$ language plpgsql;
+
+suma(a, b)
+
+ create or replace function suma(a int, b int) returns int as $$
+ declare
+     c int;
+ begin
+     c := a + b;
+     return c;
+ end;
+ $$ language plpgsql;
+
+* PL/pgSQL
+
+hello()
+
+ postgres=# select hello();
+ NOTICE:  hello, world!
+  hello
+ -------
+
+ (1 row)
+
+suma(a, b)
+
+ postgres=# select suma(2, 3);
+  suma
+ ------
+     5
+ (1 row)
+
+* PL/pgSQL
+
+declaration
+
+ legajo     int;
+ nombre     text;
+ fecha      date;
+ estudiante alumne%rowtype;
+ código     materia.cod%type;
+ fila       record;
+
+assignment
+
+ variable := valor;
+
+if
+
+ if condición then
+     /* statements */
+ else
+     /* statements */
+ end if;
+
+* PL/pgSQL
+
+while
+
+ while condición loop
+     /* statements */
+ end loop;
+
+for (integer)
+
+ for i in 1..n loop
+     /* statements */
+ end loop;
+
+for (query)
+
+ for v in select * from tabla loop
+     /* statements */
+ end loop;
+
+* PL/pgSQL
+
+extras
+
+- `select`into`variable`[…]`
+- `found`, `row_count`
+- existen muchas cosas más… 😉
+
+ …
+ declare
+     nombre_completo text;
+     resultado record;
+ begin
+     select * into resultado from alumne where legajo = legajo_buscado;
+
+     if not found then
+         raise 'el legajo % es inválido', legajo_buscado;
+     end if;
+
+     nombre_completo := resultado.nombre || ' ' || resultado.apellido;
+ …
+
+* Triggers
+
+* Triggers
+
+/ˈtrɪɡəz/
+
+Función que se ejecuta automáticamente
+
+ for event in database:
+     if condition:
+         do action
+
+- Mover lógica al DBMS
+- Trabajar con constraints
+
+* Triggers
+
+Eventos
+
+ insert on tabla
+ delete on tabla
+ update on tabla
+
+Activación
+
+ before | after | instead of evento
+
+Row-level
+
+ for each row
+
+Statement-level
+
+ for each statement
+
+* Triggers
+
+Implementaciones
+
+- PostgreSQL: full standard
+- SQLite: row-level only
+- MySQL: row-level only, más limitaciones
+
+* PostgreSQL Triggers…
+
+1. Necesitamos una función que implemente el comportamiento
+
+- Procedural Language: variables, `if`, `while`, `for`, …
+- *PL/pgSQL*, PL/TCL, PL/Perl, PL/Python, …
+
+2. Definimos el trigger que use la función creada
+
+* PostgreSQL Triggers
+
+Función sin parámetros que devuelve trigger
+
+ create function función_del_trigger() returns trigger as $$
+ declare
+     variable_1 tipo_1;
+     …
+     variable_m tipo_m;
+ begin
+     /* statements */
+     return new;
+ end;
+ $$ language plpgsql;
+
+Creación del trigger
+
+ create trigger nombre_del_trigger
+ after insert on tabla
+ for each row
+ execute procedure función_del_trigger();
+
+#Eliminar
+
+# drop trigger nombre_del_trigger on tabla;
+
+* PostgreSQL Triggers
+
+Extras
+
+ create table alumne(legajo int, nombre text, apellido text);
+ insert into alumne values (629, 'David', 'Banner');
+ update alumne set nombre = 'Bruce' where legajo = 629;
+
+dentro de la función del trigger
+
+- `new`, y `old`
+- `new.legajo` y `old.legajo`,
+- `new.nombre` y `old.nombre`,
+- `new.apellido` y `old.apellido`
+
+* Ejemplo
+
+Trigger Function
+
+ create or replace function cambio_de_nombre() returns trigger as $$
+ begin
+     if new.nombre != old.nombre then
+         insert into alerta values (old.id, old.nombre);
+     end if;
+     return new;
+ end;
+ $$ language plpgsql;
+
+Trigger
+
+ create trigger cambio_de_nombre_trg
+ before update on usuarie
+ for each row
+ execute procedure cambio_de_nombre();
+
+Update
+
+ update usuarie set nombre = 'Juan Domingo Perón' where id = 626;
+
+# empty title
+* 
+
+.image img/questions.png

@@ -1,0 +1,14 @@
+\pdfoutput=1
+\documentclass[preview]{standalone}
+\usepackage{amsmath}
+
+\begin{document}
+Dados {\em (i)} una relaci\'on $R$, {\em (ii)} un atributo $A\in R$ y {\em (iii)} un conjunto de dependencias funcionales $F$ de $R$: 
+
+
+\begin{itemize}
+\item $A$ es \textbf{primo} $\Leftrightarrow A$ forma parte de alguna {\em clave candidata} de $R$
+\item $X \rightarrow Y\in F$ es \textbf{dependencia parcial} $\Leftrightarrow \exists \ Z \subset X$ tal que $F \models Z\rightarrow Y$
+\item $Z$ \textbf{depende parcialmente} de $X \Leftrightarrow X \rightarrow Z$ es una dependencia parcial
+\end{itemize}
+\end{document}

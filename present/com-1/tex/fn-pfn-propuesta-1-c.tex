@@ -1,0 +1,39 @@
+\pdfoutput=1
+\documentclass[preview]{standalone}
+\usepackage{xcolor}
+
+
+\begin{document}
+
+
+\textbf{Esquema:}\\
+estudiante(\underline{nro\_legajo}, nombre, apellido, materias\_aprobadas)\\
+
+\textbf{Instancia:}
+\begin{center}
+\begin{tabular}{| c | l | l | l |}\hline			
+	nro\_legajo & nombre & apellido & materias\_aprobadas \\\hline			
+	1 & Ju\'an & P\'erez & \{\scriptsize{Programaci\'on I}\}\\
+	2 & Nicol\'as & Polito & \{\}\\
+	3 & Adri\'an & Kamusky & \{\scriptsize{Programaci\'on I, Programaci\'on II, Base de datos}\}\\\hline
+\end{tabular}
+\end{center}
+
+
+\begin{center}
+$\Big\Downarrow$
+\end{center}
+\textbf{Esquema:}\\
+estudiante(\textcolor{red}{\underline{nro\_legajo}}, nombre, apellido, \textcolor{red}{\underline{materia\_aprobada}})\\
+
+\textbf{Instancia:}
+\begin{center}
+\begin{tabular}{| c | l | l | l |}\hline			
+	nro\_legajo & nombre & apellido & materia\_aprobada \\\hline			
+	1 & Ju\'an & P\'erez & Programaci\'on I\\
+	3 & Adri\'an & Kamusky & Programaci\'on I\\
+	3 & Adri\'an & Kamusky & Programaci\'on II\\
+	3 & Adri\'an & Kamusky & Base de datos\\\hline
+\end{tabular}
+\end{center}
+\end{document}

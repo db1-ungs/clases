@@ -1,0 +1,29 @@
+\pdfoutput=1
+\documentclass[preview]{standalone}
+\usepackage{xcolor}
+
+\begin{document}
+
+\textbf{Esquema:}\\
+empleade(\underline{nro\_legajo}, sector, nro\_emp, cargo)\\
+
+\textbf{Dependencias funcionales:}\\
+nro\_legajo $\rightarrow$ sector, nro\_emp, cargo\\
+sector, nro\_emp $\rightarrow$ nro\_legajo, cargo\\
+{\color{red}{cargo $\rightarrow$ sector}}\\
+
+\textbf{Instancia:}
+\begin{center}
+\scriptsize
+\begin{tabular}{| c | l | c | l |}\hline			
+	nro\_legajo & sector & nro\_emp & cargo  \\\hline			
+	23.456.789 & Sistemas & 1 & Analista Funcional \\
+	34.567.890 & Call Center & 1 & Llamador \\
+	45.678.901 & Sistemas & 2 & Programador \\
+	12.345.678 & Call Center & 2 & Supervisor \\
+	32.654.987 & Call Center & 3 & Llamador \\
+	43.765.098 & Sistemas & 3 & Programador \\\hline
+\end{tabular}
+\end{center}
+
+\end{document}

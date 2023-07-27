@@ -1,0 +1,24 @@
+\pdfoutput=1
+\documentclass[preview]{standalone}
+
+\usepackage{amsmath}
+
+\begin{document}
+\textbf{Esquema:}\\
+estudiante(legajo, nombre)\\
+
+\textbf{Conjunto de DF:}\\
+$F$=\{legajo $\rightarrow$ nombre\}\\
+
+\textbf{Clausuras:}\\
+$\{\text{legajo, nombre}\}^+ =\big\{\text{legajo, nombre}\big\}$\\
+$\{\text{legajo}\}^+ = \big\{\text{legajo, nombre}\big\}$\\
+$\{\text{nombre}\}^+ = \big\{\text{nombre}\big\}$\\
+
+\textbf{Superclaves: } \\
+$\big\{\text{legajo, nombre}\big\}$\\ 
+$\big\{\text{legajo}\big\}$\\
+
+\textbf{Clave: }\\ 
+$\big\{\text{legajo}\big\}$
+\end{document}
