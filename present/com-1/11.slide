@@ -1,0 +1,334 @@
+DER
+Diagrama Entidad Relación
+
+Hernán Rondelli
+lucifer.unix.cabj@gmail.com
+
+* rondelli.github.io/db1/der.html
+
+.image img/rondelli.github.io-db1-der.html.png 500 _
+
+* Modelos de datos
+
+#.image tex/der-modelos.png 200 _
+
+⒈ Conceptuales
+⒉ Lógicos
+⒊ Físicos
+
+* DER (Diagrama Entidad Relación)
+
+- Modelo conceptual
+# *mundo*real*→*modelo*
+- Entidades y relaciones
+- Existen muchas notaciones distintas
+
+* Entidades
+
+* Entidad
+
+Objeto de interés
+
+#- objeto que existe en el mundo real
+#- objeto de interés
+#- en general son substantivos
+
+__
+__
+__
+__
+
+.image tex/der-entidad-materia.png
+
+* ⚠︎ Una aclaración con las entidades
+
+* Conjunto de entidades
+
+Una _entidad_ es un elemento de un _conjunto_de_entidades_
+
+__
+__
+__
+__
+
+.image tex/der-entidad-alumne.png
+
+* Relaciones
+
+* Relación
+
+Asociación entre _entidades_
+#- Asociación entre dos ó más _entidades_
+#- suele ser un verbo
+
+__
+__
+__
+__
+
+.image tex/der-relacion-cursa-en.png
+
+__
+__
+__
+__
+
+⚠︎ Una _relación_ es un elemento de un _conjunto_de_relaciones_
+
+# empty title
+* 
+
+__
+__
+__
+__
+__
+__
+
+.image tex/der-relacion-alumne-cursa-materia.png
+
+* Listo! Nos vamos a casa! 😸
+
+* Atributos
+
+Descriptores de entidades y relaciones
+
+__
+__
+__
+__
+__
+
+.image tex/der-atributo-nombre.png
+
+# empty title
+* 
+
+__
+__
+__
+__
+
+.image tex/der-atributo-alumne-nombre-apellido.png
+
+* PK (Primary Key)
+
+__
+__
+
+.image tex/der-atributo-pk.png
+
+__
+__
+__
+
+⚠︎ En realidad se denomina _identificador[s]_único[s]_
+
+# empty title
+* 
+
+__
+__
+__
+__
+
+.image tex/der-atributo-pk-rel.png 300 _
+
+* Atributos multivaluados
+
+__
+__
+
+.image tex/der-atributos-multivaluados.png
+
+__
+__
+__
+
+⚠︎ No usar atributos multivaluados!
+
+* No usar atributos multivaluados en el parcial!
+
+* Atributos derivables
+
+.image tex/der-atributos-derivables.png _ 225
+
+* Entidades débiles
+
+__
+__
+__
+__
+
+.image tex/der-entidades-debiles.png
+
+* Grado de una relación
+
+* Binaria
+
+__
+__
+__
+__
+__
+
+.image tex/der-grado-binaria.png
+
+# empty title
+* 
+
+__
+__
+__
+__
+__
+__
+
+.image tex/der-relacion-alumne-cursa-materia.png
+
+* Ternaria
+
+__
+__
+__
+
+.image tex/der-grado-ternaria.png
+
+# empty title
+* 
+
+__
+__
+__
+__
+
+.image tex/der-grado-ternaria-ejemplo.png
+
+* Unaria
+
+__
+__
+__
+__
+
+.image tex/der-grado-unaria.png
+
+* ?
+
+__
+__
+__
+__
+
+.image tex/der-grado-trucosa.png
+
+* Cardinalidad
+
+* Muchos a muchos
+
+__
+__
+__
+__
+__
+
+.image tex/der-cardinalidad-mxm.png
+
+# empty title
+* 
+
+__
+__
+__
+__
+__
+__
+
+.image tex/der-cardinalidad-m0xm0.png
+
+* Uno a muchos
+
+__
+__
+__
+__
+__
+
+.image tex/der-cardinalidad-1xm.png
+
+# empty title
+* 
+
+__
+__
+__
+__
+__
+__
+
+.image tex/der-cardinalidad-10xm.png
+
+* Uno a uno
+
+__
+__
+__
+__
+__
+
+.image tex/der-cardinalidad-1x1.png
+
+# empty title
+* 
+
+__
+__
+__
+__
+__
+__
+
+.image tex/der-cardinalidad-10x1.png
+
+# empty title
+* 
+
+__
+__
+__
+__
+
+.image tex/der-alumne-cursa-materia.png 300 _
+
+* Extras
+
+* Agregación
+
+.image tex/der-agregacion.png _ 700
+
+# empty title
+* 
+
+.image tex/der-agregacion-ejemplo.png _ 725
+
+* Generalización y especialización
+
+__
+__
+
+.image tex/der-jerarquias.png _ 550
+
+# empty title
+* 
+
+.image tex/der-jerarquias-ejemplo-1.png 550 _
+
+# empty title
+* 
+
+.image tex/der-jerarquias-ejemplo-2.png 550 _
+
+# empty title
+* 
+
+.image img/questions.png
