@@ -1,35 +1,37 @@
 <!DOCTYPE html>
-<!-- saved from url=(0014)about:internet -->
+<!-- saved from url=(0038)http://localhost:3999/com-2/20.slide#1 -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <script type="text/javascript" async="" src="./intro_files/analytics.js.descarga"></script><script type="text/javascript" async="" src="./intro_files/js"></script><script async="" src="./intro_files/js(1)"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-11222381-11');
-    </script>
-
     <title>Bases de Datos I</title>
     
     <script>
-      var notesEnabled =  true ;
+      var notesEnabled =  false ;
     </script>
-    <script src="./intro_files/slides.js.descarga"></script>
+    <script src="./intro_files/slides.js"></script>
 
     
+
     <script>
-      var sections = [{"Number":[1],"Title":"rondelli.github.io/db1/com-2/intro.html","Elem":[{"URL":"https://raw.githubusercontent.com/rondelli/db1/master/present/com-2/img/rondelli.github.io-db1-com-2-intro.html.png","Width":0,"Height":500}],"Notes":null,"Classes":null,"Styles":null},{"Number":[2],"Title":"Correlativas","Elem":[{"Lines":["Oficiales:"],"Pre":false},{"Bullet":["Lógica y Teoría de Números","Programación II","Organización del Computador I"]},{"Lines":["Materias *fuertemente* recomendadas:"],"Pre":false},{"Bullet":["Programación III","Sistemas Operativos y Redes I"]}],"Notes":null,"Classes":null,"Styles":null},{"Number":[3],"Title":"Medios de comunicación","Elem":[{"Bullet":["Anuncios importantes, por medio de la mailing list"]},{"Bullet":["Cuestiones administrativas, enviar email a ambes docentes"]}],"Notes":null,"Classes":null,"Styles":null},{"Number":[4],"Title":"Régimen de aprobación","Elem":null,"Notes":null,"Classes":null,"Styles":null},{"Number":[5],"Title":"Régimen de aprobación","Elem":[{"Bullet":["1 parcial","1 trabajo práctico"]},{"Lines":["*Condiciones*de*aprobación*"],"Pre":false},{"Bullet":["se tomará asistencia","75% de asistencia mínima obligatoria (se puede faltar sólo 4 clases, sin contar a las de consulta para las instancias de evaluación)","parcial y trabajo práctico aprobados"]}],"Notes":null,"Classes":null,"Styles":null},{"Number":[6],"Title":"La materia es promocionable!","Elem":null,"Notes":null,"Classes":null,"Styles":null},{"Number":[7],"Title":"Condiciones de promoción 👻","Elem":[{"Bullet":["nota parcial ≥ 7","nota trabajo práctico ≥ 7","*no*llegar*a*instancia*de*recuperatorio*de*parcial*","*no*llegar*a*instancia*de*reentrega*de*trabajo*práctico*","nota de promoción = (nota parcial + nota trabajo práctico) / 2"]}],"Notes":null,"Classes":null,"Styles":null},{"Number":[8],"Title":"Bibliografía sugerida","Elem":[{"Bullet":["Silberschatz and Korth, _Database_System_Concepts_","Ramakrishnan and Gehrke, _Database_Management_Systems_","Elmasri and Navathe, _Fundamentals_of_database_systems_","Helman, _The_science_of_database_management_","Ullman, _Principles_of_Database_and_Knowledge_Base_Systems_"]}],"Notes":null,"Classes":null,"Styles":null},{"Number":[9],"Title":"Programa de la materia","Elem":[{"Bullet":["DER. Modelo Relacional.","Dependencias Funcionales. Formas Normales.","Álgebra Relacional. SQL.","Stored Procedures. Triggers. Transacciones.","NoSQL. JSON."]},{"Lines":["*Parcial*–*2*de*octubre*","DER. Modelo Relacional. Dependencias Funcionales. Formas Normales.","Álgebra Relacional. SQL."],"Pre":false},{"Lines":["*Recuperatorio*–*19*de*octubre* (atención: inmediatamente después del parcial)"],"Pre":false},{"Lines":["*Entrega*trabajo*práctico*–*16*de*noviembre*","Todos los temas de la materia."],"Pre":false}],"Notes":null,"Classes":null,"Styles":null},{"Number":[10],"Title":"Bases de Datos","Elem":null,"Notes":null,"Classes":null,"Styles":null},{"Number":[11],"Title":"Bases de Datos","Elem":[{"Lines":["_Conjunto_de_datos_relacionados._"],"Pre":false},{"Bullet":["DBMS (DataBase Management System)","RDBMS (Relational DataBase Management System)","PostgreSQL, Oracle, SQLite, MySQL, MariaDB","DBA (DataBase Administrator)"]}],"Notes":null,"Classes":null,"Styles":null},{"Number":[12],"Title":"PostgreSQL","Elem":[{"Bullet":["*Unix:* Linux, FreeBSD, OpenBSD, macOS, …","Clients: psql, pgweb, …","Text editors: vi, VS Code, …","Código: Go, C, Python, Java, PHP, …"]}],"Notes":null,"Classes":null,"Styles":null},{"Number":[13],"Title":"Prohibido el uso de Windows en esta materia!","Elem":null,"Notes":null,"Classes":null,"Styles":null},{"Number":[14],"Title":"","Elem":[{"URL":"https://raw.githubusercontent.com/rondelli/db1/master/present/com-2/img/questions.png","Width":0,"Height":0}],"Notes":null,"Classes":null,"Styles":null}];
-      var titleNotes =  null 
+      
+      if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+        var _gaq = _gaq || [];
+        _gaq.push(["_setAccount", "UA-11222381-6"]);
+        _gaq.push(["b._setAccount", "UA-49880327-6"]);
+        window.trackPageview = function() {
+          _gaq.push(["_trackPageview", location.pathname+location.hash]);
+          _gaq.push(["b._trackPageview", location.pathname+location.hash]);
+        };
+        window.trackPageview();
+        window.trackEvent = function(category, action, opt_label, opt_value, opt_noninteraction) {
+          _gaq.push(["_trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+          _gaq.push(["b._trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+        };
+      }
     </script>
-    <script src="./intro_files/notes.js.descarga"></script>
-    
   <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1"><meta name="apple-mobile-web-app-capable" content="yes"></head>
 
   <body style="display: none" class="loaded">
 
-    <section class="slides layout-widescreen" style="transform: scale(0.792);">
+    <section class="slides layout-widescreen" style="transform: scale(0.794667);">
 
       <article class="current">
         <h1>Bases de Datos I</h1>
@@ -396,15 +398,26 @@
 
     <div class="slide-area" id="prev-slide-area"></div><div class="slide-area" id="next-slide-area"></div></section>
 
-    <div id="help">
+    <div id="help" style="display: none;">
       Use the left and right arrow keys or click the left and right
       edges of the page to navigate between slides.<br>
       (Press 'H' or navigate to hide this message.)
     </div>
 
     
-    <script src="./intro_files/play.js.descarga"></script>
+    <script src="./intro_files/play.js"></script>
     
+
+    <script>
+      (function() {
+        
+        if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+          var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+          ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+          var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+        }
+      })();
+    </script>
   
 
 <link rel="stylesheet" type="text/css" href="./intro_files/css"><link rel="stylesheet" type="text/css" href="./intro_files/styles.css"></body></html>
