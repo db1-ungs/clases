@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://localhost:3999/22.slide#28 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Modelo Relacional</title>
+    
+    <script>
+      var notesEnabled =  false ;
+    </script>
+    <script src="./rel_files/slides.js"></script>
+
+    
+
+    <script>
+      
+      if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+        var _gaq = _gaq || [];
+        _gaq.push(["_setAccount", "UA-11222381-6"]);
+        _gaq.push(["b._setAccount", "UA-49880327-6"]);
+        window.trackPageview = function() {
+          _gaq.push(["_trackPageview", location.pathname+location.hash]);
+          _gaq.push(["b._trackPageview", location.pathname+location.hash]);
+        };
+        window.trackPageview();
+        window.trackEvent = function(category, action, opt_label, opt_value, opt_noninteraction) {
+          _gaq.push(["_trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+          _gaq.push(["b._trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+        };
+      }
+    </script>
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1"><meta name="apple-mobile-web-app-capable" content="yes"></head>
+
+  <body style="display: none" class="loaded">
+
+    <section class="slides layout-widescreen" style="transform: scale(0.794667);">
+
+      <article class="">
+        <h1>Modelo Relacional</h1>
+        
+        
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Daniel Bertaccini
+  </p>
+  
+
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Hernán Rondelli
+  </p>
+  
+
+          </div>
+        
+      </article>
+
+  
+  
+      <article class="">
+      
+        <h3>rondelli.github.io/db1/com-2/rel.html</h3>
+        
+<div class="image">
+  <img src="./rel_files/rondelli.github.io-db1-com-2-rel.html.png" height="500">
+</div>
+
+      
+      <span class="pagenumber">2</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>DER vs Modelo Relacional</h3>
+        
+  <ul>
+  
+    <li>Entity Relationship Model ← <b>Relationship</b></li>
+  
+    <li>Relational Model ← <b>Relation</b></li>
+  
+    <li><b>Relación (DER) ≠ Relación (Rel)</b></li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">3</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h2>Cuál es la forma más natural de presentar datos?</h2>
+      
+      <span class="pagenumber">4</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3></h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./rel_files/rel-tabla.png" height="450">
+</div>
+
+      
+      <span class="pagenumber">5</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Modelo Relacional</h3>
+        
+  <ul>
+  
+    <li>Tablas: relaciones</li>
+  
+    <li>Columnas: fields ó atributos</li>
+  
+    <li>Filas: records ó tuplas</li>
+  
+    <li><b>Valores atómicos</b></li>
+  
+  </ul>
+
+  
+  <p>
+    Observaciones
+  </p>
+  
+
+  <ul>
+  
+    <li>Todas celdas en una columna son del mismo tipo</li>
+  
+    <li>Las celdas en una fila pueden ser de distinto tipo</li>
+  
+    <li>Los valores en algunas columnas se pueden repetir (en otras son únicos ← PK)</li>
+  
+    <li>Pueden existir celdas sin valores ← <code>null</code></li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">6</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Schema</h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./rel_files/rel-schema.png" height="425">
+</div>
+
+      
+      <span class="pagenumber">7</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h2>Listo! Nos vamos a casa! 😸</h2>
+      
+      <span class="pagenumber">8</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h2>Pasaje del DER al Modelo Relacional</h2>
+      
+      <span class="pagenumber">9</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h2>Entidades</h2>
+      
+      <span class="pagenumber">10</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Entidad → Relación</h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./rel_files/rel-entidad.png">
+</div>
+
+      
+      <span class="pagenumber">11</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Generalización y especialización</h3>
+        
+  
+  <p>
+    disyuntiva → se agrega una columna tipo
+  </p>
+  
+
+<div class="image">
+  <img src="./rel_files/rel-jerarquia-d.png" height="400">
+</div>
+
+      
+      <span class="pagenumber">12</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3></h3>
+        
+<div class="image">
+  <img src="./rel_files/rel-jerarquia-ejemplo-1.png" height="490">
+</div>
+
+      
+      <span class="pagenumber">13</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Generalización y especialización</h3>
+        
+  
+  <p>
+    no excluyente → no se agrega la columna tipo
+  </p>
+  
+
+<div class="image">
+  <img src="./rel_files/rel-jerarquia-o.png" height="400">
+</div>
+
+      
+      <span class="pagenumber">14</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3></h3>
+        
+<div class="image">
+  <img src="./rel_files/rel-jerarquia-ejemplo-2.png" height="490">
+</div>
+
+      
+      <span class="pagenumber">15</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h2>Relaciones</h2>
+      
+      <span class="pagenumber">16</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h2>Relación → "Depende"</h2>
+      
+      <span class="pagenumber">17</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Muchos a muchos</h3>
+        
+  
+  <p>
+    Relación (DER) → Relación (Relacional)
+  </p>
+  
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./rel_files/der-cardinalidad-mxm.png">
+</div>
+
+      
+      <span class="pagenumber">18</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3></h3>
+        
+<div class="image">
+  <img src="./rel_files/rel-mxm-ejemplo.png" height="515">
+</div>
+
+      
+      <span class="pagenumber">19</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Primary Keys &amp; Foreign Keys</h3>
+        
+  
+  <p>
+    <b>PK (Primary Key)</b>
+  </p>
+  
+
+  <ul>
+  
+    <li>Atributo[s] identificador[es]</li>
+  
+    <li>No se pueden repetir</li>
+  
+    <li>No pueden ser <code>null</code></li>
+  
+  </ul>
+
+  
+  <p>
+    <b>FK (Foreign Key)</b>
+  </p>
+  
+
+  <ul>
+  
+    <li>Atributo[s] de la PK de alguna relación</li>
+  
+    <li>Atributo[s] tiene[n] que existir en alguna relación</li>
+  
+    <li>Se pueden repetir</li>
+  
+    <li>Pueden ser <code>null</code></li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">20</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Uno a muchos</h3>
+        
+  
+  <p>
+    "El uno va en el muchos"
+  </p>
+  
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./rel_files/der-cardinalidad-1xm.png">
+</div>
+
+      
+      <span class="pagenumber">21</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3></h3>
+        
+<div class="image">
+  <img src="./rel_files/rel-1xm-ejemplo.png" height="500">
+</div>
+
+      
+      <span class="pagenumber">22</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Uno a uno</h3>
+        
+  
+  <p>
+    "Cualquiera va en cualquiera"
+  </p>
+  
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./rel_files/der-cardinalidad-1x1.png">
+</div>
+
+      
+      <span class="pagenumber">23</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3></h3>
+        
+<div class="image">
+  <img src="./rel_files/rel-1x1-ejemplo-1.png" height="500">
+</div>
+
+      
+      <span class="pagenumber">24</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3></h3>
+        
+<div class="image">
+  <img src="./rel_files/rel-1x1-ejemplo-2.png" height="500">
+</div>
+
+      
+      <span class="pagenumber">25</span>
+      </article>
+  
+  
+  
+      <article class="far-past">
+      
+        <h3>Ternarias y agregación</h3>
+        
+  
+  <p>
+    Se aplican las mismas reglas
+  </p>
+  
+
+  <ul>
+  
+    <li>Muchos a muchos a muchos → Relación</li>
+  
+    <li>Uno a muchos a muchos → Relación</li>
+  
+    <li>Uno a uno a muchos → "Los uno van en el muchos"</li>
+  
+    <li>Uno a uno a uno → "Dos cualquiera va en el tercer cualquiera"</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">26</span>
+      </article>
+  
+  
+  
+      <article class="past">
+      
+        <h3></h3>
+        
+<div class="image">
+  <img src="./rel_files/questions.png">
+</div>
+
+      
+      <span class="pagenumber">27</span>
+      </article>
+  
+  
+
+      <article class="current">
+        <h3>Thank you</h3>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Daniel Bertaccini
+  </p>
+  
+<p class="link"><a href="mailto:dbertacc@campus.ungs.edu.ar" target="_blank">dbertacc@campus.ungs.edu.ar</a></p>
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Hernán Rondelli
+  </p>
+  
+<p class="link"><a href="mailto:lucifer.unix.cabj@gmail.com" target="_blank">lucifer.unix.cabj@gmail.com</a></p>
+          </div>
+        
+      </article>
+
+    <div class="slide-area" id="prev-slide-area"></div><div class="slide-area" id="next-slide-area"></div></section>
+
+    <div id="help" style="display: none;">
+      Use the left and right arrow keys or click the left and right
+      edges of the page to navigate between slides.<br>
+      (Press 'H' or navigate to hide this message.)
+    </div>
+
+    
+    <script src="./rel_files/play.js"></script>
+    
+
+    <script>
+      (function() {
+        
+        if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+          var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+          ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+          var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+        }
+      })();
+    </script>
+  
+
+<link rel="stylesheet" type="text/css" href="./rel_files/css"><link rel="stylesheet" type="text/css" href="./rel_files/styles.css"></body></html>
