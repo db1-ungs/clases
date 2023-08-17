@@ -1,57 +1,125 @@
-Dependencias funcionales
-Bases de Datos I
+Dependencias Funcionales
 
-Universidad Nacional de General Sarmiento
+Hernán Rondelli
+lucifer.unix.cabj@gmail.com
 
-* bit.ly/ungs-db1-dp
+* rondelli.github.io/db1/com-1/dp.html
 
-.image img/ungs-db1-dp.png
+.image img/rondelli.github.io-db1-com-1-dp.html.png 500 _
 
 * Notación
 
-.image tex/df-notacion.png 380 _
+# empty title
+* 
+
+__
+
+.image tex/dp-notacion.png 500 _
 
 * Definición
 
-.image tex/df-definicion.png 28 _
+# empty title
+* 
 
-Decimos que _X_ determina funcionalmente a _Y_.
-Si una instancia _r_ satisface todas las DF, entonces _r_ es legal.
+__
+__
+__
 
-* Ejemplo
+.image tex/df-definicion.png 34 _
 
-¿Qué implicancias tienen las siguientes relaciones?
+__
+__
 
-.image tex/df-definicion-ejemplo.png 300 _
 
-* Ejemplo
+_X_ determina funcionalmente a _Y_
 
-¿Qué implicancias tienen las siguientes relaciones?
+una instancia _r_ satisface todas las DF ⇒ _r_ es legal
 
-.image tex/df-definicion-ejemplo.png 300 _
+* Ejemplos
 
-- Un estudiante se puede *inscribir* en una materia *una*sola*vez*
-- Un estudiante puede *rendir* el examen *más*de*una*vez* (en más de una fecha)
+# empty title
+* 
+
+- schema
+
+alumne(legajo, nombre, apellido, cp, localidad)
+
+- dependencias funcionales
+
+legajo → nombre, apellido, cp, localidad
+cp → localidad
+
+- tuplas
+
+✅ (1, 'Cristina', 'Kirchner', 1615, 'Grand Bourg')
+❌ (2, 'Diego', 'Maradona', 1615, 'José C. Paz')
+
+# empty title
+* 
+
+- relación _R_
+
+cursada(alumne_legajo, alumne_nombre, materia, f_inscripción, f_examen, nota)
+
+- conjunto de dependencias funcionales _F_
+
+alumne_legajo → alumne_nombre,
+alumne_legajo, materia → f_inscripción,
+alumne_legajo, materia, f_examen → nota
+
+- es una dependencia funcional?
+
+ ❌ alumne_legajo, materia → f_examen
+
+# Un estudiante se puede *inscribir* en una materia *una*sola*vez*
+# Un estudiante puede *rendir* el examen *más*de*una*vez* (en más de una fecha)
 
 * Inferencias de F
 
-.image tex/df-inferencia.png 30 _
+# empty title
+* 
 
-* Ejemplo
+__
+__
+__
+__
+__
+__
 
-.image tex/df-inferencia-ejemplo.png 245 _
+.image tex/df-inferencia.png 40 _
 
-A partir de este conjunto de DF, ¿se puede inferir alguna otra?
+* Ejemplos
 
-.image tex/df-inferencia-ejemplo-2.png 30 _
+# empty title
+* 
 
-* Ejemplo
+- _F_
 
-.image tex/df-inferencia-ejemplo.png 245 _
+legajo → cp
+cp → localidad
 
-A partir de este conjunto de DF, ¿se puede inferir alguna otra?
+- ⊨ ?
 
-.image tex/df-inferencia-ejemplo-3.png 30 _
+legajo → localidad
+
+# empty title
+* 
+
+- relación _R_
+
+cursada(alumne_legajo, alumne_nombre, materia, f_inscripción, f_examen, nota)
+
+- conjunto de dependencias funcionales _F_
+
+alumne_legajo → alumne_nombre,
+alumne_legajo, materia → f_inscripción,
+alumne_legajo, materia, f_examen → nota
+
+- A partir de F, se puede inferir alguna otra DF?
+
+F ⊨ { alumne_legajo, materia → alumne_nombre, f_inscripción }
+
+* Axiomas de Armstrong
 
 * Axiomas de Armstrong
 
@@ -61,31 +129,37 @@ Reglas de inferencia
 
 De (1) se desprenden las inferencias triviales:
 
-.image tex/df-regla-trivial.png 20 _
+_X_→_X_
 
-Las dependencias funcionales, ¿son simétricas?
+Las dependencias funcionales, son simétricas?
 
-.image tex/df-regla-invalida.png 25 _
+❌ _X_→_Y_⇒_Y_→_X_
 
 * Clausura de DF
 
 .image tex/df-clausura-df.png 50 _
 
-La clausura de un conjunto de DF _F_ es el conjunto todas las dependencias funcionales inferidas por _F_.
+La clausura de un conjunto de dependencias funcionales _F_, es el conjunto todas las dependencias funcionales inferidas por _F_.
 
 * Ejemplo
 
-.image tex/df-clausura-df-ejemplo.png 200 _
+- relación:
 
-* Ejemplo
+alumne(legajo, nombre)
 
-.image tex/df-clausura-df-ejemplo-2.png 310 _
+- conjunto de dependencias funcionales:
+
+F = { legajo → nombre }
+
+- clausura de F:
+
+F ⁺  =  { legajo → legajo, nombre → nombre, legajo → nombre, legajo → legajo nombre, legajo nombre → legajo, legajo nombre → nombre, legajo nombre → legajo nombre }
 
 * Reglas de inferencia adicionales
 
 .image tex/df-reglas-adicionales.png 190 _
 
-Estas reglas se demuestran aplicando los axiomas de Armstrong.
+Se demuestran aplicando los axiomas de Armstrong
 
 * Demostración de la unión
 
@@ -95,23 +169,28 @@ Estas reglas se demuestran aplicando los axiomas de Armstrong.
 
 * Reglas que no son reglas
 
-.image tex/df-regla-falsa.png 28 _
+X → Z, Y → Z ⇒ X → Y ?
 
-* Reglas que no son reglas
+- schema:
 
-.image tex/df-regla-falsa.png 28 _
+cliente(id, nombre, teléfono)
 
-La falsedad de una regla se demuestra dando un contraejemplo.
+- dependencias funcionales:
 
-.image tex/df-regla-falsa-contraejemplo.png 390 _
+id → nombre
+teléfono → nombre
 
-* Reglas que no son reglas
+- instancia:
 
-.image tex/df-regla-falsa.png 28 _
+ id | nombre             | teléfono
+ ---+--------------------+----------
+ 1  | Juan Domingo Perón | 5555-5555
+ 2  | Juan Carlos Olave  | 5555-6666
+ 2  | Juan Carlos Olave  | 5555-7777
 
-Alcanza con un contraejemplo sin semántica reconocible.
+_La_falsedad_se_demuestra_con_un_contraejemplo_
 
-.image tex/df-regla-falsa-contraejemplo-2.png 390 _
+* Clausura de conjuntos de atributos
 
 * Clausura de conjuntos de atributos
 
@@ -128,21 +207,26 @@ __
 
 * Ejemplo
 
-¿Cuáles son las clausuras en el siguiente ejemplo?
+- relación _R_
 
-.image tex/df-clausura-atributos-ejemplo.png 350 _
+cursada(alumne_legajo, alumne_nombre, materia, f_inscripción, f_examen, nota)
 
-* Ejemplo
+- conjunto de dependencias funcionales _F_
 
-¿Cuáles son las clausuras en el siguiente ejemplo?
+alumne_legajo → alumne_nombre,
+alumne_legajo, materia → f_inscripción,
+alumne_legajo, materia, f_examen → nota
 
-.image tex/df-clausura-atributos-ejemplo-2.png 370 _
+- clausuras:
 
-* Algoritmo
+alumne_legajo ⁺ = alumne_legajo, alumne_nombre
+alumne_legajo materia ⁺ = alumne_legajo, materia, alumne_nombre, f_inscripción
 
-Algoritmo de clausura de _X_ respecto de _F_ :
+#* Algoritmo
 
-.image tex/df-clausura-atributos-algoritmo.png 350 _
+#Algoritmo de clausura de _X_ respecto de _F_ :
+
+#.image tex/df-clausura-atributos-algoritmo.png 350 _
 
 * Superclaves y claves
 
@@ -150,11 +234,24 @@ Algoritmo de clausura de _X_ respecto de _F_ :
 
 * Ejemplo
 
-.image tex/df-superclaves-claves-ejemplo.png 525 _
+- schema:
 
-* Ejemplo
+alumne(legajo, nombre)
 
-.image tex/df-superclaves-claves-ejemplo-2.png 545 _
+- dependencias funcionales:
+
+F = { legajo → nombre }
+
+- clausura:
+
+nombre ⁺ = nombre
+legajo ⁺ = legajo, nombre
+legajo, nombre ⁺ = legajo, nombre
+
+- summary:
+
+legajo (superclave, clave)
+legajo, nombre (superclave)
 
 * Equivalencia de conjuntos de DF
 
@@ -177,11 +274,7 @@ En general, la redundancia está dada por transitividad.
 
 .image tex/df-cubrimiento-minimal-ejemplo.png 475 _
 
-* Dudas, preguntas, consultas
+# empty title
+* 
 
-__
-__
-__
-__
-
-.image img/pregunta.png 200 _
+.image img/questions.png
