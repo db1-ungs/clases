@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://localhost:3999/23.slide#1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Dependencias funcionales</title>
+    
+    <script>
+      var notesEnabled =  false ;
+    </script>
+    <script src="./dp_files/slides.js"></script>
+
+    
+
+    <script>
+      
+      if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+        var _gaq = _gaq || [];
+        _gaq.push(["_setAccount", "UA-11222381-6"]);
+        _gaq.push(["b._setAccount", "UA-49880327-6"]);
+        window.trackPageview = function() {
+          _gaq.push(["_trackPageview", location.pathname+location.hash]);
+          _gaq.push(["b._trackPageview", location.pathname+location.hash]);
+        };
+        window.trackPageview();
+        window.trackEvent = function(category, action, opt_label, opt_value, opt_noninteraction) {
+          _gaq.push(["_trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+          _gaq.push(["b._trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+        };
+      }
+    </script>
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1"><meta name="apple-mobile-web-app-capable" content="yes"></head>
+
+  <body style="display: none" class="loaded">
+
+    <section class="slides layout-widescreen">
+
+      <article class="current">
+        <h1>Dependencias funcionales</h1>
+        <h3>Bases de Datos I</h3>
+        
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Universidad Nacional de General Sarmiento
+  </p>
+  
+
+          </div>
+        
+      </article>
+
+  
+  
+      <article class="next">
+      
+        <h3>rondelli.github.io/db1/com-2/dp.html</h3>
+        
+<div class="image">
+  <img src="./dp_files/rondelli.github.io-db1-com-2-dp.html.png" height="500">
+</div>
+
+      
+      <span class="pagenumber">2</span>
+      </article>
+  
+  
+  
+      <article class="far-next">
+      
+        <h3>Notación</h3>
+        
+<div class="image">
+  <img src="./dp_files/df-notacion.png" height="380">
+</div>
+
+      
+      <span class="pagenumber">3</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Definición</h3>
+        
+<div class="image">
+  <img src="./dp_files/df-definicion.png" height="28">
+</div>
+
+  
+  <p>
+    Decimos que <i>X</i> determina funcionalmente a <i>Y</i>.
+<br>
+
+    Si una instancia <i>r</i> satisface todas las DF, entonces <i>r</i> es legal.
+  </p>
+  
+
+      
+      <span class="pagenumber">4</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Ejemplo</h3>
+        
+  
+  <p>
+    ¿Qué implicancias tienen las siguientes relaciones?
+  </p>
+  
+
+<div class="image">
+  <img src="./dp_files/df-definicion-ejemplo.png" height="300">
+</div>
+
+      
+      <span class="pagenumber">5</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Ejemplo</h3>
+        
+  
+  <p>
+    ¿Qué implicancias tienen las siguientes relaciones?
+  </p>
+  
+
+<div class="image">
+  <img src="./dp_files/df-definicion-ejemplo.png" height="300">
+</div>
+
+  <ul>
+  
+    <li>Un estudiante se puede <b>inscribir</b> en una materia <b>una sola vez</b></li>
+  
+    <li>Un estudiante puede <b>rendir</b> el examen <b>más de una vez</b> (en más de una fecha)</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">6</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Inferencias de F</h3>
+        
+<div class="image">
+  <img src="./dp_files/df-inferencia.png" height="30">
+</div>
+
+      
+      <span class="pagenumber">7</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Ejemplo</h3>
+        
+<div class="image">
+  <img src="./dp_files/df-inferencia-ejemplo.png" height="245">
+</div>
+
+  
+  <p>
+    A partir de este conjunto de DF, ¿se puede inferir alguna otra?
+  </p>
+  
+
+<div class="image">
+  <img src="./dp_files/df-inferencia-ejemplo-2.png" height="30">
+</div>
+
+      
+      <span class="pagenumber">8</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Ejemplo</h3>
+        
+<div class="image">
+  <img src="./dp_files/df-inferencia-ejemplo.png" height="245">
+</div>
+
+  
+  <p>
+    A partir de este conjunto de DF, ¿se puede inferir alguna otra?
+  </p>
+  
+
+<div class="image">
+  <img src="./dp_files/df-inferencia-ejemplo-3.png" height="30">
+</div>
+
+      
+      <span class="pagenumber">9</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Axiomas de Armstrong</h3>
+        
+  
+  <p>
+    Reglas de inferencia
+  </p>
+  
+
+<div class="image">
+  <img src="./dp_files/df-axiomas-armstrong.png" height="142">
+</div>
+
+  
+  <p>
+    De (1) se desprenden las inferencias triviales:
+  </p>
+  
+
+<div class="image">
+  <img src="./dp_files/df-regla-trivial.png" height="20">
+</div>
+
+  
+  <p>
+    Las dependencias funcionales, ¿son simétricas?
+  </p>
+  
+
+<div class="image">
+  <img src="./dp_files/df-regla-invalida.png" height="25">
+</div>
+
+      
+      <span class="pagenumber">10</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Clausura de DF</h3>
+        
+<div class="image">
+  <img src="./dp_files/df-clausura-df.png" height="50">
+</div>
+
+  
+  <p>
+    La clausura de un conjunto de DF <i>F</i> es el conjunto todas las dependencias funcionales inferidas por <i>F</i>.
+  </p>
+  
+
+      
+      <span class="pagenumber">11</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Ejemplo</h3>
+        
+<div class="image">
+  <img src="./dp_files/df-clausura-df-ejemplo.png" height="200">
+</div>
+
+      
+      <span class="pagenumber">12</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Ejemplo</h3>
+        
+<div class="image">
+  <img src="./dp_files/df-clausura-df-ejemplo-2.png" height="310">
+</div>
+
+      
+      <span class="pagenumber">13</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Reglas de inferencia adicionales</h3>
+        
+<div class="image">
+  <img src="./dp_files/df-reglas-adicionales.png" height="190">
+</div>
+
+  
+  <p>
+    Estas reglas se demuestran aplicando los axiomas de Armstrong.
+  </p>
+  
+
+      
+      <span class="pagenumber">14</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Demostración de la unión</h3>
+        
+<div class="image">
+  <img src="./dp_files/df-union.png" height="28">
+</div>
+
+<div class="image">
+  <img src="./dp_files/df-demostracion-union.png" height="290">
+</div>
+
+      
+      <span class="pagenumber">15</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Reglas que no son reglas</h3>
+        
+<div class="image">
+  <img src="./dp_files/df-regla-falsa.png" height="28">
+</div>
+
+      
+      <span class="pagenumber">16</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Reglas que no son reglas</h3>
+        
+<div class="image">
+  <img src="./dp_files/df-regla-falsa.png" height="28">
+</div>
+
+  
+  <p>
+    La falsedad de una regla se demuestra dando un contraejemplo.
+  </p>
+  
+
+<div class="image">
+  <img src="./dp_files/df-regla-falsa-contraejemplo.png" height="390">
+</div>
+
+      
+      <span class="pagenumber">17</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Reglas que no son reglas</h3>
+        
+<div class="image">
+  <img src="./dp_files/df-regla-falsa.png" height="28">
+</div>
+
+  
+  <p>
+    Alcanza con un contraejemplo sin semántica reconocible.
+  </p>
+  
+
+<div class="image">
+  <img src="./dp_files/df-regla-falsa-contraejemplo-2.png" height="390">
+</div>
+
+      
+      <span class="pagenumber">18</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Clausura de conjuntos de atributos</h3>
+        
+<div class="image">
+  <img src="./dp_files/df-clausura-atributos.png" height="50">
+</div>
+
+  
+  <p>
+    La clausura de un conjunto de atributos <i>X</i> respecto de un conjunto de dependencias <i>F</i> es el conjunto todos los atributos <i>A</i> tal que <i>X</i> → <i>A</i> es inferido por <i>F</i>.
+  </p>
+  
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+  
+  <p>
+    <b>Propiedad</b>
+  </p>
+  
+
+<div class="image">
+  <img src="./dp_files/df-clausura-atributos-propiedad.png" height="30">
+</div>
+
+      
+      <span class="pagenumber">19</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Ejemplo</h3>
+        
+  
+  <p>
+    ¿Cuáles son las clausuras en el siguiente ejemplo?
+  </p>
+  
+
+<div class="image">
+  <img src="./dp_files/df-clausura-atributos-ejemplo.png" height="350">
+</div>
+
+      
+      <span class="pagenumber">20</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Ejemplo</h3>
+        
+  
+  <p>
+    ¿Cuáles son las clausuras en el siguiente ejemplo?
+  </p>
+  
+
+<div class="image">
+  <img src="./dp_files/df-clausura-atributos-ejemplo-2.png" height="370">
+</div>
+
+      
+      <span class="pagenumber">21</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Algoritmo</h3>
+        
+  
+  <p>
+    Algoritmo de clausura de <i>X</i> respecto de <i>F</i> :
+  </p>
+  
+
+<div class="image">
+  <img src="./dp_files/df-clausura-atributos-algoritmo.png" height="350">
+</div>
+
+      
+      <span class="pagenumber">22</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Superclaves y claves</h3>
+        
+<div class="image">
+  <img src="./dp_files/df-superclaves-claves.png" height="195">
+</div>
+
+      
+      <span class="pagenumber">23</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Ejemplo</h3>
+        
+<div class="image">
+  <img src="./dp_files/df-superclaves-claves-ejemplo.png" height="525">
+</div>
+
+      
+      <span class="pagenumber">24</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Ejemplo</h3>
+        
+<div class="image">
+  <img src="./dp_files/df-superclaves-claves-ejemplo-2.png" height="545">
+</div>
+
+      
+      <span class="pagenumber">25</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Equivalencia de conjuntos de DF</h3>
+        
+<div class="image">
+  <img src="./dp_files/df-equivalencia-df.png" height="150">
+</div>
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+  
+  <p>
+    <b>Ejemplo</b>
+  </p>
+  
+
+<div class="image">
+  <img src="./dp_files/df-equivalencia-df-ejemplo.png" height="130">
+</div>
+
+      
+      <span class="pagenumber">26</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Cubrimiento minimal</h3>
+        
+<div class="image">
+  <img src="./dp_files/df-cubrimiento-minimal.png" height="230">
+</div>
+
+  
+  <p>
+    En general, la redundancia está dada por transitividad.
+  </p>
+  
+
+      
+      <span class="pagenumber">27</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Ejemplo</h3>
+        
+<div class="image">
+  <img src="./dp_files/df-cubrimiento-minimal-ejemplo.png" height="475">
+</div>
+
+      
+      <span class="pagenumber">28</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Dudas, preguntas, consultas</h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./dp_files/pregunta.png" height="200">
+</div>
+
+      
+      <span class="pagenumber">29</span>
+      </article>
+  
+  
+
+      <article>
+        <h3>Thank you</h3>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Universidad Nacional de General Sarmiento
+  </p>
+  
+
+          </div>
+        
+      </article>
+
+    <div class="slide-area" id="prev-slide-area"></div><div class="slide-area" id="next-slide-area"></div></section>
+
+    <div id="help" style="display: none;">
+      Use the left and right arrow keys or click the left and right
+      edges of the page to navigate between slides.<br>
+      (Press 'H' or navigate to hide this message.)
+    </div>
+
+    
+    <script src="./dp_files/play.js"></script>
+    
+
+    <script>
+      (function() {
+        
+        if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+          var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+          ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+          var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+        }
+      })();
+    </script>
+  
+
+<link rel="stylesheet" type="text/css" href="./dp_files/css"><link rel="stylesheet" type="text/css" href="./dp_files/styles.css"></body></html>
