@@ -24,9 +24,12 @@ Materias *fuertemente* recomendadas:
 - Programación III
 - Sistemas Operativos y Redes I
 
-#* Itinerario de cursada
+* Itinerario de cursada
 
-#.image img/itinerario.png 525 _
+# empty title
+* 
+
+.image img/itinerario.png 550 _
 
 * Medios de comunicación
 
@@ -50,7 +53,7 @@ Materias *fuertemente* recomendadas:
 * La materia es promocionable!
 
 # empty title
-#*
+# * 
 
 #.image img/tano.gif _ 800
 #.caption La materia es *promocionable*
