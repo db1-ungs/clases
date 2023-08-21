@@ -40,19 +40,7 @@ una instancia _r_ satisface todas las DF ⇒ _r_ es legal
 # empty title
 * 
 
-- schema
-
-alumne(legajo, nombre, apellido, cp, localidad)
-
-- dependencias funcionales
-
-legajo → nombre, apellido, cp, localidad
-cp → localidad
-
-- tuplas
-
-✅ (1, 'Cristina', 'Kirchner', 1615, 'Grand Bourg')
-❌ (2, 'Diego', 'Maradona', 1615, 'José C. Paz')
+.image tex/dp-definicion-ejemplo-1.png 540 _
 
 # empty title
 * 
