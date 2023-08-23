@@ -25,20 +25,24 @@
 %\showcolor[x11]
 %\showbodyfont[cmr]
 
+{\ss
+
 \color[darkgray]{schema:}
 
-{\ss alumne(legajo, nombre, apellido, cp, localidad)}
+alumne(legajo, nombre, apellido, cp, localidad)
 
 \color[darkgray]{dependencias funcionales:}
 
-{\ss legajo → nombre, apellido, cp, localidad}
+legajo → nombre apellido cp localidad
 
-{\ss cp → localidad}
+cp → localidad
 
 \color[darkgray]{tuplas:}
 
-\color[green]{$\checkmark$} {\ss (1, 'Cristina', 'Kirchner', 1615, 'Grand Bourg')}
+\color[green]{$\checkmark$} (1, 'Cristina', 'Kirchner', 1615, 'Grand Bourg')
 
-\color[red]{$\times$} {\ss (2, 'Diego', 'Maradona', 1615, 'José C. Paz')}
+\color[red]{$\times$} (2, 'Diego', 'Maradona', 1615, 'José C. Paz')
+
+}
 
 \stoptext

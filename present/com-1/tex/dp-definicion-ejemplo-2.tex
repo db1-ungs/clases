@@ -25,21 +25,26 @@
 %\showcolor[x11]
 %\showbodyfont[cmr]
 
-{\ss $R$ : relación
+{\ss
+\color[darkgray]{relación}
+R
+\color[darkgray]{:}
 
-$A,\ B,\ C,\ \ldots$ : atributos de $R$
+cursada(alumne_legajo, alumne_nombre, materia, f_inscripción, f_examen, nota)
 
-$X,\ Y,\ Z$ : conjuntos de atributos de $R$
+\color[darkgray]{conjunto de dependencias funcionales}
+F
+\color[darkgray]{:}
 
-$R(A, B, C)$ : schema
+alumne_legajo → alumne_nombre
 
-$r$ : instancia de $R$
+alumne_legajo materia → f_inscripción
 
-$t_{1},\ t_{2},\ t_{3},\ \ldots$ : tuplas de $r$ 
+alumne_legajo materia f_examen → nota
 
-$f$ : dependencia funcional
+\color[darkgray]{es una dependencia funcional?}
 
-$F$ : conjunto de dependencias funcionales
+\color[red]{$\times$} alumne_legajo materia → f_examen
 }
 
 \stoptext

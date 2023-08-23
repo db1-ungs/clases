@@ -25,39 +25,27 @@ __
 __
 __
 
-.image tex/df-definicion.png 34 _
+.image tex/dp-definicion.png 34 _
 
 __
 __
 
 
-_X_ determina funcionalmente a _Y_
+- "determina funcionalmente a"
 
-una instancia _r_ satisface todas las DF ⇒ _r_ es legal
+- (una instancia _r_ satisface todas las DF) ⇒ (_r_ es legal)
 
 * Ejemplos
 
 # empty title
 * 
 
-.image tex/dp-definicion-ejemplo-1.png 540 _
+.image tex/dp-definicion-ejemplo-1.png 530 _
 
 # empty title
 * 
 
-- relación _R_
-
-cursada(alumne_legajo, alumne_nombre, materia, f_inscripción, f_examen, nota)
-
-- conjunto de dependencias funcionales _F_
-
-alumne_legajo → alumne_nombre,
-alumne_legajo, materia → f_inscripción,
-alumne_legajo, materia, f_examen → nota
-
-- es una dependencia funcional?
-
- ❌ alumne_legajo, materia → f_examen
+.image tex/dp-definicion-ejemplo-2.png 450 _
 
 # Un estudiante se puede *inscribir* en una materia *una*sola*vez*
 # Un estudiante puede *rendir* el examen *más*de*una*vez* (en más de una fecha)
@@ -74,7 +62,7 @@ __
 __
 __
 
-.image tex/df-inferencia.png 40 _
+.image tex/dp-inferencia.png 40 _
 
 * Ejemplos
 
