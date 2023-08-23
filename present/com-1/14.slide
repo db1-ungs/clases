@@ -1,7 +1,7 @@
-Formas normales
-Bases de Datos I
+Formas Normales
 
-Universidad Nacional de General Sarmiento
+Hernán Rondelli
+lucifer.unix.cabj@gmail.com
 
 * rondelli.github.io/db1/com-1/norm.html
 
@@ -11,68 +11,86 @@ Universidad Nacional de General Sarmiento
 
 * Modelo relacional
 
-¿Hay algún problema?
+schema
 
-.image tex/fn-pfn-erronea.png 250 _
+ alumne(legajo, nombre, apellido, materias_aprobadas)
+        ──────
 
-* Modelo relacional
+❌ instancia
 
-¿Hay algún problema?
+ legajo | nombre   | apellido | materias_aprobadas
+ -------+----------+----------+-------------------
+    1   | Cristina | Kirchner | P1
+    2   | Román    | Riquelme | {}
+    3   | Diego    | Maradona | {P1, P2, P3}
 
-.image tex/fn-pfn-erronea.png 250 _
+*El*modelo*relacional*no*admite*atributos*multivaluados!*
 
-Por definición, el modelo relacional no admite atributos multivaluados.
+* 1NF (Primera forma normal)
 
-* Primera forma normal
+* 1NF
 
-* Definición
+*Definición*
 
-Una relación _R_ está en *Primera*forma*normal* (1NF) si y solo si no tiene filas repetidas.
+Una relación _R_ está en *1NF* si y solo si no tiene filas repetidas.
 
-__
-*Definición*alternativa:*
-
-Una relación _R_ está en *1NF* si y solo si tiene al menos una clave.
-
-* Definición
-
-Una relación _R_ está en *Primera*forma*normal* (1NF) si y solo si no tiene filas repetidas.
-
-__
-*Definición*alternativa:*
+*Definición*alternativa*
 
 Una relación _R_ está en *1NF* si y solo si tiene al menos una clave.
 
-__
-*Aclaración:*
+#*Aclaración:*
 
-Si pensamos a toda relación como un *conjunto* de tuplas, entonces *siempre* existe una clave. En ese caso, _toda_relación_está_en_1NF._
+#Si pensamos a toda relación como un *conjunto* de tuplas, entonces *siempre* existe una clave. En ese caso, _toda_relación_está_en_1NF._
 
-Cuando pensamos en tablas _(nivel_físico)_, es posible que no exista una PK, y entonces _sí_pueden_existir_filas_duplicadas._
+#Cuando pensamos en tablas _(nivel_físico)_, es posible que no exista una PK, y entonces _sí_pueden_existir_filas_duplicadas._
 
-* Primera forma normal
+* 1NF
 
-.image tex/fn-pfn-propuesta-1.png 495 _
+ legajo | nombre   | apellido | materias_aprobadas
+ -------+----------+----------+-------------------
+    1   | Cristina | Kirchner | P1
+    2   | Román    | Riquelme | {}
+    3   | Diego    | Maradona | {P1, P2, P3}
 
-La relación está en 1NF, pero...
+⬇
 
-* Primera forma normal
+ alumne(legajo, nombre, apellido, materia_aprobada)
+        ──────                    ────────────────
 
-.image tex/fn-pfn-propuesta-1-a.png 495 _
+:
 
-La relación está en 1NF, pero *se*pierde*información*.
+ legajo | nombre   | apellido | materia_aprobada
+ -------+----------+----------+-----------------
+    1   | Cristina | Kirchner | P1
+    3   | Diego    | Maradona | P1
+    3   | Diego    | Maradona | P2
+    3   | Diego    | Maradona | P3
 
-* Primera forma normal
+Ahora está en 1NF, pero…
 
-.image tex/fn-pfn-propuesta-1-b.png 495 _
+* 1NF
 
-La relación está en 1NF, pero *hay*redundancia*.
+ legajo | nombre   | apellido | materias_aprobadas
+ -------+----------+----------+-------------------
+    1   | Cristina | Kirchner | P1
+    2   | Román    | Riquelme | {}
+    3   | Diego    | Maradona | {P1, P2, P3}
 
-* Primera forma normal
+⬇
 
-.image tex/fn-pfn-propuesta-1-c.png 495 _
+ alumne(legajo, nombre, apellido, materia_aprobada)
+        ──────                    ────────────────
 
-La relación está en 1NF, pero *la*clave*de*la*relación*se*vuelve*artificiosa*.
+:
+
+ legajo | nombre   | apellido | materia_aprobada
+ -------+----------+----------+-----------------
+    1   | Cristina | Kirchner | P1
+    3   | Diego    | Maradona | P1
+    3   | Diego    | Maradona | P2
+    3   | Diego    | Maradona | P3
+
+La relación está en 1NF, pero hay pérdida de información, hay redundancia, y la PK se vuelve muy esotérica.
 
 * Primera forma normal
 
@@ -88,17 +106,29 @@ La relación está en 1NF, pero *la*clave*de*la*relación*se*vuelve*artificiosa*
 
 Hay atributos que dependen de *solo*una*parte*de*la*clave*.
 
-* Segunda forma normal
+* 2NF (Segunda forma normal)
 
 * Atributos primos y dependencias parciales
 
-.image tex/fn-sfn-atributos-primos.png 200 _
+Dados (i) una relación _R_, (ii) un atributo _A_ ∈ _R_, y (iii) un conjunto de dependencias funcionales _F_ de _R_
 
-* Definición
+- _A_ es *primo* ⇔ _A_ forma parte de alguna clave de _R_
 
-Una relación _R_ está en *Segunda*forma*normal* (2NF) si y solo si todo atributo no primo _A_ no es parcialmente dependiente de _alguna_ clave de _R_.
+- _X_ → _Y_ ∈ _F_, es *dependencia*parcial* ⇔ ∃ _Z_ ⊂ _X_ tal que _F_ ⊨ _Z_ → _Y_
 
-I.e., no pueden existir atributos no primos que dependan solo de una parte de alguna clave.
+- _Z_ *depende*parcialmente* de _X_ ⇔ _X_ → _Z_ es una dependencia parcial
+
+* 2NF
+
+*Definición*
+
+Una relación _R_ está en 2NF si y solo si todo atributo no primo _A_, no depende parcialmente de ninguna clave de _R_.
+
+*Definición*alternativa*
+
+Una relación _R_ está en 2NF si y solo si todo atributo no primo _A_, depende completamente de todas las claves de _R_.
+
+# i.e., no pueden existir atributos no primos que dependan solo de una parte de alguna clave.
 
 * Segunda forma normal
 
@@ -130,16 +160,18 @@ La relación está en segunda forma normal, pero *hay*redundancia*.
 
 Hay un atributo no primo que depende de otro no primo.
 
-* Tercera forma normal
+* 3NF (Tercera forma normal)
 
-* Definición
+* 3NF
 
-Una relación _R_ está en *Tercera*forma*normal* (3NF) si y solo si:
+*Definición*
+
+Una relación _R_ está en 3NF si y solo si:
 
 - _R_ está en 2NF
 - Todos los atributos no primos de _R_ no son transitivamente dependientes de ninguna clave de _R_
 
-*Formulación*equivalente*
+*Definición*equivalente*
 
 Toda dependencia funcional no trivial X → A cumple al menos una de las siguientes condiciones:
 
@@ -150,11 +182,14 @@ Toda dependencia funcional no trivial X → A cumple al menos una de las siguien
 
 .image tex/fn-tfn-ejemplo.png 570 _
 
-* Forma normal de Boyce–Codd
+* BCNF (Forma normal de Boyce–Codd)
 
-* Definición
+* BCNF
 
-Una relación _R_ está en *Forma*normal*de*Boyce–Codd* (BCNF) si y solo si en toda dependencia funcional no trivial _X_→_A_, _X_ es superclave de _R_.
+*Definición*
+
+Una relación _R_ está en BCNF si y solo si en toda dependencia funcional no trivial _X_→_A_,
+_X_ es superclave de _R_.
 
 * Forma normal de Boyce–Codd
 
