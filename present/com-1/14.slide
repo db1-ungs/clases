@@ -66,45 +66,28 @@ Una relación _R_ está en *1NF* si y solo si tiene al menos una clave.
     3   | Diego    | Maradona | P2
     3   | Diego    | Maradona | P3
 
-Ahora está en 1NF, pero…
+Ahora está en 1NF, sin embargo, (i) hay pérdida de información, (ii) hay redundancia, (iii) y la PK es muy esotérica.
 
 * 1NF
 
- legajo | nombre   | apellido | materias_aprobadas
- -------+----------+----------+-------------------
-    1   | Cristina | Kirchner | P1
-    2   | Román    | Riquelme | {}
-    3   | Diego    | Maradona | {P1, P2, P3}
-
-⬇
-
- alumne(legajo, nombre, apellido, materia_aprobada)
+ alumne(legajo, nombre, apellido, materia_aprobada, semestre)
         ──────                    ────────────────
 
-:
+legajo → nombre
+legajo → apellido
+legajo materia_aprobada → semestre
 
- legajo | nombre   | apellido | materia_aprobada
- -------+----------+----------+-----------------
-    1   | Cristina | Kirchner | P1
-    3   | Diego    | Maradona | P1
-    3   | Diego    | Maradona | P2
-    3   | Diego    | Maradona | P3
+ legajo | nombre   | apellido | materia_aprobada | semestre
+ -------+----------+----------+------------------+---------
+    1   | Cristina | Kirchner | P1               | 2023-2  
+    3   | Diego    | Maradona | P1               | 2021-2 
+    3   | Diego    | Maradona | P2               | 2022-1 
+    3   | Diego    | Maradona | P3               | 2023-1       
 
-La relación está en 1NF, pero hay pérdida de información, hay redundancia, y la PK se vuelve muy esotérica.
+__
+__
 
-* Primera forma normal
-
-¿Cuál es el problema de esta relación?
-
-.image tex/fn-pfn-problemas.png 400 _
-
-* Primera forma normal
-
-¿Cuál es el problema de esta relación?
-
-.image tex/fn-pfn-problemas-2.png 400 _
-
-Hay atributos que dependen de *solo*una*parte*de*la*clave*.
+*Hay*atributos*que*dependen*solo*de*una*parte*de*la*clave*
 
 * 2NF (Segunda forma normal)
 
@@ -191,17 +174,65 @@ Toda dependencia funcional no trivial X → A cumple al menos una de las siguien
 Una relación _R_ está en BCNF si y solo si en toda dependencia funcional no trivial _X_→_A_,
 _X_ es superclave de _R_.
 
-* Forma normal de Boyce–Codd
+* BCNF …
 
-.image tex/fn-bcfn-ejemplo-1.png 430 _
+ empleade(nro_legajo, sector, nro_empleade, cargo)
+          ──────────
 
-La dependencia _cargo_→_sector_ viola la BCNF, porque _cargo_ no es superclave (aunque sí está en 3NF porque _sector_ es un atributo primo).
+nro_legajo → sector nro_empleade cargo
+sector nro_empleade → nro_legajo cargo
+cargo → sector
+ 
+ nro_legajo | sector      | nro_empleade | cargo
+ -----------+-------------+--------------+-------------------
+ 23 456 789 | Sistemas    |       1      | Analiste funcional
+ 34 567 890 | Call Centre |       1      | Caller
+ 45 678 901 | Sistemas    |       2      | Programadore
+ 12 345 678 | Call Centre |       2      | Supervisore
+ 32 654 987 | Call Centre |       3      | Caller
+ 43 765 098 | Sistemas    |       3      | Programadore
 
-* Forma normal de Boyce–Codd
+✅ 3NF
+❌ BCNF
 
-.image tex/fn-bcfn-ejemplo-2.png 550 _
+* … BCNF …
 
-El esquema cumple la BCNF, pero en la normalización se perdió la dependencia _sector_nro\_emp_→_cargo_.
+ nro_legajo | sector      | nro_emp | cargo
+ -----------+-------------+---------+-------------------
+ 23 456 789 | Sistemas    |    1    | Analiste funcional
+ 34 567 890 | Call Centre |    1    | Caller
+ 45 678 901 | Sistemas    |    2    | Programadore
+ 12 345 678 | Call Centre |    2    | Supervisore
+ 32 654 987 | Call Centre |    3    | Caller
+ 43 765 098 | Sistemas    |    3    | Programadore
+
+⬇
+
+ nro_legajo | nro_emp | cargo                     sector      | cargo
+ -----------+---------+-------------------        ----------- +-------------------
+ 23 456 789 |    1    | Analiste funcional        Sistemas    | Analiste funcional
+ 34 567 890 |    1    | Caller                    Sistemas    | Project manager
+ 45 678 901 |    2    | Programadore              Sistemas    | Programadore
+ 12 345 678 |    2    | Supervisore               Call Centre | Caller
+ 32 654 987 |    3    | Caller                    Call Centre | Supervisore
+ 43 765 098 |    3    | Programadore
+
+* … BCNF
+
+ empleade(nro_legajo, sector, nro_empleade, cargo)
+          ──────────
+⬇
+
+ empleade(nro_legajo, nro_emp, cargo)
+          ──────────                 
+:
+
+ empleade(cargo, sector)
+          ─────
+
+*Obs:* Los schemas cumplen BCNF, pero en la normalización se perdió la dependencia
+
+sector nro_emp→ cargo
 
 * Pseudo–algoritmo para descomponer en BCNF
 
@@ -213,11 +244,7 @@ El esquema cumple la BCNF, pero en la normalización se perdió la dependencia _
 
 (4) Si quedan dependencias en _R₂_ que violan BCNF, _R₂_ pasa a ser el nuevo _R_ y go to (1)
 
-* Dudas, preguntas, consultas
+# empty title
+* 
 
-__
-__
-__
-__
-
-.image img/pregunta.png 200 _
+.image img/questions.png
