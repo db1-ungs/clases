@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0038)http://localhost:3999/com-1/13.slide#1 -->
+<!-- saved from url=(0032)http://localhost:3999/13.slide#1 -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Dependencias Funcionales</title>
     
@@ -31,7 +31,7 @@
 
   <body style="display: none" class="loaded">
 
-    <section class="slides layout-widescreen" style="transform: scale(0.5464);">
+    <section class="slides layout-widescreen" style="transform: scale(0.794667);">
 
       <article class="current">
         <h1>Dependencias Funcionales</h1>
@@ -121,7 +121,7 @@
   
 
 <div class="image">
-  <img src="./dp_files/df-definicion.png" height="34">
+  <img src="./dp_files/dp-definicion.png" height="34">
 </div>
 
   
@@ -133,17 +133,17 @@
   </p>
   
 
+  <ul>
   
-  <p>
-    <i>X</i> determina funcionalmente a <i>Y</i>
-  </p>
+    <li>"determina funcionalmente a"</li>
   
+  </ul>
 
+  <ul>
   
-  <p>
-    una instancia <i>r</i> satisface todas las DF ⇒ <i>r</i> es legal
-  </p>
+    <li>(una instancia <i>r</i> satisface todas las DF) ⇒ (<i>r</i> es legal)</li>
   
+  </ul>
 
       
       <span class="pagenumber">6</span>
@@ -165,7 +165,7 @@
         <h3></h3>
         
 <div class="image">
-  <img src="./dp_files/dp-definicion-ejemplo-1.png" height="540">
+  <img src="./dp_files/dp-definicion-ejemplo-1.png" height="530">
 </div>
 
       
@@ -178,45 +178,9 @@
       
         <h3></h3>
         
-  <ul>
-  
-    <li>relación <i>R</i></li>
-  
-  </ul>
-
-  
-  <p>
-    cursada(alumne_legajo, alumne_nombre, materia, f_inscripción, f_examen, nota)
-  </p>
-  
-
-  <ul>
-  
-    <li>conjunto de dependencias funcionales <i>F</i></li>
-  
-  </ul>
-
-  
-  <p>
-    alumne_legajo → alumne_nombre,
-<br>
-
-    alumne_legajo, materia → f_inscripción,
-<br>
-
-    alumne_legajo, materia, f_examen → nota
-  </p>
-  
-
-  <ul>
-  
-    <li>es una dependencia funcional?</li>
-  
-  </ul>
-
-  
-  <div class="code"><pre>❌ alumne_legajo, materia → f_examen</pre></div>
-  
+<div class="image">
+  <img src="./dp_files/dp-definicion-ejemplo-2.png" height="450">
+</div>
 
       
       <span class="pagenumber">9</span>
@@ -259,7 +223,7 @@
   
 
 <div class="image">
-  <img src="./dp_files/df-inferencia.png" height="40">
+  <img src="./dp_files/dp-inferencia.png" height="40">
 </div>
 
       
@@ -397,7 +361,7 @@
 
   
   <p>
-    <i>X → X</i>
+    <i>X</i> → <i>X</i>
   </p>
   
 
@@ -409,7 +373,7 @@
 
   
   <p>
-    ❌ <i>X → Y ⇒ Y → X</i>
+    ❌ <i>X</i> → <i>Y</i> ⇒ <i>Y</i> → <i>X</i>
   </p>
   
 
@@ -529,7 +493,7 @@
         
   
   <p>
-    X → Z, Y → Z ⇒ X → Y ?
+    <i>X</i> → <i>Z</i>, <i>Y</i> → <i>Z</i> ⇒ <i>X</i> → <i>Y</i> ?
   </p>
   
 
