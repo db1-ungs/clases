@@ -66,7 +66,7 @@ Una relación _R_ está en *1NF* si y solo si tiene al menos una clave.
     3   | Diego    | Maradona | P2
     3   | Diego    | Maradona | P3
 
-Ahora está en 1NF, sin embargo, (i) hay pérdida de información, (ii) hay redundancia, (iii) y la PK es muy esotérica.
+Ahora está en 1NF, sin embargo, (i) hay pérdida de información, (ii) hay redundancia, (iii) y la PK es muy esotérica
 
 * 1NF
 
@@ -113,35 +113,73 @@ Una relación _R_ está en 2NF si y solo si todo atributo no primo _A_, depende 
 
 # i.e., no pueden existir atributos no primos que dependan solo de una parte de alguna clave.
 
-* Segunda forma normal
+* 2NF …
 
-.image tex/fn-sfn-ejemplo.png 550 _
+ alumne(legajo, nombre, apellido, materia_aprobada, semestre)
+        ──────                    ────────────────
 
-* Segunda forma normal
+legajo → nombre
+legajo → apellido
+legajo materia_aprobada → semestre
 
-.image tex/fn-sfn-problemas.png 350 _
+ legajo | nombre   | apellido | materia_aprobada | semestre
+ -------+----------+----------+------------------+---------
+    1   | Cristina | Kirchner | P1               | 2023-2  
+    3   | Diego    | Maradona | P1               | 2021-2 
+    3   | Diego    | Maradona | P2               | 2022-1 
+    3   | Diego    | Maradona | P3               | 2023-1       
 
-La relación está en segunda forma normal, pero ...
+__
+__
 
-* Segunda forma normal
+❌ *No*está*en*2NF*
 
-.image tex/fn-sfn-problemas-2.png 350 _
+⬇
 
-La relación está en segunda forma normal, pero *hay*redundancia*.
+* … 2NF
 
-* Segunda forma normal
+⬇
 
-¿Cuál es el problema de esta relación?
+ alumne(legajo, nombre, apellido)
+        ────── 
+:
 
-.image tex/fn-sfn-problemas-3.png 430 _
+ materia_aprobada(legajo, materia, semestre)
+                  ──────  ───────
 
-* Segunda forma normal
+legajo → nombre
+legajo → apellido
+legajo materia → semestre
 
-¿Cuál es el problema de esta relación?
+ legajo | nombre   | apellido                legajo | materia | semestre
+ -------+----------+---------                -------+---------+---------
+    1   | Cristina | Kirchner                   1   | P1      | 2023-2  
+    2   | Román    | Riquelme                   3   | P1      | 2021-2 
+    3   | Diego    | Maradona                   3   | P2      | 2022-1 
+                                                3   | P3      | 2023-1       
 
-.image tex/fn-sfn-problemas-4.png 430 _
 
-Hay un atributo no primo que depende de otro no primo.
+✅ *Está*en*2NF*
+
+* 2NF
+
+ empleade(legajo, nombre, apellido, cp, localidad)
+          ──────
+
+legajo → nombre, apellido, cp
+cp → localidad
+
+ legajo | nombre       | apellido | cp    | localidad
+ -------+--------------+----------+-------+------------
+    1   | Cristina     | Kirchner | 1615  | Grand Bourg
+    2   | Diego        | Maradona | 1665  | José C Paz
+    3   | Juan Carlos  | Olave    | 1615  | Grand Bourg
+    4   | María Eva    | Duarte   | 1615  | Grand Bourg
+    5   | Román        | Riquelme | 1615  | Grand Bourg
+    6   | Juan Domingo | Perón    | 1665  | José C Paz
+    7   | Martín       | Palermo  | 1665  | José C Paz
+
+La relación está en 2NF, pero hay redundancia
 
 * 3NF (Tercera forma normal)
 
@@ -161,9 +199,49 @@ Toda dependencia funcional no trivial X → A cumple al menos una de las siguien
 - _X_ es superclave de _R_
 - _A_ es primo
 
-* Tercera forma normal
+* 3NF …
 
-.image tex/fn-tfn-ejemplo.png 570 _
+ empleade(legajo, nombre, apellido, cp, localidad)
+          ──────
+
+legajo → nombre, apellido, cp
+cp → localidad
+
+ legajo | nombre       | apellido | cp    | localidad
+ -------+--------------+----------+-------+------------
+    1   | Cristina     | Kirchner | 1615  | Grand Bourg
+    2   | Diego        | Maradona | 1665  | José C Paz
+    3   | Juan Carlos  | Olave    | 1615  | Grand Bourg
+    4   | María Eva    | Duarte   | 1615  | Grand Bourg
+    5   | Román        | Riquelme | 1615  | Grand Bourg
+    6   | Juan Domingo | Perón    | 1665  | José C Paz
+    7   | Martín       | Palermo  | 1665  | José C Paz
+
+❌ *No*está*en*3NF*
+
+⬇
+
+* … 3NF
+
+⬇
+
+ empleade(legajo, nombre, apellido, cp)                ciudad(cp, localidad)
+          ──────                                              ──
+
+legajo → nombre, apellido, cp
+cp → localidad
+
+ legajo | nombre       | apellido                 cp    | localidad
+ -------+--------------+----------                ------+------------
+    1   | Cristina     | Kirchner                 1615  | Grand Bourg
+    2   | Diego        | Maradona                 1665  | José C Paz
+    3   | Juan Carlos  | Olave     
+    4   | María Eva    | Duarte    
+    5   | Román        | Riquelme  
+    6   | Juan Domingo | Perón     
+    7   | Martín       | Palermo   
+
+✅ *Está*en*3NF*
 
 * BCNF (Forma normal de Boyce–Codd)
 
@@ -230,9 +308,7 @@ cargo → sector
  empleade(cargo, sector)
           ─────
 
-*Obs:* Los schemas cumplen BCNF, pero en la normalización se perdió la dependencia
-
-sector nro_emp→ cargo
+*Observación:* Los schemas cumplen BCNF, pero en la normalización se perdió la dependencia *sector*nro_emp*→*cargo*
 
 * Pseudo–algoritmo para descomponer en BCNF
 
