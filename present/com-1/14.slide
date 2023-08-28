@@ -231,15 +231,15 @@ cp → localidad
 legajo → nombre, apellido, cp
 cp → localidad
 
- legajo | nombre       | apellido                 cp    | localidad
- -------+--------------+----------                ------+------------
-    1   | Cristina     | Kirchner                 1615  | Grand Bourg
-    2   | Diego        | Maradona                 1665  | José C Paz
-    3   | Juan Carlos  | Olave     
-    4   | María Eva    | Duarte    
-    5   | Román        | Riquelme  
-    6   | Juan Domingo | Perón     
-    7   | Martín       | Palermo   
+ legajo | nombre       | apellido | cp                  cp    | localidad
+ -------+--------------+----------+-----                ------+------------
+    1   | Cristina     | Kirchner | 1615                1615  | Grand Bourg
+    2   | Diego        | Maradona | 1665                1665  | José C Paz
+    3   | Juan Carlos  | Olave    | 1615 
+    4   | María Eva    | Duarte   | 1615 
+    5   | Román        | Riquelme | 1615 
+    6   | Juan Domingo | Perón    | 1665 
+    7   | Martín       | Palermo  | 1665 
 
 ✅ *Está*en*3NF*
 
