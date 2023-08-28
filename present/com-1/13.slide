@@ -105,11 +105,11 @@ Reglas de inferencia
 
 De (1) se desprenden las inferencias triviales:
 
-_X_→_X_
+_X_ → _X_
 
 Las dependencias funcionales, son simétricas?
 
-❌ _X_→_Y_⇒_Y_→_X_
+❌ _X_ → _Y_ ⇒ _Y_ → _X_
 
 * Clausura de DF
 
@@ -145,7 +145,7 @@ Se demuestran aplicando los axiomas de Armstrong
 
 * Reglas que no son reglas
 
-X → Z, Y → Z ⇒ X → Y ?
+_X_ → _Z_, _Y_ → _Z_ ⇒ _X_ → _Y_ ?
 
 - schema:
 
