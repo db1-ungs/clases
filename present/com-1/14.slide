@@ -320,6 +320,10 @@ cargo → sector
 
 (4) Si quedan dependencias en _R₂_ que violan BCNF, _R₂_ pasa a ser el nuevo _R_ y go to (1)
 
+* One more thing…
+
+* BCNF ⇒ 3NF ⇒ 2NF ⇒ 1NF
+
 * Bibliografía
 
 Elmasri and Navathe, _Fundamentals_of_database_systems_
