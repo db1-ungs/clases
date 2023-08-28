@@ -101,6 +101,10 @@ Una relación _R_ está en *Segunda*forma*normal* (2NF) si y solo si todo atribu
 
 I.e., no pueden existir atributos no primos que dependan solo de una parte de alguna clave.
 
+*Definición*equivalente*
+
+Una relación _R_ está en *Segunda*forma*normal* (2NF) si y solo si todo atributo no primo _A_ es completamente dependiente de _todas_ las claves de _R_.
+
 * Segunda forma normal
 
 .image tex/fn-sfn-ejemplo.png 550 _
