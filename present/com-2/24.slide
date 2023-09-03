@@ -183,6 +183,12 @@ El esquema cumple la BCNF, pero en la normalización se perdió la dependencia _
 
 (4) Si quedan dependencias en _R₂_ que violan BCNF, _R₂_ pasa a ser el nuevo _R_ y go to (1)
 
+* Bibliografía
+
+Elmasri and Navathe, _Fundamentals_of_database_systems_
+
+- Capítulo 14, secciones 14.3, 14.4 y 14.5
+
 * Dudas, preguntas, consultas
 
 __

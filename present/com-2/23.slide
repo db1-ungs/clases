@@ -177,6 +177,13 @@ En general, la redundancia está dada por transitividad.
 
 .image tex/df-cubrimiento-minimal-ejemplo.png 475 _
 
+* Bibliografía
+
+Elmasri and Navathe, _Fundamentals_of_database_systems_
+
+- Capítulo 14, sección 14.2
+- Capítulo 15, sección 15.1
+
 * Dudas, preguntas, consultas
 
 __
