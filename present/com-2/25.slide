@@ -16,7 +16,7 @@ Universidad Nacional de General Sarmiento
 Observaciones
 
 - Los items en una fila pueden ser de distinto tipo
-- Todos items de una columna son del mismo tipo
+- Todos los items de una columna son del mismo tipo
 - Los items de algunas columnas se pueden repetir, otros son únicos
 #- Pueden existir celdas sin valores—i.e. `null`
 
@@ -120,6 +120,12 @@ Devuelve una nueva tabla con las columnas que están sólo en R y que están aso
 .image tex/ar-rename.png
 
 R se renombra a S, junto con los atributos correspondientes.
+
+* Bibliografía
+
+Elmasri and Navathe, _Fundamentals_of_database_systems_
+
+- Capítulo 8, secciones 8.1, 8.2 y 8.3
 
 * Dudas, preguntas, consultas
 
