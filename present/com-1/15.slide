@@ -1,26 +1,16 @@
 Álgebra Relacional
-Bases de datos I
 
-Universidad Nacional de General Sarmiento
+Ximena Ebertz
+xebertz@campus.ungs.edu.ar
 
-* bit.ly/ungs-db1-ar
+Hernán Rondelli
+lucifer.unix.cabj@gmail.com
 
-.image img/ungs-db1-ar.png
+* rondelli.github.io/db1/com-1/ar.html
 
-* Modelo Relacional
+.image img/rondelli.github.io-db1-com-1-ar.html.png 500 _
 
-- Relaciones (tablas)
-- Records ó tuplas (filas)
-- Fields ó atributos (columnas)
-
-Observaciones
-
-- Los items en una fila pueden ser de distinto tipo
-- Todos items de una columna son del mismo tipo
-- Los items de algunas columnas se pueden repetir, otros son únicos
-#- Pueden existir celdas sin valores—i.e. `null`
-
-* Álgebra Relacional (AR)
+* Álgebra Relacional
 
 * Operaciones
 
@@ -42,90 +32,276 @@ Observaciones
 
 Extrae columnas.
 
-.image tex/ar-projection-example.png 400 _
+# empty title
+* 
+
+*alumne(legajo,*nombre,*apellido)*
+
+ legajo | nombre   | apellido
+ -------+----------+---------
+ 626    | Cristina | Kirchner
+ 203    | Juan     | Pérez
+ 629    | Diego    | Maradona
+ 625    | Juan     | Olave
+ 511    | Juan     | Pérez
+
+Ejemplo:
+
+.image tex/ar-projection-example.png 50 _
+
+ nombre   | apellido
+ ---------+---------
+ Cristina | Kirchner
+ Juan     | Pérez
+ Diego    | Maradona
+ Juan     | Olave
 
 * 2. Selección
 
-.image tex/ar-selection.png
+.image tex/ar-selection.png 50 _
 
 Extrae filas.
 
-.image tex/ar-selection-example.png 400 _
+# empty title
+* 
+
+*alumne(legajo,*nombre,*apellido)*
+
+ legajo | nombre   | apellido
+ -------+----------+---------
+ 626    | Cristina | Kirchner
+ 203    | Juan     | Pérez
+ 629    | Diego    | Maradona
+ 625    | Juan     | Olave
+ 511    | Juan     | Pérez
+
+Ejemplo:
+
+.image tex/ar-selection-example.png 50 _
+
+ legajo | nombre   | apellido
+ -------+----------+---------
+ 629    | Diego    | Maradona
+ 626    | Cristina | Kirchner
 
 * 3. Producto cartesiano
 
-.image tex/ar-cartesian-product.png 35 _
+.image tex/ar-cartesian-product.png 50 _
 
 Combina todas las filas de una tabla con todas las filas de la otra.
 
-.image tex/ar-cartesian-product-example.png 430 _
+# empty title
+* 
+
+*materia(código,*nombre)*
+*cursa(legajo,*cod_mat,*semestre)*
+
+ código | nombre                  legajo | cod_mat | semestre
+ -------+-------                  -------+---------+---------
+ 1      | P1                      626    | 1       | 2023-01
+ 2      | P2                      626    | 2       | 2023-02
+                                  624    | 2       | 2023-02
+
+Ejemplo:
+
+.image tex/ar-cartesian-product-example.png 35 _
+
+ código | nombre | legajo | cod_mat | semestre
+ -------+--------+--------+---------+---------
+ 1      | P1     | 626    | 1       | 2023-01
+ 1      | P1     | 626    | 2       | 2023-02
+ 1      | P1     | 624    | 2       | 2023-02
+ 2      | P2     | 626    | 1       | 2023-01
+ 2      | P2     | 626    | 2       | 2023-02
+ 2      | P2     | 624    | 2       | 2023-02
 
 * 4. Join
 
-.image tex/ar-join.png
+.image tex/ar-join.png 50 _
 
 Combina las filas de ambas tablas, matcheando según la condición.
 
-.image tex/ar-join-example.png 400 _
+# empty title
+* 
 
-* 4. Join (cont.)
+*materia(código,*nombre)*
+*cursa(legajo,*cod_mat,*semestre)*
 
-.image tex/ar-natural-join.png
+ código | nombre                  legajo | cod_mat | semestre
+ -------+-------                  -------+---------+---------
+ 1      | P1                      626    | 1       | 2023-01
+ 2      | P2                      626    | 2       | 2023-02
+                                  624    | 2       | 2023-02
+
+Ejemplo:
+
+.image tex/ar-join-example.png 50 _
+
+ código | nombre | legajo | cod_mat | semestre
+ -------+--------+--------+---------+---------
+ 1      | P1     | 626    | 1       | 2023-01
+ 2      | P2     | 626    | 2       | 2023-02
+ 2      | P2     | 624    | 2       | 2023-02
+
+* 4. Natural Join
+
+.image tex/ar-natural-join.png 50 _
 
 Si no hay condición, se llama *natural*join* y matchea atributos con el mismo nombre.
 
-.image tex/ar-natural-join-example.png 400 _
+# empty title
+* 
+
+*materia(cod_mat,*nombre)*
+*cursa(legajo,*cod_mat,*semestre)*
+
+ cod_mat | nombre                  legajo | cod_mat | semestre
+ --------+-------                  -------+---------+---------
+ 1       | P1                      626    | 1       | 2023-01
+ 2       | P2                      626    | 2       | 2023-02
+                                   624    | 2       | 2023-02
+
+Ejemplo:
+
+.image tex/ar-natural-join-example.png 35 _
+
+ cod_mat | nombre | legajo | semestre
+ --------+--------+--------+---------
+ 1       | P1     | 626    | 2023-01
+ 2       | P2     | 626    | 2023-02
+ 2       | P2     | 624    | 2023-02
 
 * 5. Unión
 
-.image tex/ar-union.png 35 _
+.image tex/ar-union.png 50 _
 
 Une dos tablas.
 Las tablas deben ser schema compatibles—i.e. misma cantidad y tipos de atributos.
 
-.image tex/ar-union-example.png 390 _
+# empty title
+* 
+
+*docente(legajo,*nombre,*teléfono)*
+*alumne(legajo,*nombre,*email)*
+
+ legajo | nombre            | teléfono        legajo | nombre            | email
+ -------+-------------------+---------        -------+-------------------+-----------------------
+ 626    | Cristina Kirchner | 555-5555        624    | Juan Carlos Olave | mandaalab@belgrano.com
+ 625    | Diego Maradona    | 555-6666        629    | Lionel Messi      | amo@eldiego.com
+ 629    | Martín Palermo    | 555-7777
+
+Ejemplo:
+
+.image tex/ar-union-example.png 35 _
+
+ legajo | nombre            | teléfono
+ -------+-------------------+-----------------------
+ 626    | Cristina Kirchner | 555-5555
+ 625    | Diego Maradona    | 555-6666
+ 629    | Martín Palermo    | 555-7777
+ 624    | Juan Carlos Olave | mandaalab@belgrano.com
+ 629    | Lionel Messi      | amo@eldiego.com
 
 * 6. Intersección
 
-.image tex/ar-intersection.png 35 _
+.image tex/ar-intersection.png 50 _
 
 Lo que está tanto en una tabla como en la otra.
 Las tablas deben ser schema compatibles—i.e. misma cantidad y tipos de atributos.
 
-.image tex/ar-intersection-example.png 390 _
+# empty title
+* 
+
+*docente(legajo,*nombre,*teléfono)*
+*alumne(legajo,*nombre,*email)*
+
+ dni      | nombre            | teléfono         dni       | nombre            | teléfono
+ ---------+-------------------+---------         ----------+-------------------+---------
+ 45678901 | Cristina Kirchner | 555-5555         24567890  | Juan Carlos Olave | 555-8888
+ 23456789 | Diego Maradona    | 555-6666         12345689  | Lionel Messi      | 555-9999
+ 29012345 | Martín Palermo    | 555-7777         29012345  | Martín Palermo    | 555-7777
+ 24567890 | Juan Carlos Olave | 555-8888
+
+Ejemplo:
+
+.image tex/ar-intersection-example.png 35 _
+
+ dni       | nombre            | teléfono
+ ----------+-------------------+---------
+ 24567890  | Juan Carlos Olave | 555-8888
+ 29012345  | Martín Palermo    | 555-7777
 
 * 7. Diferencia
 
-.image tex/ar-difference.png 35 _
+.image tex/ar-difference.png 50 _
 
 Las tuplas que están la primer tabla pero que no están en la segunda.
 Las tablas deben ser schema compatibles—i.e. misma cantidad y tipos de atributos.
 
-.image tex/ar-difference-example.png 390 _
+# empty title
+* 
+
+*docente(legajo,*nombre,*teléfono)*
+*alumne(legajo,*nombre,*email)*
+
+ dni      | nombre            | teléfono         dni       | nombre            | teléfono
+ ---------+-------------------+---------         ----------+-------------------+---------
+ 45678901 | Cristina Kirchner | 555-5555         24567890  | Juan Carlos Olave | 555-8888
+ 23456789 | Diego Maradona    | 555-6666         12345689  | Lionel Messi      | 555-9999
+ 29012345 | Martín Palermo    | 555-7777         29012345  | Martín Palermo    | 555-7777
+ 24567890 | Juan Carlos Olave | 555-8888
+
+Ejemplo:
+
+.image tex/ar-difference-example.png 35 _
+
+ dni      | nombre            | teléfono
+ ---------+-------------------+---------
+ 45678901 | Cristina Kirchner | 555-5555
+ 23456789 | Diego Maradona    | 555-6666
 
 * 8. División
 
-.image tex/ar-division.png 70 _
+.image tex/ar-division.png 150 _
 
 Devuelve una nueva tabla con las columnas que están sólo en R y que están asociadas con todas las filas de S.
 
-.image tex/ar-division-example.png 355 _
+# empty title
+* 
+
+*aprobada(legajo,*cod_mat)*
+*materia(cod_mat)*
+
+ legajo | cod_mat                         cod_mat
+ -------+--------                         -------
+ 625    | 1                               1
+ 625    | 3                               2
+ 624    | 1                               3
+ 626    | 3
+ 626    | 1
+ 626    | 2
+ 629    | 1
+ 629    | 2
+
+Ejemplo:
+
+.image tex/ar-division-example.png 40 _
+
+ legajo
+ ------
+ 626
 
 * Cada operación devuelve una nueva relación!
 
-* Una cosa más…
+* One more thing…
 
-* Renombramiento
+* Rename
 
-.image tex/ar-rename.png
+.image tex/ar-rename.png 50 _
 
 R se renombra a S, junto con los atributos correspondientes.
 
-* Dudas, preguntas, consultas
+# empty title
+* 
 
-__
-__
-__
-__
-
-.image img/pregunta.png 200 _
+.image img/questions.png
