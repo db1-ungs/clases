@@ -1,38 +1,33 @@
-\pdfoutput=1
-\documentclass[preview]{standalone}
+%\setupbodyfont[pagella,11pt]
+%\setupbodyfont[sansserif,11pt]
+\setupbodyfont[computer-modern-unicode,11pt]
+%\setupbodyfont[modernvariable,11pt]
 
-\begin{document}
+%\usemodule[tikz]
+%\usetikzlibrary[calc]
+\usecolors[x11]
 
-materia(\underline{cod\_mat}, nom\_mat)\\
-cursada(\underline{nro\_legajo}, nom\_est, \underline{cod\_materia})\\
+\setupwhitespace[big]
+%\setupwhitespace[medium]
 
-\begin{center}
-\begin{tabular}{| l | l | }\hline			
-	cod\_mat & nom\_mat \\\hline			
-	001 & Programacion I \\
-	002 & Base de datos I \\\hline
-\end{tabular}
-\quad
-\begin{tabular}{| l | l | l | }\hline			
-	nro\_legajo & nom\_est & cod\_materia \\\hline			
-	1 & Juan P\'erez & 001\\
-	1 & Juan P\'erez & 002\\
-	2 & Mariana Na\'on & 002 \\\hline
-\end{tabular}
-\vspace{.35cm}
+%\setuppagenumbering[style=\small,location=foot]
+\setuppagenumbering[state=stop]
 
-$\Big\Downarrow$ \ materia $\times$ cursada
-\vspace{.35cm}
+\setupitemize[packed]
 
-\begin{tabular}{| l | c | l | l | l | l | }\hline			
-	cod\_mat & nom\_mat & nro\_legajo & nom\_est & cod\_materia \\\hline			
-	001 & Programacion I & 1 & Juan P\'erez & 001  \\
-	001 & Programacion I  & 1 & Juan P\'erez & 002 \\
-	001 & Programacion I & 2 & Mariana Na\'on & 002 \\
-	002 & Base de datos I & 1 & Juan P\'erez & 001  \\
-	002 & Base de datos I & 1 & Juan P\'erez & 002 \\
-	002 & Base de datos I & 2 & Mariana Na\'on & 002 \\\hline
-\end{tabular}
-\end{center}
+%\hyphenation{co-rrec-ta-men-te}
+\language[es]
 
-\end{document}
+\starttext
+
+%\showframe
+%\showlayout
+%\showsetups
+%\showcolor[x11]
+%\showbodyfont[cmr]
+
+\startformula
+	\text{materia} \times \text{cursa}
+\stopformula
+
+\stoptext

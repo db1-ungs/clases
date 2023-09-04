@@ -1,29 +1,33 @@
-\pdfoutput=1
-\documentclass[preview]{standalone}
+%\setupbodyfont[pagella,11pt]
+%\setupbodyfont[sansserif,11pt]
+\setupbodyfont[computer-modern-unicode,11pt]
+%\setupbodyfont[modernvariable,11pt]
 
-\begin{document}
+%\usemodule[tikz]
+%\usetikzlibrary[calc]
+\usecolors[x11]
 
-\begin{center}
-estudiante(\underline{legajo}, dni, nombre, apellido)\\
-\vspace{.35cm}
-\begin{tabular}{| l | c | l | l | }\hline			
-	legajo & dni & nombre & apellido \\\hline			
-	1 & 25.333.213 & Juan & P\'erez \\
-	2 & 27.341.223 & Mariana & Na\'on\\
-	3 & 32.341.784 & Pilar & Gamboa \\
-	4 & 29.311.665 & Juan & P\'erez \\\hline	
-\end{tabular}
-\vspace{.35cm}
+\setupwhitespace[big]
+%\setupwhitespace[medium]
 
-$\Big\Downarrow {\Large\Pi_{\textsubscript{(nombre, apellido)}}}$ \ estudiante 
-\vspace{.35cm}
+%\setuppagenumbering[style=\small,location=foot]
+\setuppagenumbering[state=stop]
 
-\begin{tabular}{| l | l | }\hline			
-	nombre & apellido \\\hline			
-	Juan & P\'erez \\
-	Mariana & Na\'on\\
-	Pilar & Gamboa \\\hline	
-\end{tabular}
-\end{center}
+\setupitemize[packed]
 
-\end{document}
+%\hyphenation{co-rrec-ta-men-te}
+\language[es]
+
+\starttext
+
+%\showframe
+%\showlayout
+%\showsetups
+%\showcolor[x11]
+%\showbodyfont[cmr]
+
+\startformula
+	\Pi_{(\text{nombre},\ \text{apellido})}\ \text{alumne}
+\stopformula
+
+\stoptext

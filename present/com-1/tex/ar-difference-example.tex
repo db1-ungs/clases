@@ -1,36 +1,33 @@
-\pdfoutput=1
-\documentclass[preview]{standalone}
+%\setupbodyfont[pagella,11pt]
+%\setupbodyfont[sansserif,11pt]
+\setupbodyfont[computer-modern-unicode,11pt]
+%\setupbodyfont[modernvariable,11pt]
 
-\begin{document}
+%\usemodule[tikz]
+%\usetikzlibrary[calc]
+\usecolors[x11]
 
-investigadore\_docente(\underline{legajo}, nombre, instituto)\\
-decane(\underline{legajo}, nombre, instituto)
+\setupwhitespace[big]
+%\setupwhitespace[medium]
 
-\begin{center}
-\begin{tabular}{| l | l | l |}\hline
-	legajo & nombre & instituto \\\hline			
-	1 & Marcela Vi\'u  & IDEI \\
-	2 & Esteban Abad &  IDEI \\
-	3 & Carlos Sala & ICI \\
-	4 & Mariana Nun & ICI \\\hline
-\end{tabular}
-\quad
-\begin{tabular}{| l | l | l |}\hline
-	legajo & nombre & instituto \\\hline			
-	2 & Esteban Abad &  IDEI \\
-	4 & Mariana Nun & ICI \\
-	8 & Julio Silas & ICO \\\hline
-\end{tabular}
-\vspace{.35cm}
+%\setuppagenumbering[style=\small,location=foot]
+\setuppagenumbering[state=stop]
 
-$\Big\Downarrow$ investigador\_docente ${\Large -}$ decane
-\vspace{.35cm}
+\setupitemize[packed]
 
-\begin{tabular}{| l | l | l |}\hline
-	legajo & nombre & instituto \\\hline			
-	1 & Marcela Vi\'u  & IDEI \\
-	3 & Carlos Sala & ICI \\\hline
-\end{tabular}
-\end{center}
+%\hyphenation{co-rrec-ta-men-te}
+\language[es]
 
-\end{document}
+\starttext
+
+%\showframe
+%\showlayout
+%\showsetups
+%\showcolor[x11]
+%\showbodyfont[cmr]
+
+\startformula
+	\text{docente} - \text{alumne}
+\stopformula
+
+\stoptext

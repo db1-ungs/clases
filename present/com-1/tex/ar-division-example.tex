@@ -1,39 +1,33 @@
-\pdfoutput=1
-\documentclass[preview]{standalone}
+%\setupbodyfont[pagella,11pt]
+%\setupbodyfont[sansserif,11pt]
+\setupbodyfont[computer-modern-unicode,11pt]
+%\setupbodyfont[modernvariable,11pt]
 
-\begin{document}
+%\usemodule[tikz]
+%\usetikzlibrary[calc]
+\usecolors[x11]
 
-materia\_aprobada(\underline{estudiante}, \underline{nom\_materia})\\
-materia(\underline{nom\_materia})
+\setupwhitespace[big]
+%\setupwhitespace[medium]
 
-\begin{center}
-\begin{tabular}{ | l | l |}\hline
-	estudiante & nom\_materia \\\hline			
-	Guido de Caso & BD I  \\
-	Guido de Caso & Redes  \\
-	Sergio Mera & Prog I  \\
-	Luz Ortiz & BD I  \\
-	Luz Ortiz & Prog I  \\
-	Luz Ortiz & Redes  \\
-	Romina Kohn & Prog I  \\
-	Romina Kohn & BD I  \\\hline
-\end{tabular}
-\quad
-\begin{tabular}{| l |}\hline
-	nom\_materia \\\hline			
-	BD I \\
-	Prog I \\
-	Redes \\\hline
-\end{tabular}
-\vspace{.35cm}
+%\setuppagenumbering[style=\small,location=foot]
+\setuppagenumbering[state=stop]
 
-$\Big\Downarrow$ materia\_aprobada ${\Large \div}$ materia
-\vspace{.35cm}
+\setupitemize[packed]
 
-\begin{tabular}{| l |}\hline
-	estudiante \\\hline			
-	Luz Ortiz \\\hline
-\end{tabular}
-\end{center}
+%\hyphenation{co-rrec-ta-men-te}
+\language[es]
 
-\end{document}
+\starttext
+
+%\showframe
+%\showlayout
+%\showsetups
+%\showcolor[x11]
+%\showbodyfont[cmr]
+
+\startformula
+	\text{aprobada} \div \text{materia}
+\stopformula
+
+\stoptext
