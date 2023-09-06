@@ -250,6 +250,12 @@ En general, la redundancia está dada por transitividad.
 
 .image tex/df-cubrimiento-minimal-ejemplo.png 475 _
 
+* Bibliografía
+
+Elmasri and Navathe, _Fundamentals_of_database_systems_
+
+- Secciones 14.2, y 15.1
+
 # empty title
 * 
 

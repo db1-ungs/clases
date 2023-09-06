@@ -176,7 +176,7 @@ Ejemplo:
 .image tex/ar-union.png 50 _
 
 Une dos tablas.
-Las tablas deben ser schema compatibles—i.e. misma cantidad y tipos de atributos.
+Las tablas deben ser *schema*compatibles*—i.e. misma cantidad y tipos de atributos.
 
 # empty title
 * 
@@ -207,7 +207,7 @@ Ejemplo:
 .image tex/ar-intersection.png 50 _
 
 Lo que está tanto en una tabla como en la otra.
-Las tablas deben ser schema compatibles—i.e. misma cantidad y tipos de atributos.
+Las tablas deben ser *schema*compatibles*—i.e. misma cantidad y tipos de atributos.
 
 # empty title
 * 
@@ -236,7 +236,7 @@ Ejemplo:
 .image tex/ar-difference.png 50 _
 
 Las tuplas que están la primer tabla pero que no están en la segunda.
-Las tablas deben ser schema compatibles—i.e. misma cantidad y tipos de atributos.
+Las tablas deben ser *schema*compatibles*—i.e. misma cantidad y tipos de atributos.
 
 # empty title
 * 
