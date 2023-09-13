@@ -7,8 +7,6 @@ xebertz@campus.ungs.edu.ar
 Hernán Rondelli
 lucifer.unix.cabj@gmail.com
 
-Universidad Nacional de General Sarmiento
-
 * rondelli.github.io/db1/com-1/sql.html
 
 .image img/rondelli.github.io-db1-com-1-sql.html.png 500 _
@@ -23,9 +21,11 @@ Universidad Nacional de General Sarmiento
 
 * Para qué se usa?
 
-- crear/borrar tablas… ← *Data*Definition*Language*
+- crear/modificar/borrar tablas… ← *Data*Definition*Language*
 - input/output de datos ← *Data*Manipulation*Language*
 - administrar usuaries ← *Data*Control*Language*
+# - administrar transacciones ← *Transaction*Control*Language*
+# - administrar sesiones ← *Session*Control*Language*
 
 * select
 
