@@ -1,13 +1,16 @@
-SQL (cont.)
-Bases de datos I
+SQL – Part II
 
-Universidad Nacional de General Sarmiento
+Ximena Ebertz
+xebertz@campus.ungs.edu.ar
 
-* bit.ly/ungs-db1-sql-2
+Hernán Rondelli
+lucifer.unix.cabj@gmail.com
 
-.image img/ungs-db1-sql-2.png
+* rondelli.github.io/db1/com-1/sql-2.html
 
-* Ordenamiento
+.image img/rondelli.github.io-db1-com-1-sql-2.html.png 500 _
+
+* order by
 
 * order by
 
@@ -21,79 +24,77 @@ Universidad Nacional de General Sarmiento
  
 	select *
 	from   empleade
+	order  by salario asc;
+ 
+	select *
+	from   empleade
 	order  by apellido, nombre;
 
 * Subqueries
 
-* subquery
+* select … where … (select …)
 
-	select nombre, salario
-	from   empleade
-	where  salario >= (select salario
-	                   from   empleade
-	                   where  legajo = 1234);
+ select nombre, salario
+ from empleade
+ where salario >= (
+     select salario
+     from empleade
+     where legajo = 626
+ );
+
 * exists
-	select e1.nombre, e1.apellido
-	from   empleade e1
-	where  not exists (select * 
-	                   from   empleade e2 
-	                   where  departamento = 'sistemas' and e2.salario >= e1.salario);
+
+ select e1.nombre, e1.apellido
+ from empleade e1
+ where not exists (
+     select *
+     from empleade e2
+     where departamento = 'sistemas' and e2.salario >= e1.salario
+ );
 
 * all
-	select nombre, apellido
-	from   empleade
-	where  salario > all (select salario 
-	                      from   empleade 
-	                      where  departamento = 'sistemas');
+
+ select nombre, apellido
+ from empleade
+ where salario > all (
+     select salario
+     from empleade
+     where departamento = 'sistemas'
+ );
 
 * in
-	select nombre, apellido, departamento
-	from   empleade
-	where  departamento in (select departamento 
-	                        from   proyecto 
-	                        where  fecha_inicio >= '2019-01-01');
+
+ select nombre, apellido, departamento
+ from  empleade
+ where departamento in (
+     select departamento
+     from proyecto
+     where fecha_inicio >= '2011-06-26'
+ );
 
 * Funciones de agregación
 
-* count
+* Funciones de agregación…
 
-	select count(*) 
-	from   empleade;
+	select count(*) from empleade;
  
-	select count(nombre) 
-	from   empleade;
+	select count(nombre) from empleade;
  
-	select count(distinct (nombre)) 
-	from   empleade;
+	select count(distinct nombre) from empleade;
+
+* …Funciones de agregación
+
+	select sum(salario) from empleade;
  
-
-
-* sum
-
-	select sum(salario) 
-	from   empleade;
+	select max(salario) from empleade;
  
-* max
-
-	select max(salario) 
-	from   empleade;
+	select min(salario) from empleade;
  
-* min
-
-	select min(salario) 
-	from   empleade;
-
-* avg
-
-	select avg(salario) 
-	from   empleade;
+	select avg(salario) from empleade;
  
-* max + min + avg
+	select max(salario), min(salario), avg(salario) from empleade;
 
-	select max(salario), min(salario), avg(salario) 
-	from   empleade;
- 
-* Agrupamiento
+* group by
 
 * group by
 
@@ -110,7 +111,6 @@ Universidad Nacional de General Sarmiento
 	where    departamento = 'sistemas' or departamento = 'finanzas'
 	group by departamento;
 
-
 * having
 
 	select   departamento, avg(salario) 
@@ -118,11 +118,9 @@ Universidad Nacional de General Sarmiento
 	group by departamento 
 	having   count(*) > 10;
 
+# *having* sólo puede hacer referencia a funciones de agregación ó a campos que estén en el *group*by*.
 
-
-La cláusula *having* solo puede hacer referencia a funciones de agregación o a campos que estén en el *group*by*.
-
-* having != where
+* having ó where 🤔
 
 	select   departamento, count(*) 
 	from     empleade 
@@ -142,13 +140,13 @@ La cláusula *having* solo puede hacer referencia a funciones de agregación o a
 
 * union
 
-	(select a from r)
+	select a from r
 	union
-	(select a from s);
+	select a from s;
  
-	(select a from r)
+	select a from r
 	union all
-	(select a from s);
+	select a from s;
 
 * intersect
 
@@ -170,30 +168,25 @@ La cláusula *having* solo puede hacer referencia a funciones de agregación o a
 	except all
 	(select a from s);
 
+* One more thing…
+
 * división
-	-- empleados que trabajan en todos los proyectos
 
-	select distinct legajo 
-	from   empleade_proyecto ep1
-	where  not exists 
-	          (select 1 
-	           from   proyecto p
-	           where  not exists 
-	                     (select 1
-	                      from empleade_proyecto ep2
-	                      where ep2.legajo = ep1.legajo and ep2.proyecto_id = p.proyecto_id));
+Empleades que trabajan en todos los proyectos.
+ 
+ select distinct legajo
+ from trabaja_en t1
+ where not exists (
+     select 1
+     from proyecto p
+     where not exists (
+         select 1
+         from trabaja_en t2
+         where t2.legajo = t1.legajo and t2.proyecto_id = p.proyecto_id
+     )
+ );
 
+# empty title
+* 
 
-
-
-
-* Dudas, preguntas, consultas
-
-__
-__
-__
-__
-
-.image img/pregunta.png 200 _
-
-
+.image img/questions.png
