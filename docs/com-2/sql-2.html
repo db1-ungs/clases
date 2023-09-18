@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- saved from url=(0033)http://localhost:3999/265.slide#1 -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>SQL (cont.)</title>
-    
+    <meta charset="utf-8">
     <script>
       var notesEnabled =  false ;
     </script>
-    <script src="./sql-2_files/slides.js"></script>
+    <script src="sql-2_archivos/slides.js"></script>
 
     
 
@@ -31,7 +31,7 @@
 
   <body style="display: none" class="loaded">
 
-    <section class="slides layout-widescreen" style="transform: scale(0.794667);">
+    <section class="slides layout-widescreen">
 
       <article class="current">
         <h1>SQL (cont.)</h1>
@@ -57,7 +57,7 @@
         <h3>rondelli.github.io/db1/com-2/sql-2.html</h3>
         
 <div class="image">
-  <img src="./sql-2_files/rondelli.github.io-db1-com-2-sql-2.html.png" height="500">
+  <img src="sql-2_archivos/rondelli.github.io-db1-com-2-sql-2.html.png" height="500">
 </div>
 
       
@@ -75,7 +75,7 @@
   
   
   
-      <article class="">
+      <article>
       
         <h3>order by</h3>
         
@@ -459,10 +459,84 @@ except all
   
       <article>
       
-        <h3>división</h3>
+        <h2>División</h2>
+      
+      <span class="pagenumber">25</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
         
   
-  <div class="code"><pre>-- empleados que trabajan en todos los proyectos
+  <p>
+    <i></i>
+<br>
+
+    En SQL no podemos resolver de manera directa la consulta:
+  </p>
+  
+
+  <ul>
+  
+    <li><i>empleades que</i> <b>trabajan en todos los proyectos</b></li>
+  
+  </ul>
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+  
+  <p>
+    Pero si aplicamos la equivalencia de cuantificadores:
+  </p>
+  
+
+<div class="image">
+  <img src="sql-2_archivos/sql2-division-cuantificadores.png" height="30">
+</div>
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+  
+  <p>
+    Lo que sí podemos resolver es la consulta:
+  </p>
+  
+
+  <ul>
+  
+    <li><i>empleades para les cuales</i> <b>no existe un proyecto</b> <i>en el que</i> <b>no trabajen</b></li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">26</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        
+  
+  <div class="code"><pre>-- empleades que trabajan en todos los proyectos
 
 select distinct legajo 
 from   empleade_proyecto ep1
@@ -475,8 +549,36 @@ where  not exists
                       where ep2.legajo = ep1.legajo and ep2.proyecto_id = p.proyecto_id));</pre></div>
   
 
+  
+  <p>
+    <i></i>
+  </p>
+  
+
+  
+  <p>
+    <b>Template para la división:</b>
+  </p>
+  
+
+  
+  <div class="code"><pre>select distinct A from R R1 where not exists
+    (select 1 from S where not exists
+        (select 1 from R R2 where R2.A = R1.A and R2.B = S.B))</pre></div>
+  
+
+  
+  <p>
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="sql-2_archivos/ar-division.png" height="70">
+</div>
+
       
-      <span class="pagenumber">25</span>
+      <span class="pagenumber">27</span>
       </article>
   
   
@@ -501,11 +603,11 @@ where  not exists
   
 
 <div class="image">
-  <img src="./sql-2_files/pregunta.png" height="200">
+  <img src="sql-2_archivos/pregunta.png" height="200">
 </div>
 
       
-      <span class="pagenumber">26</span>
+      <span class="pagenumber">28</span>
       </article>
   
   
@@ -534,7 +636,7 @@ where  not exists
     </div>
 
     
-    <script src="./sql-2_files/play.js"></script>
+    <script src="sql-2_archivos/play.js"></script>
     
 
     <script>
@@ -549,4 +651,4 @@ where  not exists
     </script>
   
 
-<link rel="stylesheet" type="text/css" href="./sql-2_files/css"><link rel="stylesheet" type="text/css" href="./sql-2_files/styles.css"></body></html>
+<link rel="stylesheet" type="text/css" href="sql-2_archivos/css.css"><link rel="stylesheet" type="text/css" href="sql-2_archivos/styles.css"></body></html>

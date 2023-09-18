@@ -170,8 +170,29 @@ La cláusula *having* solo puede hacer referencia a funciones de agregación o a
 	except all
 	(select a from s);
 
-* división
-	-- empleados que trabajan en todos los proyectos
+* División
+
+*
+__
+En SQL no podemos resolver de manera directa la consulta:
+
+- _empleades_que_ *trabajan*en*todos*los*proyectos*
+__
+__
+
+
+Pero si aplicamos la equivalencia de cuantificadores:
+.image tex/sql2-division-cuantificadores.png 30 _
+__
+__
+
+
+Lo que sí podemos resolver es la consulta:
+
+- _empleades_para_les_cuales_ *no*existe*un*proyecto* _en_el_que_ *no*trabajen*
+
+* 
+	-- empleades que trabajan en todos los proyectos
 
 	select distinct legajo 
 	from   empleade_proyecto ep1
@@ -182,9 +203,16 @@ La cláusula *having* solo puede hacer referencia a funciones de agregación o a
 	                     (select 1
 	                      from empleade_proyecto ep2
 	                      where ep2.legajo = ep1.legajo and ep2.proyecto_id = p.proyecto_id));
+__
 
+*Template*para*la*división:*
 
+	select distinct A from R R1 where not exists
+		(select 1 from S where not exists
+			(select 1 from R R2 where R2.A = R1.A and R2.B = S.B))
+__
 
+.image tex/ar-division.png 70 _
 
 
 * Dudas, preguntas, consultas
