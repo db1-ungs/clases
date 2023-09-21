@@ -42,16 +42,6 @@ lucifer.unix.cabj@gmail.com
      where legajo = 626
  );
 
-* exists
-
- select e1.nombre, e1.apellido
- from empleade e1
- where not exists (
-     select *
-     from empleade e2
-     where departamento = 'sistemas' and e2.salario >= e1.salario
- );
-
 * all
 
  select nombre, apellido
@@ -70,6 +60,16 @@ lucifer.unix.cabj@gmail.com
      select departamento
      from proyecto
      where fecha_inicio >= '2011-06-26'
+ );
+
+* exists
+
+ select e1.nombre, e1.apellido
+ from empleade e1
+ where not exists (
+     select *
+     from empleade e2
+     where departamento = 'sistemas' and e2.salario >= e1.salario
  );
 
 * Funciones de agregación
@@ -140,33 +140,33 @@ lucifer.unix.cabj@gmail.com
 
 * union
 
-	select a from r
+	select nombre, apellido from docente
 	union
-	select a from s;
+	select nombre, apellido from alumne;
  
-	select a from r
+	select nombre, apellido from docente
 	union all
-	select a from s;
+	select nombre, apellido from alumne;
 
 * intersect
 
-	(select a from r)
+	select nombre, apellido from docente
 	intersect
-	(select a from s);
+	select nombre, apellido from alumne;
  
-	(select a from r)
+	select nombre, apellido from docente
 	intersect all
-	(select a from s);
+	select nombre, apellido from alumne;
 
 * except
 
-	(select a from r)
+	select nombre, apellido from docente
 	except
-	(select a from s);
+	select nombre, apellido from alumne;
  
-	(select a from r)
+	select nombre, apellido from docente
 	except all
-	(select a from s);
+	select nombre, apellido from alumne;
 
 * One more thing…
 
