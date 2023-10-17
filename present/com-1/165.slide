@@ -186,6 +186,25 @@ Empleades que trabajan en todos los proyectos.
      )
  );
 
+* cómo no hacer la división en el parcial
+
+Empleades que trabajan en todos los proyectos.
+
+ select legajo
+ from trabaja_en
+ group by legajo
+ having count(distinct proyecto_id) = (select count(distinct proyecto_id) from proyecto);
+
+⚠︎ No hacer la división así en el parcial!
+
+# Empleades que trabajan en todos los proyectos que comenzaron después del 26 de junio de 2011.
+
+# select legajo
+# from trabaja_en
+# where proyecto_id in (select proyecto_id from proyecto where fecha_inicio >= '2011-06-26')
+# group by legajo
+# having count(distinct proyecto_id) = (select count(distinct proyecto_id) from proyecto where fecha_inicio >= '2021-06-26');
+
 # empty title
 * 
 
