@@ -163,6 +163,9 @@ Se aplican las mismas reglas
 - Uno a uno a muchos → "Los uno van en el muchos"
 - Uno a uno a uno → "Dos cualquiera va en el tercer cualquiera"
 
+# agregar ejemplo de ternaria: fábrica, insumo, proveedore
+# agregar ejemplo de agregación: proyecto, dpto, empleade
+
 # empty title
 * 
 
