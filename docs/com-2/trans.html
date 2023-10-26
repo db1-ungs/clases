@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- saved from url=(0032)http://localhost:3999/28.slide#1 -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Transacciones</title>
-    
+    <meta charset="utf-8">
     <script>
       var notesEnabled =  false ;
     </script>
-    <script src="./trans_files/slides.js"></script>
+    <script src="trans_archivos/slides.js"></script>
 
     
 
@@ -31,7 +31,7 @@
 
   <body style="display: none" class="loaded">
 
-    <section class="slides layout-widescreen" style="transform: scale(0.794667);">
+    <section class="slides layout-widescreen">
 
       <article class="current">
         <h1>Transacciones</h1>
@@ -42,13 +42,17 @@
             
   
   <p>
-    Daniel Rondelli
+    Hernán Rondelli
   </p>
   
 
+          </div>
+        
+          <div class="presenter">
+            
   
   <p>
-    Universidad Nacional de General Sarmiento
+    Daniel Bertaccini
   </p>
   
 
@@ -63,7 +67,7 @@
         <h3>rondelli.github.io/db1/com-2/trans.html</h3>
         
 <div class="image">
-  <img src="./trans_files/rondelli.github.io-db1-com-2-trans.html.png" height="500">
+  <img src="trans_archivos/rondelli.github.io-db1-com-2-trans.html.png" height="500">
 </div>
 
       
@@ -74,16 +78,16 @@
   
       <article class="far-next">
       
-        <h2>Transacciones – Para qué sirven?</h2>
+        <h2>Transacciones – ¿Para qué sirven?</h2>
       
       <span class="pagenumber">3</span>
       </article>
   
   
   
-      <article class="">
+      <article>
       
-        <h3>Transacciones – Para qué sirven?</h3>
+        <h3>Transacciones – ¿Para qué sirven?</h3>
         
   <ul>
   
@@ -111,7 +115,7 @@
 
   
   <p>
-    Supongamos, dos modificaciones simultáneas:
+    Supongamos dos modificaciones simultáneas:
   </p>
   
 
@@ -137,12 +141,64 @@
 
   
   <p>
-    Si el cliente tenía $10000 en su cuenta, cuánto dinero tiene ahora?
+    Si el cliente tenía $10000 en su cuenta, ¿cuánto dinero tiene ahora?
   </p>
   
 
       
       <span class="pagenumber">5</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Acceso concurrente (1 - continuación)</h3>
+        
+  
+  <p>
+    <b>access → read, modify, write</b>
+  </p>
+  
+
+  
+  <p>
+    El <b>update</b> es un <i>read</i> seguido de un <i>write</i>.
+  </p>
+  
+
+  
+  <p>
+    Podría pasar que se ejecuten en este orden:
+  </p>
+  
+
+  
+  <div class="code"><pre>Acceso A                   Acceso B
+--------                   --------
+
+read (saldo)
+saldo = saldo + 1000
+                           read (saldo)
+                           saldo = saldo + 2000
+write(saldo)
+                           write(saldo)</pre></div>
+  
+
+  
+  <p>
+    ¿Dónde quedaron los 1000 del <i>Acceso A</i>?
+  </p>
+  
+
+  
+  <p>
+    Esto se conoce como <i>lost update problem</i>.
+  </p>
+  
+
+      
+      <span class="pagenumber">6</span>
       </article>
   
   
@@ -159,7 +215,7 @@
 
   
   <p>
-    Supongamos, dos accesos simultáneos:
+    Supongamos dos accesos simultáneos:
   </p>
   
 
@@ -187,6 +243,12 @@ select count(*) from alquiler;</pre></div>
 
   
   <p>
+    ¿Qué inconveniente podría ocurrir?
+  </p>
+  
+
+  
+  <p>
     Observación
   </p>
   
@@ -196,7 +258,54 @@ select count(*) from alquiler;</pre></div>
   
 
       
-      <span class="pagenumber">6</span>
+      <span class="pagenumber">7</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Acceso concurrente (2 - continuación)</h3>
+        
+  
+  <p>
+    <b>access → read, modify, write</b>
+  </p>
+  
+
+  
+  <p>
+    Podría pasar que se ejecuten en este orden:
+  </p>
+  
+
+  
+  <div class="code"><pre>Acceso A                          Acceso B
+--------                          --------
+
+insert into alquiler
+  select * from reserva
+  where fecha = now()::date;
+                                  select count(*) from reserva;
+                                  select count(*) from alquiler;
+delete from reserva
+where fecha = now()::date;</pre></div>
+  
+
+  
+  <p>
+    En <i>Acceso B</i> estamos contando dos veces las reservas del día. 
+  </p>
+  
+
+  
+  <p>
+    Esto se conoce como <i>incorrect summary problem</i>.
+  </p>
+  
+
+      
+      <span class="pagenumber">8</span>
       </article>
   
   
@@ -223,7 +332,7 @@ delete from reserva where fecha = current_date;</pre></div>
   
 
       
-      <span class="pagenumber">7</span>
+      <span class="pagenumber">9</span>
       </article>
   
   
@@ -234,7 +343,7 @@ delete from reserva where fecha = current_date;</pre></div>
         
   
   <p>
-    <i>Es una secuencia de operaciones SQL que se tratan como una unidad</i>
+    <i>Es una secuencia de operaciones SQL que se tratan como una unidad lógica</i>
   </p>
   
 
@@ -247,23 +356,23 @@ delete from reserva where fecha = current_date;</pre></div>
   </ul>
 
       
-      <span class="pagenumber">8</span>
+      <span class="pagenumber">10</span>
       </article>
   
   
   
       <article>
       
-        <h2>ACID</h2>
+        <h2>Propiedades ACID</h2>
       
-      <span class="pagenumber">9</span>
+      <span class="pagenumber">11</span>
       </article>
   
   
   
       <article>
       
-        <h3>ACID</h3>
+        <h3>Propiedades ACID</h3>
         
   <ul>
   
@@ -278,7 +387,7 @@ delete from reserva where fecha = current_date;</pre></div>
   </ul>
 
       
-      <span class="pagenumber">10</span>
+      <span class="pagenumber">12</span>
       </article>
   
   
@@ -311,8 +420,20 @@ delete from reserva where fecha = current_date;</pre></div>
   
   </ul>
 
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i>Asegurar esta propiedad es responsabilidad del DBMS</i>.
+  </p>
+  
+
       
-      <span class="pagenumber">11</span>
+      <span class="pagenumber">13</span>
       </article>
   
   
@@ -339,8 +460,20 @@ delete from reserva where fecha = current_date;</pre></div>
   
   </ul>
 
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i>Es responsabilidad del programador de la transacción, y también del DBMS (por las constraints)</i>.
+  </p>
+  
+
       
-      <span class="pagenumber">12</span>
+      <span class="pagenumber">14</span>
       </article>
   
   
@@ -362,11 +495,20 @@ delete from reserva where fecha = current_date;</pre></div>
   
   <p>
     <i>Serialización:</i> Las operaciones se pueden entrelazar pero la ejecución debe ser equivalente a <i>algún</i> orden secuencial de todas las transacciones 
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i>Asegurar la propiedad Isolation es responsabilidad del DBMS</i>.
   </p>
   
 
       
-      <span class="pagenumber">13</span>
+      <span class="pagenumber">15</span>
       </article>
   
   
@@ -408,7 +550,7 @@ delete from reserva where fecha = current_date;</pre></div>
   
 
       
-      <span class="pagenumber">14</span>
+      <span class="pagenumber">16</span>
       </article>
   
   
@@ -420,11 +562,20 @@ delete from reserva where fecha = current_date;</pre></div>
   
   <p>
     Todas operaciones sobre la base de datos <b>no deben</b> cambiar después de que se completó exitosamente la transacción
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i>¡También es responsabilidad del DBMS!</i>
   </p>
   
 
       
-      <span class="pagenumber">15</span>
+      <span class="pagenumber">17</span>
       </article>
   
   
@@ -433,7 +584,7 @@ delete from reserva where fecha = current_date;</pre></div>
       
         <h2>Isolation Levels</h2>
       
-      <span class="pagenumber">16</span>
+      <span class="pagenumber">18</span>
       </article>
   
   
@@ -471,7 +622,7 @@ delete from reserva where fecha = current_date;</pre></div>
   
 
       
-      <span class="pagenumber">17</span>
+      <span class="pagenumber">19</span>
       </article>
   
   
@@ -526,7 +677,7 @@ delete from reserva where fecha = current_date;</pre></div>
   
 
       
-      <span class="pagenumber">18</span>
+      <span class="pagenumber">20</span>
       </article>
   
   
@@ -570,7 +721,7 @@ commit;</pre></div>
   
 
       
-      <span class="pagenumber">19</span>
+      <span class="pagenumber">21</span>
       </article>
   
   
@@ -593,7 +744,7 @@ commit;</pre></div>
   
 
       
-      <span class="pagenumber">20</span>
+      <span class="pagenumber">22</span>
       </article>
   
   
@@ -636,7 +787,7 @@ commit;</pre></div>
   
 
       
-      <span class="pagenumber">21</span>
+      <span class="pagenumber">23</span>
       </article>
   
   
@@ -683,7 +834,7 @@ commit;</pre></div>
   
 
       
-      <span class="pagenumber">22</span>
+      <span class="pagenumber">24</span>
       </article>
   
   
@@ -730,7 +881,7 @@ commit;</pre></div>
   
 
       
-      <span class="pagenumber">23</span>
+      <span class="pagenumber">25</span>
       </article>
   
   
@@ -749,7 +900,29 @@ commit;</pre></div>
   
 
       
-      <span class="pagenumber">24</span>
+      <span class="pagenumber">26</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Bibliografía</h3>
+        
+  
+  <p>
+    Elmasri and Navathe, <i>Fundamentals of database systems</i>
+  </p>
+  
+
+  <ul>
+  
+    <li>Capítulo 20, secciones 20.1, 20.3 y 20.6</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">27</span>
       </article>
   
   
@@ -759,11 +932,11 @@ commit;</pre></div>
         <h3></h3>
         
 <div class="image">
-  <img src="./trans_files/questions.png">
+  <img src="trans_archivos/questions.png">
 </div>
 
       
-      <span class="pagenumber">25</span>
+      <span class="pagenumber">28</span>
       </article>
   
   
@@ -775,16 +948,20 @@ commit;</pre></div>
             
   
   <p>
-    Daniel Rondelli
-  </p>
-  
-
-  
-  <p>
-    Universidad Nacional de General Sarmiento
+    Hernán Rondelli
   </p>
   
 <p class="link"><a href="mailto:lucifer.unix.cabj@gmail.com" target="_blank">lucifer.unix.cabj@gmail.com</a></p>
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Daniel Bertaccini
+  </p>
+  
+<p class="link"><a href="mailto:dbertacc@campus.ungs.edu.ar" target="_blank">dbertacc@campus.ungs.edu.ar</a></p>
           </div>
         
       </article>
@@ -798,7 +975,7 @@ commit;</pre></div>
     </div>
 
     
-    <script src="./trans_files/play.js"></script>
+    <script src="trans_archivos/play.js"></script>
     
 
     <script>
@@ -813,4 +990,4 @@ commit;</pre></div>
     </script>
   
 
-<link rel="stylesheet" type="text/css" href="./trans_files/css"><link rel="stylesheet" type="text/css" href="./trans_files/styles.css"></body></html>
+<link rel="stylesheet" type="text/css" href="trans_archivos/css.css"><link rel="stylesheet" type="text/css" href="trans_archivos/styles.css"></body></html>

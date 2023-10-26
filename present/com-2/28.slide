@@ -1,16 +1,18 @@
 Transacciones
 
-Daniel Rondelli
-Universidad Nacional de General Sarmiento
+Hernán Rondelli
 lucifer.unix.cabj@gmail.com
+
+Daniel Bertaccini
+dbertacc@campus.ungs.edu.ar
 
 * rondelli.github.io/db1/com-2/trans.html
 
 .image img/rondelli.github.io-db1-com-2-trans.html.png 500 _
 
-* Transacciones – Para qué sirven?
+* Transacciones – ¿Para qué sirven?
 
-* Transacciones – Para qué sirven?
+* Transacciones – ¿Para qué sirven?
 
 - Acceso concurrente a los datos
 - Resistencia a fallas
@@ -19,7 +21,7 @@ lucifer.unix.cabj@gmail.com
 
 *access*→*read,*modify,*write*
 
-Supongamos, dos modificaciones simultáneas:
+Supongamos dos modificaciones simultáneas:
 
 Acceso A
 
@@ -29,13 +31,35 @@ Acceso B
 
  update caja_de_ahorro set saldo = saldo + 2000 where número_de_cuenta = 626;
 
-Si el cliente tenía $10000 en su cuenta, cuánto dinero tiene ahora?
+Si el cliente tenía $10000 en su cuenta, ¿cuánto dinero tiene ahora?
+
+* Acceso concurrente (1 - continuación)
+
+*access*→*read,*modify,*write*
+
+El *update* es un _read_ seguido de un _write_.
+
+Podría pasar que se ejecuten en este orden:
+
+ Acceso A                   Acceso B
+ --------                   --------
+
+ read (saldo)
+ saldo = saldo + 1000
+                            read (saldo)
+                            saldo = saldo + 2000
+ write(saldo)
+                            write(saldo)
+
+¿Dónde quedaron los 1000 del _Acceso_A_?
+
+Esto se conoce como _lost_update_problem_.
 
 * Acceso concurrente (2)
 
 *access*→*read,*modify,*write*
 
-Supongamos, dos accesos simultáneos:
+Supongamos dos accesos simultáneos:
 
 Acceso A
 
@@ -47,9 +71,32 @@ Acceso B
  select count(*) from reserva;
  select count(*) from alquiler;
 
+¿Qué inconveniente podría ocurrir?
+
 Observación
 
  now()::date == current_date
+
+* Acceso concurrente (2 - continuación)
+
+*access*→*read,*modify,*write*
+
+Podría pasar que se ejecuten en este orden:
+
+ Acceso A                          Acceso B
+ --------                          --------
+
+ insert into alquiler
+   select * from reserva
+   where fecha = now()::date;
+                                   select count(*) from reserva;
+                                   select count(*) from alquiler;
+ delete from reserva
+ where fecha = now()::date;
+
+En _Acceso_B_ estamos contando dos veces las reservas del día. 
+
+Esto se conoce como _incorrect_summary_problem_.
 
 * Resistencia a fallas
 
@@ -62,14 +109,14 @@ pero Edenor nos corta la luz justo antes del `delete`!!! 😿
 
 * Transacción
 
-_Es_una_secuencia_de_operaciones_SQL_que_se_tratan_como_una_unidad_
+_Es_una_secuencia_de_operaciones_SQL_que_se_tratan_como_una_unidad_lógica_
 
 - Cada transacción se ejecuta aisladamente
 - Todo ó nada: se ejecuta completamente, ó no se ejecuta nada
 
-* ACID
+* Propiedades ACID
 
-* ACID
+* Propiedades ACID
 
 - Atomicity
 - Consistency
@@ -85,6 +132,9 @@ La transacción siempre termina en `commit` ó en `rollback`
 - `commit` → la transacción se completó exitosamente
 
 - `rollback` → undo de una transacción parcial
+__
+__
+_Asegurar_esta_propiedad_es_responsabilidad_del_DBMS_.
 
 * Consistency
 
@@ -93,6 +143,9 @@ Una transacción *nunca* deja a la base de datos en un estado *inconsistente*
 - Cuando una transacción comienza, la base de datos está en un estado consistente
 
 - Cuando una transacción termina, se garantiza que la base de datos está en un estado consistente
+__
+__
+_Es_responsabilidad_del_programador_de_la_transacción,_y_también_del_DBMS_(por_las_constraints)_.
 
 * Isolation
 
@@ -101,6 +154,9 @@ Una transacción *nunca* deja a la base de datos en un estado *inconsistente*
 - Los resultados de una transacción deben ser los mismos que la ejecución secuencial de las operaciones
 
 _Serialización:_ Las operaciones se pueden entrelazar pero la ejecución debe ser equivalente a _algún_ orden secuencial de todas las transacciones 
+__
+__
+_Asegurar_la_propiedad_Isolation_es_responsabilidad_del_DBMS_.
 
 * Ejemplo de serialización
 
@@ -119,6 +175,9 @@ T2
 * Durability
 
 Todas operaciones sobre la base de datos *no*deben* cambiar después de que se completó exitosamente la transacción
+__
+__
+_¡También_es_responsabilidad_del_DBMS!_
 
 * Isolation Levels
 
@@ -249,6 +308,12 @@ T2
  select avg(nota) from materia_aprobada where legajo = 626;
  select nombre, apellido from alumno order by apellido;
  commit;
+
+* Bibliografía
+
+Elmasri and Navathe, _Fundamentals_of_database_systems_
+
+- Capítulo 20, secciones 20.1, 20.3 y 20.6
 
 # empty title
 * 
