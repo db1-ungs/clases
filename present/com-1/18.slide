@@ -252,6 +252,12 @@ T2
  select nombre, apellido from alumno order by apellido;
  commit;
 
+* Bibliografía
+
+Elmasri and Navathe, _Fundamentals_of_database_systems_
+
+- Secciones 20.1, 20.3, y 20.6
+
 # empty title
 * 
 
