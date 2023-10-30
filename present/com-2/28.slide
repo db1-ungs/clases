@@ -300,6 +300,17 @@ T2
  select max(compra) from cambio;
  commit;
 
+* Resumiendo...
+
+¿Qué problemas permite cada _isolation_level_?
+
+ Isolation level  | Dirty Read | Unreap Read | Phamtom Read
+ -----------------+------------+-------------+--------------
+ read uncommitted |     SI     |      SI     |      SI
+ read committed   |     NO     |      SI     |      SI
+ repeatable read  |     NO     |      NO     |      SI
+ serializable     |     NO     |      NO     |      NO
+
 * read only
 
  begin;

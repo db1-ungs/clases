@@ -85,7 +85,7 @@
   
   
   
-      <article>
+      <article class="">
       
         <h3>Transacciones – ¿Para qué sirven?</h3>
         
@@ -103,7 +103,7 @@
   
   
   
-      <article>
+      <article class="">
       
         <h3>Acceso concurrente (1)</h3>
         
@@ -151,7 +151,7 @@
   
   
   
-      <article>
+      <article class="">
       
         <h3>Acceso concurrente (1 - continuación)</h3>
         
@@ -203,7 +203,7 @@ write(saldo)
   
   
   
-      <article>
+      <article class="">
       
         <h3>Acceso concurrente (2)</h3>
         
@@ -263,7 +263,7 @@ select count(*) from alquiler;</pre></div>
   
   
   
-      <article>
+      <article class="">
       
         <h3>Acceso concurrente (2 - continuación)</h3>
         
@@ -310,7 +310,7 @@ where fecha = now()::date;</pre></div>
   
   
   
-      <article>
+      <article class="">
       
         <h3>Resistencia a fallas</h3>
         
@@ -337,7 +337,7 @@ delete from reserva where fecha = current_date;</pre></div>
   
   
   
-      <article>
+      <article class="">
       
         <h3>Transacción</h3>
         
@@ -361,7 +361,7 @@ delete from reserva where fecha = current_date;</pre></div>
   
   
   
-      <article>
+      <article class="">
       
         <h2>Propiedades ACID</h2>
       
@@ -370,7 +370,7 @@ delete from reserva where fecha = current_date;</pre></div>
   
   
   
-      <article>
+      <article class="">
       
         <h3>Propiedades ACID</h3>
         
@@ -392,7 +392,7 @@ delete from reserva where fecha = current_date;</pre></div>
   
   
   
-      <article>
+      <article class="">
       
         <h3>Atomicity</h3>
         
@@ -438,7 +438,7 @@ delete from reserva where fecha = current_date;</pre></div>
   
   
   
-      <article>
+      <article class="">
       
         <h3>Consistency</h3>
         
@@ -478,7 +478,7 @@ delete from reserva where fecha = current_date;</pre></div>
   
   
   
-      <article>
+      <article class="">
       
         <h3>Isolation</h3>
         
@@ -513,7 +513,7 @@ delete from reserva where fecha = current_date;</pre></div>
   
   
   
-      <article>
+      <article class="">
       
         <h3>Ejemplo de serialización</h3>
         
@@ -555,7 +555,7 @@ delete from reserva where fecha = current_date;</pre></div>
   
   
   
-      <article>
+      <article class="">
       
         <h3>Durability</h3>
         
@@ -580,7 +580,7 @@ delete from reserva where fecha = current_date;</pre></div>
   
   
   
-      <article>
+      <article class="">
       
         <h2>Isolation Levels</h2>
       
@@ -589,7 +589,7 @@ delete from reserva where fecha = current_date;</pre></div>
   
   
   
-      <article>
+      <article class="">
       
         <h3>Isolation</h3>
         
@@ -627,7 +627,7 @@ delete from reserva where fecha = current_date;</pre></div>
   
   
   
-      <article>
+      <article class="">
       
         <h3>Isolation Levels (por transacción)</h3>
         
@@ -682,7 +682,7 @@ delete from reserva where fecha = current_date;</pre></div>
   
   
   
-      <article>
+      <article class="">
       
         <h3>Dirty Read</h3>
         
@@ -726,7 +726,7 @@ commit;</pre></div>
   
   
   
-      <article>
+      <article class="">
       
         <h3>read uncommitted</h3>
         
@@ -749,7 +749,7 @@ commit;</pre></div>
   
   
   
-      <article>
+      <article class="">
       
         <h3>read committed</h3>
         
@@ -792,7 +792,7 @@ commit;</pre></div>
   
   
   
-      <article>
+      <article class="">
       
         <h3>repeatable read</h3>
         
@@ -839,7 +839,7 @@ commit;</pre></div>
   
   
   
-      <article>
+      <article class="">
       
         <h3>repeatable read (phantom tuples)</h3>
         
@@ -886,7 +886,32 @@ commit;</pre></div>
   
   
   
-      <article>
+      <article class="">
+      
+        <h3>Resumiendo...</h3>
+        
+  
+  <p>
+    ¿Qué problemas permite cada <i>isolation level</i>?
+  </p>
+  
+
+  
+  <div class="code"><pre>Isolation level  | Dirty Read | Unreap Read | Phamtom Read
+-----------------+------------+-------------+--------------
+read uncommitted |     SI     |      SI     |      SI
+read committed   |     NO     |      SI     |      SI
+repeatable read  |     NO     |      NO     |      SI
+serializable     |     NO     |      NO     |      NO</pre></div>
+  
+
+      
+      <span class="pagenumber">26</span>
+      </article>
+  
+  
+  
+      <article class="">
       
         <h3>read only</h3>
         
@@ -900,12 +925,12 @@ commit;</pre></div>
   
 
       
-      <span class="pagenumber">26</span>
+      <span class="pagenumber">27</span>
       </article>
   
   
   
-      <article>
+      <article class="">
       
         <h3>Bibliografía</h3>
         
@@ -922,12 +947,12 @@ commit;</pre></div>
   </ul>
 
       
-      <span class="pagenumber">27</span>
+      <span class="pagenumber">28</span>
       </article>
   
   
   
-      <article>
+      <article class="">
       
         <h3></h3>
         
@@ -936,12 +961,12 @@ commit;</pre></div>
 </div>
 
       
-      <span class="pagenumber">28</span>
+      <span class="pagenumber">29</span>
       </article>
   
   
 
-      <article>
+      <article class="">
         <h3>Thank you</h3>
         
           <div class="presenter">
