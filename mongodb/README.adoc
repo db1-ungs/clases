@@ -40,46 +40,37 @@ En este caso, las principales consultas que definimos, a modo de ejemplo, son la
 // ! definir dónde explico el concepto de colección: slide o guía?
 El diseño se puede presentar mediante los nombres de las colecciones, y un documento de ejemplo de cada colección. En este caso, podemos tener en cuenta las colecciones `alumnes` y `materias`, con documentos que siguen la siguiente estructura:
 
-//ver si es mejor poner new Date(anio, mes, dia)
 [source, JSON]
 ----
 alumne {
-    "_id": 37627821, 
-    "nombre": "Juan",
-    "apellido": "Perez",
-    "materia_cursada": {
-        "cod": 1,
-        "nombre": "Bases de Datos I",
-        "anio": 2024,
-        "semestre": 1,
-        "parciales": [
-            {
-                "fecha": {"$date": "2024-01-01T00:00:00Z"},
-                "nota": 8 
-            },
-            { 
-                "fecha": {"$date": "2024-02-01T00:00:00Z"},
-                "nota": 9
-            }
-        ]
+    "_id": 37627821,
+    "nombre": "Anthony",
+    "apellido": "Stark",
+    "materiaCursada": {
+      "cod": 5,
+      "nombre": "Bases de Datos I",
+      "anio": 2024,
+      "semestre": 1,
+      "parciales": [
+        {
+          "fecha": { "$date": "2024-05-01T00:00:00Z" },
+          "nota": 9
+        }
+      ]
     }
-}
+  },
 
 materia {
-    "_id": 1,
+    "_id": 5,
     "nombre": "Bases de Datos I",
     "docentes": ["Bertaccini, Daniel", "Ebertz, Ximena", "Rondelli, Hernán"],
     "parciales": [
-        {
-            "fecha": {"$date": "2024-01-01T00:00:00Z"},
-            "descripcion": "Primer Parcial"
-        },
-        {
-            "fecha": {"$date": "2024-02-01T00:00:00Z"},
-            "descripcion": "Segundo Parcial"
-        }   
+      {
+        "fecha": { "$date": "2024-05-01T00:00:00Z" },
+        "descripcion": "Parcial"
+      }
     ]
-}
+  },
 ----
 
 Se puede ver que, en este caso, se tiene el el documento del alumne el código de la materia cursada y su nombre. El código es el campo `_id` del documento de la materia, por lo que el programador debe mantener la coherencia del campo `cod` cuando inserta nuevos alumnes. Este tipo de referencia se denomina *referencia manual*, y es la manera más sencilla de referenciar.
@@ -90,13 +81,27 @@ Almacenar el nombre de la materia en el documento del alumno es una decisión de
 
 == Crear base de datos
 
-.... conexión con atlas?''
+La creación de la base de datos se realiza con la instrucción `use nombreDB`. Si existe, MongoDB cambia la base de datos en uso a la base de datos especificada. Si no existe, se crea.
 
-Para crear una base de datos, únicamente se debe usar la ... `use nombreDB`.
+.sintaxis de creación de base de datos
+[source, console]
+----
+xime@test> use cursada
+----
 
+Si luego de esto ejecutamos la instrucción `show dbs`, se mostrará la base de datos creadas y las bases de datos por default de MongoDB.
+
+[source, console]
 ----
-xime> use coso
+xime@cursada> show dbs
+cursada       40.00 KiB
+test          72.00 KiB
+admin        368.00 KiB
+local         10.14 GiB
 ----
+
+// notar prompt: explicar cómo cambiarlo si usamos atlas
+// para una sesión: prompt = function () { return "xime@" + db.getName() + "> "; }
 
 == Insertar datos
 
