@@ -50,6 +50,8 @@ alumne {
     "materia_cursada": {
         "cod": 1,
         "nombre": "Bases de Datos I",
+        "anio": 2024,
+        "semestre": 1,
         "parciales": [
             {
                 "fecha": {"$date": "2024-01-01T00:00:00Z"},
