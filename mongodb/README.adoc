@@ -24,6 +24,19 @@ image::img/der-alumne-materia.jpg[align=center]
 
 == Diseño
 
+A diferencia de las bases de datos relacionales, para diseñar una base de datos no relacional se necesita más información que únicamente el DER.
+
+En particular, una base de datos documental como MongoDB se puede diseñar en base al DER y a las principales consultas que se realizarán sobre la base de datos. Esto es porque las bases de datos no relacionales están diseñadas para clusterizarse, por lo que la información se encuentra distribuida en distintos nodos de un cluster.
+
+Si la información a obtener para una consulta recurrente no se encuentra en un mismo nodo, las operaciones pueden ralentizarse y la información puede estar desactualizada. Por este motivo, el diseño de colecciones y documentos debe realizarse pensando en los puntos principales para los que se creó la base de datos. De esta forma, obtenemos consultas más rápidas y eficaces.
+
+En este caso, las principales consultas que definimos, a modo de ejemplo, son las siguientes:
+
+1. Obtener los estudiantes que cursan una materia determinada
+2. Obtener los estudiantes que desaprobaron algún parcial
+3. Materias cursadas por un estudiante en el año 2015
+4. Obtener los docentes que dictan una materia
+
 == Crear base de datos
 
 Para crear una base de datos, únicamente se debe usar la ... `use nombreDB`.
