@@ -1,0 +1,148 @@
+[
+  {
+    "_id": 1,
+    "dni": 37627821,
+    "nombre": "Anthony",
+    "apellido": "Stark",
+    "materiaCursada": {
+      "cod": 5,
+      "nombre": "Bases de Datos I",
+      "anio": 2024,
+      "semestre": 1,
+      "parciales": [
+        {
+          "fecha": { "$date": "2024-05-01T00:00:00Z" },
+          "nota": 9
+        }
+      ]
+    }
+  },
+
+  {
+    "_id": 2,
+    "dni": 37627821,
+    "nombre": "Anthony",
+    "apellido": "Stark",
+    "materiaCursada": {
+      "cod": 6,
+      "nombre": "Bases de Datos II",
+      "anio": 2024,
+      "semestre": 2,
+      "parciales": [
+        {
+          "fecha": { "$date": "2024-07-01T00:00:00Z" },
+          "nota": 8
+        },
+        {
+          "fecha": { "$date": "2024-08-01T00:00:00Z" },
+          "nota": 9
+        },
+        {
+          "fecha": { "$date": "2024-09-01T00:00:00Z" },
+          "nota": 10
+        }
+      ]
+    }
+  },
+
+  {
+    "_id": 3,
+    "dni": 41982376,
+    "nombre": "Natasha",
+    "apellido": "Romanoff",
+    "materiaCursada": {
+        "cod": 4,
+        "nombre": "Programación III",
+        "anio": 2023,
+        "semestre": 1,
+        "parciales": [
+          {
+            "fecha": { "$date": "2023-05-01T00:00:00Z" },
+            "nota": 10
+          }
+        ]
+      }
+  },
+
+  {
+    "_id": 4,
+    "dni": 15329651,
+    "nombre": "Steve",
+    "apellido": "Rogers",
+    "materiaCursada": {
+        "cod": 5,
+        "nombre": "Bases de Datos I",
+        "anio": 2024,
+        "semestre": 1,
+        "parciales": [
+          {
+            "fecha": { "$date": "2024-05-01T00:00:00Z" },
+            "nota": 10
+          }
+        ]
+    }
+  },
+
+  {
+    "_id": 5,
+    "dni": 15329651,
+    "nombre": "Steve",
+    "apellido": "Rogers",
+    "materiaCursada": {
+      "cod": 1,
+      "nombre": "Introducción a la Programación",
+      "anio": 1945,
+      "semestre": 1,
+      "parciales": []
+    }
+  },
+
+  {
+    "_id": 6,
+    "dni": 11111111,
+    "nombre": "Thor",
+    "apellido": "Odinson",
+    "materiaCursada": {
+      "cod": 21,
+      "nombre": "Física Cuántica",
+      "anio": 2024,
+      "semestre": 1,
+      "parciales": [
+        {
+          "fecha": { "$date": "2024-03-01T00:00:00Z" },
+          "nota": 1
+        }
+      ]
+    }
+  },
+
+  {
+    "_id": 7,
+    "dni": 38763821,
+    "nombre": "Bruce",
+    "apellido": "Banner",
+    "materiaCursada": {
+      "cod": 21,
+      "nombre": "Física Cuántica",
+      "anio": 2019,
+      "semestre": 2,
+      "parciales": [
+        {
+          "fecha": { "$date": "2024-09-01T00:00:00Z" },
+          "nota": 8
+        },
+        {
+          "fecha": { "$date": "2024-10-01T00:00:00Z" },
+          "nota": 9
+        }
+      ]
+    }
+  },
+
+  {
+    "_id": 8,
+    "dni": 40822971,
+    "nombre": "Clint",
+    "apellido": "Barton"
+  }
+]

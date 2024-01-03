@@ -1,0 +1,76 @@
+[
+  {
+    "_id": 5,
+    "nombre": "Bases de Datos I",
+    "docentes": ["Bertaccini, Daniel", "Ebertz, Ximena", "Rondelli, Hernán"],
+    "parciales": [
+      {
+        "fecha": { "$date": "2024-05-01T00:00:00Z" },
+        "descripcion": "Parcial"
+      }
+    ]
+  },
+
+  {
+    "_id": 6,
+    "nombre": "Bases de Datos II",
+    "docentes": [],
+    "parciales": [
+      {
+        "fecha": { "$date": "2024-04-01T00:00:00Z" },
+        "descripcion": "Primer Parcial"
+      },
+      {
+        "fecha": { "$date": "2024-05-01T00:00:00Z" },
+        "descripcion": "Segundo Parcial"
+      },
+      {
+        "fecha": { "$date": "2024-06-01T00:00:00Z" },
+        "descripcion": "Tercer Parcial"
+      }
+    ]
+  },
+
+  {
+    "_id": 4,
+    "nombre": "Programación III",
+    "docentes": ["Bertaccini, Daniel"],
+    "parciales": [
+      {
+        "fecha": { "$date": "2023-05-01T00:00:00Z" },
+        "descripcion": "Parcial"
+      }
+    ]
+  },
+  {
+    "_id": 1,
+    "nombre": "Introducción a la Programación",
+    "docentes": ["Ebertz, Ximena"],
+    "parciales": [
+      {
+        "fecha": { "$date": "2023-04-01T00:00:00Z" },
+        "descripcion": "Primer Parcial"
+      },
+      {
+        "fecha": { "$date": "2023-05-01T00:00:00Z" },
+        "descripcion": "Segundo Parcial"
+      }
+    ]
+  },
+
+  {
+    "_id": 21,
+    "nombre": "Física Cuántica",
+    "docentes": ["Rondelli, Hernán"],
+    "parciales": [
+      {
+        "fecha": { "$date": "2024-04-01T00:00:00Z" },
+        "descripcion": "Primer Parcial"
+      },
+      {
+        "fecha": { "$date": "2024-05-01T00:00:00Z" },
+        "descripcion": "Segundo Parcial"
+      }
+    ]
+  }
+]
