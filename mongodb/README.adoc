@@ -107,19 +107,40 @@ local         10.14 GiB
 
 Existen diversas formas de insertar datos.
 
+* Insertar un documento
 ----
 insert one
 ----
 
+* Insertar un array de documentos
 ----
 insert many
 ----
 
+* Insertar un array de documentos desde un archivo externo 
 ----
 insert many from document (modificar segun SO)
 ----
 
 MENCIONAR QUE MONGODB ES BASADA EN JS Y ADMITE CODIGO JS
+
+_insert many from document para atlas_
+
+1. Crear un documento JSON que contenga un array de documentos a insertar
+2. Desde mongosh, se debe leer el archivo y guardar en una variable. Como MongoDB admite código JavaScript, se puede hacer EJSON.parse(fs.readFileSync("coso.json"))
+3. `db.coleccion.insertMany(variable)`
+
+.lectura de un archivo
+[source, console]
+----
+xime@cursada> const alumnes = EJSON.parse(fs.readFileSync("alumnes.json"))
+----
+
+.inserción de datos
+[source, console]
+----
+xime@cursada> db.alumnes.insertMany(alumnes)
+----
 
 show collections
 
