@@ -37,6 +37,46 @@ En este caso, las principales consultas que definimos, a modo de ejemplo, son la
 3. Materias cursadas por un estudiante en el año 2015
 4. Obtener los docentes que dictan una materia
 
+// ! definir dónde explico el concepto de colección: slide o guía?
+El diseño se puede presentar mediante los nombres de las colecciones, y un documento de ejemplo de cada colección. En este caso, podemos tener en cuenta las colecciones `alumnes` y `materias`, con documentos que siguen la siguiente estructura:
+
+//ver si es mejor poner new Date(anio, mes, dia)
+[source, JSON]
+----
+alumne {
+    "_id": 37627821, 
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "materia_cursada": {
+        "cod": 1,
+        "nombre": "Bases de Datos I",
+        "parciales": [
+            {
+                "fecha": ISODate("2024-01-01T00:00:00Z"),
+                "nota": 8 
+            },
+            { 
+                "fecha": ISODate("2024-02-01T00:00:00Z"),
+                "nota": 9
+            }
+        ]
+    }
+}
+
+materia {
+    "_id": 1,
+    "nombre": "Bases de Datos I",
+    "docentes": ["Bertaccini, Daniel", "Ebertz, Ximena", "Rondelli, Hernán"],
+    "parciales": [ISODate("2024-01-01T00:00:00Z"), ISODate("2024-02-01T00:00:00Z")]
+}
+----
+
+Se puede ver que, en este caso, se tiene el el documento del alumne el código de la materia cursada y su nombre. El código es el campo `_id` del documento de la materia, por lo que el programador debe mantener la coherencia del campo `cod` cuando inserta nuevos alumnes. Este tipo de referencia se denomina *referencia manual*, y es la manera más sencilla de referenciar.
+
+Por otra parte, podemos ver que cada alumno tiene la información de una materia cursada. Por lo que, en la colección `alumnos`, existirá un documento por cada materia del alumno.
+
+Almacenar el nombre de la materia en el documento del alumno es una decisión de diseño. No es necesario, ya que con el código se puede obtener, pero es mejor aprovechar la redundancia y la desnormalización, para que las consultas finales sean lo más sencillas posibles.
+
 == Crear base de datos
 
 Para crear una base de datos, únicamente se debe usar la ... `use nombreDB`.
