@@ -52,11 +52,11 @@ alumne {
         "nombre": "Bases de Datos I",
         "parciales": [
             {
-                "fecha": ISODate("2024-01-01T00:00:00Z"),
+                "fecha": {"$date": "2024-01-01T00:00:00Z"},
                 "nota": 8 
             },
             { 
-                "fecha": ISODate("2024-02-01T00:00:00Z"),
+                "fecha": {"$date": "2024-02-01T00:00:00Z"},
                 "nota": 9
             }
         ]
@@ -67,7 +67,7 @@ materia {
     "_id": 1,
     "nombre": "Bases de Datos I",
     "docentes": ["Bertaccini, Daniel", "Ebertz, Ximena", "Rondelli, Hernán"],
-    "parciales": [ISODate("2024-01-01T00:00:00Z"), ISODate("2024-02-01T00:00:00Z")]
+    "parciales": [{"$date": "2024-01-01T00:00:00Z"}, {"$date": "2024-02-01T00:00:00Z"}]
 }
 ----
 
@@ -78,6 +78,8 @@ Por otra parte, podemos ver que cada alumno tiene la información de una materia
 Almacenar el nombre de la materia en el documento del alumno es una decisión de diseño. No es necesario, ya que con el código se puede obtener, pero es mejor aprovechar la redundancia y la desnormalización, para que las consultas finales sean lo más sencillas posibles.
 
 == Crear base de datos
+
+.... conexión con atlas?''
 
 Para crear una base de datos, únicamente se debe usar la ... `use nombreDB`.
 
