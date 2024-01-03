@@ -40,37 +40,42 @@ En este caso, las principales consultas que definimos, a modo de ejemplo, son la
 // ! definir dónde explico el concepto de colección: slide o guía?
 El diseño se puede presentar mediante los nombres de las colecciones, y un documento de ejemplo de cada colección. En este caso, podemos tener en cuenta las colecciones `alumnes` y `materias`, con documentos que siguen la siguiente estructura:
 
+.alumne
 [source, JSON]
 ----
-alumne {
-    "_id": 37627821,
-    "nombre": "Anthony",
-    "apellido": "Stark",
-    "materiaCursada": {
-      "cod": 5,
-      "nombre": "Bases de Datos I",
-      "anio": 2024,
-      "semestre": 1,
-      "parciales": [
-        {
-          "fecha": { "$date": "2024-05-01T00:00:00Z" },
-          "nota": 9
-        }
-      ]
-    }
-  },
-
-materia {
-    "_id": 5,
+{
+  "_id": 37627821,
+  "nombre": "Anthony",
+  "apellido": "Stark",
+  "materiaCursada": {
+    "cod": 5,
     "nombre": "Bases de Datos I",
-    "docentes": ["Bertaccini, Daniel", "Ebertz, Ximena", "Rondelli, Hernán"],
+    "anio": 2024,
+    "semestre": 1,
     "parciales": [
       {
         "fecha": { "$date": "2024-05-01T00:00:00Z" },
-        "descripcion": "Parcial"
+        "nota": 9
       }
     ]
-  },
+  }
+}
+----
+
+.materia
+[source, JSON]
+----
+{
+  "_id": 5,
+  "nombre": "Bases de Datos I",
+  "docentes": ["Bertaccini, Daniel", "Ebertz, Ximena", "Rondelli, Hernán"],
+  "parciales": [
+    {
+      "fecha": { "$date": "2024-05-01T00:00:00Z" },
+      "descripcion": "Parcial"
+    }
+  ]
+}
 ----
 
 Se puede ver que, en este caso, se tiene el el documento del alumne el código de la materia cursada y su nombre. El código es el campo `_id` del documento de la materia, por lo que el programador debe mantener la coherencia del campo `cod` cuando inserta nuevos alumnes. Este tipo de referencia se denomina *referencia manual*, y es la manera más sencilla de referenciar.
