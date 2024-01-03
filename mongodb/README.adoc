@@ -1,0 +1,49 @@
+= Mini Guía de MongoDB
+Ximena Ebertz <xxx>
+v2, {docdate}
+:title-page:
+:numbered:
+:toc-title: Contenidos
+:toc: left
+:tabsize: 4
+:icons: font
+:source-highlighter: coderay
+:note-caption: Nota
+:figure-caption: Figura
+:table-caption: Tabla
+:pdf-page-size: A4
+:pdf-page-margin: [3cm, 3cm, 3cm, 3cm]
+
+[small]#Copyright (C) 2023 Ximena Ebertz. All rights reserved.#
+
+== Diseño
+
+== Crear base de datos
+
+== Insertar datos
+
+== Selección
+
+=== Find
+
+=== Sort
+
+=== Count
+
+== Update
+
+== Comparación
+
+== Operadores lógicos
+
+== Array
+
+== Set
+
+== Map
+
+== Eliminar datos
+
+=== Eliminar documentos
+
+=== Eliminar coleccion
