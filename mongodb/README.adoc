@@ -44,7 +44,8 @@ El diseño se puede presentar mediante los nombres de las colecciones, y un docu
 [source, JSON]
 ----
 {
-  "_id": 37627821,
+  "_id": 1,
+  "dni": 37627821,
   "nombre": "Anthony",
   "apellido": "Stark",
   "materiaCursada": {
