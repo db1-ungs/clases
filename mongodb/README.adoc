@@ -16,6 +16,12 @@ v2, {docdate}
 
 [small]#Copyright (C) 2023 Ximena Ebertz. All rights reserved.#
 
+En este documento, presentamos una introducción a la sintaxis de la base de datos documental MongoDB. Para cada ejemplo, presentamos la query _input_ y el _output_ dado por el gestor de base de datos.
+
+Se utilizará el siguiente diagrama de entidad-relación como punto de partida.
+
+image::img/der-alumne-materia.jpg[align=center]
+
 == Diseño
 
 == Crear base de datos
