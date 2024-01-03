@@ -20,11 +20,41 @@ v2, {docdate}
 
 == Crear base de datos
 
+Para crear una base de datos, únicamente se debe usar la ... `use nombreDB`.
+
+----
+xime> use coso
+----
+
 == Insertar datos
+
+Existen diversas formas de insertar datos.
+
+----
+insert one
+----
+
+----
+insert many
+----
+
+----
+insert many from document (modificar segun SO)
+----
+
+MENCIONAR QUE MONGODB ES BASADA EN JS Y ADMITE CODIGO JS
+
+show collections
 
 == Selección
 
 === Find
+
+db.coleccion.find()
+db.coleccion.find({query})
+db.coleccion.find({query}, {columnas})
+
+db.coleccion.findOne()
 
 === Sort
 
@@ -32,9 +62,18 @@ v2, {docdate}
 
 == Update
 
+updateOne
+updateMany
+
+$set y $unset
+
 == Comparación
 
+$eq $gt $gte $in $lt $lte $ne $nin
+
 == Operadores lógicos
+
+$and $not $nor $or $exists
 
 == Array
 
@@ -46,4 +85,8 @@ v2, {docdate}
 
 === Eliminar documentos
 
+db.coleccion.remove({query})
+
 === Eliminar coleccion
+
+db.coleccion.drop()
