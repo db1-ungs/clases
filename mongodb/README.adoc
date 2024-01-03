@@ -148,15 +148,23 @@ xime@cursada> const alumnes = EJSON.parse(fs.readFileSync("alumnes.json"))
 xime@cursada> db.alumnes.insertMany(alumnes)
 ----
 
-show collections
+Luego de insertar los datos, se puede ejecutar la instrucción `show collections` para visualizar las colecciones creadas.
+
+[source, console]
+----
+xime@cursada> show collections
+alumnes
+materias
+xime@cursada>
+----
 
 == Selección
 
 === Find
 
 db.coleccion.find()
-db.coleccion.find({query})
-db.coleccion.find({query}, {columnas})
+db.coleccion.find({selección})
+db.coleccion.find({selección}, {proyección})
 
 db.coleccion.findOne()
 
@@ -189,7 +197,7 @@ $and $not $nor $or $exists
 
 === Eliminar documentos
 
-db.coleccion.remove({query})
+db.coleccion.remove({selección})
 
 === Eliminar coleccion
 
