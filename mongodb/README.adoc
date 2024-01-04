@@ -49,7 +49,7 @@ El diseño se puede presentar mediante los nombres de las colecciones, y un docu
   "nombre": "Anthony",
   "apellido": "Stark",
   "materiaCursada": {
-    "cod": 5,
+    "id": 5,
     "nombre": "Bases de Datos I",
     "anio": 2024,
     "semestre": 1,
@@ -68,7 +68,10 @@ El diseño se puede presentar mediante los nombres de las colecciones, y un docu
 ----
 {
   "_id": 5,
+  "cod": "A0524",
   "nombre": "Bases de Datos I",
+  "anio": 2024,
+  "semestre": 1,
   "docentes": ["Bertaccini, Daniel", "Ebertz, Ximena", "Rondelli, Hernán"],
   "parciales": [
     {
@@ -79,11 +82,13 @@ El diseño se puede presentar mediante los nombres de las colecciones, y un docu
 }
 ----
 
-Se puede ver que, en este caso, se tiene el el documento del alumne el código de la materia cursada y su nombre. El código es el campo `_id` del documento de la materia, por lo que el programador debe mantener la coherencia del campo `cod` cuando inserta nuevos alumnes. Este tipo de referencia se denomina *referencia manual*, y es la manera más sencilla de referenciar.
+Se puede ver que, en este caso, se tiene el el documento del alumne el código de la materia cursada y su nombre. El código es el campo `_id` del documento de la materia, por lo que el programador debe mantener la coherencia del campo `id` cuando inserta nuevos alumnes. Este tipo de referencia se denomina *referencia manual*, y es la manera más sencilla de referenciar.
 
 Por otra parte, podemos ver que cada alumno tiene la información de una materia cursada. Por lo que, en la colección `alumnos`, existirá un documento por cada materia del alumno.
 
 Almacenar el nombre de la materia en el documento del alumno es una decisión de diseño. No es necesario, ya que con el código se puede obtener, pero es mejor aprovechar la redundancia y la desnormalización, para que las consultas finales sean lo más sencillas posibles.
+
+Por otra parte, en la colección `materias` también existe redundancia, ya que habrá un documento por cada semestre para una materia. De esta forma, se almacena la información de los docentes por semestre, así como la de los parciales. Podría haber un documento por materia y actualizarlo por semestre, pero la información previa se perdería.
 
 == Crear base de datos
 
