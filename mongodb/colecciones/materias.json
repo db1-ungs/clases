@@ -89,3 +89,8 @@
     ]
   }
 ]
+
+for (var i = 0; i < 8; i++) { 
+  semestre = i % 2 + 1; 
+  db.materias.insertOne({ _id: i, cod: "A0524", anio: anio, semestre: semestre, docentes: [], parciales: [] }); 
+  anio = anio + semestre - 1 }

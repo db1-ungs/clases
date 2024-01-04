@@ -116,12 +116,31 @@ local         10.14 GiB
 
 == Insertar datos
 
-Existen diversas formas de insertar datos.
+Existen diversas formas de insertar datos. Un documento se inserta en una colección, concepto similar al de una tabla. Para poder insertar un documento, no es necesario crear la colección. Se puede insertar la información asumiendo que la colección existe. Si no existe, MongoDB la crea.
 
-* Insertar un documento
+=== Insertar un documento
+
+Para insertar un único documento, utilizamos la sintaxis `db.coleccion.insertOne({...})`, pasando como parámetro el documento a insertar.
+
+[source, console]
 ----
-insert one
+xime@cursada> db.alumnes.insertOne({ _id: 8, dni: 40822971, nombre: 'Clint', apellido: 'Barton' })
 ----
+
+MongoDB es gestor de bases de datos que permite la ejecución de código JavaScript. Por lo que, se puede almacenar información en variables, realizar loops, crear funciones, entre otras cosas. Esto lo podríamos utilizar también para interactuar con la base de datos, por ejemplo, insertando documentos.
+
+[source, console]
+----
+xime@cursada> var anio = 2024
+xime@cursada> for (var i = 0; i < 8; i++) {
+... sem = i % 2 + 1
+... db.materias.insertOne({ _id: i, cod: "A0524", nombre: "Bases de Datos I", anio: anio, semestre: sem })
+... anio = anio + sem - 1
+... }
+----
+
+En este caso, se utiliza un for para insertar documentos para todos los semestres de la materia "Bases de Datos I" hasta el año 2027, inclusive.
+
 
 * Insertar un array de documentos
 ----
