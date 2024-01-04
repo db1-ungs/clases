@@ -5,7 +5,7 @@
     "nombre": "Anthony",
     "apellido": "Stark",
     "materiaCursada": {
-      "cod": 5,
+      "id": 5,
       "nombre": "Bases de Datos I",
       "anio": 2024,
       "semestre": 1,
@@ -24,7 +24,7 @@
     "nombre": "Anthony",
     "apellido": "Stark",
     "materiaCursada": {
-      "cod": 6,
+      "id": 6,
       "nombre": "Bases de Datos II",
       "anio": 2024,
       "semestre": 2,
@@ -51,7 +51,7 @@
     "nombre": "Natasha",
     "apellido": "Romanoff",
     "materiaCursada": {
-        "cod": 4,
+        "id": 4,
         "nombre": "Programación III",
         "anio": 2023,
         "semestre": 1,
@@ -70,7 +70,7 @@
     "nombre": "Steve",
     "apellido": "Rogers",
     "materiaCursada": {
-        "cod": 5,
+        "id": 5,
         "nombre": "Bases de Datos I",
         "anio": 2024,
         "semestre": 1,
@@ -89,7 +89,7 @@
     "nombre": "Steve",
     "apellido": "Rogers",
     "materiaCursada": {
-      "cod": 1,
+      "id": 1,
       "nombre": "Introducción a la Programación",
       "anio": 1945,
       "semestre": 1,
@@ -103,7 +103,7 @@
     "nombre": "Thor",
     "apellido": "Odinson",
     "materiaCursada": {
-      "cod": 21,
+      "id": 21,
       "nombre": "Física Cuántica",
       "anio": 2024,
       "semestre": 1,
@@ -122,7 +122,7 @@
     "nombre": "Bruce",
     "apellido": "Banner",
     "materiaCursada": {
-      "cod": 21,
+      "id": 21,
       "nombre": "Física Cuántica",
       "anio": 2019,
       "semestre": 2,

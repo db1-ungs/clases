@@ -1,7 +1,10 @@
 [
   {
     "_id": 5,
+    "cod": "A0524",
     "nombre": "Bases de Datos I",
+    "anio": 2024,
+    "semestre": 1,
     "docentes": ["Bertaccini, Daniel", "Ebertz, Ximena", "Rondelli, Hernán"],
     "parciales": [
       {
@@ -13,7 +16,10 @@
 
   {
     "_id": 6,
+    "cod": "A0532",
     "nombre": "Bases de Datos II",
+    "anio": 2024,
+    "semestre": 1,
     "docentes": [],
     "parciales": [
       {
@@ -33,7 +39,10 @@
 
   {
     "_id": 4,
+    "cod": "A0452",
     "nombre": "Programación III",
+    "anio": 2024,
+    "semestre": 1,
     "docentes": ["Bertaccini, Daniel"],
     "parciales": [
       {
@@ -44,7 +53,10 @@
   },
   {
     "_id": 1,
+    "cod": "A0444",
     "nombre": "Introducción a la Programación",
+    "anio": 2024,
+    "semestre": 1,
     "docentes": ["Ebertz, Ximena"],
     "parciales": [
       {
@@ -60,7 +72,10 @@
 
   {
     "_id": 21,
+    "cod": "F0222",
     "nombre": "Física Cuántica",
+    "anio": 2024,
+    "semestre": 1,
     "docentes": ["Rondelli, Hernán"],
     "parciales": [
       {
