@@ -141,30 +141,37 @@ xime@cursada> for (var i = 0; i < 8; i++) {
 
 En este caso, se utiliza un for para insertar documentos para todos los semestres de la materia "Bases de Datos I" hasta el año 2027, inclusive.
 
+=== Insertar un array de documentos
 
-* Insertar un array de documentos
+Para insertar un array de documentos, utilizamos la función `db.coleccion.insertMany({...})`, pasando como parámetro el array a insertar. Este array puede estar en una variable, o se puede escribir directamente. Por ejemplo, si quisiéramos insertar los documentos de los años 2024 y 2025 para la materia "Bases de Datos I", podríamos hacer lo siguiente:
+
+[source, console]
 ----
-insert many
+xime@cursada> db.materias.insertMany([
+... { _id: 1, cod: 'A0524', nombre: 'Bases de Datos I', anio: 2024, semestre: 1 },
+... { _id: 2, cod: 'A0524', nombre: 'Bases de Datos I', anio: 2024, semestre: 2 },
+... { _id: 3, cod: 'A0524', nombre: 'Bases de Datos I', anio: 2025, semestre: 1 },
+... { _id: 4, cod: 'A0524', nombre: 'Bases de Datos I', anio: 2025, semestre: 2 }
+... ])
 ----
 
-* Insertar un array de documentos desde un archivo externo 
-----
-insert many from document (modificar segun SO)
-----
+=== Insertar un array de documentos desde un archivo externo
 
-MENCIONAR QUE MONGODB ES BASADA EN JS Y ADMITE CODIGO JS
+==== Local
 
-_insert many from document para atlas_
+==== Atlas
 
-1. Crear un documento JSON que contenga un array de documentos a insertar
-2. Desde mongosh, se debe leer el archivo y guardar en una variable. Como MongoDB admite código JavaScript, se puede hacer EJSON.parse(fs.readFileSync("coso.json"))
-3. `db.coleccion.insertMany(variable)`
+Si quisiéramos insertar un array de documentos desde un archivo externo, debemos almacenar la información de una variable y posteriormente utilizar la función `db.coleccion.insertMany({...})`, pasándole como parámetro la variable con la información.
+
+Se puede leer un archivo desde `mongosh` hosteado en Atlas de la siguiente manera:
 
 .lectura de un archivo
 [source, console]
 ----
 xime@cursada> const alumnes = EJSON.parse(fs.readFileSync("alumnes.json"))
 ----
+
+Luego, insertamos los datos, con la función previamente mencionada
 
 .inserción de datos
 [source, console]
