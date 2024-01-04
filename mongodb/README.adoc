@@ -159,6 +159,17 @@ xime@cursada> db.materias.insertMany([
 
 ==== Local
 
+Para importar datos a una base de datos local, debemos utilizar el comando `mongoimport` desde la terminal de la siguiente manera:
+
+[source, console]
+----
+xime ~ $ mongoimport -d cursada -c alumnes --file="/home/xime/alumnes.json"
+----
+
+Es importante que se realice desde la terminal del sistema, no desde `mongosh`.
+
+Las opciones `-d` y `-c` corresponden al nombre de la base de datos y al nombre de la colección, respectivamente.
+
 ==== Atlas
 
 Si quisiéramos insertar un array de documentos desde un archivo externo, debemos almacenar la información de una variable y posteriormente utilizar la función `db.coleccion.insertMany({...})`, pasándole como parámetro la variable con la información.
