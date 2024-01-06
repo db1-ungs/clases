@@ -264,7 +264,7 @@ Si quisiera los nombres de las materias que se dan el primer semestre del año 2
 
 [source, console]
 ----
-xime@cursada> db.materias.find({anio: 2024, semestre: 1}, {_id: 0, nombre: 1})
+xime@cursada> db.materias.find({ anio: 2024, semestre: 1 }, { _id: 0, nombre: 1 })
 [
   { nombre: 'Bases de Datos I' },
   { nombre: 'Bases de Datos II' },
@@ -282,7 +282,7 @@ Para obtener los docentes de la materia 'Bases de Datos I' del primer semestre 2
 
 [source, console]
 ----
-xime@cursada> db.materias.find({nombre: 'Bases de Datos I', anio: 2024, semestre: 1}, {_id: 0, nombre: 1, docentes: 1})
+xime@cursada> db.materias.find({ nombre: 'Bases de Datos I', anio: 2024, semestre: 1 }, { _id: 0, nombre: 1, docentes: 1 })
 [
   {
     nombre: 'Bases de Datos I',
@@ -292,6 +292,39 @@ xime@cursada> db.materias.find({nombre: 'Bases de Datos I', anio: 2024, semestre
 ----
 
 === Sort
+
+En MongoDB, la función `sort()` es equivalente a `order by` en SQL. Se utiliza para ordenar los resultados de una consulta, por lo que se escribe seguido de `find()`. La función recibe como parámetro un documento con los atributos sobre los cuales se ordena, asignados a 1 si se quiere ordenar de manera ascendente, o -1 si se quiere ordenar de manera descendente.
+
+Por ejemplo, para obtener los `_id`, `nombre`, `apellido` y `dni` de los alumnos, ordenados por dni de forma ascendente, se puede hacer lo siguiente:
+
+[source, console]
+----
+xime@cursada> db.alumnes.find({}, { dni: 1, nombre: 1, apellido: 1 }).sort({ dni: 1 })
+[
+  { _id: 6, dni: 11111111, nombre: 'Thor', apellido: 'Odinson' },
+  { _id: 4, dni: 15329651, nombre: 'Steve', apellido: 'Rogers' },
+  { _id: 5, dni: 15329651, nombre: 'Steve', apellido: 'Rogers' },
+  { _id: 1, dni: 37627821, nombre: 'Anthony', apellido: 'Stark' },
+  { _id: 2, dni: 37627821, nombre: 'Anthony', apellido: 'Stark' },
+  { _id: 7, dni: 38763821, nombre: 'Bruce', apellido: 'Banner' },
+  { _id: 8, dni: 40822971, nombre: 'Clint', apellido: 'Barton' },
+  { _id: 3, dni: 41982376, nombre: 'Natasha', apellido: 'Romanoff' }
+]
+----
+
+Si se quiere limitar la cantidad de documentos a devolver, se puede usar la operación `limit()`, que recibe como parámetro la cantidad de documentos a mostrar. De esta forma, podemos ver únicamente los primeros tres resultados de la consulta anterior:
+
+[source, console]
+----
+xime@cursada> db.alumnes.find({}, { dni: 1, nombre: 1, apellido: 1 }).sort({ dni: 1 }).limit(3)
+[
+  { _id: 6, dni: 11111111, nombre: 'Thor', apellido: 'Odinson' },
+  { _id: 5, dni: 15329651, nombre: 'Steve', apellido: 'Rogers' },
+  { _id: 4, dni: 15329651, nombre: 'Steve', apellido: 'Rogers' }
+]
+----
+
+El orden de ejecución de las opraciones es siempre `sort()`, `skip()` y `limit()`; por lo que si se escribiera al revés, es decir, `db.alumnes.find({}, { dni: 1, nombre: 1, apellido: 1 })^.limit(3).sort({ dni: 1 })`, el resultado sería el mismo.
 
 === Count
 
