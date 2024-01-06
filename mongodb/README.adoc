@@ -338,7 +338,7 @@ xime@cursada> db.alumnes.find({}, { dni: 1, nombre: 1, apellido: 1 }).sort({ dni
 ]
 ----
 
-El orden de ejecución de las opraciones es siempre `sort()`, `skip()` y `limit()`; por lo que si se escribiera al revés, es decir, `db.alumnes.find({}, { dni: 1, nombre: 1, apellido: 1 })^.limit(3).sort({ dni: 1 })`, el resultado sería el mismo.
+El orden de ejecución de las opraciones es siempre `sort()`, `skip()` y `limit()`; por lo que si se escribiera al revés, es decir, `db.alumnes.find({}, { dni: 1, nombre: 1, apellido: 1 }).limit(3).sort({ dni: 1 })`, el resultado sería el mismo.
 
 === Count
 
