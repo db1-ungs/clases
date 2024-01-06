@@ -36,6 +36,7 @@ En este caso, las principales consultas que definimos, a modo de ejemplo, son la
 2. Obtener los estudiantes que desaprobaron algún parcial
 3. Materias cursadas por un estudiante en el año 2015
 4. Obtener los docentes que dictan una materia
+5. Obtener las materias que se dictan en cierto semestre
 
 // ! definir dónde explico el concepto de colección: slide o guía?
 El diseño se puede presentar mediante los nombres de las colecciones, y un documento de ejemplo de cada colección. En este caso, podemos tener en cuenta las colecciones `alumnes` y `materias`, con documentos que siguen la siguiente estructura:
@@ -197,18 +198,98 @@ Luego de insertar los datos, se puede ejecutar la instrucción `show collections
 xime@cursada> show collections
 alumnes
 materias
-xime@cursada>
 ----
 
-== Selección
+== Select
+
+MongoDB no utiliza el lenguaje SQL, por lo que no existe la query `select * from materia;`. Todas las consultas se realizan con la sintaxis `db.coleccion.funcion()`.
 
 === Find
 
-db.coleccion.find()
-db.coleccion.find({selección})
-db.coleccion.find({selección}, {proyección})
+La alternativa a `select` es la función `find()`, que se puede utilizar de tres maneras distintas:
 
-db.coleccion.findOne()
+1. `db.coleccion.find()`: devuelve todos los documentos de la colección especificada.
+2. `db.coleccion.find({selección})`: devuelve todos los documentos de la colección que cumplen con el criterio de selección. La selección corresponde al `where` en SQL.
+3. `db.coleccion.find({selección}, {proyección})`: devuelve los campos especificados en la proyección de los documentos que cumplen con el criterio de selección. La proyección corresponde a las columnas seleccionadas en SQL.
+
+También, se puede obtener el primer elemento de la colección con la función `findOne()`.
+
+De esta forma, si quisiera ver todas las materias, podría realizar la siguiente consulta:
+
+[source, console]
+----
+xime@cursada> db.materias.find()
+[
+  {
+    _id: 5,
+    cod: 'A0524',
+    nombre: 'Bases de Datos I',
+    anio: 2024,
+    semestre: 1,
+    docentes: [ 'Bertaccini, Daniel', 'Ebertz, Ximena', 'Rondelli, Hernán' ],
+    parciales: [
+      {
+        fecha: ISODate("2024-05-01T00:00:00.000Z"),
+        descripcion: 'Parcial'
+      }
+    ]
+  },
+  {
+    _id: 6,
+    cod: 'A0532',
+    nombre: 'Bases de Datos II',
+    anio: 2024,
+    semestre: 1,
+    docentes: [],
+    parciales: [
+      {
+        fecha: ISODate("2024-04-01T00:00:00.000Z"),
+        descripcion: 'Primer Parcial'
+      },
+      {
+        fecha: ISODate("2024-05-01T00:00:00.000Z"),
+        descripcion: 'Segundo Parcial'
+      },
+      {
+        fecha: ISODate("2024-06-01T00:00:00.000Z"),
+        descripcion: 'Tercer Parcial'
+      }
+    ]
+  },
+  ...
+]
+----
+
+Si quisiera los nombres de las materias que se dan el primer semestre del año 2024, podría realizar la siguiente consulta:
+
+[source, console]
+----
+xime@cursada> db.materias.find({anio: 2024, semestre: 1}, {_id: 0, nombre: 1})
+[
+  { nombre: 'Bases de Datos I' },
+  { nombre: 'Bases de Datos II' },
+  { nombre: 'Programación III' },
+  { nombre: 'Introducción a la Programación' },
+  { nombre: 'Física Cuántica' }
+]
+----
+
+Por defecto, siempre se incluye el atributo `_id` en la proyección, aunque no se especifique. Por lo que, para que no se incluya, le asignamos un cero en la proyección. Los atributos que se quieren mostrar, se especifican con un uno.
+
+Esta consulta es equivalente a la query SQL `select nombre from materia where anio = 2024 and semestre = 1;`
+
+Para obtener los docentes de la materia 'Bases de Datos I' del primer semestre 2024, se puede realizar la siguiente consulta:
+
+[source, console]
+----
+xime@cursada> db.materias.find({nombre: 'Bases de Datos I', anio: 2024, semestre: 1}, {_id: 0, nombre: 1, docentes: 1})
+[
+  {
+    nombre: 'Bases de Datos I',
+    docentes: [ 'Bertaccini, Daniel', 'Ebertz, Ximena', 'Rondelli, Hernán' ]
+  }
+]
+----
 
 === Sort
 
