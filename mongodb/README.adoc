@@ -278,6 +278,20 @@ Por defecto, siempre se incluye el atributo `_id` en la proyección, aunque no s
 
 Esta consulta es equivalente a la query SQL `select nombre from materia where anio = 2024 and semestre = 1;`
 
+Si quisiéramos evitar los primeros dos resultados, podemos utilizar la operación `skip()` de la siguiente manera:
+
+[source, console]
+----
+xime@cursada> db.materias.find({ anio: 2024, semestre: 1 }, { _id: 0, nombre: 1 }).skip(2)
+[
+  { nombre: 'Programación III' },
+  { nombre: 'Introducción a la Programación' },
+  { nombre: 'Física Cuántica' }
+]
+----
+
+Esto permite que no necesariamente se muestren todos los documentos, obteniendo resultados más limitados.
+
 Para obtener los docentes de la materia 'Bases de Datos I' del primer semestre 2024, se puede realizar la siguiente consulta:
 
 [source, console]
