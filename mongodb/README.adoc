@@ -342,6 +342,38 @@ El orden de ejecución de las opraciones es siempre `sort()`, `skip()` y `limit(
 
 === Count
 
+Es posible contar la cantidad de documentos devueltos por una consulta, utilizando la operación `count()`.
+
+Por ejemplo, para obtener los nombres de las materias cursadas por Anthony Stark en 2024, podemos realizar la siguiente consulta:
+
+[source, console]
+----
+xime@cursada> db.alumnes.find({ nombre: 'Anthony', apellido: 'Stark', 'materiaCursada.anio': 2024 }, { _id: 0, nombre: 1, apellido: 1, 'materiaCursada.nombre': 1 })
+[
+  {
+    nombre: 'Anthony',
+    apellido: 'Stark',
+    materiaCursada: { nombre: 'Bases de Datos I' }
+  },
+  {
+    nombre: 'Anthony',
+    apellido: 'Stark',
+    materiaCursada: { nombre: 'Bases de Datos II' }
+  }
+]
+----
+
+Si quisiéramos saber únicamente cuántas materias cursó, podemos modificar la consulta añadiéndole la función `count()`
+
+----
+xime@cursada> db.alumnes.find({nombre: 'Anthony', apellido: 'Stark', 'materiaCursada.anio': 2024}, {}).count()
+2
+----
+
+En este caso, no es necesaria la proyección.
+
+Es importante notar que, en la selección de ambas consultas, `materiaCursada.anio` está entre comillas. Esto es porque `materiaCursada` es un documento embebido, y `anio` es un campo de ese documento. Para que MongoDB reconozca que se quiere acceder al `anio` de `materiaCursada` y no a otro (que puede existir), se debe utilizar la notación punto, poniendo todo entre comillas.
+
 == Update
 
 updateOne
