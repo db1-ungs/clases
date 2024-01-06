@@ -365,6 +365,7 @@ xime@cursada> db.alumnes.find({ nombre: 'Anthony', apellido: 'Stark', 'materiaCu
 
 Si quisiéramos saber únicamente cuántas materias cursó, podemos modificar la consulta añadiéndole la función `count()`
 
+[source, console]
 ----
 xime@cursada> db.alumnes.find({nombre: 'Anthony', apellido: 'Stark', 'materiaCursada.anio': 2024}, {}).count()
 2
@@ -404,3 +405,22 @@ db.coleccion.remove({selección})
 === Eliminar coleccion
 
 db.coleccion.drop()
+
+== Colecciones utilizadas
+
+Las colecciones utilizadas para los ejemplos fueron las siguientes:
+
+=== Alumnes
+
+[source, json]
+----
+include::colecciones/alumnes.json[]
+----
+
+=== Materias
+
+[source, json]
+----
+include::colecciones/materias.json[]
+----
+
