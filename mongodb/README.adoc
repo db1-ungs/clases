@@ -367,7 +367,7 @@ Si quisiéramos saber únicamente cuántas materias cursó, podemos modificar la
 
 [source, console]
 ----
-xime@cursada> db.alumnes.find({nombre: 'Anthony', apellido: 'Stark', 'materiaCursada.anio': 2024}, {}).count()
+xime@cursada> db.alumnes.find({ nombre: 'Anthony', apellido: 'Stark', 'materiaCursada.anio': 2024 }, {}).count()
 2
 ----
 
@@ -384,7 +384,134 @@ $set y $unset
 
 == Comparación
 
-$eq $gt $gte $in $lt $lte $ne $nin
+Las comparaciones en Mongo pueden hacerse de diferentes maneras. Una de ellas es utilizando los operadores de comparación. Por ejemplo, se puede buscar los documentos cuya clave `materiaCursada` es igual a "Física Cuántica" de la siguiente manera:
+
+[source, console]
+----
+xime@cursada> db.alumnes.find({ 'materiaCursada.nombre': { $eq: 'Física Cuántica' }}, {})
+[
+  {
+    _id: 6,
+    dni: 11111111,
+    nombre: 'Thor',
+    apellido: 'Odinson',
+    materiaCursada: {
+      id: 21,
+      nombre: 'Física Cuántica',
+      anio: 2024,
+      semestre: 1,
+      parciales: [ { fecha: ISODate("2024-03-01T00:00:00.000Z"), nota: 1 } ]
+    }
+  },
+  {
+    _id: 7,
+    dni: 38763821,
+    nombre: 'Bruce',
+    apellido: 'Banner',
+    materiaCursada: {
+      id: 21,
+      nombre: 'Física Cuántica',
+      anio: 2019,
+      semestre: 2,
+      parciales: [
+        { fecha: ISODate("2024-09-01T00:00:00.000Z"), nota: 8 },
+        { fecha: ISODate("2024-10-01T00:00:00.000Z"), nota: 9 }
+      ]
+    }
+  }
+]
+----
+
+Esto es equivalente a obtener todos los alumnos que cursaron esta materia históricamente, lo que es equivalente a la consulta `db.alumnes.find({ 'materiaCursada.nombre': 'Física Cuántica' }, {}) `. Sin embargo, esta consulta se puede tornar compleja en casos en los que no se quiera obtener información mediante una igualdad.
+
+Por ejemplo, si quisiéramos obtener los alumnos que cursaron esta materia luego del año 2020, necesitaríamos un operador equivalente a `>`. Este es el operador `$gt`. La consulta es la siguiente:
+
+[source, console]
+----
+xime@cursada> db.alumnes.find({ 'materiaCursada.nombre': { $eq: 'Física Cuántica' }, 'materiaCursada.anio': { $gt: 2020 }}, {})
+[
+  {
+    _id: 6,
+    dni: 11111111,
+    nombre: 'Thor',
+    apellido: 'Odinson',
+    materiaCursada: {
+      id: 21,
+      nombre: 'Física Cuántica',
+      anio: 2024,
+      semestre: 1,
+      parciales: [ { fecha: ISODate("2024-03-01T00:00:00.000Z"), nota: 1 } ]
+    }
+  }
+]
+----
+
+A este se le suman otros operadores de comparación.
+
+.Operadores de comparación
+[cols="^,^", width=50%]
+|===
+| Operador en PostgreSQL | Operador en MongoDB
+
+| `=`                      | `$eq`
+| `!=`                     | `$ne`
+| `>`                      | `$gt`
+| `>=`                     | `$gte`
+| `<`                      | `$lt`
+| `<=`                     | `$lte`
+|===
+
+De forma que si quisiéramos contar a los alumnos que cursaron física cuántica entre 2020 (incluido) y 2024 (sin incluir), la consulta sería la siguiente:
+
+[source, console]
+----
+xime@cursada> db.alumnes.find({ 'materiaCursada.nombre': { $eq: 'Física Cuántica' }, 'materiaCursada.anio': { $gte: 2020, $lt: 2024 }}, {}).count()
+0
+----
+
+También, se puede obtener los documentos cuya una de sus keys coincide con alguna key de un conjunto, utilizando el operador `$in`.
+
+.información de materias de programación
+[source, console]
+----
+xime@cursada> db.materias.find({ nombre: { $in: [ 'Introducción a la Programación', 'Programación III' ]}}, {})
+[
+  {
+    _id: 4,
+    cod: 'A0452',
+    nombre: 'Programación III',
+    anio: 2024,
+    semestre: 1,
+    docentes: [ 'Bertaccini, Daniel' ],
+    parciales: [
+      {
+        fecha: ISODate("2023-05-01T00:00:00.000Z"),
+        descripcion: 'Parcial'
+      }
+    ]
+  },
+  {
+    _id: 1,
+    cod: 'A0444',
+    nombre: 'Introducción a la Programación',
+    anio: 2024,
+    semestre: 1,
+    docentes: [ 'Ebertz, Ximena' ],
+    parciales: [
+      {
+        fecha: ISODate("2023-04-01T00:00:00.000Z"),
+        descripcion: 'Primer Parcial'
+      },
+      {
+        fecha: ISODate("2023-05-01T00:00:00.000Z"),
+        descripcion: 'Segundo Parcial'
+      }
+    ]
+  }
+]
+----
+
+Para obtener el complemento de este conjunto, es decir, la información de las materias que no son las de programación; utilizamos el operador `$nin`
 
 == Operadores lógicos
 
