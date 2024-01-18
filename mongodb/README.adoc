@@ -375,13 +375,6 @@ En este caso, no es necesaria la proyección.
 
 Es importante notar que, en la selección de ambas consultas, `materiaCursada.anio` está entre comillas. Esto es porque `materiaCursada` es un documento embebido, y `anio` es un campo de ese documento. Para que MongoDB reconozca que se quiere acceder al `anio` de `materiaCursada` y no a otro (que puede existir), se debe utilizar la notación punto, poniendo todo entre comillas.
 
-== Update
-
-updateOne
-updateMany
-
-$set y $unset
-
 == Comparación
 
 Las comparaciones en Mongo pueden hacerse de diferentes maneras. Una de ellas es utilizando los operadores de comparación. Por ejemplo, se puede buscar los documentos cuya clave `materiaCursada` es igual a "Física Cuántica" de la siguiente manera:
@@ -519,9 +512,12 @@ $and $not $nor $or $exists
 
 == Array
 
-== Set
+== Update
 
-== Map
+updateOne
+updateMany
+
+$set y $unset
 
 == Eliminar datos
 
