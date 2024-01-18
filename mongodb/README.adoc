@@ -504,11 +504,31 @@ xime@cursada> db.materias.find({ nombre: { $in: [ 'Introducción a la Programaci
 ]
 ----
 
-Para obtener el complemento de este conjunto, es decir, la información de las materias que no son las de programación; utilizamos el operador `$nin`
+Para obtener el complemento de este conjunto, es decir, la información de las materias que no son las de programación; utilizamos el operador `$nin`.
 
 == Operadores lógicos
 
-$and $not $nor $or $exists
+También, podemos utilizar operadores lógicos para facilitar las consultas. Estos se utilizan de la misma forma que los operadores de comparación.
+
+.Operadores lógicos
+[cols="^,^", width=50%]
+|===
+| Operador  | Descripción
+
+| `$and`    | Verifica que se cumplan múltiples condiciones al mismo tiempo
+| `$not`    | Arroja resultados si no sucede la condición especificada
+| `$or`     | Verifica que se cumpla una de diversas condiciones
+| `$nor`    | Arroja resultados si no se cumple ninguna de las condiciones especificadas
+| `$exists` | Devuelve resultados si existe la clave especificada
+|===
+
+De esta forma, podemos obtener a los alumnos que no cursan materias cuyo DNI es mayor que 40 000 000 y menor que 45 000 000 y su `_id` no es 30 ni 50. 
+
+[source, console]
+----
+xime@cursada> db.alumnes.find({ materiaCursada: { $exists: false }, $and: [{ dni: { $gte: 4000000, $lte: 45000000 }}, { $nor: [{ _id: 30 }, { _id: 50 }]}]}, {})
+[ { _id: 8, dni: 40822971, nombre: 'Clint', apellido: 'Barton' } ]
+----
 
 == Array
 
