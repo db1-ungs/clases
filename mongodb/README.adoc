@@ -579,6 +579,9 @@ xime@cursada> db.materias.find({ docentes: { $size: 0}}, { nombre: 1, docentes: 
 [ { _id: 6, nombre: 'Bases de Datos II', docentes: [] } ]
 ----
 
+// Ver por qué no anda
+// Es importante considerar que los arrays tienen orden, lo que nos permite acceder a elementos por posición. Esto se realiza utilizando la estructura `'nombreArray.posicion'`, y se puede utilizar ya sea para selección o proyección. Si en lugar de una posición numérica utilizamos el símbolo `$`, MongoDB devolverá  el primer elemento del array, según la condición de selección sobre el mismo array.
+
 == Update
 
 updateOne
