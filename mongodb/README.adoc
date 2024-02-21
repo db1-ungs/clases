@@ -655,7 +655,37 @@ xime@cursada> db.materias.find({}, { _id: 0, nombre: 1, anio: 1 })
 
 === Eliminar documentos
 
-db.coleccion.remove({selección})
+MongoDB permite eliminar uno o varios documentos mediante las funciones `deleteOne` y `deleteMany`. Estas se utilizan con un solo parámetro, especificando la condición de búsqueda de los elementos a eliminar.
+
+Por ejemplo, podemos eliminar al primer alumno cuyo dni sea menor que 25 000 000.
+
+[source, console]
+----
+xime@cursada> db.alumnes.deleteMany({ dni: { $lt: 25000000 }})
+----
+
+O eliminar a todos ellos.
+
+[source, console]
+----
+xime@cursada> db.alumnes.deleteOne({ dni: { $lt: 25000000 }})
+----
+
+El resultado de estas operaciones sería el siguiente:
+
+[source, console]
+----
+xime@cursada> db.alumnes.find({}, { _id: 0, nombre: 1, apellido: 1, dni: 1 })
+[
+  { dni: 41982376, nombre: 'Natasha', apellido: 'Romanoff' },
+  { dni: 37627821, nombre: 'Anthony', apellido: 'Stark' },
+  { dni: 38763821, nombre: 'Bruce', apellido: 'Banner' },
+  { dni: 40822971, nombre: 'Clint', apellido: 'Barton' },
+  { dni: 37627821, nombre: 'Anthony', apellido: 'Stark' }
+]
+----
+
+En este caso, se eliminó la información de 'Steve Rogers' y de 'Thor Odinson'.
 
 === Eliminar coleccion
 
