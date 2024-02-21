@@ -569,6 +569,16 @@ xime@cursada> db.materias.find({ docentes: { $all: ['Bertaccini, Daniel', 'Ronde
 ]
 ----
 
+También, podemos filtrar los documentos según el tamaño de un array perteneciente a un campo utilizando el operador `$size`.
+
+De esta forma, podemos obtener las materias que no tienen docentes asignados.
+
+[source, console]
+----
+xime@cursada> db.materias.find({ docentes: { $size: 0}}, { nombre: 1, docentes: 1 })
+[ { _id: 6, nombre: 'Bases de Datos II', docentes: [] } ]
+----
+
 == Update
 
 updateOne
