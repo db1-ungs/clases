@@ -661,14 +661,14 @@ Por ejemplo, podemos eliminar al primer alumno cuyo dni sea menor que 25 000 000
 
 [source, console]
 ----
-xime@cursada> db.alumnes.deleteMany({ dni: { $lt: 25000000 }})
+xime@cursada> db.alumnes.deleteOne({ dni: { $lt: 25000000 }})
 ----
 
 O eliminar a todos ellos.
 
 [source, console]
 ----
-xime@cursada> db.alumnes.deleteOne({ dni: { $lt: 25000000 }})
+xime@cursada> db.alumnes.deleteMany({ dni: { $lt: 25000000 }})
 ----
 
 El resultado de estas operaciones sería el siguiente:
@@ -689,7 +689,23 @@ En este caso, se eliminó la información de 'Steve Rogers' y de 'Thor Odinson'.
 
 === Eliminar coleccion
 
-db.coleccion.drop()
+Para eliminar una colección completa de la base de datos, debemos utilizar la función `drop` con la sintaxis `db.coleccion.drop()`. Esto elimina toda la información asociada a la colección especificada, incluyendo los índices.
+
+De esta forma, podemos eliminar la colección de alumnos.
+
+[source, console]
+----
+xime@cursada> db.alumnes.drop()
+true
+----
+
+Como la función devolvió `true`, la colección se eliminó correctamente.
+
+[source, console]
+----
+xime@cursada> show collections
+materias
+----
 
 == Colecciones utilizadas
 
