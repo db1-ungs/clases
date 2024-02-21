@@ -707,6 +707,20 @@ xime@cursada> show collections
 materias
 ----
 
+=== Eliminar base de datos
+
+Es necesario situarse dentro de la base de datos requerida para eliminarla. Es importante recordar que para cambiar la base de datos actual utilizamos la sentencia `use nombreDB`.
+
+Luego, podemos eliminar esa base de datos con la función `db.dropDatabase()`.
+
+Es decir, podemos eliminar la base de datos `cursada` de la siguiente manera:
+
+[source, console]
+----
+xime@cursada> db.dropDatabase()
+{ ok: 1, dropped: 'cursada' }
+----
+
 == Colecciones utilizadas
 
 Las colecciones utilizadas para los ejemplos fueron las siguientes:
