@@ -766,6 +766,38 @@ xime@cursada> db.materias.find({}, { _id: -1, nombre: 1, docentes: 1 })
 ]
 ----
 
+Por otra parte, si quisiéramos eliminar a los docentes 'Fury, Nick' y 'Ebertz, Ximena' de todas las materias en las que están registrados, utilizaríamos el operador `$pullAll`.
+
+[source, console]
+----
+xime@cursada> db.materias.updateMany({}, { $pullAll: { docentes: ['Fury, Nick', 'Ebertz, Ximena'] }})
+----
+
+En este caso, no es necesario el operador `$each`.
+
+[source, console]
+----
+xime@cursada> db.materias.find({}, { _id: -1, nombre: 1, docentes: 1 })
+[
+  {
+    _id: 5,
+    nombre: 'Bases de Datos I',
+    docentes: [ 'Bertaccini, Daniel', 'Rondelli, Hernán' ]
+  },
+  { _id: 6, nombre: 'Bases de Datos II', docentes: [] },
+  {
+    _id: 4,
+    nombre: 'Programación III',
+    docentes: [ 'Bertaccini, Daniel' ]
+  },
+  { _id: 1, nombre: 'Introducción a la Programación', docentes: [] },
+  {
+    _id: 21,
+    nombre: 'Física Cuántica',
+    docentes: [ 'Rondelli, Hernán' ]
+  }
+]
+----
 
 == Update
 
