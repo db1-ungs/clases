@@ -584,6 +584,82 @@ xime@cursada> db.materias.find({ docentes: { $size: 0}}, { nombre: 1, docentes: 
 
 // Añadir operadores de modificación de array
 
+=== Operadores de modificación
+
+Existen varios operadores de modificación de arrays, entre los que se encuentran:
+
+.Operadores de modificación
+[cols="^,^"]
+|===
+| Operador                 | Descripción
+
+| `$addToSet`              | Añade un elemento al array especificado, si no se encuentra almacenado
+| `$push`                  | Añade un elemento al array especificado. Si este array no existe, lo crea
+| `$pop`                   | Elimina el primer o último elemento de un array, dependiendo la opción elegida
+| `$pull`                  | Elimina todas las apariciones de un elemento en un array
+| `$pullAll`               | Elimina todas las apariciones de un conjunto de elementos en un array
+|===
+
+Para añadir un nuevo parcial al alumno con `_id` 7, podemos realizar lo siguiente:
+
+[source, console]
+----
+xime@cursada> parcial = { fecha: { $date: "2024-10-01T00:00:00Z" }, nota: 9 }
+xime@cursada> db.alumnes.updateOne({ _id: 7 }, { $addToSet: { 'materiaCursada.parciales': parcial }})
+----
+
+En este caso, como utilizamos el operador `$addToSet` y el parcial ya estaba registrado, la consulta no realiza cambios.
+
+[source, console]
+----
+xime@cursada> db.alumnes.find({ _id: 7 }, { dni: 0, 'materiaCursada.id': 0 })
+[
+  {
+    _id: 7,
+    nombre: 'Bruce',
+    apellido: 'Banner',
+    materiaCursada: {
+      nombre: 'Física Cuántica',
+      anio: 2019,
+      semestre: 2,
+      parciales: [
+        { fecha: ISODate("2024-09-01T00:00:00.000Z"), nota: 8 },
+        { fecha: ISODate("2024-10-01T00:00:00.000Z"), nota: 9 }
+      ]
+    }
+  }
+]
+----
+
+Sin embargo, utilizando `$push`, el elemento se añade de todas maneras, y se obtiene el siguiente resultado:
+
+[source, console]
+----
+xime@cursada> db.alumnes.find({ _id: 7 }, { dni: 0, 'materiaCursada.id': 0 })
+[
+  {
+    _id: 7,
+    nombre: 'Bruce',
+    apellido: 'Banner',
+    materiaCursada: {
+      nombre: 'Física Cuántica',
+      anio: 2019,
+      semestre: 2,
+      parciales: [
+        { fecha: ISODate("2024-09-01T00:00:00.000Z"), nota: 8 },
+        { fecha: ISODate("2024-10-01T00:00:00.000Z"), nota: 9 },
+        { fecha: ISODate("2024-10-01T00:00:00.000Z"), nota: 9 }
+      ]
+    }
+  }
+]
+----
+
+// $each -> funciona con $addToSet y $push
+Estos dos operadores se pueden complementar con el operador `$each`.
+
+
+
 == Update
 
 Para actualizar documentos, tenemos dos opciones: `updateOne` y `updateMany`, estableciendo el filtro en el primer parámetro de la función, y el valor o los valores a actualizar con el operador `$set` en el segundo parámetro. 
