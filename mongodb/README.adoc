@@ -600,6 +600,8 @@ Existen varios operadores de modificación de arrays, entre los que se encuentra
 | `$pullAll`               | Elimina todas las apariciones de un conjunto de elementos en un array
 |===
 
+==== Añadir elementos
+
 Para añadir un nuevo parcial al alumno con `_id` 7, podemos realizar lo siguiente:
 
 [source, console]
@@ -657,6 +659,38 @@ xime@cursada> db.alumnes.find({ _id: 7 }, { dni: 0, 'materiaCursada.id': 0 })
 
 // $each -> funciona con $addToSet y $push
 Estos dos operadores se pueden complementar con el operador `$each`. Este permite que se pueda añadir más de un elemento al array. En este caso, en lugar de utilizar la sentencia `$addToSet: { nombreArray: elemento }`, utilizamos la sentencia `$addToSet: { nombreArray: { $each: [elemento1, elemento2, ..., elementoN] }}}`.
+
+==== Eliminar elementos
+
+El último parcial del alumno de ejemplo se puede eliminar de manera sencilla utilizando el operador `$pop`, ya que el parcial añadido se encuentra en el último elemento. Para especificar que el elemento a eliminar debe ser el último, se debe utilizar el número 1. Si estuviese al principio, se utilizaría el número -1.
+
+[source, console]
+----
+xime@cursada> db.alumnes.updateOne({ _id: 7 }, { $pop: { 'materiaCursada.parciales': 1 }})
+----
+
+Esta consulta arroja el siguiente resultado:
+
+[source, console]
+----
+xime@cursada> db.alumnes.find({ _id: 7 }, { dni: 0, 'materiaCursada.id': 0 })
+[
+  {
+    _id: 7,
+    nombre: 'Bruce',
+    apellido: 'Banner',
+    materiaCursada: {
+      nombre: 'Física Cuántica',
+      anio: 2019,
+      semestre: 2,
+      parciales: [
+        { fecha: ISODate("2024-09-01T00:00:00.000Z"), nota: 8 },
+        { fecha: ISODate("2024-10-01T00:00:00.000Z"), nota: 9 }
+      ]
+    }
+  }
+]
+----
 
 
 
