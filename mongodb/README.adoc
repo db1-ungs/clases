@@ -656,7 +656,7 @@ xime@cursada> db.alumnes.find({ _id: 7 }, { dni: 0, 'materiaCursada.id': 0 })
 ----
 
 // $each -> funciona con $addToSet y $push
-Estos dos operadores se pueden complementar con el operador `$each`.
+Estos dos operadores se pueden complementar con el operador `$each`. Este permite que se pueda añadir más de un elemento al array. En este caso, en lugar de utilizar la sentencia `$addToSet: { nombreArray: elemento }`, utilizamos la sentencia `$addToSet: { nombreArray: { $each: [elemento1, elemento2, ..., elementoN] }}}`.
 
 
 
