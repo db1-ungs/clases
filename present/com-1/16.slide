@@ -81,6 +81,8 @@ producto cartesiano con join condition:
 	select * from alumne a, cursa c where a.legajo = c.legajo;
 	select * from alumne a, cursa c, materia m where a.legajo = c.legajo and c.código = m.código;
 
+* No usar la sintaxis `join on` en el parcial!
+
 * Tablas
 
 * Tablas
