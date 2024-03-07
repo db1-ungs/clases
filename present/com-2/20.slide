@@ -95,6 +95,23 @@ DER. Modelo Relacional. Dependencias Funcionales. Formas Normales.
 *Entrega*trabajo*práctico*–*24*de*junio*
 Todos los temas de la materia.
 
+# Ver como redactarlo 
+# 
+# * Objetivos de aprendizaje
+# __
+# __
+# 
+# - *Armar*un*buen*diseño*de*una*BD*relacional*para*una*aplicación*mediana*
+# - Identificar dependencias funcionales en el modelado de la información
+# - Descomponer la información de la BD en relaciones que cumplan con la 3FN
+# - Identificar ventajas y desventajas en el proceso de normalización de relaciones
+# __
+# __
+# 
+# - *Desarrollar*una*pequeña*aplicación*utilizando*programación*en*la*BD*
+# - Consultar y actualizar la información de una BD a través del lenguaje SQL
+# - Identificar problemas de acceso o actualización por concurrencia o fallas
+
 * Bases de Datos
 
 * Bases de Datos

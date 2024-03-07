@@ -532,22 +532,409 @@ xime@cursada> db.alumnes.find({ materiaCursada: { $exists: false }, $and: [{ dni
 
 == Array
 
+Se puede ver que MongoDB permite los atributos multivaluados mediante arrays o documentos embebidos.
+
+Existen distintos operadores que permiten realizar la búsqueda de información dentro de un array de forma más dinámica.
+
+Si quisiéramos obtener las materias que da el docente 'Bertaccini, Daniel', deberíamos obtener las materias que contienen a este docente en su array de docentes. Para esto, utilizamos el operador `$elemMatch`. Este operador devuelve los documentos que contienen el valor especificado dentro del array correspondiente.
+
+[source, console]
+----
+xime@cursada> db.materias.find({ docentes: { $elemMatch: { $eq: 'Bertaccini, Daniel' }}}, { nombre: 1, docentes: 1 })
+[
+  {
+    _id: 5,
+    nombre: 'Bases de Datos I',
+    docentes: [ 'Bertaccini, Daniel', 'Ebertz, Ximena', 'Rondelli, Hernán' ]
+  },
+  {
+    _id: 4,
+    nombre: 'Programación III',
+    docentes: [ 'Bertaccini, Daniel' ]
+  }
+]
+----
+
+Si, por otra parte, quisiéramos saber las materias que son dadas únicamente por 'Bertaccini, Daniel' y 'Rondelli, Hernán', utilizamos el operador `$all`. Mediante este operador, buscamos los documentos que contienen todos los valores especificados, dentro del array correspondiente.
+
+[source, console]
+----
+xime@cursada> db.materias.find({ docentes: { $all: ['Bertaccini, Daniel', 'Rondelli, Hernán']}}, { nombre: 1, docentes: 1 })
+[
+  {
+    _id: 5,
+    nombre: 'Bases de Datos I',
+    docentes: [ 'Bertaccini, Daniel', 'Ebertz, Ximena', 'Rondelli, Hernán' ]
+  }
+]
+----
+
+También, podemos filtrar los documentos según el tamaño de un array perteneciente a un campo utilizando el operador `$size`.
+
+De esta forma, podemos obtener las materias que no tienen docentes asignados.
+
+[source, console]
+----
+xime@cursada> db.materias.find({ docentes: { $size: 0}}, { nombre: 1, docentes: 1 })
+[ { _id: 6, nombre: 'Bases de Datos II', docentes: [] } ]
+----
+
+// Ver por qué no anda
+// Es importante considerar que los arrays tienen orden, lo que nos permite acceder a elementos por posición. Esto se realiza utilizando la estructura `'nombreArray.posicion'`, y se puede utilizar ya sea para selección o proyección. Si en lugar de una posición numérica utilizamos el símbolo `$`, MongoDB devolverá  el primer elemento del array, según la condición de selección sobre el mismo array.
+
+// Añadir operadores de modificación de array
+
+=== Operadores de modificación
+
+Existen varios operadores de modificación de arrays, entre los que se encuentran:
+
+.Operadores de modificación
+[cols="^,^"]
+|===
+| Operador                 | Descripción
+
+| `$addToSet`              | Añade un elemento al array especificado, si no se encuentra almacenado
+| `$push`                  | Añade un elemento al array especificado. Si este array no existe, lo crea
+| `$pop`                   | Elimina el primer o último elemento de un array, dependiendo la opción elegida
+| `$pull`                  | Elimina todas las apariciones de un elemento en un array
+| `$pullAll`               | Elimina todas las apariciones de un conjunto de elementos en un array
+|===
+
+==== Añadir elementos
+
+Para añadir un nuevo parcial al alumno con `_id` 7, podemos realizar lo siguiente:
+
+[source, console]
+----
+xime@cursada> parcial = { fecha: { $date: "2024-10-01T00:00:00Z" }, nota: 9 }
+xime@cursada> db.alumnes.updateOne({ _id: 7 }, { $addToSet: { 'materiaCursada.parciales': parcial }})
+----
+
+En este caso, como utilizamos el operador `$addToSet` y el parcial ya estaba registrado, la consulta no realiza cambios.
+
+[source, console]
+----
+xime@cursada> db.alumnes.find({ _id: 7 }, { dni: 0, 'materiaCursada.id': 0 })
+[
+  {
+    _id: 7,
+    nombre: 'Bruce',
+    apellido: 'Banner',
+    materiaCursada: {
+      nombre: 'Física Cuántica',
+      anio: 2019,
+      semestre: 2,
+      parciales: [
+        { fecha: ISODate("2024-09-01T00:00:00.000Z"), nota: 8 },
+        { fecha: ISODate("2024-10-01T00:00:00.000Z"), nota: 9 }
+      ]
+    }
+  }
+]
+----
+
+Sin embargo, utilizando `$push`, el elemento se añade de todas maneras, y se obtiene el siguiente resultado:
+
+[source, console]
+----
+xime@cursada> db.alumnes.find({ _id: 7 }, { dni: 0, 'materiaCursada.id': 0 })
+[
+  {
+    _id: 7,
+    nombre: 'Bruce',
+    apellido: 'Banner',
+    materiaCursada: {
+      nombre: 'Física Cuántica',
+      anio: 2019,
+      semestre: 2,
+      parciales: [
+        { fecha: ISODate("2024-09-01T00:00:00.000Z"), nota: 8 },
+        { fecha: ISODate("2024-10-01T00:00:00.000Z"), nota: 9 },
+        { fecha: ISODate("2024-10-01T00:00:00.000Z"), nota: 9 }
+      ]
+    }
+  }
+]
+----
+
+// $each -> funciona con $addToSet y $push
+Estos dos operadores se pueden complementar con el operador `$each`. Este permite que se pueda añadir más de un elemento al array. En este caso, en lugar de utilizar la sentencia `$addToSet: { nombreArray: elemento }`, utilizamos la sentencia `$addToSet: { nombreArray: { $each: [elemento1, elemento2, ..., elementoN] }}}`.
+
+==== Eliminar elementos
+
+El último parcial del alumno de ejemplo se puede eliminar de manera sencilla utilizando el operador `$pop`, ya que el parcial añadido se encuentra en el último elemento. Para especificar que el elemento a eliminar debe ser el último, se debe utilizar el número 1. Si estuviese al principio, se utilizaría el número -1.
+
+[source, console]
+----
+xime@cursada> db.alumnes.updateOne({ _id: 7 }, { $pop: { 'materiaCursada.parciales': 1 }})
+----
+
+Esta consulta arroja el siguiente resultado:
+
+[source, console]
+----
+xime@cursada> db.alumnes.find({ _id: 7 }, { dni: 0, 'materiaCursada.id': 0 })
+[
+  {
+    _id: 7,
+    nombre: 'Bruce',
+    apellido: 'Banner',
+    materiaCursada: {
+      nombre: 'Física Cuántica',
+      anio: 2019,
+      semestre: 2,
+      parciales: [
+        { fecha: ISODate("2024-09-01T00:00:00.000Z"), nota: 8 },
+        { fecha: ISODate("2024-10-01T00:00:00.000Z"), nota: 9 }
+      ]
+    }
+  }
+]
+----
+
+Supongamos que se añadió por error un nuevo docente a todas las materias, llamado 'Fury, Nick'... _(ejercicio: ¿cómo se haría esto?)_
+
+[source, console]
+----
+xime@cursada> db.materias.find({}, { _id: -1, nombre: 1, docentes: 1 })
+[
+  {
+    _id: 5,
+    nombre: 'Bases de Datos I',
+    docentes: [
+      'Bertaccini, Daniel',
+      'Ebertz, Ximena',
+      'Rondelli, Hernán',
+      'Fury, Nick'
+    ]
+  },
+  { _id: 6, nombre: 'Bases de Datos II', docentes: [ 'Fury, Nick' ] },
+  {
+    _id: 4,
+    nombre: 'Programación III',
+    docentes: [ 'Bertaccini, Daniel', 'Fury, Nick' ]
+  },
+  {
+    _id: 1,
+    nombre: 'Introducción a la Programación',
+    docentes: [ 'Ebertz, Ximena', 'Fury, Nick' ]
+  },
+  {
+    _id: 21,
+    nombre: 'Física Cuántica',
+    docentes: [ 'Rondelli, Hernán', 'Fury, Nick' ]
+  }
+]
+----
+
+¿Cómo se podría eliminar de manera sencilla?
+
+Como es un solo elemento, se puede utilizar el operador `$pull`, sin limitar la selección en la consulta.
+
+[source, console]
+----
+xime@cursada> db.materias.updateMany({}, { $pull: { docentes: 'Fury, Nick' }})
+----
+
+Esto modifica todos los documentos de la colección, eliminando al elemento indeseado.
+
+[source, console]
+----
+xime@cursada> db.materias.find({}, { _id: -1, nombre: 1, docentes: 1 })
+[
+  {
+    _id: 5,
+    nombre: 'Bases de Datos I',
+    docentes: [ 'Bertaccini, Daniel', 'Ebertz, Ximena', 'Rondelli, Hernán' ]
+  },
+  { _id: 6, nombre: 'Bases de Datos II', docentes: [] },
+  {
+    _id: 4,
+    nombre: 'Programación III',
+    docentes: [ 'Bertaccini, Daniel' ]
+  },
+  {
+    _id: 1,
+    nombre: 'Introducción a la Programación',
+    docentes: [ 'Ebertz, Ximena' ]
+  },
+  {
+    _id: 21,
+    nombre: 'Física Cuántica',
+    docentes: [ 'Rondelli, Hernán' ]
+  }
+]
+----
+
+Por otra parte, si quisiéramos eliminar a los docentes 'Fury, Nick' y 'Ebertz, Ximena' de todas las materias en las que están registrados, utilizaríamos el operador `$pullAll`.
+
+[source, console]
+----
+xime@cursada> db.materias.updateMany({}, { $pullAll: { docentes: ['Fury, Nick', 'Ebertz, Ximena'] }})
+----
+
+En este caso, no es necesario el operador `$each`.
+
+[source, console]
+----
+xime@cursada> db.materias.find({}, { _id: -1, nombre: 1, docentes: 1 })
+[
+  {
+    _id: 5,
+    nombre: 'Bases de Datos I',
+    docentes: [ 'Bertaccini, Daniel', 'Rondelli, Hernán' ]
+  },
+  { _id: 6, nombre: 'Bases de Datos II', docentes: [] },
+  {
+    _id: 4,
+    nombre: 'Programación III',
+    docentes: [ 'Bertaccini, Daniel' ]
+  },
+  { _id: 1, nombre: 'Introducción a la Programación', docentes: [] },
+  {
+    _id: 21,
+    nombre: 'Física Cuántica',
+    docentes: [ 'Rondelli, Hernán' ]
+  }
+]
+----
+
 == Update
 
-updateOne
-updateMany
+Para actualizar documentos, tenemos dos opciones: `updateOne` y `updateMany`, estableciendo el filtro en el primer parámetro de la función, y el valor o los valores a actualizar con el operador `$set` en el segundo parámetro. 
 
-$set y $unset
+Por ejemplo, si quisiéramos actualizar el año de la primer materia a 2025, haríamos lo siguiente:
+
+[source, console]
+----
+xime@cursada> db.materias.updateOne({}, { $set: { anio: 2025 }})
+----
+
+Esta consulta modifica la colección de la siguiente manera:
+
+[source, console]
+----
+xime@cursada> db.materias.find({}, { _id: 0, nombre: 1, anio: 1 })
+[
+  { nombre: 'Introducción a la Programación', anio: 2025 },
+  { nombre: 'Física Cuántica', anio: 2024 },
+  { nombre: 'Bases de Datos I', anio: 2024 },
+  { nombre: 'Bases de Datos II', anio: 2024 },
+  { nombre: 'Programación III', anio: 2024 }
+]
+----
+
+Si quisiéramos modificar el año de todas las materias, realizaríamos la misma consulta pero utilizando la función `updateMany`.
+
+[source, console]
+----
+xime@cursada> db.materias.updateMany({}, { $set: { anio: 2025 }})
+----
+
+Y se obtiene el siguiente resultado:
+
+[source, console]
+----
+xime@cursada> db.materias.find({}, { _id: 0, nombre: 1, anio: 1 })
+[
+  { nombre: 'Introducción a la Programación', anio: 2025 },
+  { nombre: 'Física Cuántica', anio: 2025 },
+  { nombre: 'Bases de Datos I', anio: 2025 },
+  { nombre: 'Bases de Datos II', anio: 2025 },
+  { nombre: 'Programación III', anio: 2025 }
+]
+----
+
+Por otra parte, el operador `$unset` permite eliminar un campo para todos los documentos cuyo valor sea el establecido. Por ejemplo, si quisiéramos eliminar el año de las materias cuyo valor de este campo está establecido en 2025, lo podemos realizar de la siguiente forma:
+
+[source, console]
+----
+xime@cursada> db.materias.updateMany({}, { $unset: { anio: 2025 }})
+----
+
+En este caso, se eliminarían los años de todas las materias.
+
+[source, console]
+----
+xime@cursada> db.materias.find({}, { _id: 0, nombre: 1, anio: 1 })
+[
+  { nombre: 'Introducción a la Programación' },
+  { nombre: 'Física Cuántica' },
+  { nombre: 'Bases de Datos I' },
+  { nombre: 'Bases de Datos II' },
+  { nombre: 'Programación III' }
+]
+----
 
 == Eliminar datos
 
 === Eliminar documentos
 
-db.coleccion.remove({selección})
+MongoDB permite eliminar uno o varios documentos mediante las funciones `deleteOne` y `deleteMany`. Estas se utilizan con un solo parámetro, especificando la condición de búsqueda de los elementos a eliminar.
+
+Por ejemplo, podemos eliminar al primer alumno cuyo dni sea menor que 25 000 000.
+
+[source, console]
+----
+xime@cursada> db.alumnes.deleteOne({ dni: { $lt: 25000000 }})
+----
+
+O eliminar a todos ellos.
+
+[source, console]
+----
+xime@cursada> db.alumnes.deleteMany({ dni: { $lt: 25000000 }})
+----
+
+El resultado de estas operaciones sería el siguiente:
+
+[source, console]
+----
+xime@cursada> db.alumnes.find({}, { _id: 0, nombre: 1, apellido: 1, dni: 1 })
+[
+  { dni: 41982376, nombre: 'Natasha', apellido: 'Romanoff' },
+  { dni: 37627821, nombre: 'Anthony', apellido: 'Stark' },
+  { dni: 38763821, nombre: 'Bruce', apellido: 'Banner' },
+  { dni: 40822971, nombre: 'Clint', apellido: 'Barton' },
+  { dni: 37627821, nombre: 'Anthony', apellido: 'Stark' }
+]
+----
+
+En este caso, se eliminó la información de 'Steve Rogers' y de 'Thor Odinson'.
 
 === Eliminar coleccion
 
-db.coleccion.drop()
+Para eliminar una colección completa de la base de datos, debemos utilizar la función `drop` con la sintaxis `db.coleccion.drop()`. Esto elimina toda la información asociada a la colección especificada, incluyendo los índices.
+
+De esta forma, podemos eliminar la colección de alumnos.
+
+[source, console]
+----
+xime@cursada> db.alumnes.drop()
+true
+----
+
+Como la función devolvió `true`, la colección se eliminó correctamente.
+
+[source, console]
+----
+xime@cursada> show collections
+materias
+----
+
+=== Eliminar base de datos
+
+Es necesario situarse dentro de la base de datos requerida para eliminarla. Es importante recordar que para cambiar la base de datos actual utilizamos la sentencia `use nombreDB`.
+
+Luego, podemos eliminar esa base de datos con la función `db.dropDatabase()`.
+
+Es decir, podemos eliminar la base de datos `cursada` de la siguiente manera:
+
+[source, console]
+----
+xime@cursada> db.dropDatabase()
+{ ok: 1, dropped: 'cursada' }
+----
 
 == Colecciones utilizadas
 
