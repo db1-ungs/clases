@@ -52,12 +52,41 @@ $X \rightarrow Y$ es DF de $R \iff (\forall r)$ $t_{1}(X) = t_{2}(X)  \Rightarro
 // empty title
 ##
 
-.image tex/dp-definicion-ejemplo-1.png 530 _
+schema:
+
+$\text{alumne}(\text{legajo}, \text{nombre}, \text{apellido}, \text{cp}, \text{localidad})$
+
+dependencias funcionales:
+
+$\text{legajo} \to \text{nombre apellido cp localidad}$
+
+$\text{cp} \to \text{localidad}$
+
+tuplas:
+
+✅ $(\text{1, 'Cristina', 'Kirchner', 1615, 'Grand Bourg'})$
+
+❌ $(\text{2, 'Diego', 'Maradona', 1615, 'José C. Paz'})$
 
 // empty title
 ##
 
-.image tex/dp-definicion-ejemplo-2.png 450 _
+relación $R$:
+
+$\text{cursada}(\text{alumne_legajo, alumne_nombre, materia,}$
+$\hskip 48pt \text{f_inscripcion, f_examen, nota})$
+
+conjunto de dependencias funcionales $F$:
+
+$\text{alumne_legajo} \to \text{alumne_nombre}$
+
+$\text{alumne_legajo materia} \to \text{f_inscripcion}$
+
+$\text{alumne_legajo materia f_examen} \to \text{nota}$
+
+es una dependencia funcional?
+
+❌ $\text{alumne_legajo materia} \to \text{f_examen}$
 
 // Une estudiante se puede **inscribir** en una materia **una sola vez**
 // Une estudiante puede **rendir** el examen **más de una vez** (en más de una fecha)
@@ -73,34 +102,37 @@ $F \models f \iff (\forall r)\ $ $r$ satisface $F \Rightarrow r$ satisface $f$
 // empty title
 ##
 
-  - $F$
+- $F = \\{$
 
-$\text{legajo} \to \text{cp}$
+$\hskip 20pt \text{legajo} \to \text{cp}$
 
-$\text{cp} \to \text{localidad}$
+$\hskip 20pt \text{cp} \to \text{localidad}$
 
-  - $\models$ ?
+$\\}$
 
-legajo → localidad
+- es válida $F \models \\{ \text{legajo} \to \text{localidad} \\}$ ?
 
 // empty title
 ##
 
-  - relación _R_
+  - relación $R$:
 
-cursada(alumne\_legajo, alumne\_nombre, materia, f\_inscripción, f\_examen, nota)
+$\text{cursada}($
 
-  - conjunto de dependencias funcionales _F_
+$\hskip 12pt \text{alumne\_legajo, alumne\_nombre, materia,}$
+$\hskip 12pt \text{f\_inscripcion, f\_examen, nota}$
 
-alumne\_legajo → alumne\_nombre,
-alumne\_legajo, materia → f\_inscripción,
-alumne\_legajo, materia, f\_examen → nota
+$)$
 
-  - A partir de F, se puede inferir alguna otra DF?
+  - conjunto de dependencias funcionales $F$:
 
-// algo
-$F \models { \text{alumne\_legajo}, \text{materia} \to \text{alumne\_nombre}, \text{f\_inscripcion} }$
-// coso
+$\text{alumne\_legajo} \to \text{alumne\_nombre,}$
+$\text{alumne\_legajo, materia} \to \text{f\_inscripción,}$
+$\text{alumne\_legajo, materia, f\_examen} \to \text{nota}$
+
+  - A partir de $F$, se puede inferir alguna otra DF?
+
+$F \models \\{ \text{alumne\_legajo}, \text{materia} \to \text{alumne\_nombre}, \text{f\_inscripcion} \\}$
 
 ## Axiomas de Armstrong
 
