@@ -10,11 +10,12 @@ lucifer.unix.cabj@gmail.com
 
 .image img/db1-ungs.github.io-clases-com-1-rel.html.png 500 _
 
-* Objetivos
+# * Objetivos
 
-- Determinar relaciones entre los datos
-- Diferenciar estas relaciones con las del DER
-- Realizar un primer diseño de una posible base de datos
+# - Presentar el modelo relacional
+# - Compararlo con el DER: Diferenciar estas relaciones con las del DER
+# - Modelo lógico (segundo nivel de abstracción): determinar relaciones entre los datos
+# - Realizar un primer diseño de una posible base de datos
 
 * DER vs Modelo Relacional
 
@@ -169,7 +170,11 @@ Se aplican las mismas reglas
 - Uno a uno a muchos → "Los uno van en el muchos"
 - Uno a uno a uno → "Dos cualquiera va en el tercer cualquiera"
 
-# agregar ejemplo de ternaria: fábrica, insumo, proveedore
+# empty title
+* 
+
+.image tex/rel-ternaria-ejemplo.png 600 _
+
 # agregar ejemplo de agregación: proyecto, dpto, empleade
 
 # empty title
