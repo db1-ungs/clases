@@ -49,8 +49,9 @@ Materias *fuertemente* recomendadas:
 *Condiciones*de*aprobación*
 
 - se tomará asistencia
-- 75% de asistencia mínima obligatoria (se puede faltar sólo 4 clases, sin contar a las de consulta para las instancias de evaluación)
+- 75% de asistencia mínima obligatoria (se pueden faltar sólo 4 clases, sin contar a las de consulta para las instancias de evaluación)
 - parcial y trabajo práctico aprobados
+- nota de cursada = (nota parcial + nota trabajo práctico) / 2
 
 * La materia es promocionable!
 
@@ -62,12 +63,11 @@ Materias *fuertemente* recomendadas:
 
 * Condiciones de promoción 👻
 
-- nota parcial ≥ 7
-- nota trabajo práctico ≥ 7
-#- *quienes*rindan*recuperatorio*no*podrán*promocionar*
+- nota parcial ≥ 6
+- nota trabajo práctico ≥ 6
 - *no*llegar*a*instancia*de*recuperatorio*de*parcial*
 - *no*llegar*a*instancia*de*reentrega*de*trabajo*práctico*
-- nota de promoción = (nota parcial + nota trabajo práctico) / 2
+- nota de cursada ≥ 7
 
 * Bibliografía sugerida
 
@@ -79,19 +79,19 @@ Materias *fuertemente* recomendadas:
 
 * Programa de la materia
 
-- DER. Modelo Relacional.
+- DER. Modelo Relacional. Álgebra Relacional.
 - Dependencias Funcionales. Formas Normales.
-- Álgebra Relacional. SQL.
+- SQL.
 - Stored Procedures. Triggers. Transacciones.
 - NoSQL. JSON.
 
-*Parcial*–*2*de*octubre*
+*Parcial*–*6*de*mayo*
 DER. Modelo Relacional. Dependencias Funcionales. Formas Normales.
 Álgebra Relacional. SQL.
 
-*Recuperatorio*–*19*de*octubre* (atención: inmediatamente después del parcial)
+*Recuperatorio*–*23*de*mayo* (atención: inmediatamente después del parcial)
 
-*Entrega*trabajo*práctico*–*16*de*noviembre*
+*Entrega*trabajo*práctico*–*24*de*junio*
 Todos los temas de la materia.
 
 * Bases de Datos
