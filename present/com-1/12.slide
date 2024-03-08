@@ -10,6 +10,12 @@ lucifer.unix.cabj@gmail.com
 
 .image img/db1-ungs.github.io-clases-com-1-rel.html.png 500 _
 
+* Objetivos
+
+- Determinar relaciones entre los datos
+- Diferenciar estas relaciones con las del DER
+- Realizar un primer diseño de una posible base de datos
+
 * DER vs Modelo Relacional
 
 - Entity Relationship Model ← *Relationship*

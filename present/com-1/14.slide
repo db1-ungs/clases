@@ -10,6 +10,12 @@ lucifer.unix.cabj@gmail.com
 
 .image img/db1-ungs.github.io-clases-com-1-norm.html.png 500 _
 
+* Objetivos
+
+- Reconocer diseños de relaciones poco óptimos
+- Identificar ventajas y desventajas en el proceso de normalización de relaciones
+- Descomponer la información en relaciones que cumplan con la 3FN
+
 * Modelo relacional
 
 * Modelo relacional
@@ -331,6 +337,6 @@ Elmasri and Navathe, _Fundamentals_of_database_systems_
 - Secciones 14.3, 14.4, y 14.5
 
 # empty title
-* 
+*
 
 .image img/questions.png
