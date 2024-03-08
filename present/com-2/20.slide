@@ -37,6 +37,8 @@ Materias *fuertemente* recomendadas:
 
 - Cuestiones administrativas, enviar email a ambos docentes
 
+# - Avisos y demás, por el *grupo*de*Telegram* [[https://t.me/+ocuTJpMViMmY5]]
+
 * Régimen de aprobación
 
 * Régimen de aprobación
@@ -47,7 +49,7 @@ Materias *fuertemente* recomendadas:
 *Condiciones*de*aprobación*
 
 - se tomará asistencia
-- 75% de asistencia mínima obligatoria (se puede faltar sólo 4 clases, sin contar a las de consulta para las instancias de evaluación)
+- 75% de asistencia mínima obligatoria (se pueden faltar sólo 4 clases, sin contar a las de consulta para las instancias de evaluación)
 - parcial y trabajo práctico aprobados (nota ≥ 4)
 - nota de cursada = (nota parcial + nota trabajo práctico) / 2
 
@@ -63,7 +65,6 @@ Materias *fuertemente* recomendadas:
 
 - nota parcial ≥ 6
 - nota trabajo práctico ≥ 6
-#- *quienes*rindan*recuperatorio*no*podrán*promocionar*
 - *no*llegar*a*instancia*de*recuperatorio*de*parcial*
 - *no*llegar*a*instancia*de*reentrega*de*trabajo*práctico*
 - nota de cursada ≥ 7
@@ -78,9 +79,9 @@ Materias *fuertemente* recomendadas:
 
 * Programa de la materia
 
-- DER. Modelo Relacional.
+- DER. Modelo Relacional. Álgebra Relacional.
 - Dependencias Funcionales. Formas Normales.
-- Álgebra Relacional. SQL.
+- SQL.
 - Stored Procedures. Triggers. Transacciones.
 - NoSQL. JSON.
 
