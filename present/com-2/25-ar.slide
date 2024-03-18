@@ -38,19 +38,53 @@ Observaciones
 
 * 1. Proyección
 
+Notación:
+
 .image tex/ar-projection.png 50 _
 
-Extrae columnas.
+Extrae las columnas que se indiquen.
+
+Se utiliza la letra griega _pi_.
+
+* 1. Proyección
+
+Ejemplo:
 
 .image tex/ar-projection-example.png 400 _
 
+_¡Recordar_que_las_relaciones_son_ *conjuntos* _de_tuplas!_
+
+* 1. Proyección
+
+- La cantidad de columnas del resultado *siempre* será _menor_o_igual_ a la cantidad de columnas de la relación
+- La cantidad de filas del resultado *siempre* será _menor_o_igual_ a la cantidad de filas de la relación
+
+Para pensar:
+
+_¿Cuándo_podemos_asegurar_que_la_cantidad_de_filas_del_resultado_será_exactamente_igual?_
+
 * 2. Selección
+
+Notación:
 
 .image tex/ar-selection.png
 
-Extrae filas.
+Extrae las filas que cumplan con la condición especificada.
+
+* 2. Selección
+
+Ejemplo:
 
 .image tex/ar-selection-example.png 400 _
+
+* 2. Selección
+
+- La cantidad de columnas del resultado *siempre* será _exactamente_igual_ a la cantidad de columnas de la relación
+- La cantidad de filas del resultado *siempre* será _menor_o_igual_ a la cantidad de filas de la relación
+
+Para pensar:
+
+_¿Cuándo_podemos_asegurar_que_la_cantidad_de_filas_del_resultado_será_exactamente_igual?_
 
 * 3. Producto cartesiano
 
