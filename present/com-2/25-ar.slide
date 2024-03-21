@@ -3,9 +3,11 @@ Bases de datos I
 
 Universidad Nacional de General Sarmiento
 
+
 * db1-ungs.github.io/clases/com-2/ar.html
 
 .image img/db1-ungs.github.io-clases-com-2-ar.html.png 500 _
+#.image img/db1-ungs.github.io-clases-com-2-rel.html.png 500 _
 
 * Modelo Relacional
 
@@ -13,7 +15,7 @@ Universidad Nacional de General Sarmiento
 - Records ó tuplas (filas)
 - Fields ó atributos (columnas)
 
-Observaciones
+Observaciones:
 
 - Los items en una fila pueden ser de distinto tipo
 - Todos los items de una columna son del mismo tipo
@@ -21,6 +23,15 @@ Observaciones
 #- Pueden existir celdas sin valores—i.e. `null`
 
 * Álgebra Relacional (AR)
+
+
+* Álgebra Relacional
+
+Motivación:
+
+- Formalizar la manipulación de relaciones
+- Fundamento para la creación de lenguajes de consulta (SQL)
+
 
 * Operaciones
 
@@ -33,8 +44,9 @@ Observaciones
 7. Diferencia
 8. División
 
-#- Cada operación devuelve una nueva relación
-#- Las operaciones del AR se pueden combinar
+- Cada operación devuelve *siempre* una nueva relación
+- Las operaciones del AR se pueden combinar
+
 
 * 1. Proyección
 
@@ -46,6 +58,7 @@ Extrae las columnas que se indiquen.
 
 Se utiliza la letra griega _pi_.
 
+
 * 1. Proyección
 
 Ejemplo:
@@ -54,14 +67,19 @@ Ejemplo:
 
 _¡Recordar_que_las_relaciones_son_ *conjuntos* _de_tuplas!_
 
+
 * 1. Proyección
 
-- La cantidad de columnas del resultado *siempre* será _menor_o_igual_ a la cantidad de columnas de la relación
-- La cantidad de filas del resultado *siempre* será _menor_o_igual_ a la cantidad de filas de la relación
+Observaciones:
 
-Para pensar:
+- _#columnas_resultado_  *es*menor*o*igual*a*  _#columnas_relación_inicial_
+- _#filas_resultado_  *es*menor*o*igual*a*  _#filas_relación_inicial_
+
+__
+__
 
 _¿Cuándo_podemos_asegurar_que_la_cantidad_de_filas_del_resultado_será_exactamente_igual?_
+
 
 * 2. Selección
 
@@ -71,38 +89,75 @@ Notación:
 
 Extrae las filas que cumplan con la condición especificada.
 
+Se utiliza la letra griega _sigma_.
+
+
 * 2. Selección
 
 Ejemplo:
 
 .image tex/ar-selection-example.png 400 _
 
+
 * 2. Selección
 
-- La cantidad de columnas del resultado *siempre* será _exactamente_igual_ a la cantidad de columnas de la relación
-- La cantidad de filas del resultado *siempre* será _menor_o_igual_ a la cantidad de filas de la relación
+Observaciones:
 
-Para pensar:
+- _#columnas_resultado_  *es*exactamente*igual*a*  _#columnas_relación_inicial_
+- _#filas_resultado_  *es*menor*o*igual*a*  _#filas_relación_inicial_
 
-_¿Cuándo_podemos_asegurar_que_la_cantidad_de_filas_del_resultado_será_exactamente_igual?_
+__
+__
+
+_La_condición_se_aplica_de_manera_independiente_a_cada_fila_de_la_relación_
+
+
+* Ejercicio: combinando operaciones
+
+.image tex/ar-sel-proj-exercise.png 600 _
+
 
 * 3. Producto cartesiano
+
+Notación:
 
 .image tex/ar-cartesian-product.png 35 _
 
 Combina todas las filas de una tabla con todas las filas de la otra.
 
-.image tex/ar-cartesian-product-example.png 430 _
+
+* 3. Producto cartesiano
+
+Ejemplo:
+
+.image tex/ar-cartesian-product-example.png 470 _
+
+
+* 3. Producto cartesiano
+
+Observaciones:
+
+- _#columnas_resultado_ es igual a la *suma* de _#columnas_R1_ y _#columnas_R2_
+- _#filas_resultado_ es igual a la *multiplicación* de _#filas_R1_ y _#filas_R2_
+
 
 * 4. Join
+
+Notación:
 
 .image tex/ar-join.png
 
 Combina las filas de ambas tablas, matcheando según la condición.
 
-.image tex/ar-join-example.png 400 _
 
-* 4. Join (cont.)
+* 4. Join
+
+Ejemplo:
+
+.image tex/ar-join-example.png 470 _
+
+
+* 4. Natural Join
 
 .image tex/ar-natural-join.png
 
@@ -110,40 +165,130 @@ Si no hay condición, se llama *natural*join* y matchea atributos con el mismo n
 
 .image tex/ar-natural-join-example.png 400 _
 
+
+* 4. Join
+
+Observaciones:
+
+- La operación de _join_ se puede pensar como la forma de abreviar
+  el _producto_cartesiano_ seguido de una _selección_
+- Permite componer relaciones que tienen atributos en común
+- Es una operación central en cualquier base de datos relacional
+
+
+* Ejercicio para pensar y resolver en clase
+
+.image tex/ar-join-exercise.png 300 _
+
+
 * 5. Unión
+
+Notación:
 
 .image tex/ar-union.png 35 _
 
-Une dos tablas.
-Las tablas deben ser schema compatibles—i.e. misma cantidad y tipos de atributos.
+Une dos tablas. _Es_una_operación_de_conjuntos_(de_tuplas)._
 
-.image tex/ar-union-example.png 390 _
+Las tablas deben ser *schema*compatibles* —i.e. misma cantidad y tipos de atributos.
+
+
+* 5. Unión
+
+Ejemplo:
+
+.image tex/ar-union-example.png 470 _
+
+
+* 5. Unión
+
+Observaciones:
+
+- _#columnas_resultado_  *es*igual*a*  _#columnas_R1_ (o _#columnas_R2_)
+- _#filas_resultado_  *es*menor*o*igual*a* la *suma* de _#filas_R1_ y _#filas_R2_
+
+__
+__
+
+_¿Cuándo_la_cantidad_de_filas_del_resultado_será_estrictamente_menor_a_la_suma_de_R1_y_R2?_
+
 
 * 6. Intersección
 
+Notación:
+
 .image tex/ar-intersection.png 35 _
 
-Lo que está tanto en una tabla como en la otra.
-Las tablas deben ser schema compatibles—i.e. misma cantidad y tipos de atributos.
+Quedan las filas que están en ambas tablas. _Es_una_operación_de_conjuntos._
 
-.image tex/ar-intersection-example.png 390 _
+Las tablas deben ser *schema*compatibles* —i.e. misma cantidad y tipos de atributos.
+
+
+* 6. Intersección
+
+Ejemplo:
+
+.image tex/ar-intersection-example.png 470 _
+
+
+* 6. Intersección
+
+Observaciones:
+
+- _#columnas_resultado_  *es*igual*a*  _#columnas_R1_ (o _#columnas_R2_)
+
+__
+__
+
+_¿Qué_cantidad_máxima_de_filas_puede_tener_el_resultado?_
+
 
 * 7. Diferencia
 
+Notación:
+
 .image tex/ar-difference.png 35 _
 
-Las tuplas que están la primer tabla pero que no están en la segunda.
-Las tablas deben ser schema compatibles—i.e. misma cantidad y tipos de atributos.
+Las tuplas que están la primera tabla, pero que no están en la segunda.
+_Es_una_operación_de_conjuntos._
 
-.image tex/ar-difference-example.png 390 _
+Las tablas deben ser *schema*compatibles* —i.e. misma cantidad y tipos de atributos.
+
+
+* 7. Diferencia
+
+Ejemplo:
+
+.image tex/ar-difference-example.png 470 _
+
+
+* 7. Diferencia
+
+Observaciones:
+
+- _#columnas_resultado_  *es*igual*a*  _#columnas_R1_ (o _#columnas_R2_)
+- _#filas_resultado_  *es*menor*o*igual*a* _#filas_R1_
+
+__
+__
+
+_¡Ojo!_La_diferencia,_en_general,_no_es_conmutativa:_ *R1*-*R2* _es_distinto_de_ *R2*-*R1*
+
 
 * 8. División
 
-.image tex/ar-division.png 70 _
+Notación:
+
+.image tex/ar-division.png 100 _
 
 Devuelve una nueva tabla con las columnas que están sólo en R y que están asociadas con todas las filas de S.
 
-.image tex/ar-division-example.png 355 _
+
+* 8. División
+
+Ejemplo:
+
+.image tex/ar-division-example.png 470 _
+
 
 * Cada operación devuelve una nueva relación!
 
@@ -157,7 +302,7 @@ R se renombra a S, junto con los atributos correspondientes.
 
 * Bibliografía
 
-Elmasri and Navathe, _Fundamentals_of_database_systems_
+Elmasri and Navathe, _Fundamentals_of_database_systems_(7th_edition)_
 
 - Capítulo 8, secciones 8.1, 8.2 y 8.3
 

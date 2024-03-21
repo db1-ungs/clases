@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)http://localhost:3999/25-ar.slide#1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Álgebra Relacional</title>
+    
+    <script>
+      var notesEnabled =  false ;
+    </script>
+    <script src="./ar_files/slides.js"></script>
+
+    
+
+    <script>
+      
+      if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+        var _gaq = _gaq || [];
+        _gaq.push(["_setAccount", "UA-11222381-6"]);
+        _gaq.push(["b._setAccount", "UA-49880327-6"]);
+        window.trackPageview = function() {
+          _gaq.push(["_trackPageview", location.pathname+location.hash]);
+          _gaq.push(["b._trackPageview", location.pathname+location.hash]);
+        };
+        window.trackPageview();
+        window.trackEvent = function(category, action, opt_label, opt_value, opt_noninteraction) {
+          _gaq.push(["_trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+          _gaq.push(["b._trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+        };
+      }
+    </script>
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1"><meta name="apple-mobile-web-app-capable" content="yes"></head>
+
+  <body style="display: none" class="loaded">
+
+    <section class="slides layout-widescreen" style="transform: scale(0.756);">
+
+      <article class="current">
+        <h1>Álgebra Relacional</h1>
+        <h3>Bases de datos I</h3>
+        
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Universidad Nacional de General Sarmiento
+  </p>
+  
+
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    
+  </p>
+  
+
+          </div>
+        
+      </article>
+
+  
+  
+      <article class="next">
+      
+        <h3>db1-ungs.github.io/clases/com-2/ar.html</h3>
+        
+<div class="image">
+  <img src="./ar_files/db1-ungs.github.io-clases-com-2-ar.html.png" height="500">
+</div>
+
+      
+      <span class="pagenumber">2</span>
+      </article>
+  
+  
+  
+      <article class="far-next">
+      
+        <h3>Modelo Relacional</h3>
+        
+  <ul>
+  
+    <li>Relaciones (tablas)</li>
+  
+    <li>Records ó tuplas (filas)</li>
+  
+    <li>Fields ó atributos (columnas)</li>
+  
+  </ul>
+
+  
+  <p>
+    Observaciones:
+  </p>
+  
+
+  <ul>
+  
+    <li>Los items en una fila pueden ser de distinto tipo</li>
+  
+    <li>Todos los items de una columna son del mismo tipo</li>
+  
+    <li>Los items de algunas columnas se pueden repetir, otros son únicos</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">3</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Álgebra Relacional (AR)</h2>
+      
+      <span class="pagenumber">4</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Álgebra Relacional</h3>
+        
+  
+  <p>
+    Motivación:
+  </p>
+  
+
+  <ul>
+  
+    <li>Formalizar la manipulación de relaciones</li>
+  
+    <li>Fundamento para la creación de lenguajes de consulta (SQL)</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">5</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Operaciones</h3>
+        
+  
+  <p>
+    1. Proyección
+<br>
+
+    2. Selección
+<br>
+
+    3. Producto cartesiano
+<br>
+
+    4. Join
+<br>
+
+    5. Unión
+<br>
+
+    6. Intersección
+<br>
+
+    7. Diferencia
+<br>
+
+    8. División
+  </p>
+  
+
+  <ul>
+  
+    <li>Cada operación devuelve <b>siempre</b> una nueva relación</li>
+  
+    <li>Las operaciones del AR se pueden combinar</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">6</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>1. Proyección</h3>
+        
+  
+  <p>
+    Notación:
+  </p>
+  
+
+<div class="image">
+  <img src="./ar_files/ar-projection.png" height="50">
+</div>
+
+  
+  <p>
+    Extrae las columnas que se indiquen.
+  </p>
+  
+
+  
+  <p>
+    Se utiliza la letra griega <i>pi</i>.
+  </p>
+  
+
+      
+      <span class="pagenumber">7</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>1. Proyección</h3>
+        
+  
+  <p>
+    Ejemplo:
+  </p>
+  
+
+<div class="image">
+  <img src="./ar_files/ar-projection-example.png" height="400">
+</div>
+
+  
+  <p>
+    <i>¡Recordar que las relaciones son</i> <b>conjuntos</b> <i>de tuplas!</i>
+  </p>
+  
+
+      
+      <span class="pagenumber">8</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>1. Proyección</h3>
+        
+  
+  <p>
+    Observaciones:
+  </p>
+  
+
+  <ul>
+  
+    <li><i>#columnas resultado</i>  <b>es menor o igual a</b>  <i>#columnas relación inicial</i></li>
+  
+    <li><i>#filas resultado</i>  <b>es menor o igual a</b>  <i>#filas relación inicial</i></li>
+  
+  </ul>
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+  
+  <p>
+    <i>¿Cuándo podemos asegurar que la cantidad de filas del resultado será exactamente igual?</i>
+  </p>
+  
+
+      
+      <span class="pagenumber">9</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>2. Selección</h3>
+        
+  
+  <p>
+    Notación:
+  </p>
+  
+
+<div class="image">
+  <img src="./ar_files/ar-selection.png">
+</div>
+
+  
+  <p>
+    Extrae las filas que cumplan con la condición especificada.
+  </p>
+  
+
+  
+  <p>
+    Se utiliza la letra griega <i>sigma</i>.
+  </p>
+  
+
+      
+      <span class="pagenumber">10</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>2. Selección</h3>
+        
+  
+  <p>
+    Ejemplo:
+  </p>
+  
+
+<div class="image">
+  <img src="./ar_files/ar-selection-example.png" height="400">
+</div>
+
+      
+      <span class="pagenumber">11</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>2. Selección</h3>
+        
+  
+  <p>
+    Observaciones:
+  </p>
+  
+
+  <ul>
+  
+    <li><i>#columnas resultado</i>  <b>es exactamente igual a</b>  <i>#columnas relación inicial</i></li>
+  
+    <li><i>#filas resultado</i>  <b>es menor o igual a</b>  <i>#filas relación inicial</i></li>
+  
+  </ul>
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+  
+  <p>
+    <i>La condición se aplica de manera independiente a cada fila de la relación</i>
+  </p>
+  
+
+      
+      <span class="pagenumber">12</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Ejercicio: combinando operaciones</h3>
+        
+<div class="image">
+  <img src="./ar_files/ar-sel-proj-exercise.png" height="600">
+</div>
+
+      
+      <span class="pagenumber">13</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>3. Producto cartesiano</h3>
+        
+  
+  <p>
+    Notación:
+  </p>
+  
+
+<div class="image">
+  <img src="./ar_files/ar-cartesian-product.png" height="35">
+</div>
+
+  
+  <p>
+    Combina todas las filas de una tabla con todas las filas de la otra.
+  </p>
+  
+
+      
+      <span class="pagenumber">14</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>3. Producto cartesiano</h3>
+        
+  
+  <p>
+    Ejemplo:
+  </p>
+  
+
+<div class="image">
+  <img src="./ar_files/ar-cartesian-product-example.png" height="470">
+</div>
+
+      
+      <span class="pagenumber">15</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>3. Producto cartesiano</h3>
+        
+  
+  <p>
+    Observaciones:
+  </p>
+  
+
+  <ul>
+  
+    <li><i>#columnas resultado</i> es igual a la <b>suma</b> de <i>#columnas R1</i> y <i>#columnas R2</i></li>
+  
+    <li><i>#filas resultado</i> es igual a la <b>multiplicación</b> de <i>#filas R1</i> y <i>#filas R2</i></li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">16</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>4. Join</h3>
+        
+  
+  <p>
+    Notación:
+  </p>
+  
+
+<div class="image">
+  <img src="./ar_files/ar-join.png">
+</div>
+
+  
+  <p>
+    Combina las filas de ambas tablas, matcheando según la condición.
+  </p>
+  
+
+      
+      <span class="pagenumber">17</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>4. Join</h3>
+        
+  
+  <p>
+    Ejemplo:
+  </p>
+  
+
+<div class="image">
+  <img src="./ar_files/ar-join-example.png" height="470">
+</div>
+
+      
+      <span class="pagenumber">18</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>4. Natural Join</h3>
+        
+<div class="image">
+  <img src="./ar_files/ar-natural-join.png">
+</div>
+
+  
+  <p>
+    Si no hay condición, se llama <b>natural join</b> y matchea atributos con el mismo nombre.
+  </p>
+  
+
+<div class="image">
+  <img src="./ar_files/ar-natural-join-example.png" height="400">
+</div>
+
+      
+      <span class="pagenumber">19</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>4. Join</h3>
+        
+  
+  <p>
+    Observaciones:
+  </p>
+  
+
+  <ul>
+  
+    <li>La operación de <i>join</i> se puede pensar como la forma de abreviar
+el <i>producto cartesiano</i> seguido de una <i>selección</i></li>
+  
+    <li>Permite componer relaciones que tienen atributos en común</li>
+  
+    <li>Es una operación central en cualquier base de datos relacional</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">20</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Ejercicio para pensar y resolver en clase</h3>
+        
+<div class="image">
+  <img src="./ar_files/ar-join-exercise.png" height="300">
+</div>
+
+      
+      <span class="pagenumber">21</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>5. Unión</h3>
+        
+  
+  <p>
+    Notación:
+  </p>
+  
+
+<div class="image">
+  <img src="./ar_files/ar-union.png" height="35">
+</div>
+
+  
+  <p>
+    Une dos tablas. <i>Es una operación de conjuntos (de tuplas).</i>
+  </p>
+  
+
+  
+  <p>
+    Las tablas deben ser <b>schema compatibles</b> —i.e. misma cantidad y tipos de atributos.
+  </p>
+  
+
+      
+      <span class="pagenumber">22</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>5. Unión</h3>
+        
+  
+  <p>
+    Ejemplo:
+  </p>
+  
+
+<div class="image">
+  <img src="./ar_files/ar-union-example.png" height="470">
+</div>
+
+      
+      <span class="pagenumber">23</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>5. Unión</h3>
+        
+  
+  <p>
+    Observaciones:
+  </p>
+  
+
+  <ul>
+  
+    <li><i>#columnas resultado</i>  <b>es igual a</b>  <i>#columnas R1</i> (o <i>#columnas R2</i>)</li>
+  
+    <li><i>#filas resultado</i>  <b>es menor o igual a</b> la <b>suma</b> de <i>#filas R1</i> y <i>#filas R2</i></li>
+  
+  </ul>
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+  
+  <p>
+    <i>¿Cuándo la cantidad de filas del resultado será estrictamente menor a la suma de R1 y R2?</i>
+  </p>
+  
+
+      
+      <span class="pagenumber">24</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>6. Intersección</h3>
+        
+  
+  <p>
+    Notación:
+  </p>
+  
+
+<div class="image">
+  <img src="./ar_files/ar-intersection.png" height="35">
+</div>
+
+  
+  <p>
+    Quedan las filas que están en ambas tablas. <i>Es una operación de conjuntos.</i>
+  </p>
+  
+
+  
+  <p>
+    Las tablas deben ser <b>schema compatibles</b> —i.e. misma cantidad y tipos de atributos.
+  </p>
+  
+
+      
+      <span class="pagenumber">25</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>6. Intersección</h3>
+        
+  
+  <p>
+    Ejemplo:
+  </p>
+  
+
+<div class="image">
+  <img src="./ar_files/ar-intersection-example.png" height="470">
+</div>
+
+      
+      <span class="pagenumber">26</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>6. Intersección</h3>
+        
+  
+  <p>
+    Observaciones:
+  </p>
+  
+
+  <ul>
+  
+    <li><i>#columnas resultado</i>  <b>es igual a</b>  <i>#columnas R1</i> (o <i>#columnas R2</i>)</li>
+  
+  </ul>
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+  
+  <p>
+    <i>¿Qué cantidad máxima de filas puede tener el resultado?</i>
+  </p>
+  
+
+      
+      <span class="pagenumber">27</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>7. Diferencia</h3>
+        
+  
+  <p>
+    Notación:
+  </p>
+  
+
+<div class="image">
+  <img src="./ar_files/ar-difference.png" height="35">
+</div>
+
+  
+  <p>
+    Las tuplas que están la primera tabla, pero que no están en la segunda.
+<br>
+
+    <i>Es una operación de conjuntos.</i>
+  </p>
+  
+
+  
+  <p>
+    Las tablas deben ser <b>schema compatibles</b> —i.e. misma cantidad y tipos de atributos.
+  </p>
+  
+
+      
+      <span class="pagenumber">28</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>7. Diferencia</h3>
+        
+  
+  <p>
+    Ejemplo:
+  </p>
+  
+
+<div class="image">
+  <img src="./ar_files/ar-difference-example.png" height="470">
+</div>
+
+      
+      <span class="pagenumber">29</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>7. Diferencia</h3>
+        
+  
+  <p>
+    Observaciones:
+  </p>
+  
+
+  <ul>
+  
+    <li><i>#columnas resultado</i>  <b>es igual a</b>  <i>#columnas R1</i> (o <i>#columnas R2</i>)</li>
+  
+    <li><i>#filas resultado</i>  <b>es menor o igual a</b> <i>#filas R1</i></li>
+  
+  </ul>
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+  
+  <p>
+    <i>¡Ojo! La diferencia, en general, no es conmutativa:</i> <b>R1 - R2</b> <i>es distinto de</i> <b>R2 - R1</b>
+  </p>
+  
+
+      
+      <span class="pagenumber">30</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>8. División</h3>
+        
+  
+  <p>
+    Notación:
+  </p>
+  
+
+<div class="image">
+  <img src="./ar_files/ar-division.png" height="100">
+</div>
+
+  
+  <p>
+    Devuelve una nueva tabla con las columnas que están sólo en R y que están asociadas con todas las filas de S.
+  </p>
+  
+
+      
+      <span class="pagenumber">31</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>8. División</h3>
+        
+  
+  <p>
+    Ejemplo:
+  </p>
+  
+
+<div class="image">
+  <img src="./ar_files/ar-division-example.png" height="470">
+</div>
+
+      
+      <span class="pagenumber">32</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Cada operación devuelve una nueva relación!</h2>
+      
+      <span class="pagenumber">33</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Una cosa más…</h2>
+      
+      <span class="pagenumber">34</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Renombramiento</h3>
+        
+<div class="image">
+  <img src="./ar_files/ar-rename.png">
+</div>
+
+  
+  <p>
+    R se renombra a S, junto con los atributos correspondientes.
+  </p>
+  
+
+      
+      <span class="pagenumber">35</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Bibliografía</h3>
+        
+  
+  <p>
+    Elmasri and Navathe, <i>Fundamentals of database systems (7th edition)</i>
+  </p>
+  
+
+  <ul>
+  
+    <li>Capítulo 8, secciones 8.1, 8.2 y 8.3</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">36</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Dudas, preguntas, consultas</h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./ar_files/pregunta.png" height="200">
+</div>
+
+      
+      <span class="pagenumber">37</span>
+      </article>
+  
+  
+
+      <article>
+        <h3>Thank you</h3>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Universidad Nacional de General Sarmiento
+  </p>
+  
+
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    
+  </p>
+  
+
+          </div>
+        
+      </article>
+
+    <div class="slide-area" id="prev-slide-area"></div><div class="slide-area" id="next-slide-area"></div></section>
+
+    <div id="help" style="display: none;">
+      Use the left and right arrow keys or click the left and right
+      edges of the page to navigate between slides.<br>
+      (Press 'H' or navigate to hide this message.)
+    </div>
+
+    
+    <script src="./ar_files/play.js"></script>
+    
+
+    <script>
+      (function() {
+        
+        if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+          var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+          ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+          var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+        }
+      })();
+    </script>
+  
+
+<link rel="stylesheet" type="text/css" href="./ar_files/css"><link rel="stylesheet" type="text/css" href="./ar_files/styles.css"></body></html>
