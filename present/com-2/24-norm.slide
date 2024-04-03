@@ -24,6 +24,20 @@ Universidad Nacional de General Sarmiento
 
 Por definición, el modelo relacional no admite atributos multivaluados.
 
+# Se pasó superclaves y claves desde la presentación de dependencias funcionales
+
+* Superclaves y claves
+
+.image tex/df-superclaves-claves.png 195 _
+
+* Ejemplo
+
+.image tex/df-superclaves-claves-ejemplo.png 525 _
+
+* Ejemplo
+
+.image tex/df-superclaves-claves-ejemplo-2.png 545 _
+
 * Primera forma normal
 
 * Definición
