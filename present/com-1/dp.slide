@@ -97,7 +97,7 @@ conjunto de dependencias funcionales $F$
 
 $\text{alumne\_legajo} \to \text{alumne\_nombre,}$
 
-$\text{alumne\_legajo, materia} \to \text{f\_inscripción,}$
+$\text{alumne\_legajo, materia} \to \text{f\_inscripcion,}$
 
 $\text{alumne\_legajo, materia, f\_examen} \to \text{nota}$
 
@@ -158,7 +158,7 @@ $)$
 $F = \\{$
 
 $\hskip 20pt \text{alumne\_legajo} \to \text{alumne\_nombre,}$
-$\hskip 20pt \text{alumne\_legajo, materia} \to \text{f\_inscripción,}$
+$\hskip 20pt \text{alumne\_legajo, materia} \to \text{f\_inscripcion,}$
 $\hskip 20pt \text{alumne\_legajo, materia, f\_examen} \to \text{nota}$
 
 $\\}$
