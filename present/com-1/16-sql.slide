@@ -111,9 +111,9 @@ producto cartesiano con join condition:
 * update
 
 	insert into alumne values (625, 'Arnold', 'Shwarseneger'); -- Cómo era el apellido? 🤔
-
+ 
 	update alumne set apellido = 'Schwarzenegger' where legajo = 625;
-
+ 
 	update alumne set apellido = 'Schwarzenegger'; -- No!!! 🙀
 
 * delete

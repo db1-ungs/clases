@@ -242,7 +242,7 @@ Las tablas deben ser *schema*compatibles*—i.e. misma cantidad y tipos de atrib
 * 
 
 *docente(legajo,*nombre,*teléfono)*
-*alumne(legajo,*nombre,*email)*
+*alumne(legajo,*nombre,*teléfono)*
 
  dni      | nombre            | teléfono         dni       | nombre            | teléfono
  ---------+-------------------+---------         ----------+-------------------+---------
