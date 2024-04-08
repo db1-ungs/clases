@@ -8,6 +8,41 @@ Universidad Nacional de General Sarmiento
 
 .image img/db1-ungs.github.io-clases-com-2-norm.html.png 500 _
 
+# Se pasó superclaves y claves desde la presentación de dependencias funcionales
+
+* Superclaves y claves
+
+* Superclaves
+
+Definición:
+
+.image tex/fn-superclave-definicion.png 80 _
+
+Ambas afirmaciones son equivalentes.
+
+
+* Claves
+
+Definición:
+
+.image tex/fn-clave-definicion.png 100 _
+
+Es decir, una clave es una superclave _minimal_. Si se le quita _cualquiera_ de sus atributos, deja de ser superclave.
+
+_R_ puede tener una o varias claves, a las que llamamos _claves_candidatas_.
+
+#* Superclaves y claves
+#
+#.image tex/df-superclaves-claves.png 195 _
+
+* Ejemplo
+
+.image tex/df-superclaves-claves-ejemplo.png 525 _
+
+* Ejemplo
+
+.image tex/df-superclaves-claves-ejemplo-2.png 545 _
+
 * Modelo relacional
 
 * Modelo relacional
@@ -23,20 +58,6 @@ Universidad Nacional de General Sarmiento
 .image tex/fn-pfn-erronea.png 250 _
 
 Por definición, el modelo relacional no admite atributos multivaluados.
-
-# Se pasó superclaves y claves desde la presentación de dependencias funcionales
-
-* Superclaves y claves
-
-.image tex/df-superclaves-claves.png 195 _
-
-* Ejemplo
-
-.image tex/df-superclaves-claves-ejemplo.png 525 _
-
-* Ejemplo
-
-.image tex/df-superclaves-claves-ejemplo-2.png 545 _
 
 * Primera forma normal
 
