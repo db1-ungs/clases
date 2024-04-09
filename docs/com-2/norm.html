@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://localhost:3999/com-2/24-norm.slide#1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Formas normales</title>
+    
+    <script>
+      var notesEnabled =  false ;
+    </script>
+    <script src="./norm_files/slides.js"></script>
+
+    
+
+    <script>
+      
+      if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+        var _gaq = _gaq || [];
+        _gaq.push(["_setAccount", "UA-11222381-6"]);
+        _gaq.push(["b._setAccount", "UA-49880327-6"]);
+        window.trackPageview = function() {
+          _gaq.push(["_trackPageview", location.pathname+location.hash]);
+          _gaq.push(["b._trackPageview", location.pathname+location.hash]);
+        };
+        window.trackPageview();
+        window.trackEvent = function(category, action, opt_label, opt_value, opt_noninteraction) {
+          _gaq.push(["_trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+          _gaq.push(["b._trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+        };
+      }
+    </script>
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1"><meta name="apple-mobile-web-app-capable" content="yes"></head>
+
+  <body style="display: none" class="loaded">
+
+    <section class="slides layout-widescreen" style="transform: scale(0.84);">
+
+      <article class="current">
+        <h1>Formas normales</h1>
+        <h3>Bases de Datos I</h3>
+        
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Universidad Nacional de General Sarmiento
+  </p>
+  
+
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    
+  </p>
+  
+
+          </div>
+        
+      </article>
+
+  
+  
+      <article class="next">
+      
+        <h3>db1-ungs.github.io/clases/com-2/norm.html</h3>
+        
+<div class="image">
+  <img src="./norm_files/db1-ungs.github.io-clases-com-2-norm.html.png" height="500">
+</div>
+
+      
+      <span class="pagenumber">2</span>
+      </article>
+  
+  
+  
+      <article class="far-next">
+      
+        <h3>Formas normales</h3>
+        
+  
+  <p>
+    Motivación:
+  </p>
+  
+
+  
+  <p>
+    Desarrollar una metodología para <b>testear y mejorar los esquemas de relación</b>,
+<br>
+
+    partiendo de conocer sus <i>dependencias funcionales</i> y sus <i>claves</i>.
+  </p>
+  
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+  
+  <p>
+    <i>¿Qué significa "mejorar" un esquema de relación?</i>
+  </p>
+  
+
+  <ul>
+  
+    <li>minimizar la redundancia de información</li>
+  
+    <li>minimizar los problemas al insertar, eliminar o actualizar registros</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">3</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Proceso de normalización</h3>
+        
+  <ul>
+  
+    <li>Testeamos si un esquema de relación cumple con una determinada <i>forma normal</i></li>
+  
+    <li>Si no la cumple, <b>descomponemos</b> esa relación en relaciones más pequeñas, para que
+cumplan con la forma normal que estamos testeando</li>
+  
+  </ul>
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    La descomposición debería cumplir con las siguientes propiedades:
+  </p>
+  
+
+  <ul>
+  
+    <li><b>Nonadditive join or lossless join property</b>. Al volver a unir las relaciones resultantes (con la
+operación de <i>join</i>), no deben aparecer tuplas adicionales, que no estaban en la relación original.</li>
+  
+    <li><b>Dependency preservation property</b>. Cada una de las dependencias funcionales de la relación original,
+debe estar representada en alguna de las relaciones resultantes después de la descomposición.</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">4</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Superclaves y claves</h2>
+      
+      <span class="pagenumber">5</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Superclaves</h3>
+        
+  
+  <p>
+    Definición:
+  </p>
+  
+
+<div class="image">
+  <img src="./norm_files/fn-superclave-definicion.png" height="80">
+</div>
+
+  
+  <p>
+    Ambas afirmaciones son equivalentes.
+  </p>
+  
+
+      
+      <span class="pagenumber">6</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Claves</h3>
+        
+  
+  <p>
+    Definición:
+  </p>
+  
+
+<div class="image">
+  <img src="./norm_files/fn-clave-definicion.png" height="100">
+</div>
+
+  
+  <p>
+    <i></i>
+<br>
+
+    Es decir, una clave es una <b>superclave minimal</b>
+<br>
+
+    (si se le quita <i>cualquiera</i> de sus atributos, deja de ser superclave)
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i>R</i> puede tener una o varias claves, a las que llamamos <i>claves candidatas</i>.
+  </p>
+  
+
+      
+      <span class="pagenumber">7</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Ejemplo</h3>
+        
+<div class="image">
+  <img src="./norm_files/df-superclaves-claves-ejemplo.png" height="525">
+</div>
+
+      
+      <span class="pagenumber">8</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Ejemplo</h3>
+        
+<div class="image">
+  <img src="./norm_files/df-superclaves-claves-ejemplo-2.png" height="545">
+</div>
+
+      
+      <span class="pagenumber">9</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Modelo relacional</h2>
+      
+      <span class="pagenumber">10</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Modelo relacional</h3>
+        
+  
+  <p>
+    ¿Hay algún problema?
+  </p>
+  
+
+<div class="image">
+  <img src="./norm_files/fn-pfn-erronea.png" height="250">
+</div>
+
+      
+      <span class="pagenumber">11</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Modelo relacional</h3>
+        
+  
+  <p>
+    ¿Hay algún problema?
+  </p>
+  
+
+<div class="image">
+  <img src="./norm_files/fn-pfn-erronea.png" height="250">
+</div>
+
+  
+  <p>
+    Por definición, el modelo relacional no admite atributos multivaluados.
+  </p>
+  
+
+      
+      <span class="pagenumber">12</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Primera forma normal</h2>
+      
+      <span class="pagenumber">13</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Definición</h3>
+        
+  
+  <p>
+    Una relación <i>R</i> está en <b>Primera forma normal</b> (1NF) si y solo si no tiene filas repetidas.
+  </p>
+  
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <b>Definición alternativa:</b>
+  </p>
+  
+
+  
+  <p>
+    Una relación <i>R</i> está en <b>1NF</b> si y solo si tiene al menos una clave.
+  </p>
+  
+
+      
+      <span class="pagenumber">14</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Definición</h3>
+        
+  
+  <p>
+    Una relación <i>R</i> está en <b>Primera forma normal</b> (1NF) si y solo si no tiene filas repetidas.
+  </p>
+  
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <b>Definición alternativa:</b>
+  </p>
+  
+
+  
+  <p>
+    Una relación <i>R</i> está en <b>1NF</b> si y solo si tiene al menos una clave.
+  </p>
+  
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <b>Aclaración:</b>
+  </p>
+  
+
+  
+  <p>
+    Si pensamos a toda relación como un <b>conjunto</b> de tuplas, entonces <b>siempre</b> existe una clave. En ese caso, <i>toda relación está en 1NF.</i>
+  </p>
+  
+
+  
+  <p>
+    Cuando pensamos en tablas <i>(nivel físico)</i>, es posible que no exista una PK, y entonces <i>sí pueden existir filas duplicadas.</i>
+  </p>
+  
+
+      
+      <span class="pagenumber">15</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Primera forma normal</h3>
+        
+<div class="image">
+  <img src="./norm_files/fn-pfn-propuesta-1.png" height="495">
+</div>
+
+  
+  <p>
+    La relación está en 1NF, pero...
+  </p>
+  
+
+      
+      <span class="pagenumber">16</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Primera forma normal</h3>
+        
+<div class="image">
+  <img src="./norm_files/fn-pfn-propuesta-1-a.png" height="495">
+</div>
+
+  
+  <p>
+    La relación está en 1NF, pero <b>se pierde información</b>.
+  </p>
+  
+
+      
+      <span class="pagenumber">17</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Primera forma normal</h3>
+        
+<div class="image">
+  <img src="./norm_files/fn-pfn-propuesta-1-b.png" height="495">
+</div>
+
+  
+  <p>
+    La relación está en 1NF, pero <b>hay redundancia</b>.
+  </p>
+  
+
+      
+      <span class="pagenumber">18</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Primera forma normal</h3>
+        
+<div class="image">
+  <img src="./norm_files/fn-pfn-propuesta-1-c.png" height="495">
+</div>
+
+  
+  <p>
+    La relación está en 1NF, pero <b>la clave de la relación se vuelve artificiosa</b>.
+  </p>
+  
+
+      
+      <span class="pagenumber">19</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Primera forma normal</h3>
+        
+  
+  <p>
+    ¿Cuál es el problema de esta relación?
+  </p>
+  
+
+<div class="image">
+  <img src="./norm_files/fn-pfn-problemas.png" height="400">
+</div>
+
+      
+      <span class="pagenumber">20</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Primera forma normal</h3>
+        
+  
+  <p>
+    ¿Cuál es el problema de esta relación?
+  </p>
+  
+
+<div class="image">
+  <img src="./norm_files/fn-pfn-problemas-2.png" height="400">
+</div>
+
+  
+  <p>
+    Hay atributos que dependen de <b>solo una parte de la clave</b>.
+  </p>
+  
+
+      
+      <span class="pagenumber">21</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Segunda forma normal</h2>
+      
+      <span class="pagenumber">22</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Atributos primos y dependencias parciales</h3>
+        
+<div class="image">
+  <img src="./norm_files/fn-sfn-atributos-primos.png" height="200">
+</div>
+
+      
+      <span class="pagenumber">23</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Definición</h3>
+        
+  
+  <p>
+    Una relación <i>R</i> está en <b>Segunda forma normal</b> (2NF) si y solo si todo atributo no primo <i>A</i> no es parcialmente dependiente de <i>alguna</i> clave de <i>R</i>.
+  </p>
+  
+
+  
+  <p>
+    I.e., no pueden existir atributos no primos que dependan solo de una parte de alguna clave.
+  </p>
+  
+
+  
+  <p>
+    <b>Definición equivalente</b>
+  </p>
+  
+
+  
+  <p>
+    Una relación <i>R</i> está en <b>Segunda forma normal</b> (2NF) si y solo si todo atributo no primo <i>A</i> es completamente dependiente de <i>todas</i> las claves de <i>R</i>.
+  </p>
+  
+
+      
+      <span class="pagenumber">24</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Segunda forma normal</h3>
+        
+<div class="image">
+  <img src="./norm_files/fn-sfn-ejemplo.png" height="550">
+</div>
+
+      
+      <span class="pagenumber">25</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Segunda forma normal</h3>
+        
+<div class="image">
+  <img src="./norm_files/fn-sfn-problemas.png" height="350">
+</div>
+
+  
+  <p>
+    La relación está en segunda forma normal, pero ...
+  </p>
+  
+
+      
+      <span class="pagenumber">26</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Segunda forma normal</h3>
+        
+<div class="image">
+  <img src="./norm_files/fn-sfn-problemas-2.png" height="350">
+</div>
+
+  
+  <p>
+    La relación está en segunda forma normal, pero <b>hay redundancia</b>.
+  </p>
+  
+
+      
+      <span class="pagenumber">27</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Segunda forma normal</h3>
+        
+  
+  <p>
+    ¿Cuál es el problema de esta relación?
+  </p>
+  
+
+<div class="image">
+  <img src="./norm_files/fn-sfn-problemas-3.png" height="430">
+</div>
+
+      
+      <span class="pagenumber">28</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Segunda forma normal</h3>
+        
+  
+  <p>
+    ¿Cuál es el problema de esta relación?
+  </p>
+  
+
+<div class="image">
+  <img src="./norm_files/fn-sfn-problemas-4.png" height="430">
+</div>
+
+  
+  <p>
+    Hay un atributo no primo que depende de otro no primo.
+  </p>
+  
+
+      
+      <span class="pagenumber">29</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Tercera forma normal</h2>
+      
+      <span class="pagenumber">30</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Definición</h3>
+        
+  
+  <p>
+    Una relación <i>R</i> está en <b>Tercera forma normal</b> (3NF) si y solo si:
+  </p>
+  
+
+  <ul>
+  
+    <li><i>R</i> está en 2NF</li>
+  
+    <li>Todos los atributos no primos de <i>R</i> no son transitivamente dependientes de ninguna clave de <i>R</i></li>
+  
+  </ul>
+
+  
+  <p>
+    <b>Formulación equivalente</b>
+  </p>
+  
+
+  
+  <p>
+    Toda dependencia funcional no trivial X → A cumple al menos una de las siguientes condiciones:
+  </p>
+  
+
+  <ul>
+  
+    <li><i>X</i> es superclave de <i>R</i></li>
+  
+    <li><i>A</i> es primo</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">31</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Tercera forma normal</h3>
+        
+<div class="image">
+  <img src="./norm_files/fn-tfn-ejemplo.png" height="570">
+</div>
+
+      
+      <span class="pagenumber">32</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Forma normal de Boyce–Codd</h2>
+      
+      <span class="pagenumber">33</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Definición</h3>
+        
+  
+  <p>
+    Una relación <i>R</i> está en <b>Forma normal de Boyce–Codd</b> (BCNF) si y solo si en toda dependencia funcional no trivial <i>X → A</i>, <i>X</i> es superclave de <i>R</i>.
+  </p>
+  
+
+      
+      <span class="pagenumber">34</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Forma normal de Boyce–Codd</h3>
+        
+<div class="image">
+  <img src="./norm_files/fn-bcfn-ejemplo-1.png" height="430">
+</div>
+
+  
+  <p>
+    La dependencia <i>cargo → sector</i> viola la BCNF, porque <i>cargo</i> no es superclave (aunque sí está en 3NF porque <i>sector</i> es un atributo primo).
+  </p>
+  
+
+      
+      <span class="pagenumber">35</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Forma normal de Boyce–Codd</h3>
+        
+<div class="image">
+  <img src="./norm_files/fn-bcfn-ejemplo-2.png" height="550">
+</div>
+
+  
+  <p>
+    El esquema cumple la BCNF, pero en la normalización se perdió la dependencia <i>sector nro\ emp → cargo</i>.
+  </p>
+  
+
+      
+      <span class="pagenumber">36</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Pseudo–algoritmo para descomponer en BCNF</h3>
+        
+  
+  <p>
+    (1) Calcular [super]claves y DF's de <i>R(A, B, X)</i>.
+  </p>
+  
+
+  
+  <p>
+    (2) Tomar alguna <i>A → B</i> que viola BCNF.
+  </p>
+  
+
+  
+  <p>
+    (3) Descomponer <i>R</i> en <i>R₁(A, B)</i> y <i>R₂(A, X)</i>.
+  </p>
+  
+
+  
+  <p>
+    (4) Si quedan dependencias en <i>R₂</i> que violan BCNF, <i>R₂</i> pasa a ser el nuevo <i>R</i> y go to (1)
+  </p>
+  
+
+      
+      <span class="pagenumber">37</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Bibliografía</h3>
+        
+  
+  <p>
+    Elmasri and Navathe, <i>Fundamentals of database systems</i>
+  </p>
+  
+
+  <ul>
+  
+    <li>Capítulo 14, secciones 14.3, 14.4 y 14.5</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">38</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Dudas, preguntas, consultas</h3>
+        
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+  </p>
+  
+
+<div class="image">
+  <img src="./norm_files/pregunta.png" height="200">
+</div>
+
+      
+      <span class="pagenumber">39</span>
+      </article>
+  
+  
+
+      <article>
+        <h3>Thank you</h3>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Universidad Nacional de General Sarmiento
+  </p>
+  
+
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    
+  </p>
+  
+
+          </div>
+        
+      </article>
+
+    <div class="slide-area" id="prev-slide-area"></div><div class="slide-area" id="next-slide-area"></div></section>
+
+    <div id="help" style="display: none;">
+      Use the left and right arrow keys or click the left and right
+      edges of the page to navigate between slides.<br>
+      (Press 'H' or navigate to hide this message.)
+    </div>
+
+    
+    <script src="./norm_files/play.js"></script>
+    
+
+    <script>
+      (function() {
+        
+        if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+          var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+          ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+          var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+        }
+      })();
+    </script>
+  
+
+<link rel="stylesheet" type="text/css" href="./norm_files/css"><link rel="stylesheet" type="text/css" href="./norm_files/styles.css"></body></html>
