@@ -8,6 +8,38 @@ Universidad Nacional de General Sarmiento
 
 .image img/db1-ungs.github.io-clases-com-2-norm.html.png 500 _
 
+
+* Formas normales
+
+Motivación:
+
+Desarrollar una metodología para *testear*y*mejorar*los*esquemas*de*relación*,
+partiendo de conocer sus _dependencias_funcionales_ y sus _claves_.
+
+__
+__
+
+_¿Qué_significa_"mejorar"_un_esquema_de_relación?_
+
+- minimizar la redundancia de información
+- minimizar los problemas al insertar, eliminar o actualizar registros
+
+
+* Proceso de normalización
+
+- Testeamos si un esquema de relación cumple con una determinada _forma_normal_
+- Si no la cumple, *descomponemos* esa relación en relaciones más pequeñas, para que
+  cumplan con la forma normal que estamos testeando
+__
+__
+La descomposición debería cumplir con las siguientes propiedades:
+
+- *Nonadditive*join*or*lossless*join*property*. Al volver a unir las relaciones resultantes (con la
+  operación de _join_), no deben aparecer tuplas adicionales, que no estaban en la relación original.
+- *Dependency*preservation*property*. Cada una de las dependencias funcionales de la relación original,
+  debe estar representada en alguna de las relaciones resultantes después de la descomposición.
+
+
 # Se pasó superclaves y claves desde la presentación de dependencias funcionales
 
 * Superclaves y claves
@@ -26,10 +58,13 @@ Ambas afirmaciones son equivalentes.
 Definición:
 
 .image tex/fn-clave-definicion.png 100 _
-
-Es decir, una clave es una superclave _minimal_. Si se le quita _cualquiera_ de sus atributos, deja de ser superclave.
-
+__
+Es decir, una clave es una *superclave*minimal*
+(si se le quita _cualquiera_ de sus atributos, deja de ser superclave)
+__
+__
 _R_ puede tener una o varias claves, a las que llamamos _claves_candidatas_.
+
 
 #* Superclaves y claves
 #
