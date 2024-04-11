@@ -24,8 +24,8 @@ Contar con una herramienta formal, para evaluar el diseño de los schemas
 
 **Objetivos**
 
-- Preservar la información
 - Minimizar la redundancia
+- Preservar la información
 
 ## Notación
 
@@ -82,7 +82,7 @@ tuplas
 
 ✅ $(\text{1, 'Cristina', 'Kirchner', 1615, 'Grand Bourg'})$
 
-❌ $(\text{2, 'Diego', 'Maradona', 1615, 'José C. Paz'})$
+❌ $(\text{2, 'Diego', 'Maradona', 1615, 'Jos$\mathrm{\acute{e}}$ C. Paz'})$
 
 ## (2)
 
@@ -225,9 +225,9 @@ $F^{+} =
 ## Reglas de inferencia adicionales
 
 \begin{align*}
-(4) & \quad X \rightarrow Y,\\ \\ X\rightarrow Z  \quad \Rightarrow \quad X\rightarrow YZ &\quad \text{(unión)} \\\
+(4) & \quad X \rightarrow Y,\\ \\ X\rightarrow Z  \quad \Rightarrow \quad X\rightarrow YZ &\quad \text{(uni$\mathrm{\acute{o}}$n)} \\\
 (5) & \quad X \rightarrow Y,\\ \\ YZ\rightarrow W \quad \Rightarrow \quad XZ\rightarrow W &\quad \text{(pseudotransitividad)}\\\
-(6) & \quad X\rightarrow YZ \quad \Rightarrow \quad X\rightarrow Y,\\ \\ X\rightarrow Z &\quad \text{(descomposición)}
+(6) & \quad X\rightarrow YZ \quad \Rightarrow \quad X\rightarrow Y,\\ \\ X\rightarrow Z &\quad \text{(descomposici$\mathrm{\acute{o}}$n)}
 \end{align*}
 
 _Se demuestran aplicando los axiomas de Armstrong_
@@ -237,8 +237,8 @@ _Se demuestran aplicando los axiomas de Armstrong_
 $X\rightarrow Y,\\ \\ X\rightarrow Z \quad \Rightarrow \quad X \rightarrow YZ$
 
 \begin{align*}
-(1) & \quad X\rightarrow Y  &\quad  \text{(hipótesis)}\\\
-(2) & \quad X\rightarrow Z  &\quad  \text{(hipótesis)}\\\
+(1) & \quad X\rightarrow Y  &\quad  \text{(hip$\mathrm{\acute{o}}$tesis)}\\\
+(2) & \quad X\rightarrow Z  &\quad  \text{(hip$\mathrm{\acute{o}}$tesis)}\\\
 (3) & \quad X\rightarrow YX  &\quad  \text{(aumento de $(1)$ con $X$)}\\\
 (4) & \quad XY\rightarrow ZY  &\quad  \text{(aumento de $(2)$ con $Y$)}\\\
 (5) & \quad X\rightarrow ZY  &\quad  \text{(transitividad de $(3)$ y $(4)$)}
@@ -250,16 +250,16 @@ $X\rightarrow Z, \\ Y\rightarrow Z \quad \Rightarrow \quad X\rightarrow Y \quad\
 
 ***
 
-$\text{cliente(id, nombre, teléfono)}$
+$\text{cliente(id, nombre, telefono)}$
 
 ***
 
-$F = \\{\text{id} \to \text{nombre,} \quad \text{teléfono} \to \text{nombre} \\}$
+$F = \\{\text{id} \to \text{nombre,} \quad \text{telefono} \to \text{nombre} \\}$
 
 ***
 
 ```
- id | nombre             | teléfono
+ id | nombre             | telefono
  ---+--------------------+----------
  1  | Juan Domingo Perón | 5555-5555
  2  | Juan Carlos Olave  | 5555-6666
