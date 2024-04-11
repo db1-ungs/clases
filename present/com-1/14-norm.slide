@@ -10,11 +10,20 @@ lucifer.unix.cabj@gmail.com
 
 .image img/db1-ungs.github.io-clases-com-1-norm.html.png 500 _
 
-* Objetivos
+* Motivación
 
-- Reconocer diseños de relaciones poco óptimos
-- Identificar ventajas y desventajas en el proceso de normalización de relaciones
-- Descomponer la información en relaciones que cumplan con la 3NF
+A partir del análisis de las dependencias funcionales, evaluar el diseño de los schemas
+
+*Objetivos*
+
+- Reconocer malos diseños en las relaciones
+
+- Minimizar la redundancia, preservando la información
+# Minimizar problemas de la manipulación de datos, en los inserts, deletes, updates
+
+- Descomponer relaciones para mejorar el diseño
+
+- Identificar ventajas y desventajas en el proceso de normalización
 
 * Modelo relacional
 
@@ -315,6 +324,20 @@ cargo → sector
           ─────
 
 *Observación:* Los schemas cumplen BCNF, pero en la normalización se perdió la dependencia *sector*nro_emp*→*cargo*
+
+* Normalización
+
+* Normalización
+
+Dada una relación, se la _descompone_ en relaciones con menor redundancia
+
+*Propiedades:*
+
+- _Nonadditive_join_or_lossless_join_
+# Al volver a unir las relaciones resultantes, no deben aparecer tuplas adicionales, que no estaban en la relación original.
+
+- _Dependency_preservation_
+# Cada una de las dependencias funcionales de la relación original, debe estar representada en alguna de las relaciones resultantes después de la descomposición
 
 * Pseudo–algoritmo para descomponer en BCNF
 
