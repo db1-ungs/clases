@@ -175,7 +175,7 @@ I.e., no pueden existir atributos no primos que dependan solo de una parte de al
 
 Una relación _R_ está en *Segunda*forma*normal* (2NF) si y solo si todo atributo no primo _A_ es completamente dependiente de _todas_ las claves de _R_.
 
-* Segunda forma normal
+* Descomposición: de 1FN a 2FN
 
 .image tex/fn-sfn-ejemplo.png 550 _
 
@@ -221,7 +221,7 @@ Toda dependencia funcional no trivial X → A cumple al menos una de las siguien
 - _X_ es superclave de _R_
 - _A_ es primo
 
-* Tercera forma normal
+* Descomposición: de 2FN a 3FN
 
 .image tex/fn-tfn-ejemplo.png 570 _
 
@@ -235,29 +235,67 @@ Una relación _R_ está en *Forma*normal*de*Boyce–Codd* (BCNF) si y solo si en
 
 .image tex/fn-bcfn-ejemplo-1.png 430 _
 
-La dependencia _cargo_→_sector_ viola la BCNF, porque _cargo_ no es superclave (aunque sí está en 3NF porque _sector_ es un atributo primo).
+La dependencia *cargo*→*sector* viola BCNF, porque _cargo_ no es superclave (aunque sí está en 3NF porque _sector_ es un atributo primo).
 
-* Forma normal de Boyce–Codd
+* Descomposición: de 3FN a BCFN
 
-.image tex/fn-bcfn-ejemplo-2.png 550 _
+.image tex/fn-bcfn-ejemplo-2.png 480 _
 
-El esquema cumple la BCNF, pero en la normalización se perdió la dependencia _sector_nro\_emp_→_cargo_.
+Los esquemas cumplen BCNF, pero en la normalización se perdió la dependencia *sector*nro_emp*→*cargo*.
 
-* Pseudo–algoritmo para descomponer en BCNF
 
-(1) Calcular [super]claves y DF's de _R(A,_B,_X)_.
+* Algoritmos de normalización
 
-(2) Tomar alguna _A_→_B_ que viola BCNF.
 
-(3) Descomponer _R_ en _R₁(A,_B)_ y _R₂(A,_X)_.
+* Algoritmos de normalización
+
+- *Entrada:* una "relación universal" _R_, y su conjunto de dependencias funcionales _F_
+- *Salida:* Una descomposición de _R_ en relaciones más pequeñas _R₁,_R₂,_..._,etc,_ garantizando
+  determinada forma normal en cada una de ellas
+
+
+* Algoritmo para descomponer en 3NF
+
+(1) Encontrar el cubrimiento minimal _G_ de _F_.
+
+(2) Dadas _X_→_A₁,_ _X_→_A₂,_...,_ DF's de _G,_ unirlas en _X_→_A₁A₂..._
+
+(3) Para cada _X_→_Y,_ crear una relación con atributos _(X,Y)._ _X_ será la clave de esa relación.
+
+(4) Si ninguna de las relaciones creadas contiene a una clave de _R,_ crear una
+    relación más, que contenga a todos los atributos de una clave.
+    
+(5) Eliminar relaciones redundantes (que sean proyecciones de otra relación)
+__
+__
+*Observación*:
+
+Este algoritmo garantiza que la descomposición cumpla con las propiedades *dependency*preservation* y *nonadditive*join*
+
+
+* Algoritmo para descomponer en BCNF
+
+(1) Calcular [super]claves y DF's de _R_.
+
+(2) Tomar alguna _X_→_Y_ que viola BCNF en _R_.
+
+(3) Descomponer _R_ en _R₁(X,_Y)_ y _R₂=R-Y_.
 
 (4) Si quedan dependencias en _R₂_ que violan BCNF, _R₂_ pasa a ser el nuevo _R_ y go to (1)
+
+__
+__
+*Observación*:
+
+Este algoritmo garantiza que la descomposición cumpla con la propiedad *nonadditive*join,* pero no con la propiedad *dependency*preservation.* 
+
 
 * Bibliografía
 
 Elmasri and Navathe, _Fundamentals_of_database_systems_
 
 - Capítulo 14, secciones 14.3, 14.4 y 14.5
+- Capítulo 15, secciones 15.2 y 15.3
 
 * Dudas, preguntas, consultas
 

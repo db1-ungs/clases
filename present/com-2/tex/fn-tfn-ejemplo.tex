@@ -1,11 +1,12 @@
 \pdfoutput=1
 \documentclass[preview]{standalone}
+\usepackage{xcolor}
 
 \begin{document}
 
 
 \textbf{Esquema:}\\
-campeon\_grand\_slam(\underline{torneo}, \underline{a\~no}, tenista, nacionalidad)\\
+campeon\_grand\_slam(\underline{torneo}, \underline{a\~no}, tenista, nacionalidad) \textcolor{red}{$\Rightarrow$ !3NF}\\
 
 \textbf{Dependencias funcionales:}\\
 torneo, a\~no $\rightarrow$ tenista\\
@@ -30,8 +31,8 @@ $\Big\Downarrow$
 \end{center}
 
 \textbf{Esquemas:}\\
-campeon\_grand\_slam(\underline{torneo}, \underline{a\~no}, tenista)\\
-tenista(\underline{nombre}, nacionalidad)
+campeon\_grand\_slam(\underline{torneo}, \underline{a\~no}, tenista) \textcolor{green}{$\Rightarrow$ 3NF}\\
+tenista(\underline{nombre}, nacionalidad) \textcolor{green}{$\Rightarrow$ 3NF}
 
 
 \textbf{Instancias:}

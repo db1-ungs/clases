@@ -1,11 +1,11 @@
 \pdfoutput=1
 \documentclass[preview]{standalone}
+\usepackage{xcolor}
 
 \begin{document}
 
-
 \textbf{Esquema:}\\
-estudiante(\underline{nro\_legajo}, nombre, apellido, \underline{materia\_aprobada}, semestre)\\
+estudiante(\underline{nro\_legajo}, nombre, apellido, \underline{materia\_aprobada}, semestre) \textcolor{red}{$\Rightarrow$ !2NF}\\
 
 \textbf{Dependencias funcionales:}\\
 nro\_legajo $\rightarrow$ nombre\\ 
@@ -28,8 +28,8 @@ nro\_legajo, materia\_aprobada $\rightarrow$ semestre \\
 $\Big\Downarrow$
 \end{center}
 \textbf{Esquemas:}\\
-estudiante(\underline{nro\_legajo}, nombre, apellido)\\
-materia\_aprobada(\underline{nro\_legajo}, \underline{materia}, semestre)\\
+estudiante(\underline{nro\_legajo}, nombre, apellido) \textcolor{green}{$\Rightarrow$ 2NF}\\
+materia\_aprobada(\underline{nro\_legajo}, \underline{materia}, semestre) \textcolor{green}{$\Rightarrow$ 2NF}\\
 
 
 \textbf{Instancias:}
