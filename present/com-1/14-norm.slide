@@ -329,7 +329,7 @@ cargo → sector
 
 * Normalización
 
-Dada una relación, se la _descompone_ en relaciones con menor redundancia
+Dada una relación, se la _descompone_ en relaciones de menor redundancia
 
 *Propiedades:*
 
@@ -338,6 +338,30 @@ Dada una relación, se la _descompone_ en relaciones con menor redundancia
 
 - _Dependency_preservation_
 # Cada una de las dependencias funcionales de la relación original, debe estar representada en alguna de las relaciones resultantes después de la descomposición
+
+* Algoritmo para descomponer en 3NF
+
+(1) Encontrar el cubrimiento minimal _G_ de _F_.
+
+(2) Dadas _X_→_A₁,_X_→_A₂,_...,_ DF's de _G_, unirlas en _X_→_A₁A₂..._
+
+(3) Para cada _X_→_Y_, crear una relación con atributos _(X,_Y)_, con _X_ clave.
+
+(4) Si ninguna de las relaciones contiene una clave de _R_, crear una relación más, que contenga todos los atributos de una clave.
+    
+(5) Eliminar relaciones redundantes.
+
+__
+__
+__
+__
+__
+
+_Garantiza_Nonadditive_join_or_lossless_join_y_Dependency_preservation._
+
+# *Observación*:
+
+# Este algoritmo garantiza que la descomposición cumpla con las propiedades *dependency*preservation* y *nonadditive*join*
 
 * Pseudo–algoritmo para descomponer en BCNF
 
