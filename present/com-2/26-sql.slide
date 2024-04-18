@@ -26,9 +26,11 @@ Universidad Nacional de General Sarmiento
 
 * Para qué se usa?
 
-- crear/borrar tablas… ← *Data*Definition*Language*
+- crear/modificar/borrar tablas… ← *Data*Definition*Language*
 - input/output de datos ← *Data*Manipulation*Language*
 - administrar usuaries ← *Data*Control*Language*
+# - administrar transacciones ← *Transaction*Control*Language*
+# - administrar sesiones ← *Session*Control*Language*
 
 * select
 
@@ -84,6 +86,8 @@ producto cartesiano con join condition:
 	select * from alumne a, cursa c where a.legajo = c.legajo;
 	select * from alumne a, cursa c, materia m where a.legajo = c.legajo and c.código = m.código;
 
+* No usar la sintaxis `join on` en el parcial!
+
 * Tablas
 
 * Tablas
@@ -112,9 +116,9 @@ producto cartesiano con join condition:
 * update
 
 	insert into alumne values (625, 'Arnold', 'Shwarseneger'); -- Cómo era el apellido? 🤔
-
+ 
 	update alumne set apellido = 'Schwarzenegger' where legajo = 625;
-
+ 
 	update alumne set apellido = 'Schwarzenegger'; -- No!!! 🙀
 
 * delete
