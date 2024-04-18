@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)http://localhost:3999/com-2/26-sql.slide#1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>SQL</title>
+    
+    <script>
+      var notesEnabled =  false ;
+    </script>
+    <script src="./sql_files/slides.js"></script>
+
+    
+
+    <script>
+      
+      if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+        var _gaq = _gaq || [];
+        _gaq.push(["_setAccount", "UA-11222381-6"]);
+        _gaq.push(["b._setAccount", "UA-49880327-6"]);
+        window.trackPageview = function() {
+          _gaq.push(["_trackPageview", location.pathname+location.hash]);
+          _gaq.push(["b._trackPageview", location.pathname+location.hash]);
+        };
+        window.trackPageview();
+        window.trackEvent = function(category, action, opt_label, opt_value, opt_noninteraction) {
+          _gaq.push(["_trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+          _gaq.push(["b._trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+        };
+      }
+    </script>
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1"><meta name="apple-mobile-web-app-capable" content="yes"></head>
+
+  <body style="display: none" class="loaded">
+
+    <section class="slides layout-widescreen" style="transform: scale(0.798667);">
+
+      <article class="current">
+        <h1>SQL</h1>
+        <h3>Structured Query Language</h3>
+        
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Daniel Bertaccini
+  </p>
+  
+
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    
+  </p>
+  
+
+  
+  <p>
+    Hernán Rondelli
+  </p>
+  
+
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Universidad Nacional de General Sarmiento
+  </p>
+  
+
+          </div>
+        
+      </article>
+
+  
+  
+      <article class="next">
+      
+        <h3>db1-ungs.github.io/clases/com-2/sql.html</h3>
+        
+<div class="image">
+  <img src="./sql_files/db1-ungs.github.io-clases-com-2-sql.html.png" height="500">
+</div>
+
+      
+      <span class="pagenumber">2</span>
+      </article>
+  
+  
+  
+      <article class="far-next">
+      
+        <h2>SQL</h2>
+      
+      <span class="pagenumber">3</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>SQL</h3>
+        
+  <ul>
+  
+    <li>Sequel /ˈsiːkw(ə)l/</li>
+  
+    <li>Standard</li>
+  
+    <li>Declarative language</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">4</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Para qué se usa?</h3>
+        
+  <ul>
+  
+    <li>crear/modificar/borrar tablas… ← <b>Data Definition Language</b></li>
+  
+    <li>input/output de datos ← <b>Data Manipulation Language</b></li>
+  
+    <li>administrar usuaries ← <b>Data Control Language</b></li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">5</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>select</h2>
+      
+      <span class="pagenumber">6</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Nada que ver con σ!</h2>
+      
+      <span class="pagenumber">7</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>select</h3>
+        
+  
+  <div class="code"><pre>select * from alumne;</pre></div>
+  
+
+  
+  <div class="code"><pre>select nombre from alumne;</pre></div>
+  
+
+  
+  <div class="code"><pre>select nombre, apellido from alumne;</pre></div>
+  
+
+  
+  <div class="code"><pre>select legajo, nombre, apellido from alumne;</pre></div>
+  
+
+      
+      <span class="pagenumber">8</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>select</h3>
+        
+  
+  <div class="code"><pre>select c1, c2, …, cN from tabla;</pre></div>
+  
+
+  <ul>
+  
+    <li>c1, c2, …, cN == "operador Π del álgebra relacional"</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">9</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>where</h3>
+        
+  
+  <div class="code"><pre>select * from alumne where legajo = 626;</pre></div>
+  
+
+  
+  <div class="code"><pre>select nombre, apellido from alumne where localidad = 'Grand Bourg';</pre></div>
+  
+
+  
+  <div class="code"><pre>select distinct nombre, apellido from alumne where localidad = 'Grand Bourg';</pre></div>
+  
+
+  
+  <div class="code"><pre>select legajo from alumne where apellido = 'Olave';</pre></div>
+  
+
+  
+  <div class="code"><pre>select legajo from alumne where f_inscripción &gt;= '2011-06-26';</pre></div>
+  
+
+  
+  <div class="code"><pre>select * from alumne where '2011-06-26' &lt;= f_inscripción and f_inscripción &lt;= current_date;</pre></div>
+  
+
+      
+      <span class="pagenumber">10</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>where</h3>
+        
+  
+  <div class="code"><pre>select * from tabla where condición;</pre></div>
+  
+
+  <ul>
+  
+    <li>where == "operador σ del álgebra relacional"</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">11</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>from</h3>
+        
+  
+  <div class="code"><pre>select * from alumne;</pre></div>
+  
+
+  
+  <p>
+    producto cartesiano:
+  </p>
+  
+
+  
+  <div class="code"><pre>select * from alumne, cursa;</pre></div>
+  
+
+  
+  <p>
+    producto cartesiano con join condition:
+  </p>
+  
+
+  
+  <div class="code"><pre>select * from alumne, cursa where alumne.legajo = cursa.legajo;
+select * from alumne a, cursa c where a.legajo = c.legajo;
+select * from alumne a, cursa c, materia m where a.legajo = c.legajo and c.código = m.código;</pre></div>
+  
+
+      
+      <span class="pagenumber">12</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>No usar la sintaxis `join on` en el parcial!</h2>
+      
+      <span class="pagenumber">13</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Tablas</h2>
+      
+      <span class="pagenumber">14</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Tablas</h3>
+        
+  <ul>
+  
+    <li>create table</li>
+  
+  </ul>
+
+  
+  <div class="code"><pre>create table alumne (legajo int, nombre text, apellido text);
+create table materia (código int, nombre text);
+create table cursa (legajo int, código int);</pre></div>
+  
+
+  <ul>
+  
+    <li>primary key's</li>
+  
+  </ul>
+
+  
+  <div class="code"><pre>alter table alumne add constraint alumne_pk primary key (legajo);
+alter table materia add constraint materia_pk primary key (código);
+alter table cursa add constraint cursa_pk primary key (legajo, código);</pre></div>
+  
+
+  <ul>
+  
+    <li>foreign key's</li>
+  
+  </ul>
+
+  
+  <div class="code"><pre>alter table cursa add constraint cursa_legajo_fk foreign key (legajo) references alumne (legajo);
+alter table cursa add constraint cursa_código_fk foreign key (código) references materia (código);</pre></div>
+  
+
+      
+      <span class="pagenumber">15</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>insert</h3>
+        
+  
+  <div class="code"><pre>insert into alumne values (624, 'Cristina', 'Kirchner');</pre></div>
+  
+
+      
+      <span class="pagenumber">16</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>update</h3>
+        
+  
+  <div class="code"><pre>insert into alumne values (625, 'Arnold', 'Shwarseneger'); -- Cómo era el apellido? 🤔</pre></div>
+  
+
+  
+  <div class="code"><pre>update alumne set apellido = 'Schwarzenegger' where legajo = 625;</pre></div>
+  
+
+  
+  <div class="code"><pre>update alumne set apellido = 'Schwarzenegger'; -- No!!! 🙀</pre></div>
+  
+
+      
+      <span class="pagenumber">17</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>delete</h3>
+        
+  
+  <div class="code"><pre>delete from materia where código = 629;</pre></div>
+  
+
+  
+  <div class="code"><pre>delete from materia; -- No!!! 🙀</pre></div>
+  
+
+      
+      <span class="pagenumber">18</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Bases de datos</h2>
+      
+      <span class="pagenumber">19</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Bases de datos</h3>
+        
+  
+  <p>
+    Crear:
+  </p>
+  
+
+  
+  <div class="code"><pre>create database bedelía;</pre></div>
+  
+
+  
+  <p>
+    Borrar:
+  </p>
+  
+
+  
+  <div class="code"><pre>drop database bedelía;
+drop database bedelía; -- error!</pre></div>
+  
+
+  
+  <div class="code"><pre>drop database bedelía;
+drop database if exists bedelía; -- okay</pre></div>
+  
+
+      
+      <span class="pagenumber">20</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>PostgreSQL</h3>
+        
+  
+  <p>
+    $ psql -U postgres
+  </p>
+  
+
+  
+  <div class="code"><pre>psql (11.2)
+Type "help" for help.
+
+postgres=# help
+You are using psql, the command-line interface to PostgreSQL.
+Type:  \copyright for distribution terms
+       \h for help with SQL commands
+       \? for help with psql commands
+       \g or terminate with semicolon to execute query
+       \q to quit</pre></div>
+  
+
+      
+      <span class="pagenumber">21</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Demo</h2>
+      
+      <span class="pagenumber">22</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        
+<div class="image">
+  <img src="./sql_files/questions.png">
+</div>
+
+      
+      <span class="pagenumber">23</span>
+      </article>
+  
+  
+
+      <article>
+        <h3>Thank you</h3>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Daniel Bertaccini
+  </p>
+  
+<p class="link"><a href="mailto:dbertacc@campus.ungs.edu.ar" target="_blank">dbertacc@campus.ungs.edu.ar</a></p>
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    
+  </p>
+  
+
+  
+  <p>
+    Hernán Rondelli
+  </p>
+  
+<p class="link"><a href="mailto:lucifer.unix.cabj@gmail.com" target="_blank">lucifer.unix.cabj@gmail.com</a></p>
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Universidad Nacional de General Sarmiento
+  </p>
+  
+
+          </div>
+        
+      </article>
+
+    <div class="slide-area" id="prev-slide-area"></div><div class="slide-area" id="next-slide-area"></div></section>
+
+    <div id="help" style="display: none;">
+      Use the left and right arrow keys or click the left and right
+      edges of the page to navigate between slides.<br>
+      (Press 'H' or navigate to hide this message.)
+    </div>
+
+    
+    <script src="./sql_files/play.js"></script>
+    
+
+    <script>
+      (function() {
+        
+        if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+          var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+          ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+          var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+        }
+      })();
+    </script>
+  
+
+<link rel="stylesheet" type="text/css" href="./sql_files/css"><link rel="stylesheet" type="text/css" href="./sql_files/styles.css"></body></html>
