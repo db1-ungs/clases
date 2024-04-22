@@ -33,11 +33,18 @@ Universidad Nacional de General Sarmiento
 	                   from   empleade
 	                   where  legajo = 1234);
 * exists
+
+	select e1.nombre, e1.apellido
+	from   empleade e1
+	where  exists (select * 
+	               from   empleade e2 
+	               where  departamento = 'finanzas' and e2.salario >= e1.salario);
+ 
 	select e1.nombre, e1.apellido
 	from   empleade e1
 	where  not exists (select * 
 	                   from   empleade e2 
-	                   where  departamento = 'sistemas' and e2.salario >= e1.salario);
+	                   where  departamento = 'finanzas' and e2.salario >= e1.salario);
 
 * all
 	select nombre, apellido
@@ -63,7 +70,7 @@ Universidad Nacional de General Sarmiento
 	select count(nombre) 
 	from   empleade;
  
-	select count(distinct (nombre)) 
+	select count(distinct nombre) 
 	from   empleade;
  
 
@@ -116,7 +123,7 @@ Universidad Nacional de General Sarmiento
 	select   departamento, avg(salario) 
 	from     empleade 
 	group by departamento 
-	having   count(*) > 10;
+	having   count(*) > 2;
 
 
 
@@ -126,53 +133,53 @@ La cláusula *having* solo puede hacer referencia a funciones de agregación o a
 
 	select   departamento, count(*) 
 	from     empleade 
-	where    salario >= 40000
+	where    salario >= 400000
 	group by departamento 
-	having   count(*) > 10;
+	having   count(*) > 2;
  
 	select   departamento, count(*) 
 	from     empleade 
-	where    salario >= 40000 and departamento in (select   departamento
-	                                               from     empleade
-	                                               group by departamento
-	                                               having   count(*) > 10)
+	where    salario >= 400000 and departamento in (select   departamento
+	                                                from     empleade
+	                                                group by departamento
+	                                                having   count(*) > 2)
 	group by departamento;  
 
 * Operaciones de conjuntos
 
 * union
 
-	(select a from r)
+	(select nombre from empleade where departamento = 'sistemas')
 	union
-	(select a from s);
+	(select nombre from empleade where departamento = 'administracion');
  
-	(select a from r)
+	(select nombre from empleade where departamento = 'sistemas')
 	union all
-	(select a from s);
+	(select nombre from empleade where departamento = 'administracion');
 
 * intersect
 
-	(select a from r)
+	(select apellido from empleade where salario >= 200000)
 	intersect
-	(select a from s);
+	(select apellido from empleade where departamento = 'finanzas' or departamento = 'sistemas');
  
-	(select a from r)
+	(select apellido from empleade where salario >= 200000)
 	intersect all
-	(select a from s);
+	(select apellido from empleade where departamento = 'finanzas' or departamento = 'sistemas');
 
 * except
 
-	(select a from r)
+	(select nombre from empleade)
 	except
-	(select a from s);
+	(select nombre from empleade where departamento = 'finanzas');
  
-	(select a from r)
+	(select nombre from empleade)
 	except all
-	(select a from s);
+	(select nombre from empleade where departamento = 'finanzas');
 
 * División
 
-*
+* División
 __
 En SQL no podemos resolver de manera directa la consulta:
 
@@ -187,11 +194,12 @@ __
 __
 
 
-Lo que sí podemos resolver es la consulta:
+Lo que podemos resolver es la consulta:
 
 - _empleades_para_les_cuales_ *no*existe*un*proyecto* _en_el_que_ *no*trabajen*
 
-* 
+* División
+ 
 	-- empleades que trabajan en todos los proyectos
 
 	select distinct legajo 
