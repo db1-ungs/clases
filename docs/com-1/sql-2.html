@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://localhost:3999/com-1/165-sql-2.slide#21 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>SQL – Part II</title>
+    
+    <script>
+      var notesEnabled =  false ;
+    </script>
+    <script src="./sql-2_files/slides.js"></script>
+
+    
+
+    <script>
+      
+      if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+        var _gaq = _gaq || [];
+        _gaq.push(["_setAccount", "UA-11222381-6"]);
+        _gaq.push(["b._setAccount", "UA-49880327-6"]);
+        window.trackPageview = function() {
+          _gaq.push(["_trackPageview", location.pathname+location.hash]);
+          _gaq.push(["b._trackPageview", location.pathname+location.hash]);
+        };
+        window.trackPageview();
+        window.trackEvent = function(category, action, opt_label, opt_value, opt_noninteraction) {
+          _gaq.push(["_trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+          _gaq.push(["b._trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+        };
+      }
+    </script>
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1"><meta name="apple-mobile-web-app-capable" content="yes"></head>
+
+  <body style="display: none" class="loaded">
+
+    <section class="slides layout-widescreen" style="transform: scale(0.798667);">
+
+      <article class="">
+        <h1>SQL – Part II</h1>
+        
+        
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Ximena Ebertz
+  </p>
+  
+
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Hernán Rondelli
+  </p>
+  
+
+          </div>
+        
+      </article>
+
+  
+  
+      <article class="">
+      
+        <h3>db1-ungs.github.io/clases/com-1/sql-2.html</h3>
+        
+<div class="image">
+  <img src="./sql-2_files/db1-ungs.github.io-clases-com-1-sql-2.html.png" height="500">
+</div>
+
+      
+      <span class="pagenumber">2</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h2>order by</h2>
+      
+      <span class="pagenumber">3</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>order by</h3>
+        
+  
+  <div class="code"><pre>select *
+from   empleade
+order  by salario;</pre></div>
+  
+
+  
+  <div class="code"><pre>select *
+from   empleade
+order  by salario desc;</pre></div>
+  
+
+  
+  <div class="code"><pre>select *
+from   empleade
+order  by salario asc;</pre></div>
+  
+
+  
+  <div class="code"><pre>select *
+from   empleade
+order  by apellido, nombre;</pre></div>
+  
+
+      
+      <span class="pagenumber">4</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h2>Subqueries</h2>
+      
+      <span class="pagenumber">5</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>select … where … (select …)</h3>
+        
+  
+  <div class="code"><pre>select nombre, salario
+from empleade
+where salario &gt;= (
+    select salario
+    from empleade
+    where legajo = 626
+);</pre></div>
+  
+
+      
+      <span class="pagenumber">6</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>all</h3>
+        
+  
+  <div class="code"><pre>select nombre, apellido
+from empleade
+where salario &gt; all (
+    select salario
+    from empleade
+    where departamento = 'sistemas'
+);</pre></div>
+  
+
+      
+      <span class="pagenumber">7</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>in</h3>
+        
+  
+  <div class="code"><pre>select nombre, apellido, departamento
+from  empleade
+where departamento in (
+    select departamento
+    from proyecto
+    where fecha_inicio &gt;= '2011-06-26'
+);</pre></div>
+  
+
+      
+      <span class="pagenumber">8</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>exists</h3>
+        
+  
+  <div class="code"><pre>select e1.nombre, e1.apellido
+from empleade e1
+where not exists (
+    select *
+    from empleade e2
+    where departamento = 'sistemas' and e2.salario &gt;= e1.salario
+);</pre></div>
+  
+
+      
+      <span class="pagenumber">9</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h2>Funciones de agregación</h2>
+      
+      <span class="pagenumber">10</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Funciones de agregación…</h3>
+        
+  
+  <div class="code"><pre>select count(*) from empleade;</pre></div>
+  
+
+  
+  <div class="code"><pre>select count(nombre) from empleade;</pre></div>
+  
+
+  
+  <div class="code"><pre>select count(distinct nombre) from empleade;</pre></div>
+  
+
+      
+      <span class="pagenumber">11</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>…Funciones de agregación</h3>
+        
+  
+  <div class="code"><pre>select sum(salario) from empleade;</pre></div>
+  
+
+  
+  <div class="code"><pre>select max(salario) from empleade;</pre></div>
+  
+
+  
+  <div class="code"><pre>select min(salario) from empleade;</pre></div>
+  
+
+  
+  <div class="code"><pre>select avg(salario) from empleade;</pre></div>
+  
+
+  
+  <div class="code"><pre>select max(salario), min(salario), avg(salario) from empleade;</pre></div>
+  
+
+      
+      <span class="pagenumber">12</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h2>group by</h2>
+      
+      <span class="pagenumber">13</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>group by</h3>
+        
+  
+  <div class="code"><pre>select   departamento, count(*), avg(salario)
+from     empleade
+group by departamento;</pre></div>
+  
+
+  
+  <div class="code"><pre>select   departamento, count(*), salario
+from     empleade
+group by departamento, salario;</pre></div>
+  
+
+  
+  <div class="code"><pre>select   departamento, count(*), avg(salario)
+from     empleade
+where    departamento = 'sistemas' or departamento = 'finanzas'
+group by departamento;</pre></div>
+  
+
+      
+      <span class="pagenumber">14</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>having</h3>
+        
+  
+  <div class="code"><pre>select   departamento, avg(salario) 
+from     empleade 
+group by departamento 
+having   count(*) &gt; 10;</pre></div>
+  
+
+      
+      <span class="pagenumber">15</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>having ó where 🤔</h3>
+        
+  
+  <div class="code"><pre>select   departamento, count(*) 
+from     empleade 
+where    salario &gt;= 40000
+group by departamento 
+having   count(*) &gt; 10;</pre></div>
+  
+
+  
+  <div class="code"><pre>select   departamento, count(*) 
+from     empleade 
+where    salario &gt;= 40000 and departamento in (select   departamento
+                                               from     empleade
+                                               group by departamento
+                                               having   count(*) &gt; 10)
+group by departamento;</pre></div>
+  
+
+      
+      <span class="pagenumber">16</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h2>Operaciones de conjuntos</h2>
+      
+      <span class="pagenumber">17</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>union</h3>
+        
+  
+  <div class="code"><pre>select nombre, apellido from docente
+union
+select nombre, apellido from alumne;</pre></div>
+  
+
+  
+  <div class="code"><pre>select nombre, apellido from docente
+union all
+select nombre, apellido from alumne;</pre></div>
+  
+
+      
+      <span class="pagenumber">18</span>
+      </article>
+  
+  
+  
+      <article class="far-past">
+      
+        <h3>intersect</h3>
+        
+  
+  <div class="code"><pre>select nombre, apellido from docente
+intersect
+select nombre, apellido from alumne;</pre></div>
+  
+
+  
+  <div class="code"><pre>select nombre, apellido from docente
+intersect all
+select nombre, apellido from alumne;</pre></div>
+  
+
+      
+      <span class="pagenumber">19</span>
+      </article>
+  
+  
+  
+      <article class="past">
+      
+        <h3>except</h3>
+        
+  
+  <div class="code"><pre>select nombre, apellido from docente
+except
+select nombre, apellido from alumne;</pre></div>
+  
+
+  
+  <div class="code"><pre>select nombre, apellido from docente
+except all
+select nombre, apellido from alumne;</pre></div>
+  
+
+      
+      <span class="pagenumber">20</span>
+      </article>
+  
+  
+  
+      <article class="current">
+      
+        <h2>One more thing…</h2>
+      
+      <span class="pagenumber">21</span>
+      </article>
+  
+  
+  
+      <article class="next">
+      
+        <h3>división</h3>
+        
+  
+  <p>
+    Empleades que trabajan en todos los proyectos.
+  </p>
+  
+
+  
+  <div class="code"><pre>select distinct legajo
+from trabaja_en t1
+where not exists (
+    select 1
+    from proyecto p
+    where not exists (
+        select 1
+        from trabaja_en t2
+        where t2.legajo = t1.legajo and t2.proyecto_id = p.proyecto_id
+    )
+);</pre></div>
+  
+
+      
+      <span class="pagenumber">22</span>
+      </article>
+  
+  
+  
+      <article class="far-next">
+      
+        <h3>cómo no hacer la división en el parcial</h3>
+        
+  
+  <p>
+    Empleades que trabajan en todos los proyectos.
+  </p>
+  
+
+  
+  <div class="code"><pre>select legajo
+from trabaja_en
+group by legajo
+having count(distinct proyecto_id) = (select count(distinct proyecto_id) from proyecto);</pre></div>
+  
+
+  
+  <p>
+    ⚠︎ No hacer la división así en el parcial!
+  </p>
+  
+
+      
+      <span class="pagenumber">23</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3></h3>
+        
+<div class="image">
+  <img src="./sql-2_files/questions.png">
+</div>
+
+      
+      <span class="pagenumber">24</span>
+      </article>
+  
+  
+
+      <article class="">
+        <h3>Thank you</h3>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Ximena Ebertz
+  </p>
+  
+<p class="link"><a href="mailto:xebertz@campus.ungs.edu.ar" target="_blank">xebertz@campus.ungs.edu.ar</a></p>
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Hernán Rondelli
+  </p>
+  
+<p class="link"><a href="mailto:lucifer.unix.cabj@gmail.com" target="_blank">lucifer.unix.cabj@gmail.com</a></p>
+          </div>
+        
+      </article>
+
+    <div class="slide-area" id="prev-slide-area"></div><div class="slide-area" id="next-slide-area"></div></section>
+
+    <div id="help" style="display: none;">
+      Use the left and right arrow keys or click the left and right
+      edges of the page to navigate between slides.<br>
+      (Press 'H' or navigate to hide this message.)
+    </div>
+
+    
+    <script src="./sql-2_files/play.js"></script>
+    
+
+    <script>
+      (function() {
+        
+        if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+          var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+          ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+          var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+        }
+      })();
+    </script>
+  
+
+<link rel="stylesheet" type="text/css" href="./sql-2_files/css"><link rel="stylesheet" type="text/css" href="./sql-2_files/styles.css"></body></html>
