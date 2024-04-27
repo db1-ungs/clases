@@ -17,7 +17,7 @@ lucifer.unix.cabj@gmail.com
 - Acceso concurrente a los datos
 - Resistencia a fallas
 
-* Acceso concurrente (1)
+* Acceso concurrente 1…
 
 *access*→*read,*modify,*write*
 
@@ -31,9 +31,25 @@ Acceso B
 
  update caja_de_ahorro set saldo = saldo + 2000 where número_de_cuenta = 626;
 
-Si el cliente tenía $10000 en su cuenta, cuánto dinero tiene ahora?
+Si le cliente tenía $10000 en su cuenta, cuánto dinero tiene ahora?
 
-* Acceso concurrente (2)
+* …Acceso concurrente 1
+
+*access*→*read,*modify,*write*
+
+ Acceso A       |  Acceso B
+ ---------------+---------------
+ read(saldo)    |               
+ saldo += 1000  |               
+                |  read(saldo)  
+                |  saldo += 2000
+ write(saldo)   |               
+                |  write(saldo) 
+
+
+# Esto se conoce como _lost_update_problem_.
+
+* Acceso concurrente 2…
 
 *access*→*read,*modify,*write*
 
@@ -53,6 +69,22 @@ Observación
 
  now()::date == current_date
 
+* …Acceso concurrente 2
+
+*access*→*read,*modify,*write*
+
+ Acceso A                    |  Acceso B
+ ----------------------------+--------------------------------
+ insert into alquiler        |                                
+ select * from reserva       |                                
+ where fecha = now()::date;  |                                
+                             |  select count(*) from reserva; 
+                             |  select count(*) from alquiler;
+ delete from reserva         |                                
+ where fecha = now()::date;  |                                
+
+# Esto se conoce como _incorrect_summary_problem_.
+
 * Resistencia a fallas
 
 Estamos procesando los alquileres y las reservas…
@@ -69,9 +101,9 @@ _Es_una_secuencia_de_operaciones_SQL_que_se_tratan_como_una_unidad_
 - Cada transacción se ejecuta aisladamente
 - Todo ó nada: se ejecuta completamente, ó no se ejecuta nada
 
-* ACID
+* Propiedades ACID
 
-* ACID
+* Propiedades ACID
 
 - Atomicity
 - Consistency
