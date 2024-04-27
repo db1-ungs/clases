@@ -1,262 +1,406 @@
-Dependencias Funcionales
+# Dependencias Funcionales
 
 Hernán Rondelli
 lucifer.unix.cabj@gmail.com
 
-* db1-ungs.github.io/clases/com-1/dp.html
+## db1-ungs.github.io/clases/com-1/dp.html
 
 .image img/db1-ungs.github.io-clases-com-1-dp.html.png 500 _
+.html math-mode.html
 
-* Notación
+// unused, just in case:
+//
+//<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+//<script id="MathJax-script" async src="./es5/tex-chtml.js"></script>
 
-# empty title
-* 
+## Motivación
 
-__
+Contar con una herramienta formal, para evaluar el diseño de los schemas
 
-.image tex/dp-notacion.png 500 _
+// Buscamos saber si un determinado agrupamiento de atributos en relaciones es mejor que otro agrupamiento
 
-* Definición
+: Lo que hicimos hasta ahora (armar _DERs_ y luego pasar _entities_&_relationships_
+: al modelo relacional), lo hicimos de manera completamente intuitiva.
 
-# empty title
-* 
+**Objetivos**
 
-__
-__
-__
+- Minimizar la redundancia
+- Preservar la información
 
-.image tex/dp-definicion.png 34 _
+## Notación
 
-__
-__
+// empty title
+##
 
+$R:\ $ relación
 
-- "determina funcionalmente a"
+$A,\ B,\ C,\ldots\ :\ $ atributos de $R$
 
-- (una instancia _r_ satisface todas las DF) ⇒ (_r_ es legal)
+$X,\ Y,\ Z:\ $ conjuntos de atributos de $R$
 
-* Ejemplos
+$R(A, B, C):\ $ schema
 
-# empty title
-* 
+$r:\ $ instancia de $R$
 
-.image tex/dp-definicion-ejemplo-1.png 530 _
+$t_{1},\ t_{2},\ t_{3},\ldots\ :\ $ tuplas de $r$ 
 
-# empty title
-* 
+$f:\ $ dependencia funcional
 
-.image tex/dp-definicion-ejemplo-2.png 450 _
+$F:\ $ conjunto de dependencias funcionales
 
-# Un estudiante se puede *inscribir* en una materia *una*sola*vez*
-# Un estudiante puede *rendir* el examen *más*de*una*vez* (en más de una fecha)
+## Definición
 
-* Inferencias de F
+## Definición
 
-# empty title
-* 
+$X \rightarrow Y$ es DF de $R \iff (\forall r)$ $t_{1}(X) = t_{2}(X)  \Rightarrow t_{1}(Y) = t_{2}(Y)$
 
-__
-__
-__
-__
-__
-__
+*determina funcionalmente a*
 
-.image tex/dp-inferencia.png 40 _
+// there is a bug in here, do not delete this comment
 
-* Ejemplos
+*una instancia $r$ satisface todas las DF $\Rightarrow$ $r$ es legal*
 
-# empty title
-* 
+## Ejemplos
 
-- _F_
+## (1)
 
-legajo → cp
-cp → localidad
+schema
 
-- ⊨ ?
+$\text{alumne}(\text{legajo}, \text{nombre}, \text{apellido}, \text{cp}, \text{localidad})$
 
-legajo → localidad
+***
 
-# empty title
-* 
+dependencias funcionales
 
-- relación _R_
+$\text{legajo} \to \text{nombre apellido cp localidad}$
 
-cursada(alumne_legajo, alumne_nombre, materia, f_inscripción, f_examen, nota)
+$\text{cp} \to \text{localidad}$
 
-- conjunto de dependencias funcionales _F_
+***
 
-alumne_legajo → alumne_nombre,
-alumne_legajo, materia → f_inscripción,
-alumne_legajo, materia, f_examen → nota
+tuplas
 
-- A partir de F, se puede inferir alguna otra DF?
+✅ $(\text{1, 'Cristina', 'Kirchner', 1615, 'Grand Bourg'})$
 
-F ⊨ { alumne_legajo, materia → alumne_nombre, f_inscripción }
+❌ $(\text{2, 'Diego', 'Maradona', 1615, 'Jos$\mathrm{\acute{e}}$ C. Paz'})$
 
-* Axiomas de Armstrong
+## (2)
 
-* Axiomas de Armstrong
+relación $R$
+
+$\text{cursada}(\text{alumne\_legajo, alumne\_nombre, materia,}$
+$\hskip 36pt \text{f\_inscripcion, f\_examen, nota})$
+
+***
+
+conjunto de dependencias funcionales $F$
+
+$\text{alumne\_legajo} \to \text{alumne\_nombre,}$
+
+$\text{alumne\_legajo, materia} \to \text{f\_inscripcion,}$
+
+$\text{alumne\_legajo, materia, f\_examen} \to \text{nota}$
+
+***
+
+Es una dependencia funcional?
+
+❌ $\text{alumne_legajo materia} \to \text{f_examen}$
+
+// Une estudiante se puede **inscribir** en una materia **una sola vez**
+// Une estudiante puede **rendir** el examen **más de una vez** (en más de una fecha)
+
+## Inferencias de F
+
+## Inferencias de F
+
+$F \models f \iff (\forall r)\ $ $r$ satisface $F \Rightarrow r$ satisface $f$
+
+## Ejemplos
+
+// empty title
+## (1)
+
+Relación
+
+$\text{alumne}(\text{legajo, cp, localidad})$
+
+***
+
+Conjunto de dependencias funcionales
+
+$F = \\{$
+
+$\hskip 20pt \text{legajo} \to \text{cp}$
+
+$\hskip 20pt \text{cp} \to \text{localidad}$
+
+$\\}$
+
+***
+
+Es válida la siguiente inferencia?
+
+$F \models \\{ \text{legajo} \to \text{localidad} \\}$
+
+// empty title
+## (2)
+
+$\text{cursada}($
+
+$\hskip 20pt \text{alumne\_legajo, alumne\_nombre, materia,}$
+$\hskip 20pt \text{f\_inscripcion, f\_examen, nota}$
+
+$)$
+
+***
+
+$F = \\{$
+
+$\hskip 20pt \text{alumne\_legajo} \to \text{alumne\_nombre,}$
+$\hskip 20pt \text{alumne\_legajo, materia} \to \text{f\_inscripcion,}$
+$\hskip 20pt \text{alumne\_legajo, materia, f\_examen} \to \text{nota}$
+
+$\\}$
+
+// A partir de $F$, se puede inferir alguna otra DF?
+
+***
+
+$F \models \\{ \text{alumne\_legajo}, \text{materia} \to \text{alumne\_nombre}, \text{f\_inscripcion} \\}$
+
+## Axiomas de Armstrong
+
+## Axiomas de Armstrong
 
 Reglas de inferencia
 
-.image tex/df-axiomas-armstrong.png 142 _
+\begin{align}
+(1) & \quad  Y  \subseteq X  \Rightarrow X\rightarrow Y  &\quad\quad  \text{(reflexividad)} \\\
+(2) & \quad  X\rightarrow Y    \Rightarrow XZ\rightarrow YZ  &\quad\quad  \text{(aumento)} \\\
+(3) & \quad  X\rightarrow Y\text{, }  Y\rightarrow Z   \Rightarrow X\rightarrow Z  &\quad\quad  \text{(transitividad)}\\
+\end{align}
 
-De (1) se desprenden las inferencias triviales:
+***
 
-_X_ → _X_
+De $(1)$ se desprenden las inferencias triviales:
+
+$X \rightarrow X$
 
 Las dependencias funcionales, son simétricas?
 
-❌ _X_ → _Y_ ⇒ _Y_ → _X_
+❌ $X \rightarrow Y \Rightarrow Y \rightarrow X$
 
-* Clausura de DF
+## Clausura de DF
 
-.image tex/df-clausura-df.png 50 _
+$F^{+} = \\{ X \rightarrow Y \quad | \quad F \models X \rightarrow Y \\}$
 
-La clausura de un conjunto de dependencias funcionales _F_, es el conjunto todas las dependencias funcionales inferidas por _F_.
+La clausura de un conjunto de dependencias funcionales $F$, es el conjunto todas las dependencias funcionales inferidas por $F$.
 
-* Ejemplo
+## Ejemplo
 
-- relación:
+Relación
 
-alumne(legajo, nombre)
+$\text{alumne}(\text{legajo, nombre})$
 
-- conjunto de dependencias funcionales:
+***
 
-F = { legajo → nombre }
+Conjunto de dependencias funcionales
 
-- clausura de F:
+$F = \\{\text{legajo} \to \text{nombre} \\}$
 
-F ⁺  =  { legajo → legajo, nombre → nombre, legajo → nombre, legajo → legajo nombre, legajo nombre → legajo, legajo nombre → nombre, legajo nombre → legajo nombre }
+***
 
-* Reglas de inferencia adicionales
+Clausura de F
 
-.image tex/df-reglas-adicionales.png 190 _
+$F^{+} =
+\\{ \\ \text{legajo} \to \text{legajo,} \quad
+\text{nombre} \to \text{nombre,} \quad
+\text{legajo} \to \text{nombre,} \\\
+\text{legajo} \to \text{legajo nombre,} \quad
+\text{legajo nombre} \to \text{legajo,} \\\
+\text{legajo nombre} \to \text{nombre,} \quad
+\text{legajo nombre} \to \text{legajo nombre} \\}$
 
-Se demuestran aplicando los axiomas de Armstrong
+## Reglas de inferencia adicionales
 
-* Demostración de la unión
+\begin{align*}
+(4) & \quad X \rightarrow Y,\\ \\ X\rightarrow Z  \quad \Rightarrow \quad X\rightarrow YZ &\quad \text{(uni$\mathrm{\acute{o}}$n)} \\\
+(5) & \quad X \rightarrow Y,\\ \\ YZ\rightarrow W \quad \Rightarrow \quad XZ\rightarrow W &\quad \text{(pseudotransitividad)}\\\
+(6) & \quad X\rightarrow YZ \quad \Rightarrow \quad X\rightarrow Y,\\ \\ X\rightarrow Z &\quad \text{(descomposici$\mathrm{\acute{o}}$n)}
+\end{align*}
 
-.image tex/df-union.png 28 _
+_Se demuestran aplicando los axiomas de Armstrong_
 
-.image tex/df-demostracion-union.png 290 _
+## Demostración de la unión
 
-* Reglas que no son reglas
+$X\rightarrow Y,\\ \\ X\rightarrow Z \quad \Rightarrow \quad X \rightarrow YZ$
 
-_X_ → _Z_, _Y_ → _Z_ ⇒ _X_ → _Y_ ?
+\begin{align*}
+(1) & \quad X\rightarrow Y  &\quad  \text{(hip$\mathrm{\acute{o}}$tesis)}\\\
+(2) & \quad X\rightarrow Z  &\quad  \text{(hip$\mathrm{\acute{o}}$tesis)}\\\
+(3) & \quad X\rightarrow YX  &\quad  \text{(aumento de $(1)$ con $X$)}\\\
+(4) & \quad XY\rightarrow ZY  &\quad  \text{(aumento de $(2)$ con $Y$)}\\\
+(5) & \quad X\rightarrow ZY  &\quad  \text{(transitividad de $(3)$ y $(4)$)}
+\end{align*}
 
-- schema:
+## Reglas que no son reglas
 
-cliente(id, nombre, teléfono)
+$X\rightarrow Z, \\ Y\rightarrow Z \quad \Rightarrow \quad X\rightarrow Y \quad\text{?}$
 
-- dependencias funcionales:
+***
 
-id → nombre
-teléfono → nombre
+$\text{cliente(id, nombre, telefono)}$
 
-- instancia:
+***
 
- id | nombre             | teléfono
+$F = \\{\text{id} \to \text{nombre,} \quad \text{telefono} \to \text{nombre} \\}$
+
+***
+
+```
+ id | nombre             | telefono
  ---+--------------------+----------
  1  | Juan Domingo Perón | 5555-5555
  2  | Juan Carlos Olave  | 5555-6666
  2  | Juan Carlos Olave  | 5555-7777
+```
 
-_La_falsedad_se_demuestra_con_un_contraejemplo_
+_La falsedad se demuestra con un contraejemplo_
 
-* Clausura de conjuntos de atributos
+## Clausura de conjuntos de atributos
 
-* Clausura de conjuntos de atributos
+## Clausura de conjuntos de atributos
 
-.image tex/df-clausura-atributos.png 50 _
+$X^{+} = \\{ A \in R \quad | \quad F \models X \rightarrow A \\}$
 
 La clausura de un conjunto de atributos _X_ respecto de un conjunto de dependencias _F_ es el conjunto todos los atributos _A_ tal que _X_ → _A_ es inferido por _F_.
 
-__
-__
+**Propiedad**
 
-*Propiedad*
+$F \models X \rightarrow Y \quad \Longleftrightarrow\quad Y \subseteq X^{+}$ 
 
-.image tex/df-clausura-atributos-propiedad.png 30 _
+## Ejemplo
 
-* Ejemplo
+$\text{cursada}(\text{alumne\_legajo, alumne\_nombre, materia,}$
+$\hskip 36pt \text{f\_inscripcion, f\_examen, nota})$
 
-- relación _R_
+***
 
-cursada(alumne_legajo, alumne_nombre, materia, f_inscripción, f_examen, nota)
+$F = \\{$
 
-- conjunto de dependencias funcionales _F_
+$\hskip 20pt \text{alumne\_legajo} \to \text{alumne\_nombre,}$
+$\hskip 20pt \text{alumne\_legajo, materia} \to \text{f\_inscripcion,}$
+$\hskip 20pt \text{alumne\_legajo, materia, f\_examen} \to \text{nota}$
 
-alumne_legajo → alumne_nombre,
-alumne_legajo, materia → f_inscripción,
-alumne_legajo, materia, f_examen → nota
+$\\}$
 
-- clausuras:
+***
 
-alumne_legajo ⁺ = alumne_legajo, alumne_nombre
-alumne_legajo materia ⁺ = alumne_legajo, materia, alumne_nombre, f_inscripción
+$\text{alumne\_legajo}^{+} = \text{alumne\_legajo, alumne\_nombre}$
 
-#* Algoritmo
+$\text{alumne\_legajo, materia}^{+} = \text{alumne\_legajo, materia,}$
+$\hskip 128pt \text{alumne\_nombre, f\_inscripcion}$
 
-#Algoritmo de clausura de _X_ respecto de _F_ :
+//\* Algoritmo
 
-#.image tex/df-clausura-atributos-algoritmo.png 350 _
+//Algoritmo de clausura de _X_ respecto de _F_ :
 
-* Superclaves y claves
+//.image tex/df-clausura-atributos-algoritmo.png 350 \_
 
-.image tex/df-superclaves-claves.png 195 _
+## Superclaves y claves
 
-* Ejemplo
+- $X \rightarrow R \Longrightarrow X \text{ es superclave de } R$
+- $X^{+} = R \Longrightarrow X \text{ es superclave de } R$
+- $\not\exists \\ Y \subset X \text{ tal que } Y \rightarrow R \Longrightarrow X \text{ es clave de } R$
 
-- schema:
+$R$ puede tener más de una clave
 
-alumne(legajo, nombre)
+## Ejemplo
 
-- dependencias funcionales:
+$\text{alumne(legajo, nombre)}$
 
-F = { legajo → nombre }
+***
 
-- clausura:
+$F = \\{ \text{legajo} \to \text{nombre} \\}$
 
-nombre ⁺ = nombre
-legajo ⁺ = legajo, nombre
-legajo, nombre ⁺ = legajo, nombre
+***
 
-- summary:
+clausuras
 
-legajo (superclave, clave)
-legajo, nombre (superclave)
+$\text{nombre}^{+} = \text{nombre}$
 
-* Equivalencia de conjuntos de DF
+$\text{legajo}^{+} = \text{legajo, nombre}$
 
-.image tex/df-equivalencia-df.png 150 _
+$\text{legajo, nombre}^{+} = \text{legajo, nombre}$
 
-__
-__
+***
 
-*Ejemplo*
+Summary
 
-.image tex/df-equivalencia-df-ejemplo.png 130 _
+_$\text{legajo, nombre}$ es sólo superclave_
 
-* Cubrimiento minimal
+_$\text{legajo}$ es superclave, y además, es clave_
 
-.image tex/df-cubrimiento-minimal.png 230 _
+## Equivalencia de conjuntos de DF
 
-En general, la redundancia está dada por transitividad.
+- $F\equiv G \quad\Longleftrightarrow\quad F^{+} = G^{+}$
 
-* Ejemplo
+- $F \models G \land G\models F$
 
-.image tex/df-cubrimiento-minimal-ejemplo.png 475 _
+_Cuando $F \equiv G$, decimos que $F$ cubre a $G$ y que $G$ cubre a $F$._
 
-* Bibliografía
+***
 
-Elmasri and Navathe, _Fundamentals_of_database_systems_
+**Ejemplo**
 
-- Secciones 14.2, y 15.1
+$R = (A,\\ B,\\ C)$
 
-# empty title
-* 
+$F = \\{ A\rightarrow B,\\ B\rightarrow C,\\ C\rightarrow A\\}$
+
+$G = \\{ C\rightarrow B,\\ B\rightarrow A,\\ A\rightarrow C\\}$
+
+## Cubrimiento minimal
+
+$G$ es un cubrimiento minimal de $F$ si $G \equiv F$ y además:
+
+\begin{align*}
+(1) \\  & (X\rightarrow Y) \in G \Longrightarrow |Y| = 1 \\\
+(2) \\  & (X\rightarrow A) \in G \Longrightarrow \not\exists \\ B \subset \\ X \\ | \\  A \in \\  \\{ X \setminus \\{B\\} \\}^{+} \\\
+(3) \\  & (X\rightarrow A) \in G \Longrightarrow (G\setminus\\{(X\rightarrow A)\\})\not\equiv F
+\end{align*}
+
+_En general, la redundancia está dada por transitividad_
+
+## Ejemplo
+
+$R(A,B,C,D)\quad$ y $\quad F=\\{ A\rightarrow BD,\\ B\rightarrow C,\\ C\rightarrow D,\\ BC\rightarrow D\\}$
+
+(1) Aplico descomposición
+
+$\\{ A\rightarrow B,\quad A\rightarrow D,\quad B\rightarrow C,\quad C\rightarrow D,\quad BC\rightarrow D\\}$
+
+(2) $B$ es redundante en $BC\rightarrow D$
+
+$\\{ A\rightarrow B,\quad A\rightarrow D,\quad B\rightarrow C,\quad C\rightarrow D,\quad C\rightarrow D\\}$
+
+(3) Aparece dos veces $C\rightarrow D$
+
+$\\{ A\rightarrow B,\quad A\rightarrow D,\quad B\rightarrow C,\quad C\rightarrow D\\}$
+
+(4) $A\rightarrow D$ es redundante
+
+$\\{ A\rightarrow B,\quad B\rightarrow C,\quad C\rightarrow D\\}$
+
+Por lo tanto, $G=\\{ A\rightarrow B,\\ B\rightarrow C,\\ C\rightarrow D\\}$
+
+## Bibliografía
+
+Elmasri and Navathe, _Fundamentals of database systems_
+
+  - Secciones 14.2, y 15.1
+
+// empty title
+##
 
 .image img/questions.png
