@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://localhost:3999/com-2/28-trans.slide#1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Transacciones</title>
+    
+    <script>
+      var notesEnabled =  false ;
+    </script>
+    <script src="./trans_files/slides.js"></script>
+
+    
+
+    <script>
+      
+      if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+        var _gaq = _gaq || [];
+        _gaq.push(["_setAccount", "UA-11222381-6"]);
+        _gaq.push(["b._setAccount", "UA-49880327-6"]);
+        window.trackPageview = function() {
+          _gaq.push(["_trackPageview", location.pathname+location.hash]);
+          _gaq.push(["b._trackPageview", location.pathname+location.hash]);
+        };
+        window.trackPageview();
+        window.trackEvent = function(category, action, opt_label, opt_value, opt_noninteraction) {
+          _gaq.push(["_trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+          _gaq.push(["b._trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+        };
+      }
+    </script>
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1"><meta name="apple-mobile-web-app-capable" content="yes"></head>
+
+  <body style="display: none" class="loaded">
+
+    <section class="slides layout-widescreen" style="transform: scale(0.826667);">
+
+      <article class="current">
+        <h1>Transacciones</h1>
+        
+        
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Hernán Rondelli
+  </p>
+  
+
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Daniel Bertaccini
+  </p>
+  
+
+          </div>
+        
+      </article>
+
+  
+  
+      <article class="next">
+      
+        <h3>db1-ungs.github.io/clases/com-2/trans.html</h3>
+        
+<div class="image">
+  <img src="./trans_files/db1-ungs.github.io-clases-com-2-trans.html.png" height="500">
+</div>
+
+      
+      <span class="pagenumber">2</span>
+      </article>
+  
+  
+  
+      <article class="far-next">
+      
+        <h2>Transacciones – ¿Para qué sirven?</h2>
+      
+      <span class="pagenumber">3</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Transacciones – ¿Para qué sirven?</h3>
+        
+  <ul>
+  
+    <li>Acceso concurrente a los datos</li>
+  
+    <li>Resistencia a fallas</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">4</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Acceso concurrente (1)</h3>
+        
+  
+  <p>
+    <b>access → read, modify, write</b>
+  </p>
+  
+
+  
+  <p>
+    Supongamos dos modificaciones simultáneas:
+  </p>
+  
+
+  
+  <p>
+    Acceso A
+  </p>
+  
+
+  
+  <div class="code"><pre>update caja_de_ahorro set saldo = saldo + 1000 where número_de_cuenta = 626;</pre></div>
+  
+
+  
+  <p>
+    Acceso B
+  </p>
+  
+
+  
+  <div class="code"><pre>update caja_de_ahorro set saldo = saldo + 2000 where número_de_cuenta = 626;</pre></div>
+  
+
+  
+  <p>
+    Si el cliente tenía $10000 en su cuenta, ¿cuánto dinero tiene ahora?
+  </p>
+  
+
+      
+      <span class="pagenumber">5</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Acceso concurrente (1 - continuación)</h3>
+        
+  
+  <p>
+    <b>access → read, modify, write</b>
+  </p>
+  
+
+  
+  <p>
+    El <b>update</b> es un <i>read</i> seguido de un <i>write</i>.
+  </p>
+  
+
+  
+  <p>
+    Podría pasar que se ejecuten en este orden:
+  </p>
+  
+
+  
+  <div class="code"><pre>Acceso A                   Acceso B
+--------                   --------
+
+read (saldo)
+saldo = saldo + 1000
+                           read (saldo)
+                           saldo = saldo + 2000
+write(saldo)
+                           write(saldo)</pre></div>
+  
+
+  
+  <p>
+    ¿Dónde quedaron los 1000 del <i>Acceso A</i>?
+  </p>
+  
+
+  
+  <p>
+    Esto se conoce como <i>lost update problem</i>.
+  </p>
+  
+
+      
+      <span class="pagenumber">6</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Acceso concurrente (2)</h3>
+        
+  
+  <p>
+    <b>access → read, modify, write</b>
+  </p>
+  
+
+  
+  <p>
+    Supongamos dos accesos simultáneos:
+  </p>
+  
+
+  
+  <p>
+    Acceso A
+  </p>
+  
+
+  
+  <div class="code"><pre>insert into alquiler select * from reserva where fecha = now()::date;
+delete from reserva where fecha = now()::date;</pre></div>
+  
+
+  
+  <p>
+    Acceso B
+  </p>
+  
+
+  
+  <div class="code"><pre>select count(*) from reserva;
+select count(*) from alquiler;</pre></div>
+  
+
+  
+  <p>
+    ¿Qué inconveniente podría ocurrir?
+  </p>
+  
+
+  
+  <p>
+    Observación
+  </p>
+  
+
+  
+  <div class="code"><pre>now()::date == current_date</pre></div>
+  
+
+      
+      <span class="pagenumber">7</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Acceso concurrente (2 - continuación)</h3>
+        
+  
+  <p>
+    <b>access → read, modify, write</b>
+  </p>
+  
+
+  
+  <p>
+    Podría pasar que se ejecuten en este orden:
+  </p>
+  
+
+  
+  <div class="code"><pre>Acceso A                          Acceso B
+--------                          --------
+
+insert into alquiler
+  select * from reserva
+  where fecha = now()::date;
+                                  select count(*) from reserva;
+                                  select count(*) from alquiler;
+delete from reserva
+where fecha = now()::date;</pre></div>
+  
+
+  
+  <p>
+    En <i>Acceso B</i> estamos contando dos veces las reservas del día. 
+  </p>
+  
+
+  
+  <p>
+    Esto se conoce como <i>incorrect summary problem</i>.
+  </p>
+  
+
+      
+      <span class="pagenumber">8</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Resistencia a fallas</h3>
+        
+  
+  <p>
+    Estamos procesando los alquileres y las reservas…
+  </p>
+  
+
+  
+  <div class="code"><pre>insert into alquiler select * from reserva where fecha = current_date;
+delete from reserva where fecha = current_date;</pre></div>
+  
+
+  
+  <p>
+    pero Edenor nos corta la luz justo antes del <code>delete</code>!!! 😿
+  </p>
+  
+
+      
+      <span class="pagenumber">9</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Transacción</h3>
+        
+  
+  <p>
+    <i>Es una secuencia de operaciones SQL que se tratan como una unidad lógica</i>
+  </p>
+  
+
+  <ul>
+  
+    <li>Cada transacción se ejecuta aisladamente</li>
+  
+    <li>Todo ó nada: se ejecuta completamente, ó no se ejecuta nada</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">10</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Propiedades ACID</h2>
+      
+      <span class="pagenumber">11</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Propiedades ACID</h3>
+        
+  <ul>
+  
+    <li>Atomicity</li>
+  
+    <li>Consistency</li>
+  
+    <li>Isolation</li>
+  
+    <li>Durability</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">12</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Atomicity</h3>
+        
+  
+  <p>
+    <b>Todo ó nada:</b> se ejecuta completamente, ó no se ejecuta nada
+  </p>
+  
+
+  
+  <p>
+    La transacción siempre termina en <code>commit</code> ó en <code>rollback</code>
+  </p>
+  
+
+  <ul>
+  
+    <li><code>commit</code> → la transacción se completó exitosamente</li>
+  
+  </ul>
+
+  <ul>
+  
+    <li><code>rollback</code> → undo de una transacción parcial</li>
+  
+  </ul>
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i>Asegurar esta propiedad es responsabilidad del DBMS</i>.
+  </p>
+  
+
+      
+      <span class="pagenumber">13</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Consistency</h3>
+        
+  
+  <p>
+    Una transacción <b>nunca</b> deja a la base de datos en un estado <b>inconsistente</b>
+  </p>
+  
+
+  <ul>
+  
+    <li>Cuando una transacción comienza, la base de datos está en un estado consistente</li>
+  
+  </ul>
+
+  <ul>
+  
+    <li>Cuando una transacción termina, se garantiza que la base de datos está en un estado consistente</li>
+  
+  </ul>
+
+  
+  <p>
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i>Es responsabilidad del programador de la transacción, y también del DBMS (por las constraints)</i>.
+  </p>
+  
+
+      
+      <span class="pagenumber">14</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Isolation</h3>
+        
+  <ul>
+  
+    <li>Cada transacción <b>no</b> vé lo que otra transacción está haciendo</li>
+  
+    <li>Las transacciones se procesan concurrentemente</li>
+  
+    <li>Los resultados de una transacción deben ser los mismos que la ejecución secuencial de las operaciones</li>
+  
+  </ul>
+
+  
+  <p>
+    <i>Serialización:</i> Las operaciones se pueden entrelazar pero la ejecución debe ser equivalente a <i>algún</i> orden secuencial de todas las transacciones 
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i>Asegurar la propiedad Isolation es responsabilidad del DBMS</i>.
+  </p>
+  
+
+      
+      <span class="pagenumber">15</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Ejemplo de serialización</h3>
+        
+  
+  <p>
+    T1
+  </p>
+  
+
+  
+  <div class="code"><pre>update caja_de_ahorro set saldo = saldo + 1000 where número_de_cuenta = 626;</pre></div>
+  
+
+  
+  <p>
+    T2
+  </p>
+  
+
+  
+  <div class="code"><pre>update caja_de_ahorro set saldo = saldo + 2000 where número_de_cuenta = 626;</pre></div>
+  
+
+  
+  <p>
+    ✅  T1, T2 
+  </p>
+  
+
+  
+  <p>
+    ✅  T2, T1 
+  </p>
+  
+
+      
+      <span class="pagenumber">16</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Durability</h3>
+        
+  
+  <p>
+    Todas operaciones sobre la base de datos <b>no deben</b> cambiar después de que se completó exitosamente la transacción
+<br>
+
+    <i></i>
+<br>
+
+    <i></i>
+<br>
+
+    <i>¡También es responsabilidad del DBMS!</i>
+  </p>
+  
+
+      
+      <span class="pagenumber">17</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Isolation Levels</h2>
+      
+      <span class="pagenumber">18</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Isolation</h3>
+        
+  <ul>
+  
+    <li>Cada transacción <b>no</b> vé lo que otra transacción está haciendo</li>
+  
+    <li>Las transacciones se procesan <b>concurrentemente</b></li>
+  
+    <li>Los resultados de una transacción <b>deben ser los mismos</b> que la ejecución secuencial de las operaciones</li>
+  
+  </ul>
+
+  
+  <p>
+    <i>Serialización:</i> Las operaciones se pueden entrelazar pero la ejecución debe ser equivalente a <i>algún</i> <b>orden secuencial</b> de todas las transacciones 
+  </p>
+  
+
+  
+  <p>
+    ✅  T1, T2, T3, T7, T10, T8, T9, T6, T4, T5
+  </p>
+  
+
+  
+  <p>
+    <b>Observación: es válido sólo para serializable</b>
+  </p>
+  
+
+      
+      <span class="pagenumber">19</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Isolation Levels (por transacción)</h3>
+        
+  
+  <p>
+    De más débil a más fuerte:
+  </p>
+  
+
+  
+  <p>
+    1. <code>read uncommitted</code>
+<br>
+
+    2. <code>read committed</code>
+<br>
+
+    3. <code>repeatable read</code>
+  </p>
+  
+
+  
+  <p>
+    ➖ Overhead
+<br>
+
+    ➕ Concurrencia
+<br>
+
+    ➖ Consistencia
+  </p>
+  
+
+  
+  <p>
+    4. <code>serializable</code>
+  </p>
+  
+
+  
+  <p>
+    ➕ Overhead
+<br>
+
+    ➖ Concurrencia
+  </p>
+  
+
+      
+      <span class="pagenumber">20</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Problema: Dirty Read</h3>
+        
+  
+  <p>
+    Cuando una transacción lee un valor escrito por una transacción <code>uncommitted</code>
+  </p>
+  
+
+  
+  <p>
+    T1
+  </p>
+  
+
+  
+  <div class="code"><pre>-- saldo → 10000
+begin;
+update caja_de_ahorro set saldo = saldo + 5000 where número_de_cuenta = 626;
+-- saldo → 15000
+-- acá podemos tener un rollback
+commit;</pre></div>
+  
+
+  
+  <p>
+    T2 (<code>read uncommitted</code>)
+  </p>
+  
+
+  
+  <div class="code"><pre>begin;
+…
+select saldo from caja_de_ahorro where número_de_cuenta = 626;
+commit;</pre></div>
+  
+
+      
+      <span class="pagenumber">21</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>read uncommitted</h3>
+        
+  
+  <p>
+    La transacción puede tener valores dirty reads
+  </p>
+  
+
+  
+  <div class="code"><pre>begin;
+set transaction isolation level read uncommitted;
+/* operaciones */
+commit;</pre></div>
+  
+
+      
+      <span class="pagenumber">22</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>read committed</h3>
+        
+  
+  <p>
+    La transacción <b>no</b> puede tener valores dirty reads <i>(todavía no garantiza serialización)</i>
+  </p>
+  
+
+  
+  <p>
+    T1
+  </p>
+  
+
+  
+  <div class="code"><pre>begin;
+update caja_de_ahorro set saldo = saldo + 5000 where número_de_cuenta = 626;
+…
+commit;</pre></div>
+  
+
+  
+  <p>
+    T2
+  </p>
+  
+
+  
+  <div class="code"><pre>begin;
+set transaction isolation level read committed; -- evita dirty reads
+select saldo from caja_de_ahorro where número_de_cuenta = 626;
+commit;</pre></div>
+  
+
+      
+      <span class="pagenumber">23</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Problema: Nonrepeatable Read</h3>
+        
+  
+  <p>
+    Cuando una transacción lee dos veces el mismo valor, la segunda lectura puede ser diferente (si fue modificado por otra transacción)
+  </p>
+  
+
+  
+  <p>
+    T1
+  </p>
+  
+
+  
+  <div class="code"><pre>begin;
+update cambio set venta = 1040.00 where moneda = 'Dolar' and fecha = now()::date;
+update cambio set venta = 1080.00 where moneda = 'Dolar' and fecha = now()::date;
+commit;</pre></div>
+  
+
+  
+  <p>
+    T2
+  </p>
+  
+
+  
+  <div class="code"><pre>begin;
+select venta from cambio where moneda = 'Dolar' and fecha = now()::date;
+…
+select venta from cambio where moneda = 'Dolar' and fecha = now()::date;
+commit;</pre></div>
+  
+
+      
+      <span class="pagenumber">24</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>repeatable read</h3>
+        
+  <ul>
+  
+    <li>La transacción <b>no</b> puede tener valores dirty reads</li>
+  
+    <li>Un valor leído más de una vez, no puede cambiar</li>
+  
+    <li><i>(todavía no garantiza serialización)</i></li>
+  
+  </ul>
+
+  
+  <p>
+    T1
+  </p>
+  
+
+  
+  <div class="code"><pre>begin;
+update cambio set venta = 1040.00 where moneda = 'Dolar' and fecha = now()::date;
+update cambio set venta = 1080.00 where moneda = 'Dolar' and fecha = now()::date;
+commit;</pre></div>
+  
+
+  
+  <p>
+    T2
+  </p>
+  
+
+  
+  <div class="code"><pre>begin;
+set transaction isolation level repeatable read; -- evita nonreapeatable reads
+select venta from cambio where moneda = 'Dolar' and fecha = now()::date;
+…
+select venta from cambio where moneda = 'Dolar' and fecha = now()::date;
+commit;</pre></div>
+  
+
+      
+      <span class="pagenumber">25</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Problema: Phantom Tuples</h3>
+        
+  
+  <p>
+    Cuando una transacción lee dos veces una misma tabla, la segunda lectura puede recuperar nuevas filas (si fueron insertadas por otra transacción)
+  </p>
+  
+
+  
+  <p>
+    T1
+  </p>
+  
+
+  
+  <div class="code"><pre>begin;
+insert into cambio values ('2024-05-09','Dolar',1025.00,1045.00);
+insert into cambio values ('2024-05-10','Dolar',1020.00,1040.00);
+commit;</pre></div>
+  
+
+  
+  <p>
+    T2
+  </p>
+  
+
+  
+  <div class="code"><pre>begin;
+select * from cambio where moneda = 'Dolar';
+…
+select * from cambio where moneda = 'Dolar';
+commit;</pre></div>
+  
+
+      
+      <span class="pagenumber">26</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>serializable</h3>
+        
+  <ul>
+  
+    <li>La transacción <b>no</b> puede tener valores dirty reads</li>
+  
+    <li>Un valor leído más de una vez, no puede cambiar</li>
+  
+    <li>No pueden aparecer <i>phantom tuples</i> en segundas lecturas</li>
+  
+  </ul>
+
+  
+  <p>
+    T1
+  </p>
+  
+
+  
+  <div class="code"><pre>begin;
+insert into cambio values ('2024-05-09','Dolar',1025.00,1045.00);
+insert into cambio values ('2024-05-10','Dolar',1020.00,1040.00);
+commit;</pre></div>
+  
+
+  
+  <p>
+    T2
+  </p>
+  
+
+  
+  <div class="code"><pre>begin;
+set transaction isolation level serializable; -- evita phantom tuples
+select * from cambio where moneda = 'Dolar';
+…
+select * from cambio where moneda = 'Dolar';
+commit;</pre></div>
+  
+
+      
+      <span class="pagenumber">27</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Resumiendo...</h3>
+        
+  
+  <p>
+    ¿Qué problemas permite cada <i>isolation level</i>?
+  </p>
+  
+
+  
+  <div class="code"><pre>Isolation level  | Dirty Read | Nonreap Read | Phamtom Tuples
+-----------------+------------+--------------+---------------
+read uncommitted |     SI     |      SI      |       SI
+read committed   |     NO     |      SI      |       SI
+repeatable read  |     NO     |      NO      |       SI
+serializable     |     NO     |      NO      |       NO</pre></div>
+  
+
+      
+      <span class="pagenumber">28</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>read only</h3>
+        
+  
+  <div class="code"><pre>begin;
+set transaction read only;
+select * from materia;
+select avg(nota) from materia_aprobada where legajo = 626;
+select nombre, apellido from alumno order by apellido;
+commit;</pre></div>
+  
+
+      
+      <span class="pagenumber">29</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Bibliografía</h3>
+        
+  
+  <p>
+    Elmasri and Navathe, <i>Fundamentals of database systems</i>
+  </p>
+  
+
+  <ul>
+  
+    <li>Capítulo 20, secciones 20.1, 20.3 y 20.6</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">30</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        
+<div class="image">
+  <img src="./trans_files/questions.png">
+</div>
+
+      
+      <span class="pagenumber">31</span>
+      </article>
+  
+  
+
+      <article>
+        <h3>Thank you</h3>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Hernán Rondelli
+  </p>
+  
+<p class="link"><a href="mailto:lucifer.unix.cabj@gmail.com" target="_blank">lucifer.unix.cabj@gmail.com</a></p>
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Daniel Bertaccini
+  </p>
+  
+<p class="link"><a href="mailto:dbertacc@campus.ungs.edu.ar" target="_blank">dbertacc@campus.ungs.edu.ar</a></p>
+          </div>
+        
+      </article>
+
+    <div class="slide-area" id="prev-slide-area"></div><div class="slide-area" id="next-slide-area"></div></section>
+
+    <div id="help" style="display: none;">
+      Use the left and right arrow keys or click the left and right
+      edges of the page to navigate between slides.<br>
+      (Press 'H' or navigate to hide this message.)
+    </div>
+
+    
+    <script src="./trans_files/play.js"></script>
+    
+
+    <script>
+      (function() {
+        
+        if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+          var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+          ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+          var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+        }
+      })();
+    </script>
+  
+
+<link rel="stylesheet" type="text/css" href="./trans_files/css"><link rel="stylesheet" type="text/css" href="./trans_files/styles.css"></body></html>
