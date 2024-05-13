@@ -195,22 +195,23 @@ _Serialización:_ Las operaciones se pueden entrelazar pero la ejecución debe s
 
 * Isolation Levels (por transacción)
 
-Weaker to Stronger:
+De más débil a más fuerte:
+
 1. `read`uncommitted`
 2. `read`committed`
 3. `repeatable`read`
 
 ➖ Overhead
-➕ Concurrency
+➕ Concurrencia
 ➖ Consistencia
 
-Default:
+
 4. `serializable`
 
 ➕ Overhead
-➖ Concurrency
+➖ Concurrencia
 
-* Dirty Read
+* Problema: Dirty Read
 
 Cuando una transacción lee un valor escrito por una transacción `uncommitted`
 
@@ -246,16 +247,34 @@ La transacción *no* puede tener valores dirty reads _(todavía_no_garantiza_ser
 T1
 
  begin;
- update cambio set compra = 25.75 where moneda = 'Dolar';
+ update caja_de_ahorro set saldo = saldo + 5000 where número_de_cuenta = 626;
+ …
  commit;
 
 T2
 
  begin;
- set transaction isolation level read committed;
- select max(compra) from cambio where moneda = 'Dolar';
+ set transaction isolation level read committed; -- evita dirty reads
+ select saldo from caja_de_ahorro where número_de_cuenta = 626;
+ commit;
+
+* Problema: Nonrepeatable Read
+
+Cuando una transacción lee dos veces el mismo valor, la segunda lectura puede ser diferente (si fue modificado por otra transacción)
+
+T1
+
+ begin;
+ update cambio set venta = 1040.00 where moneda = 'Dolar' and fecha = now()::date;
+ update cambio set venta = 1080.00 where moneda = 'Dolar' and fecha = now()::date;
+ commit;
+
+T2
+
+ begin;
+ select venta from cambio where moneda = 'Dolar' and fecha = now()::date;
  …
- select max(compra) from cambio where moneda = 'Dolar';
+ select venta from cambio where moneda = 'Dolar' and fecha = now()::date;
  commit;
 
 * repeatable read
@@ -267,49 +286,70 @@ T2
 T1
 
  begin;
- update cambio set compra = 25.75 where moneda = 'Dolar';
- update cambio set venta = 25.95 where moneda = 'Dolar';
+ update cambio set venta = 1040.00 where moneda = 'Dolar' and fecha = now()::date;
+ update cambio set venta = 1080.00 where moneda = 'Dolar' and fecha = now()::date;
  commit;
 
 T2
 
  begin;
- set transaction isolation level repeatable read;
- select avg(compra) from cambio;
- select avg(venta) from cambio;
+ set transaction isolation level repeatable read; -- evita nonreapeatable reads
+ select venta from cambio where moneda = 'Dolar' and fecha = now()::date;
+ …
+ select venta from cambio where moneda = 'Dolar' and fecha = now()::date;
  commit;
 
-* repeatable read (phantom tuples)
+* Problema: Phantom Tuples
 
-- La transacción *no* puede tener valores dirty reads
-- Un valor leído más de una vez, no puede cambiar
-- _(todavía_no_garantiza_serialización)_
+Cuando una transacción lee dos veces una misma tabla, la segunda lectura puede recuperar nuevas filas (si fueron insertadas por otra transacción)
 
 T1
 
  begin;
- insert into cambio ["compra y venta para varias monedas"];
+ insert into cambio values ('2024-05-09','Dolar',1025.00,1045.00);
+ insert into cambio values ('2024-05-10','Dolar',1020.00,1040.00);
  commit;
 
 T2
 
  begin;
- set transaction isolation level repeatable read;
- select * from cambio;
- select avg(compra) from cambio;
- select max(compra) from cambio;
+ select * from cambio where moneda = 'Dolar';
+ …
+ select * from cambio where moneda = 'Dolar';
+ commit;
+
+* serializable
+
+- La transacción *no* puede tener valores dirty reads
+- Un valor leído más de una vez, no puede cambiar
+- No pueden aparecer _phantom_tuples_ en segundas lecturas
+
+T1
+
+ begin;
+ insert into cambio values ('2024-05-09','Dolar',1025.00,1045.00);
+ insert into cambio values ('2024-05-10','Dolar',1020.00,1040.00);
+ commit;
+
+T2
+
+ begin;
+ set transaction isolation level serializable; -- evita phantom tuples
+ select * from cambio where moneda = 'Dolar';
+ …
+ select * from cambio where moneda = 'Dolar';
  commit;
 
 * Resumiendo...
 
 ¿Qué problemas permite cada _isolation_level_?
 
- Isolation level  | Dirty Read | Unreap Read | Phamtom Read
- -----------------+------------+-------------+--------------
- read uncommitted |     SI     |      SI     |      SI
- read committed   |     NO     |      SI     |      SI
- repeatable read  |     NO     |      NO     |      SI
- serializable     |     NO     |      NO     |      NO
+ Isolation level  | Dirty Read | Nonreap Read | Phamtom Tuples
+ -----------------+------------+--------------+---------------
+ read uncommitted |     SI     |      SI      |       SI
+ read committed   |     NO     |      SI      |       SI
+ repeatable read  |     NO     |      NO      |       SI
+ serializable     |     NO     |      NO      |       NO
 
 * read only
 
