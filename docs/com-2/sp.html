@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://localhost:3999/com-2/27-sp.slide#1 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Stored Procedures &amp; Triggers</title>
+    
+    <script>
+      var notesEnabled =  false ;
+    </script>
+    <script src="./sp_files/slides.js"></script>
+
+    
+
+    <script>
+      
+      if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+        var _gaq = _gaq || [];
+        _gaq.push(["_setAccount", "UA-11222381-6"]);
+        _gaq.push(["b._setAccount", "UA-49880327-6"]);
+        window.trackPageview = function() {
+          _gaq.push(["_trackPageview", location.pathname+location.hash]);
+          _gaq.push(["b._trackPageview", location.pathname+location.hash]);
+        };
+        window.trackPageview();
+        window.trackEvent = function(category, action, opt_label, opt_value, opt_noninteraction) {
+          _gaq.push(["_trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+          _gaq.push(["b._trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+        };
+      }
+    </script>
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1"><meta name="apple-mobile-web-app-capable" content="yes"></head>
+
+  <body style="display: none" class="loaded">
+
+    <section class="slides layout-widescreen" style="transform: scale(0.798667);">
+
+      <article class="current">
+        <h1>Stored Procedures &amp; Triggers</h1>
+        
+        
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Daniel Bertaccini
+  </p>
+  
+
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Hernán Rondelli
+  </p>
+  
+
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Universidad Nacional de General Sarmiento
+  </p>
+  
+
+          </div>
+        
+      </article>
+
+  
+  
+      <article class="next">
+      
+        <h3>db1-ungs.github.io/clases/com-2/sp.html</h3>
+        
+<div class="image">
+  <img src="./sp_files/db1-ungs.github.io-clases-com-2-sp.html.png" height="500">
+</div>
+
+      
+      <span class="pagenumber">2</span>
+      </article>
+  
+  
+  
+      <article class="far-next">
+      
+        <h2>Stored Procedures</h2>
+      
+      <span class="pagenumber">3</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Stored Procedures</h3>
+        
+  
+  <p>
+    /stɔːd prəˈsiːdʒəz/
+  </p>
+  
+
+  <ul>
+  
+    <li>Lógica en la base de datos</li>
+  
+    <li><b>Funciones</b> que se ejecutan en el server</li>
+  
+    <li>Procedural Language: variables, <code>if</code>, <code>while</code>, <code>for</code>, …</li>
+  
+    <li>PostgreSQL: PL/pgSQL, PL/TCL, PL/Perl, PL/Python, …</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">4</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>PL/pgSQL</h2>
+      
+      <span class="pagenumber">5</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>PL/pgSQL</h3>
+        
+  <ul>
+  
+    <li>PL (Procedural Language) by default</li>
+  
+    <li><b>Oracle PL/SQL</b> Clone</li>
+  
+    <li>Basado en Ada</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">6</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>PL/pgSQL</h3>
+        
+  
+  <p>
+    Estructura de una función
+  </p>
+  
+
+  
+  <div class="code"><pre>create function nombre(par_1 tipo_1, par_2 tipo_2,…, par_n tipo_n) returns tipo_r as $$
+declare
+    variable_1 tipo_1;
+    …
+    variable_m tipo_m;
+begin
+    /* statements */
+    return resultado_tipo_r;
+end;
+$$ language plpgsql;</pre></div>
+  
+
+      
+      <span class="pagenumber">7</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>PL/pgSQL…</h3>
+        
+  
+  <p>
+    hello()
+  </p>
+  
+
+  
+  <div class="code"><pre>create function hello() returns void as $$
+begin
+    raise notice 'hello, world!';
+end;
+$$ language plpgsql;</pre></div>
+  
+
+  
+  <p>
+    suma(a, b)
+  </p>
+  
+
+  
+  <div class="code"><pre>create or replace function suma(a int, b int) returns int as $$
+declare
+    c int;
+begin
+    c := a + b;
+    return c;
+end;
+$$ language plpgsql;</pre></div>
+  
+
+      
+      <span class="pagenumber">8</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>PL/pgSQL</h3>
+        
+  
+  <p>
+    hello()
+  </p>
+  
+
+  
+  <div class="code"><pre>postgres=# select hello();
+NOTICE:  hello, world!
+ hello
+-------
+
+(1 row)</pre></div>
+  
+
+  
+  <p>
+    suma(a, b)
+  </p>
+  
+
+  
+  <div class="code"><pre>postgres=# select suma(2, 3);
+ suma
+------
+    5
+(1 row)</pre></div>
+  
+
+      
+      <span class="pagenumber">9</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>PL/pgSQL</h3>
+        
+  
+  <p>
+    declaration
+  </p>
+  
+
+  
+  <div class="code"><pre>legajo     int;
+nombre     text;
+fecha      date;
+estudiante alumne%rowtype;
+código     materia.cod%type;
+fila       record;</pre></div>
+  
+
+  
+  <p>
+    assignment
+  </p>
+  
+
+  
+  <div class="code"><pre>variable := valor;</pre></div>
+  
+
+  
+  <p>
+    if
+  </p>
+  
+
+  
+  <div class="code"><pre>if condición then
+    /* statements */
+else
+    /* statements */
+end if;</pre></div>
+  
+
+      
+      <span class="pagenumber">10</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>PL/pgSQL</h3>
+        
+  
+  <p>
+    while
+  </p>
+  
+
+  
+  <div class="code"><pre>while condición loop
+    /* statements */
+end loop;</pre></div>
+  
+
+  
+  <p>
+    for (integer)
+  </p>
+  
+
+  
+  <div class="code"><pre>for i in 1..n loop
+    /* statements */
+end loop;</pre></div>
+  
+
+  
+  <p>
+    for (query)
+  </p>
+  
+
+  
+  <div class="code"><pre>for v in select * from tabla loop
+    /* statements */
+end loop;</pre></div>
+  
+
+      
+      <span class="pagenumber">11</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>PL/pgSQL</h3>
+        
+  
+  <p>
+    extras
+  </p>
+  
+
+  <ul>
+  
+    <li><code>select into variable […]</code></li>
+  
+    <li><code>found</code>, <code>row_count</code></li>
+  
+    <li>existen muchas cosas más… 😉</li>
+  
+  </ul>
+
+  
+  <div class="code"><pre>…
+declare
+    nombre_completo text;
+    resultado record;
+begin
+    select * into resultado from alumne where legajo = legajo_buscado;
+
+    if not found then
+        raise 'el legajo % es inválido', legajo_buscado;
+    end if;
+
+    nombre_completo := resultado.nombre || ' ' || resultado.apellido;
+…</pre></div>
+  
+
+      
+      <span class="pagenumber">12</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Triggers</h2>
+      
+      <span class="pagenumber">13</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Triggers</h3>
+        
+  
+  <p>
+    /ˈtrɪɡəz/
+  </p>
+  
+
+  
+  <p>
+    Función que se ejecuta automáticamente
+  </p>
+  
+
+  
+  <div class="code"><pre>for event in database:
+    if condition:
+        do action</pre></div>
+  
+
+  <ul>
+  
+    <li>Mover lógica al DBMS</li>
+  
+    <li>Trabajar con constraints</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">14</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Triggers</h3>
+        
+  
+  <p>
+    Eventos
+  </p>
+  
+
+  
+  <div class="code"><pre>insert on tabla
+delete on tabla
+update on tabla</pre></div>
+  
+
+  
+  <p>
+    Activación
+  </p>
+  
+
+  
+  <div class="code"><pre>before | after | instead of evento</pre></div>
+  
+
+  
+  <p>
+    Row-level
+  </p>
+  
+
+  
+  <div class="code"><pre>for each row</pre></div>
+  
+
+  
+  <p>
+    Statement-level
+  </p>
+  
+
+  
+  <div class="code"><pre>for each statement</pre></div>
+  
+
+      
+      <span class="pagenumber">15</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Triggers</h3>
+        
+  
+  <p>
+    Implementaciones
+  </p>
+  
+
+  <ul>
+  
+    <li>PostgreSQL: full standard</li>
+  
+    <li>SQLite: row-level only</li>
+  
+    <li>MySQL: row-level only, más limitaciones</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">16</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>PostgreSQL Triggers…</h3>
+        
+  
+  <p>
+    1. Necesitamos una función que implemente el comportamiento
+  </p>
+  
+
+  <ul>
+  
+    <li>Procedural Language: variables, <code>if</code>, <code>while</code>, <code>for</code>, …</li>
+  
+    <li><b>PL/pgSQL</b>, PL/TCL, PL/Perl, PL/Python, …</li>
+  
+  </ul>
+
+  
+  <p>
+    2. Definimos el trigger que use la función creada
+  </p>
+  
+
+      
+      <span class="pagenumber">17</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>PostgreSQL Triggers</h3>
+        
+  
+  <p>
+    Función sin parámetros que devuelve trigger
+  </p>
+  
+
+  
+  <div class="code"><pre>create function función_del_trigger() returns trigger as $$
+declare
+    variable_1 tipo_1;
+    …
+    variable_m tipo_m;
+begin
+    /* statements */
+    return new;
+end;
+$$ language plpgsql;</pre></div>
+  
+
+  
+  <p>
+    Creación del trigger
+  </p>
+  
+
+  
+  <div class="code"><pre>create trigger nombre_del_trigger
+after insert on tabla
+for each row
+execute procedure función_del_trigger();</pre></div>
+  
+
+      
+      <span class="pagenumber">18</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>PostgreSQL Triggers</h3>
+        
+  
+  <p>
+    Extras
+  </p>
+  
+
+  
+  <div class="code"><pre>create table alumne(legajo int, nombre text, apellido text);
+insert into alumne values (629, 'David', 'Banner');
+update alumne set nombre = 'Bruce' where legajo = 629;</pre></div>
+  
+
+  
+  <p>
+    dentro de la función del trigger
+  </p>
+  
+
+  <ul>
+  
+    <li><code>new</code>, y <code>old</code></li>
+  
+    <li><code>new.legajo</code> y <code>old.legajo</code>,</li>
+  
+    <li><code>new.nombre</code> y <code>old.nombre</code>,</li>
+  
+    <li><code>new.apellido</code> y <code>old.apellido</code></li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">19</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>Ejemplo</h3>
+        
+  
+  <p>
+    Trigger Function
+  </p>
+  
+
+  
+  <div class="code"><pre>create or replace function cambio_de_nombre() returns trigger as $$
+begin
+    if new.nombre != old.nombre then
+        insert into alerta values (old.id, old.nombre);
+    end if;
+    return new;
+end;
+$$ language plpgsql;</pre></div>
+  
+
+  
+  <p>
+    Trigger
+  </p>
+  
+
+  
+  <div class="code"><pre>create trigger cambio_de_nombre_trg
+before update on usuarie
+for each row
+execute procedure cambio_de_nombre();</pre></div>
+  
+
+  
+  <p>
+    Update
+  </p>
+  
+
+  
+  <div class="code"><pre>update usuarie set nombre = 'Juan Domingo Perón' where id = 626;</pre></div>
+  
+
+      
+      <span class="pagenumber">20</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        
+<div class="image">
+  <img src="./sp_files/questions.png">
+</div>
+
+      
+      <span class="pagenumber">21</span>
+      </article>
+  
+  
+
+      <article>
+        <h3>Thank you</h3>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Daniel Bertaccini
+  </p>
+  
+<p class="link"><a href="mailto:dbertacc@campus.ungs.edu.ar" target="_blank">dbertacc@campus.ungs.edu.ar</a></p>
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Hernán Rondelli
+  </p>
+  
+<p class="link"><a href="mailto:lucifer.unix.cabj@gmail.com" target="_blank">lucifer.unix.cabj@gmail.com</a></p>
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Universidad Nacional de General Sarmiento
+  </p>
+  
+
+          </div>
+        
+      </article>
+
+    <div class="slide-area" id="prev-slide-area"></div><div class="slide-area" id="next-slide-area"></div></section>
+
+    <div id="help" style="display: none;">
+      Use the left and right arrow keys or click the left and right
+      edges of the page to navigate between slides.<br>
+      (Press 'H' or navigate to hide this message.)
+    </div>
+
+    
+    <script src="./sp_files/play.js"></script>
+    
+
+    <script>
+      (function() {
+        
+        if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+          var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+          ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+          var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+        }
+      })();
+    </script>
+  
+
+<link rel="stylesheet" type="text/css" href="./sp_files/css"><link rel="stylesheet" type="text/css" href="./sp_files/styles.css"></body></html>
