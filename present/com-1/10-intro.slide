@@ -27,7 +27,7 @@ Materias *fuertemente* recomendadas:
 * Itinerario de cursada
 
 # empty title
-* 
+*
 
 .image img/itinerario.png 550 _
 
@@ -56,7 +56,7 @@ Materias *fuertemente* recomendadas:
 * La materia es promocionable!
 
 # empty title
-# * 
+# *
 
 #.image img/tano.gif _ 800
 #.caption La materia es *promocionable*
@@ -120,6 +120,6 @@ _Conjunto_de_datos_relacionados._
 #Poner dibujito de PostgreSQL, psql, browser, etc.
 
 # empty title
-* 
+*
 
 .image img/questions.png
