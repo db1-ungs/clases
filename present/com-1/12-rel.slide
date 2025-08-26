@@ -26,7 +26,7 @@ lucifer.unix.cabj@gmail.com
 * Cuál es la forma más natural de presentar datos?
 
 # empty title
-* 
+*
 
 __
 __
@@ -74,7 +74,7 @@ disyuntiva → se agrega una columna tipo
 .image tex/rel-jerarquia-d.png 400 _
 
 # empty title
-* 
+*
 
 .image tex/rel-jerarquia-ejemplo-1.png 490 _
 
@@ -85,7 +85,7 @@ no excluyente → no se agrega la columna tipo
 .image tex/rel-jerarquia-o.png 400 _
 
 # empty title
-* 
+*
 
 .image tex/rel-jerarquia-ejemplo-2.png 490 _
 
@@ -105,7 +105,7 @@ __
 .image tex/der-cardinalidad-mxm.png
 
 # empty title
-* 
+*
 
 .image tex/rel-mxm-ejemplo.png 515 _
 
@@ -136,7 +136,7 @@ __
 .image tex/der-cardinalidad-1xm.png
 
 # empty title
-* 
+*
 
 .image tex/rel-1xm-ejemplo.png 500 _
 
@@ -152,12 +152,12 @@ __
 .image tex/der-cardinalidad-1x1.png
 
 # empty title
-* 
+*
 
 .image tex/rel-1x1-ejemplo-1.png 500 _
 
 # empty title
-* 
+*
 
 .image tex/rel-1x1-ejemplo-2.png 500 _
 
@@ -171,13 +171,13 @@ Se aplican las mismas reglas
 - Uno a uno a uno → "Dos cualquiera va en el tercer cualquiera"
 
 # empty title
-* 
+*
 
 .image tex/rel-ternaria-ejemplo.png 600 _
 
 # agregar ejemplo de agregación: proyecto, dpto, empleade
 
 # empty title
-* 
+*
 
 .image img/questions.png
