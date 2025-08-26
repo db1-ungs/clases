@@ -33,7 +33,7 @@ lucifer.unix.cabj@gmail.com
 Extrae columnas.
 
 # empty title
-* 
+*
 
 *alumne(legajo,*nombre,*apellido)*
 
@@ -63,7 +63,7 @@ Ejemplo:
 Extrae filas.
 
 # empty title
-* 
+*
 
 *alumne(legajo,*nombre,*apellido)*
 
@@ -91,7 +91,7 @@ Ejemplo:
 Combina todas las filas de una tabla con todas las filas de la otra.
 
 # empty title
-* 
+*
 
 *materia(código,*nombre)*
 *cursa(legajo,*cod_mat,*semestre)*
@@ -122,7 +122,7 @@ Ejemplo:
 Combina las filas de ambas tablas, matcheando según la condición.
 
 # empty title
-* 
+*
 
 *materia(código,*nombre)*
 *cursa(legajo,*cod_mat,*semestre)*
@@ -150,7 +150,7 @@ Ejemplo:
 Si no hay condición, se llama *natural*join* y matchea atributos con el mismo nombre.
 
 # empty title
-* 
+*
 
 *materia(cod_mat,*nombre)*
 *cursa(legajo,*cod_mat,*semestre)*
@@ -179,7 +179,7 @@ Une dos tablas.
 Las tablas deben ser *schema*compatibles*—i.e. misma cantidad y tipos de atributos.
 
 # empty title
-* 
+*
 
 *docente(legajo,*nombre,*teléfono)*
 *alumne(legajo,*nombre,*email)*
@@ -210,10 +210,10 @@ Lo que está tanto en una tabla como en la otra.
 Las tablas deben ser *schema*compatibles*—i.e. misma cantidad y tipos de atributos.
 
 # empty title
-* 
+*
 
 *docente(legajo,*nombre,*teléfono)*
-*alumne(legajo,*nombre,*email)*
+*alumne(legajo,*nombre,*teléfono)*
 
  dni      | nombre            | teléfono         dni       | nombre            | teléfono
  ---------+-------------------+---------         ----------+-------------------+---------
@@ -239,7 +239,7 @@ Las tuplas que están la primer tabla pero que no están en la segunda.
 Las tablas deben ser *schema*compatibles*—i.e. misma cantidad y tipos de atributos.
 
 # empty title
-* 
+*
 
 *docente(legajo,*nombre,*teléfono)*
 *alumne(legajo,*nombre,*teléfono)*
@@ -267,7 +267,7 @@ Ejemplo:
 Devuelve una nueva tabla con las columnas que están sólo en R y que están asociadas con todas las filas de S.
 
 # empty title
-* 
+*
 
 *aprobada(legajo,*cod_mat)*
 *materia(cod_mat)*
@@ -302,6 +302,6 @@ Ejemplo:
 R se renombra a S, junto con los atributos correspondientes.
 
 # empty title
-* 
+*
 
 .image img/questions.png
