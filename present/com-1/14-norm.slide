@@ -269,14 +269,14 @@ _X_ es superclave de _R_.
 
 * BCNF …
 
- empleade(nro_legajo, sector, nro_empleade, cargo)
-          ──────────
+ empleade(legajo, sector, nro_empleade, cargo)
+          ──────
 
-nro_legajo → sector nro_empleade cargo
-sector nro_empleade → nro_legajo cargo
+legajo → sector nro_empleade cargo
+sector nro_empleade → legajo
 cargo → sector
  
- nro_legajo | sector      | nro_empleade | cargo
+ legajo     | sector      | nro_empleade | cargo
  -----------+-------------+--------------+-------------------
  23 456 789 | Sistemas    |       1      | Analiste funcional
  34 567 890 | Call Centre |       1      | Caller
@@ -290,7 +290,7 @@ cargo → sector
 
 * … BCNF …
 
- nro_legajo | sector      | nro_emp | cargo
+ legajo     | sector      | nro_emp | cargo
  -----------+-------------+---------+-------------------
  23 456 789 | Sistemas    |    1    | Analiste funcional
  34 567 890 | Call Centre |    1    | Caller
@@ -301,7 +301,7 @@ cargo → sector
 
 ⬇
 
- nro_legajo | nro_emp | cargo                       cargo              | sector
+ legajo     | nro_emp | cargo                       cargo              | sector
  -----------+---------+-------------------          -------------------+----------
  23 456 789 |    1    | Analiste funcional          Analiste funcional | Sistemas
  34 567 890 |    1    | Caller                      Project manager    | Sistemas
@@ -312,18 +312,18 @@ cargo → sector
 
 * … BCNF
 
- empleade(nro_legajo, sector, nro_empleade, cargo)
-          ──────────
+ empleade(legajo, sector, nro_empleade, cargo)
+          ──────
 ⬇
 
- empleade(nro_legajo, nro_emp, cargo)
-          ──────────                 
+ empleade(legajo, nro_emp, cargo)
+          ──────                 
 :
 
  empleade(cargo, sector)
           ─────
 
-*Observación:* Los schemas cumplen BCNF, pero en la normalización se perdió la dependencia *sector*nro_emp*→*cargo*
+*Observación:* Los schemas cumplen BCNF, pero en la normalización se perdió la dependencia *sector*nro_emp*→*legajo*
 
 * Normalización
 
