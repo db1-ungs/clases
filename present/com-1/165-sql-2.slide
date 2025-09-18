@@ -25,7 +25,7 @@ lucifer.unix.cabj@gmail.com
 	select *
 	from   empleade
 	order  by salario asc;
- 
+  
 	select *
 	from   empleade
 	order  by apellido, nombre;
@@ -113,32 +113,32 @@ lucifer.unix.cabj@gmail.com
 
 * having
 
-	select   departamento, avg(salario) 
-	from     empleade 
-	group by departamento 
+	select   departamento, avg(salario)
+	from     empleade
+	group by departamento
 	having   count(*) > 10;
 
 # *having* sólo puede hacer referencia a funciones de agregación ó a campos que estén en el *group*by*.
 
 * having ó where 🤔
 
-	select   departamento, count(*) 
-	from     empleade 
+	select   departamento, count(*)
+	from     empleade
 	where    salario >= 40000
-	group by departamento 
+	group by departamento
 	having   count(*) > 10;
  
-	select   departamento, count(*) 
-	from     empleade 
+	select   departamento, count(*)
+	from     empleade
 	where    salario >= 40000 and departamento in (select   departamento
 	                                               from     empleade
 	                                               group by departamento
 	                                               having   count(*) > 10)
-	group by departamento;  
+	group by departamento;
 
 * Operaciones de conjuntos
 
-* union
+* union [all]
 
 	select nombre, apellido from docente
 	union
@@ -148,7 +148,7 @@ lucifer.unix.cabj@gmail.com
 	union all
 	select nombre, apellido from alumne;
 
-* intersect
+* intersect [all]
 
 	select nombre, apellido from docente
 	intersect
@@ -158,7 +158,7 @@ lucifer.unix.cabj@gmail.com
 	intersect all
 	select nombre, apellido from alumne;
 
-* except
+* except [all]
 
 	select nombre, apellido from docente
 	except
@@ -173,7 +173,7 @@ lucifer.unix.cabj@gmail.com
 * división
 
 Empleades que trabajan en todos los proyectos.
- 
+
  select distinct legajo
  from trabaja_en t1
  where not exists (
@@ -186,7 +186,7 @@ Empleades que trabajan en todos los proyectos.
      )
  );
 
-* cómo no hacer la división en el parcial
+* Cómo no hacer la división en el parcial
 
 Empleades que trabajan en todos los proyectos.
 
@@ -195,7 +195,7 @@ Empleades que trabajan en todos los proyectos.
  group by legajo
  having count(distinct proyecto_id) = (select count(distinct proyecto_id) from proyecto);
 
-⚠︎ No hacer la división así en el parcial!
+⚠︎ No hacer la división de esta forma en el parcial!
 
 # Empleades que trabajan en todos los proyectos que comenzaron después del 26 de junio de 2011.
 
@@ -206,6 +206,6 @@ Empleades que trabajan en todos los proyectos.
 # having count(distinct proyecto_id) = (select count(distinct proyecto_id) from proyecto where fecha_inicio >= '2021-06-26');
 
 # empty title
-* 
+*
 
 .image img/questions.png
