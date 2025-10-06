@@ -39,12 +39,12 @@ Si le cliente tenía $10000 en su cuenta, cuánto dinero tiene ahora?
 
  Acceso A       |  Acceso B
  ---------------+---------------
- read(saldo)    |               
- saldo += 1000  |               
-                |  read(saldo)  
+ read(saldo)    |
+ saldo += 1000  |
+                |  read(saldo)
                 |  saldo += 2000
- write(saldo)   |               
-                |  write(saldo) 
+ write(saldo)   |
+                |  write(saldo)
 
 
 # Esto se conoce como _lost_update_problem_.
@@ -75,13 +75,13 @@ Observación
 
  Acceso A                    |  Acceso B
  ----------------------------+--------------------------------
- insert into alquiler        |                                
- select * from reserva       |                                
- where fecha = now()::date;  |                                
-                             |  select count(*) from reserva; 
+ insert into alquiler        |
+ select * from reserva       |
+ where fecha = now()::date;  |
+                             |  select count(*) from reserva;
                              |  select count(*) from alquiler;
- delete from reserva         |                                
- where fecha = now()::date;  |                                
+ delete from reserva         |
+ where fecha = now()::date;  |
 
 # Esto se conoce como _incorrect_summary_problem_.
 
@@ -134,7 +134,7 @@ Una transacción *nunca* deja a la base de datos en un estado *inconsistente*
 - Las transacciones se procesan concurrentemente
 - Los resultados de una transacción deben ser los mismos que la ejecución secuencial de las operaciones
 
-_Serialización:_ Las operaciones se pueden entrelazar pero la ejecución debe ser equivalente a _algún_ orden secuencial de todas las transacciones 
+_Serialización:_ Las operaciones se pueden entrelazar pero la ejecución debe ser equivalente a _algún_ orden secuencial de todas las transacciones
 
 * Ejemplo de serialización
 
@@ -146,9 +146,9 @@ T2
 
  update caja_de_ahorro set saldo = saldo + 2000 where número_de_cuenta = 626;
 
-✅  T1, T2 
+✅  T1, T2
 
-✅  T2, T1 
+✅  T2, T1
 
 * Durability
 
@@ -162,7 +162,7 @@ Todas operaciones sobre la base de datos *no*deben* cambiar después de que se c
 - Las transacciones se procesan *concurrentemente*
 - Los resultados de una transacción *deben*ser*los*mismos* que la ejecución secuencial de las operaciones
 
-_Serialización:_ Las operaciones se pueden entrelazar pero la ejecución debe ser equivalente a _algún_ *orden*secuencial* de todas las transacciones 
+_Serialización:_ Las operaciones se pueden entrelazar pero la ejecución debe ser equivalente a _algún_ *orden*secuencial* de todas las transacciones
 
 ✅  T1, T2, T3, T7, T10, T8, T9, T6, T4, T5
 
@@ -275,6 +275,15 @@ T2
  select max(compra) from cambio;
  commit;
 
+* serializable
+
+Garantiza el 100% de consistencia de datos
+
+ begin;
+ set transaction isolation level serializable;
+ /* operaciones */
+ commit;
+
 * read only
 
  begin;
@@ -291,6 +300,6 @@ Elmasri and Navathe, _Fundamentals_of_database_systems_
 - Secciones 20.1, 20.3, y 20.6
 
 # empty title
-* 
+*
 
 .image img/questions.png
