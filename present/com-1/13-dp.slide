@@ -45,7 +45,7 @@ $R(A, B, C):\ $ schema
 
 $r:\ $ instancia de $R$
 
-$t_{1},\ t_{2},\ t_{3},\ldots\ :\ $ tuplas de $r$ 
+$t_{1},\ t_{2},\ t_{3},\ldots\ :\ $ tuplas de $r$
 
 $f:\ $ dependencia funcional
 
@@ -260,6 +260,9 @@ $\text{cliente(id, nombre, telefono)}$
 $F = \\{\text{id} \to \text{nombre,} \quad \text{telefono} \to \text{nombre} \\}$
 
 ***
+Es válida $\\{\text{id} \to \text{telefono}\\}$ ?
+
+***
 
 ```
  id | nombre             | telefono
@@ -281,7 +284,7 @@ La clausura de un conjunto de atributos _X_ respecto de un conjunto de dependenc
 
 **Propiedad**
 
-$F \models X \rightarrow Y \quad \Longleftrightarrow\quad Y \subseteq X^{+}$ 
+$F \models X \rightarrow Y \quad \Longleftrightarrow\quad Y \subseteq X^{+}$
 
 ## Ejemplo
 
