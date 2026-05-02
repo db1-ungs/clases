@@ -1,7 +1,7 @@
 Formas Normales
 
-Ximena Ebertz
-xebertz@campus.ungs.edu.ar
+# Ximena Ebertz
+# xebertz@campus.ungs.edu.ar
 
 Hernán Rondelli
 lucifer.unix.cabj@gmail.com
@@ -156,7 +156,7 @@ __
 ⬇
 
  alumne(legajo, nombre, apellido)
-        ────── 
+        ──────
 :
 
  materia_aprobada(legajo, materia, semestre)
@@ -250,11 +250,11 @@ cp → localidad
  -------+--------------+----------+-----                ------+------------
     1   | Cristina     | Kirchner | 1615                1615  | Grand Bourg
     2   | Diego        | Maradona | 1665                1665  | José C Paz
-    3   | Juan Carlos  | Olave    | 1615 
-    4   | María Eva    | Duarte   | 1615 
-    5   | Román        | Riquelme | 1615 
-    6   | Juan Domingo | Perón    | 1665 
-    7   | Martín       | Palermo  | 1665 
+    3   | Juan Carlos  | Olave    | 1615
+    4   | María Eva    | Duarte   | 1615
+    5   | Román        | Riquelme | 1615
+    6   | Juan Domingo | Perón    | 1665
+    7   | Martín       | Palermo  | 1665
 
 ✅ *Está*en*3NF*
 
@@ -275,7 +275,7 @@ _X_ es superclave de _R_.
 legajo → sector nro_empleade cargo
 sector nro_empleade → legajo
 cargo → sector
- 
+
  legajo     | sector      | nro_empleade | cargo
  -----------+-------------+--------------+-------------------
  23 456 789 | Sistemas    |       1      | Analiste funcional
@@ -317,11 +317,11 @@ cargo → sector
 ⬇
 
  empleade(legajo, nro_emp, cargo)
-          ──────                 
+          ──────
 :
 
- empleade(cargo, sector)
-          ─────
+ dpto(cargo, sector)
+      ─────
 
 *Observación:* Los schemas cumplen BCNF, pero en la normalización se perdió la dependencia *sector*nro_emp*→*legajo*
 
@@ -348,7 +348,7 @@ Dada una relación, se la _descompone_ en relaciones de menor redundancia
 (3) Para cada _X_→_Y_, crear una relación con atributos _(X,_Y)_, con _X_ clave.
 
 (4) Si ninguna de las relaciones contiene una clave de _R_, crear una relación más, que contenga todos los atributos de una clave.
-    
+
 (5) Eliminar relaciones redundantes.
 
 __

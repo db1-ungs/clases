@@ -1,7 +1,7 @@
 SQL – Part II
 
-Ximena Ebertz
-xebertz@campus.ungs.edu.ar
+# Ximena Ebertz
+# xebertz@campus.ungs.edu.ar
 
 Hernán Rondelli
 lucifer.unix.cabj@gmail.com
@@ -17,15 +17,15 @@ lucifer.unix.cabj@gmail.com
 	select *
 	from   empleade
 	order  by salario;
- 
+
 	select *
 	from   empleade
 	order  by salario desc;
- 
+
 	select *
 	from   empleade
 	order  by salario asc;
-  
+
 	select *
 	from   empleade
 	order  by apellido, nombre;
@@ -77,21 +77,21 @@ lucifer.unix.cabj@gmail.com
 * Funciones de agregación…
 
 	select count(*) from empleade;
- 
+
 	select count(nombre) from empleade;
- 
+
 	select count(distinct nombre) from empleade;
 
 * …Funciones de agregación
 
 	select sum(salario) from empleade;
- 
+
 	select max(salario) from empleade;
- 
+
 	select min(salario) from empleade;
- 
+
 	select avg(salario) from empleade;
- 
+
 	select max(salario), min(salario), avg(salario) from empleade;
 
 * group by
@@ -101,11 +101,11 @@ lucifer.unix.cabj@gmail.com
 	select   departamento, count(*), avg(salario)
 	from     empleade
 	group by departamento;
- 
+
 	select   departamento, count(*), salario
 	from     empleade
 	group by departamento, salario;
- 
+
 	select   departamento, count(*), avg(salario)
 	from     empleade
 	where    departamento = 'sistemas' or departamento = 'finanzas'
@@ -127,7 +127,7 @@ lucifer.unix.cabj@gmail.com
 	where    salario >= 40000
 	group by departamento
 	having   count(*) > 10;
- 
+
 	select   departamento, count(*)
 	from     empleade
 	where    salario >= 40000 and departamento in (select   departamento
@@ -143,7 +143,7 @@ lucifer.unix.cabj@gmail.com
 	select nombre, apellido from docente
 	union
 	select nombre, apellido from alumne;
- 
+
 	select nombre, apellido from docente
 	union all
 	select nombre, apellido from alumne;
@@ -153,7 +153,7 @@ lucifer.unix.cabj@gmail.com
 	select nombre, apellido from docente
 	intersect
 	select nombre, apellido from alumne;
- 
+
 	select nombre, apellido from docente
 	intersect all
 	select nombre, apellido from alumne;
@@ -163,7 +163,7 @@ lucifer.unix.cabj@gmail.com
 	select nombre, apellido from docente
 	except
 	select nombre, apellido from alumne;
- 
+
 	select nombre, apellido from docente
 	except all
 	select nombre, apellido from alumne;
