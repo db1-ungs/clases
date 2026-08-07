@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Presentation</title>
+		<link href="favicon.png" rel="icon" type="image/png"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<style type="text/css">
+			@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+			@import url(https://fonts.googleapis.com/css?family=Nunito:400,700,400italic);
+			@import url(https://fonts.googleapis.com/css?family=Inconsolata:500,700,500italic);
+
+			body, p { font-family: 'Nunito'; font-size: 21px; }
+			h1, h2, h3 {
+				font-family: 'Yanone Kaffeesatz';
+				font-weight: normal;
+			}
+			.remark-code, .remark-inline-code { font-family: 'Inconsolata'; font-size: 21px; }
+		</style>
+	</head>
+	<body>
+		<textarea id="source">
+
+class: center, middle
+# Databases with Python
+
+## Bases de Datos I ― UNGS
+
+<br/>
+<br/>
+
+### Prof. Hernán Rondelli
+
+### https://db1-ungs.github.io/clases/com-2/py.html
+
+---
+
+## Why Python?
+
+High-level, interpreted programming language
+
+- easy to read and write
+- cross-platform
+- industry and academia
+
+---
+
+### hello.py
+
+```py
+*#!/usr/bin/env python
+
+print("Hello, world!")
+```
+
+**1. Make script executable**
+
+```sh
+% chmod 750 hello.py
+```
+
+**2. Execute script**
+
+```sh
+% ./hello.py
+```
+
+**3. Code formatting**
+
+```sh
+% yapf -d hello.py
+*% yapf -i hello.py
+```
+
+---
+
+### Conventions
+
+|                |                 |                              |
+| --------------:|:------------------------------------:|:-------------------------------------- |
+| variables      | **→** | `user_name`, `max_size`                  |
+| functions, methods  | **→** | `read_file()`, `calculate_total()`, `lst.append()`, `s.upper()`       |
+| classes        | **→** | `Person`, `BinarySearchTree`             |
+| modules        | **→** | `database.py`, `string_utils.py`         |
+| packages       | **→** | `requests`, `numpy`, `myproject`         |
+| constants      | **→** | `MAX_SIZE`, `DEFAULT_PORT`            |
+| private   | **→** | `_value`               |
+| private   | **→** | `__value`            |
+| special name | **→** | `__init__`, `__repr__` |
+
+---
+
+### Type annotations
+
+```py
+#!/usr/bin/env python
+
+def max(values: list[int]) -> int:
+	m: int = values[0]
+
+	for v in values[1:]:
+		if v > m:
+			m = v
+
+	return m
+
+def main() -> None:
+	lst: list[int] = [12, 8, 25, 3, 17, 42, 9]
+	maximum: int = max(lst)
+
+	print(f"Maximum value: {maximum}")
+
+if __name__ == "__main__":
+	main()
+```
+
+---
+
+class: center, middle
+# Relational Databases with Python
+
+---
+
+## Relational Databases with Python …
+
+### Database driver or library
+
+**main.py**
+
+```python
+#!/usr/bin/env python
+
+*import psycopg
+
+def main() -> None:
+	# acá va el código de mi "aplicacion_de_bases_de_datos"
+
+if __name__ == "__main__":
+	main()
+```
+
+???
+% pip3 install psycopg
+
+---
+
+## … Relational Databases with Python …
+
+### Open database connection
+
+```python
+...
+with psycopg.connect("dbname=postgres user=postgres", autocommit=True) as conn:
+*	print("connection opened")
+*	# acá se puede usar la connexión `conn`
+# acá se cerró la conexión porque hay un conn.close() implícito
+...
+```
+
+"es masomenos equivalente a"
+```py
+conn = psycopg.connect("dbname=postgres user=postgres", autocommit=True)
+# acá se puede usar la connexión `conn`
+conn.close()
+# acá se cerró la conexión
+```
+
+???
+The connection is automatically closed when leaving the `with` block.
+
+---
+
+## … Relational Databases with Python …
+
+### Create table, and insert data
+
+```py
+with conn.cursor() as cur:
+	cur.execute("create table alumne (legajo int, nombre text, apellido text)")
+
+	cur.execute("""
+		insert into alumne values (1, 'Cristina', 'Kirchner');
+		insert into alumne values (2, 'Juan Domingo', 'Perón');
+	""")
+```
+
+---
+
+## … Relational Databases with Python
+
+### Query
+
+```py
+with conn.cursor() as cur:
+	cur.execute("select * from alumne")
+	for t in cur:
+		print(t)
+```
+
+---
+## Complete example …
+
+```py
+#!/usr/bin/env python
+
+import psycopg
+
+
+def create_database() -> None:
+	with psycopg.connect("dbname=postgres user=postgres", autocommit=True) as conn:
+		with conn.cursor() as cur:
+			cur.execute("create database guarani")
+
+...
+```
+
+---
+## … Complete example
+
+```py
+...
+
+def main() -> None:
+	create_database()
+
+	with psycopg.connect("dbname=guarani user=postgres") as conn:
+		with conn.cursor() as cur:
+			cur.execute("create table alumne (legajo int, nombre text, apellido text)")
+
+			cur.execute("""
+				insert into alumne values (1, 'Cristina', 'Kirchner');
+				insert into alumne values (2, 'Juan Domingo', 'Perón');
+			""")
+
+			cur.execute("select * from alumne")
+
+			for t in cur:
+				print(t)
+
+if __name__ == "__main__":
+	main()
+```
+
+???
+
+Output:
+(1, 'Cristina', 'Kirchner')
+(2, 'Juan Domingo', 'Perón')
+
+---
+
+## Relational Databases with Python
+
+### Writing code
+
+```sh
+% mkdir aplicacion_de_bases_de_datos
+% cd aplicacion_de_bases_de_datos
+% edit main.py
+% yapf -i hello.py
+```
+
+### Running code
+
+```sh
+% chmod 750 main.py
+% ./main.py
+```
+
+---
+
+class: center, middle
+# JSON
+
+---
+
+class: center, middle
+.center[<img src="../img/jason1.jpg" alt="image" width="850"/>]
+
+---
+
+class: center, middle
+.center[<img src="../img/jason2.jpg" alt="image" width="500"/>]
+
+---
+
+class: center, middle
+.center[<img src="../img/jason3.jpg" alt="image" width="800"/>]
+
+---
+
+class: center, middle
+.center[<img src="../img/jason4.jpg" alt="image" width="800"/>]
+
+---
+
+class: center, middle
+.center[<img src="../img/jason5.jpg" alt="image" width="700"/>]
+
+---
+
+## JSON (JavaScript Object Notation)
+
+  - Structured information
+  - Standard, universal support
+  - Strings, numbers, booleans, arrays, and objects
+
+---
+
+## JSON data types to Python data types
+
+| | | |
+|----------------:|:-:|:------|
+| **Object**  | **→** | **`dict`** `{"Belgrano": "Campeón"}` |
+| **Array** | **→** | **`list`** `[1, 2, 3]` |
+| **String** | **→** | **`str`** `"Vamos Boca`" |
+| **Number** | **→** | **`int`**, **`float`** `3.141`5 |
+| **`true`**, **`false`** | **→** | **`True`**, **`False`** |
+| **`null`** | **→** | **`None`** |
+
+
+```json
+{
+	"title": "Casablanca",
+	"released": 1942,
+	"actors": [
+		"Humphrey Bogart",
+		"Ingrid Bergman"
+	]
+}
+```
+
+---
+
+## JSON Document
+
+**`movies.json`**
+```json
+[
+	{
+		"Title": "Casablanca",
+		"released": 1942,
+		"Actors": [
+			"Humphrey Bogart",
+			"Ingrid Bergman"
+		]
+	},
+	{
+		"Title": "Lilo & Stitch",
+		"released": 2002,
+		"color": true,
+		"Actors": [
+			"Chris Sanders"
+		]
+	}
+]
+```
+
+---
+
+#### Python
+
+```py
+movie = {
+	"title": "Casablanca",
+	"year": 1942,
+	"color": False,
+	"actors": [
+		"Humphrey Bogart",
+		"Ingrid Bergman",
+	],
+}
+```
+
+#### JSON
+
+```json
+{
+	"title": "Casablanca",
+	"year": 1942,
+	"actors": [
+		"Humphrey Bogart",
+		"Ingrid Bergman"
+	]
+}
+```
+
+???
+similarities:
+
+- Both store information as key-value pairs.
+- Keys are strings.
+- Values may be numbers, strings, booleans, arrays, or nested objects.
+- Documents can have arbitrary structure.
+- Nested objects are supported.
+
+---
+
+## Encoding/Decoding JSON…
+
+```py
+#!/usr/bin/env python
+
+import json
+
+movies = [
+	{
+		"title": "Casablanca",
+		"year": 1942,
+		"color": False,
+		"actors": ["Humphrey Bogart", "Ingrid Bergman"],
+	},
+	{
+		"title": "Lilo & Stitch",
+		"year": 2002,
+		"color": True,
+		"actors": ["Chris Sanders"],
+	},
+]
+
+...
+```
+
+---
+
+## …Encoding/Decoding JSON
+
+```py
+...
+print(movies)
+
+data = json.dumps(movies, indent=4)
+print(data)
+
+peliculas = json.loads(data)
+print(peliculas)
+```
+
+---
+
+class: center, middle
+# NoSQL Databases with Python
+
+---
+
+# TinyDB: NoSQL Databases in Python
+
+- Document-oriented NoSQL database
+- JSON documents
+- Embedded (no server)
+- Database: **`filename.json`**
+
+???
+```
+pip3 install tinydb
+```
+
+---
+
+## TinyDB Documents
+
+```python
+movie = {
+	"title": "Casablanca",
+	"year": 1942,
+	"color": False,
+	"actors": ["Humphrey Bogart", "Ingrid Bergman"],
+}
+
+movies_db.insert(movie)
+```
+
+Internally, TinyDB serialises the Python dictionary as a JSON document and stores it on disk.
+
+---
+
+## Create Database
+
+```py
+from tinydb import TinyDB
+
+movies_db = TinyDB("movies.json")
+```
+
+---
+
+## Insert
+
+```py
+movies_db.insert({
+	"title": "Casablanca",
+	"year": 1942,
+	"color": False,
+	"actors": ["Humphrey Bogart", "Ingrid Bergman"],
+})
+```
+
+```py
+movies_db.insert_multiple([
+	{
+		"title": "Casablanca",
+		"year": 1942,
+		"color": False,
+		"actors": ["Humphrey Bogart", "Ingrid Bergman"],
+	},
+	{
+		"title": "Lilo & Stitch",
+		"year": 2002,
+		"color": True,
+		"actors": ["Chris Sanders"],
+	},
+])
+```
+
+---
+
+### Reading All Documents
+
+```python
+for m in movies_db.all():
+	print(m)
+```
+
+### Searching Documents
+
+```py
+from tinydb import Query
+
+query = Query()
+
+results = movies_db.search(query.year >= 1942)
+
+for movie in results:
+	print(movie)
+```
+
+---
+
+### Updating Documents
+
+```py
+movies_db.update({"year": 1942}, query.title == "Casablanca")
+```
+
+### Removing Documents
+
+```python
+movies_db.remove(query.year < 1950)
+```
+
+---
+
+## Tables
+
+```py
+bedelia = TinyDB("bedelia.json")
+
+alumne = bedelia.table("alumne")
+materia = bedelia.table("materia")
+
+alumne.insert({"legajo": 626, "nombre": "Diego", "apellido": "Maradona"})
+materia.insert({"código": 202, "nombre": "Programación I"})
+
+print(alumne.all())
+print(materia.all())
+```
+
+---
+
+class: center, middle
+
+## One more thing…
+
+---
+
+### PostgreSQL documentation
+
+https://www.postgresql.org/docs/current
+
+### TinyDB documentation
+
+https://tinydb.readthedocs.io/en/latest/
+
+---
+
+class: center, middle
+
+.center[<img src="../img/questions.png" alt="image" width="400"/>]
+
+		</textarea>
+		<script src="../out/remark.js"></script>
+		<!--
+		<script src="../out/MathJax-2.4-latest/MathJax.js"></script>
+		-->
+		<script type="text/javascript">
+			var slideshow = remark.create({
+				ratio: '16:9',
+				highlightLines:'true'
+			});
+
+			MathJax.Hub.Config({
+				extensions: ["tex2jax.js"],
+				jax: ["input/TeX","output/SVG"],
+				tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+			});
+
+			MathJax.Hub.Configured();
+		</script>
+	</body>
+</html>
