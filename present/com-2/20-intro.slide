@@ -7,9 +7,13 @@ dbertacc@campus.ungs.edu.ar
 Hernán Rondelli
 hrondelli@campus.ungs.edu.ar
 
-* db1-ungs.github.io/clases/com-2/intro.html
+* Esta presentación se encuentra en
 
-.image img/db1-ungs.github.io-clases-com-2-intro.html.png 500 _
+[[http://db1-ungs.github.io/clases/com-2/intro.html]]
+
+# * db1-ungs.github.io/clases/com-2/intro.html
+#
+# .image img/db1-ungs.github.io-clases-com-2-intro.html.png 500 _
 
 * Correlativas
 
@@ -49,7 +53,7 @@ Materias *fuertemente* recomendadas:
 *Condiciones*de*aprobación*
 
 - se tomará asistencia
-- 75% de asistencia mínima obligatoria (se pueden faltar sólo 4 clases, sin contar a las de consulta para las instancias de evaluación)
+- 75% de asistencia mínima obligatoria (se puede faltar sólo 4 clases, sin contar a las de consulta para las instancias de evaluación)
 - parcial y trabajo práctico aprobados (nota ≥ 4)
 - nota de cursada = (nota parcial + nota trabajo práctico) / 2
 
@@ -85,12 +89,12 @@ Materias *fuertemente* recomendadas:
 - Stored Procedures. Triggers. Transacciones.
 - NoSQL. JSON.
 
-*Parcial:*4*de*mayo* */* *Recuperatorio:*21*de*mayo*
+*Parcial:*28*de*septiembre* */* *Recuperatorio:*19*de*octubre*
 DER. Modelo Relacional. Álgebra Relacional.
 Dependencias Funcionales. Formas Normales. SQL.
 
 *Trabajo*práctico*
-*Presentación:*4*de*junio* */* *Entrega*y*defensa:*25*de*junio*
+*Presentación:*29*de*octubre* */* *Entrega*y*defensa:*19*de*noviembre*
 Todos los temas de la materia.
 
 *Atención:* _todas_las_fechas_son_tentativas_

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Bases de Datos I</title>
+    <meta charset="utf-8">
+    <script>
+      var notesEnabled =  false ;
+    </script>
+    <script src="intro_files/slides_595B.js"></script>
+
+    
+
+    <script>
+      
+      if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+        var _gaq = _gaq || [];
+        _gaq.push(["_setAccount", "UA-11222381-6"]);
+        _gaq.push(["b._setAccount", "UA-49880327-6"]);
+        window.trackPageview = function() {
+          _gaq.push(["_trackPageview", location.pathname+location.hash]);
+          _gaq.push(["b._trackPageview", location.pathname+location.hash]);
+        };
+        window.trackPageview();
+        window.trackEvent = function(category, action, opt_label, opt_value, opt_noninteraction) {
+          _gaq.push(["_trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+          _gaq.push(["b._trackEvent", category, action, opt_label, opt_value, opt_noninteraction]);
+        };
+      }
+    </script>
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1"><meta name="apple-mobile-web-app-capable" content="yes"></head>
+
+  <body style="display: none" class="loaded">
+
+    <section class="slides layout-widescreen" style="transform: scale(0.857333);">
+
+      <article class="current">
+        <h1>Bases de Datos I</h1>
+        <h3>Presentación de la materia</h3>
+        
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Daniel Bertaccini
+  </p>
+  
+
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Hernán Rondelli
+  </p>
+  
+
+          </div>
+        
+      </article>
+
+  
+  
+      <article class="next">
+      
+        <h3>Esta presentación se encuentra en</h3>
+        
+  
+  <p>
+    <a href="http://db1-ungs.github.io/clases/com-2/intro.html" target="_blank">db1-ungs.github.io/clases/com-2/intro.html</a>
+  </p>
+  
+
+      
+      <span class="pagenumber">2</span>
+      </article>
+  
+  
+  
+      <article class="far-next">
+      
+        <h3>Correlativas</h3>
+        
+  
+  <p>
+    Oficiales:
+  </p>
+  
+
+  <ul>
+  
+    <li>Lógica y Teoría de Números</li>
+  
+    <li>Programación II</li>
+  
+    <li>Organización del Computador I</li>
+  
+  </ul>
+
+  
+  <p>
+    Materias <b>fuertemente</b> recomendadas:
+  </p>
+  
+
+  <ul>
+  
+    <li>Programación III</li>
+  
+    <li>Sistemas Operativos y Redes I</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">3</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h2>Itinerario de cursada</h2>
+      
+      <span class="pagenumber">4</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3></h3>
+        
+<div class="image">
+  <img src="intro_files/itinerario_595B.png" height="550">
+</div>
+
+      
+      <span class="pagenumber">5</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Medios de comunicación</h3>
+        
+  <ul>
+  
+    <li>Anuncios importantes, por medio de la mailing list</li>
+  
+  </ul>
+
+  <ul>
+  
+    <li>Cuestiones administrativas, enviar email a ambos docentes</li>
+  
+  </ul>
+
+  <ul>
+  
+    <li>Avisos y demás, por el <b>grupo de Signal</b> <a href="https://t.ly/Nzae2" target="_blank">t.ly/Nzae2</a></li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">6</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h2>Régimen de aprobación</h2>
+      
+      <span class="pagenumber">7</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Régimen de aprobación</h3>
+        
+  <ul>
+  
+    <li>1 parcial</li>
+  
+    <li>1 trabajo práctico</li>
+  
+  </ul>
+
+  
+  <p>
+    <b>Condiciones de aprobación</b>
+  </p>
+  
+
+  <ul>
+  
+    <li>se tomará asistencia</li>
+  
+    <li>75% de asistencia mínima obligatoria (se puede faltar sólo 4 
+clases, sin contar a las de consulta para las instancias de evaluación)</li>
+  
+    <li>parcial y trabajo práctico aprobados (nota ≥ 4)</li>
+  
+    <li>nota de cursada = (nota parcial + nota trabajo práctico) / 2</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">8</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h2>La materia es promocionable!</h2>
+      
+      <span class="pagenumber">9</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Condiciones de promoción 👻</h3>
+        
+  <ul>
+  
+    <li>nota parcial ≥ 6</li>
+  
+    <li>nota trabajo práctico ≥ 6</li>
+  
+    <li><b>no llegar a instancia de recuperatorio de parcial</b></li>
+  
+    <li><b>no llegar a instancia de reentrega de trabajo práctico</b></li>
+  
+    <li>nota de cursada ≥ 7</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">10</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Bibliografía sugerida</h3>
+        
+  <ul>
+  
+    <li>Silberschatz and Korth, <i>Database System Concepts</i></li>
+  
+    <li>Ramakrishnan and Gehrke, <i>Database Management Systems</i></li>
+  
+    <li>Elmasri and Navathe, <i>Fundamentals of database systems</i></li>
+  
+    <li>Helman, <i>The science of database management</i></li>
+  
+    <li>Ullman, <i>Principles of Database and Knowledge Base Systems</i></li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">11</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Programa de la materia</h3>
+        
+  <ul>
+  
+    <li>DER. Modelo Relacional. Álgebra Relacional.</li>
+  
+    <li>Dependencias Funcionales. Formas Normales.</li>
+  
+    <li>SQL.</li>
+  
+    <li>Stored Procedures. Triggers. Transacciones.</li>
+  
+    <li>NoSQL. JSON.</li>
+  
+  </ul>
+
+  
+  <p>
+    <b>Parcial: 28 de septiembre</b> <b>/</b> <b>Recuperatorio: 19 de octubre</b>
+<br>
+
+    DER. Modelo Relacional. Álgebra Relacional.
+<br>
+
+    Dependencias Funcionales. Formas Normales. SQL.
+  </p>
+  
+
+  
+  <p>
+    <b>Trabajo práctico</b>
+<br>
+
+    <b>Presentación: 29 de octubre</b> <b>/</b> <b>Entrega y defensa: 19 de noviembre</b>
+<br>
+
+    Todos los temas de la materia.
+  </p>
+  
+
+  
+  <p>
+    <b>Atención:</b> <i>todas las fechas son tentativas</i>
+  </p>
+  
+
+      
+      <span class="pagenumber">12</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h2>Bases de Datos</h2>
+      
+      <span class="pagenumber">13</span>
+      </article>
+  
+  
+  
+      <article class="">
+      
+        <h3>Bases de Datos</h3>
+        
+  
+  <p>
+    <i>Conjunto de datos relacionados.</i>
+  </p>
+  
+
+  <ul>
+  
+    <li>DBMS (DataBase Management System)</li>
+  
+    <li>RDBMS (Relational DataBase Management System)</li>
+  
+    <li>PostgreSQL, Oracle, SQLite, MySQL, MariaDB</li>
+  
+    <li>DBA (DataBase Administrator)</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">14</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3>PostgreSQL</h3>
+        
+  <ul>
+  
+    <li><b>Unix:</b> Linux, FreeBSD, OpenBSD, macOS, …</li>
+  
+    <li>Clients: psql, pgweb, …</li>
+  
+    <li>Text editors: vi, VS Code, …</li>
+  
+    <li>Código: Go, C, Python, Java, PHP, …</li>
+  
+  </ul>
+
+      
+      <span class="pagenumber">15</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h2>Prohibido el uso de Windows en esta materia!</h2>
+      
+      <span class="pagenumber">16</span>
+      </article>
+  
+  
+  
+      <article>
+      
+        <h3></h3>
+        
+<div class="image">
+  <img src="intro_files/questions_595B.png">
+</div>
+
+      
+      <span class="pagenumber">17</span>
+      </article>
+  
+  
+
+      <article>
+        <h3>Thank you</h3>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Daniel Bertaccini
+  </p>
+  
+<p class="link"><a href="mailto:dbertacc@campus.ungs.edu.ar" target="_blank">dbertacc@campus.ungs.edu.ar</a></p>
+          </div>
+        
+          <div class="presenter">
+            
+  
+  <p>
+    Hernán Rondelli
+  </p>
+  
+<p class="link"><a href="mailto:hrondelli@campus.ungs.edu.ar" target="_blank">hrondelli@campus.ungs.edu.ar</a></p>
+          </div>
+        
+      </article>
+
+    <div class="slide-area" id="prev-slide-area"></div><div class="slide-area" id="next-slide-area"></div></section>
+
+    <div id="help" style="display: none;">
+      Use the left and right arrow keys or click the left and right
+      edges of the page to navigate between slides.<br>
+      (Press 'H' or navigate to hide this message.)
+    </div>
+
+    
+    <script src="intro_files/play_595B.js"></script>
+    
+
+    <script>
+      (function() {
+        
+        if (window["location"] && window["location"]["hostname"] == "talks.golang.org") {
+          var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+          ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+          var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+        }
+      })();
+    </script>
+  
+
+<link rel="stylesheet" type="text/css" href="intro_files/css_595B.css"><link rel="stylesheet" type="text/css" href="intro_files/styles_595B.css"></body></html>
