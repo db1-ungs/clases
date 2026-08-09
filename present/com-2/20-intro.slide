@@ -122,6 +122,18 @@ Todos los temas de la materia.
 
 _Conjunto_de_datos_relacionados._
 
+(esta definición es muy genérica)
+
+El término _base_de_datos_ lo vamos a asociar a algo más restrictivo:
+
+- Representa algún aspecto del mundo real, a veces llamado *minimundo* o el *universo*del*discurso*. Los cambios en el minimundo se reflejan en la base de datos.
+
+- Es una colección coherente de datos con algún significado. No son datos que están juntos de manera aleatoria.
+
+- Está diseñada, construída y alimentada con datos para un propósito específico. Existe un grupo de usuarios que tienen algún interés en interactuar con esos datos (para consultarlos o actualizarlos).
+
+* Terminología
+
 - DBMS (DataBase Management System)
 - RDBMS (Relational DataBase Management System)
 - PostgreSQL, Oracle, SQLite, MySQL, MariaDB
@@ -133,6 +145,10 @@ _Conjunto_de_datos_relacionados._
 - Clients: psql, pgweb, …
 - Text editors: vi, VS Code, …
 - Código: Go, C, Python, Java, PHP, …
+
+* Sistema de Bases de Datos
+
+.image img/dbsystem.png
 
 * Prohibido el uso de Windows en esta materia!
 
