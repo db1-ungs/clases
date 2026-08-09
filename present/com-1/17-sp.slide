@@ -1,7 +1,7 @@
 Stored Procedures & Triggers
 
-Ximena Ebertz
-xebertz@campus.ungs.edu.ar
+# Ximena Ebertz
+# xebertz@campus.ungs.edu.ar
 
 Hernán Rondelli
 lucifer.unix.cabj@gmail.com
@@ -269,6 +269,6 @@ Update
  update usuarie set nombre = 'Juan Domingo Perón' where id = 626;
 
 # empty title
-* 
+*
 
 .image img/questions.png
