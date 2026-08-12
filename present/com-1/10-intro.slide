@@ -1,11 +1,11 @@
 Bases de Datos I
 Presentación de la materia
 
-# Ximena Ebertz
-# xebertz@campus.ungs.edu.ar
-
 Hernán Rondelli
 lucifer.unix.cabj@gmail.com
+
+María Silva
+mdcsilva@campus.ungs.edu.ar
 
 * db1-ungs.github.io/clases/com-1/intro.html
 
@@ -85,13 +85,13 @@ Materias *fuertemente* recomendadas:
 - Stored Procedures. Triggers. Transacciones.
 - NoSQL. JSON.
 
-*Parcial*–*2026-05-02*
+*Parcial*–*2026-09-28*
 DER. Modelo Relacional. Álgebra Relacional.
 Dependencias Funcionales. Formas Normales. SQL.
 
-*Recuperatorio*–*2026-05-18* (atención: inmediatamente después del parcial)
+*Recuperatorio*–*2026-10-19* (atención: inmediatamente después del parcial)
 
-*Entrega*trabajo*práctico*–*2026-06-26*
+*Entrega*trabajo*práctico*–*2026-11-21*
 Todos los temas de la materia.
 
 * Bases de Datos

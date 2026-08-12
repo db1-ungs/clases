@@ -1,9 +1,6 @@
 DER
 Diagrama Entidad Relación
 
-Ximena Ebertz
-xebertz@campus.ungs.edu.ar
-
 Hernán Rondelli
 lucifer.unix.cabj@gmail.com
 
@@ -84,7 +81,7 @@ __
 ⚠︎ Una _relación_ es un elemento de un _conjunto_de_relaciones_
 
 # empty title
-* 
+*
 
 __
 __
@@ -110,7 +107,7 @@ __
 .image tex/der-atributo-nombre.png
 
 # empty title
-* 
+*
 
 __
 __
@@ -133,7 +130,7 @@ __
 ⚠︎ En realidad se denomina _identificador[s]_único[s]_
 
 # empty title
-* 
+*
 
 __
 __
@@ -183,7 +180,7 @@ __
 .image tex/der-grado-binaria.png
 
 # empty title
-* 
+*
 
 __
 __
@@ -203,7 +200,7 @@ __
 .image tex/der-grado-ternaria.png
 
 # empty title
-* 
+*
 
 __
 __
@@ -243,7 +240,7 @@ __
 .image tex/der-cardinalidad-mxm.png
 
 # empty title
-* 
+*
 
 __
 __
@@ -265,7 +262,7 @@ __
 .image tex/der-cardinalidad-1xm.png
 
 # empty title
-* 
+*
 
 __
 __
@@ -287,7 +284,7 @@ __
 .image tex/der-cardinalidad-1x1.png
 
 # empty title
-* 
+*
 
 __
 __
@@ -299,7 +296,7 @@ __
 .image tex/der-cardinalidad-10x1.png
 
 # empty title
-* 
+*
 
 __
 __
@@ -315,7 +312,7 @@ __
 .image tex/der-agregacion.png _ 700
 
 # empty title
-* 
+*
 
 .image tex/der-agregacion-ejemplo.png _ 725
 
@@ -327,16 +324,16 @@ __
 .image tex/der-jerarquias.png _ 550
 
 # empty title
-* 
+*
 
 .image tex/der-jerarquias-ejemplo-1.png 550 _
 
 # empty title
-* 
+*
 
 .image tex/der-jerarquias-ejemplo-2.png 550 _
 
 # empty title
-* 
+*
 
 .image img/questions.png
