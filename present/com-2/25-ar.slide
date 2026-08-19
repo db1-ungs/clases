@@ -3,11 +3,13 @@ Bases de datos I
 
 Universidad Nacional de General Sarmiento
 
+* Esta presentación se encuentra en
 
-* db1-ungs.github.io/clases/com-2/ar.html
+[[http://db1-ungs.github.io/clases/com-2/ar.html]]
 
-.image img/db1-ungs.github.io-clases-com-2-ar.html.png 500 _
-#.image img/db1-ungs.github.io-clases-com-2-rel.html.png 500 _
+#* db1-ungs.github.io/clases/com-2/ar.html
+#
+#.image img/db1-ungs.github.io-clases-com-2-ar.html.png 500 _
 
 * Modelo Relacional
 
@@ -29,8 +31,15 @@ Observaciones:
 
 Motivación:
 
-- Formalizar la manipulación de relaciones
+- Formalizar cómo obtener los datos en un modelo relacional
 - Fundamento para la creación de lenguajes de consulta (SQL)
+
+__
+__
+
+_En_una_base_de_datos_normalmente_hay_muchas_relaciones_
+
+_Es_necesario_definir_cómo_combinar_las_relaciones_entre_sí_
 
 
 * Operaciones
