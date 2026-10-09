@@ -149,6 +149,7 @@ if __name__ == "__main__":
 
 ```python
 ...
+# Recomendable
 with psycopg.connect("dbname=postgres user=postgres", autocommit=True) as conn:
 *	print("connection opened")
 *	# acá se puede usar la connexión `conn`
@@ -158,8 +159,9 @@ with psycopg.connect("dbname=postgres user=postgres", autocommit=True) as conn:
 
 "es masomenos equivalente a"
 ```py
+# No recomendable
 conn = psycopg.connect("dbname=postgres user=postgres", autocommit=True)
-# acá se puede usar la connexión `conn`
+*# acá se puede usar la connexión `conn`
 conn.close()
 # acá se cerró la conexión
 ```
