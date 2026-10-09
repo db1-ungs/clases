@@ -4,9 +4,13 @@ Bases de Datos I
 Universidad Nacional de General Sarmiento
 
 
-* db1-ungs.github.io/clases/com-2/norm.html
+* Esta presentación se encuentra en
 
-.image img/db1-ungs.github.io-clases-com-2-norm.html.png 500 _
+[[http://db1-ungs.github.io/clases/com-2/norm.html]]
+
+#* db1-ungs.github.io/clases/com-2/norm.html
+#
+#.image img/db1-ungs.github.io-clases-com-2-norm.html.png 500 _
 
 
 * Formas normales
@@ -23,21 +27,6 @@ _¿Qué_significa_"mejorar"_un_esquema_de_relación?_
 
 - minimizar la redundancia de información
 - minimizar los problemas al insertar, eliminar o actualizar registros
-
-
-* Proceso de normalización
-
-- Testeamos si un esquema de relación cumple con una determinada _forma_normal_
-- Si no la cumple, *descomponemos* esa relación en relaciones más pequeñas, para que
-  cumplan con la forma normal que estamos testeando
-__
-__
-La descomposición debería cumplir con las siguientes propiedades:
-
-- *Nonadditive*join*or*lossless*join*property*. Al volver a unir las relaciones resultantes (con la
-  operación de _join_), no deben aparecer tuplas adicionales, que no estaban en la relación original.
-- *Dependency*preservation*property*. Cada una de las dependencias funcionales de la relación original,
-  debe estar representada en alguna de las relaciones resultantes después de la descomposición.
 
 
 # Se pasó superclaves y claves desde la presentación de dependencias funcionales
@@ -242,6 +231,21 @@ La dependencia *cargo*→*sector* viola BCNF, porque _cargo_ no es superclave (a
 .image tex/fn-bcfn-ejemplo-2.png 480 _
 
 Los esquemas cumplen BCNF, pero en la normalización se perdió la dependencia *sector*nro_emp*→*cargo*.
+
+
+* Proceso de normalización
+
+- Testeamos si un esquema de relación cumple con una determinada _forma_normal_
+- Si no la cumple, *descomponemos* esa relación en relaciones más pequeñas, para que
+  cumplan con la forma normal que estamos testeando
+__
+__
+La descomposición debería cumplir con las siguientes propiedades:
+
+- *Nonadditive*join*or*lossless*join*property*. Al volver a unir las relaciones resultantes (con la
+  operación de _join_), no deben aparecer tuplas adicionales, que no estaban en la relación original.
+- *Dependency*preservation*property*. Cada una de las dependencias funcionales de la relación original,
+  debe estar representada en alguna de las relaciones resultantes después de la descomposición.
 
 
 * Algoritmos de normalización
