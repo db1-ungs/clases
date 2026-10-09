@@ -1,8 +1,8 @@
 SQL
 Structured Query Language
 
-Ximena Ebertz
-xebertz@campus.ungs.edu.ar
+# Ximena Ebertz
+# xebertz@campus.ungs.edu.ar
 
 Hernán Rondelli
 lucifer.unix.cabj@gmail.com
@@ -140,7 +140,7 @@ Borrar:
 
 * PostgreSQL
 
-$ psql -U postgres
+% psql -U postgres
 
   psql (11.2)
   Type "help" for help.

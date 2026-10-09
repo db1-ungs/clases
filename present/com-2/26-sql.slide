@@ -39,11 +39,11 @@ Universidad Nacional de General Sarmiento
 * select
 
 	select * from alumne;
- 
+
 	select nombre from alumne;
- 
+
 	select nombre, apellido from alumne;
- 
+
 	select legajo, nombre, apellido from alumne;
 
 * select
@@ -55,15 +55,15 @@ Universidad Nacional de General Sarmiento
 * where
 
 	select * from alumne where legajo = 626;
- 
+
 	select nombre, apellido from alumne where localidad = 'Grand Bourg';
- 
+
 	select distinct nombre, apellido from alumne where localidad = 'Grand Bourg';
- 
+
 	select legajo from alumne where apellido = 'Olave';
- 
+
 	select legajo from alumne where f_inscripción >= '2011-06-26';
- 
+
 	select * from alumne where '2011-06-26' <= f_inscripción and f_inscripción <= current_date;
 
 * where
@@ -75,7 +75,7 @@ Universidad Nacional de General Sarmiento
 * from
 
 	select * from alumne;
-  
+
 producto cartesiano:
 
 	select * from alumne, cursa;
@@ -116,15 +116,15 @@ producto cartesiano con join condition:
 * update
 
 	insert into alumne values (625, 'Arnold', 'Shwarseneger'); -- Cómo era el apellido? 🤔
- 
+
 	update alumne set apellido = 'Schwarzenegger' where legajo = 625;
- 
+
 	update alumne set apellido = 'Schwarzenegger'; -- No!!! 🙀
 
 * delete
 
 	delete from materia where código = 629;
-  
+
 	delete from materia; -- No!!! 🙀
 
 * Bases de datos
@@ -139,13 +139,13 @@ Borrar:
 
 	drop database bedelía;
 	drop database bedelía; -- error!
-  
+
 	drop database bedelía;
 	drop database if exists bedelía; -- okay
 
 * PostgreSQL
 
-$ psql -U postgres
+% psql -U postgres
 
   psql (11.2)
   Type "help" for help.
@@ -161,6 +161,6 @@ $ psql -U postgres
 * Demo
 
 # empty title
-* 
+*
 
 .image img/questions.png

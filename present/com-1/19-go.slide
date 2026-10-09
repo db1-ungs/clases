@@ -1,8 +1,8 @@
 Go and Databases
 An Introduction
 
-Ximena Ebertz
-xebertz@campus.ungs.edu.ar
+# Ximena Ebertz
+# xebertz@campus.ungs.edu.ar
 
 Hernán Rondelli
 lucifer.unix.cabj@gmail.com
@@ -527,6 +527,6 @@ Running code
 .link https://pkg.go.dev/go.etcd.io/bbolt
 
 # empty title
-* 
+*
 
 .image img/questions.png
